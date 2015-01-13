@@ -1,0 +1,49 @@
+doctype html
+html(ng-app="portal", lang="en")
+  head
+    title Pathwar Portal
+    
+    base(href="/")
+
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+
+    link(rel="stylesheet", href="http://www.basscss.com/docs/css/base.min.css")
+
+    //- bower:css
+    //- endinject
+
+    //- inject:css
+    //- endinject
+
+  body(ng-class="{frontpage: state == 'home'}")
+
+    nav.clearfix.white.bg-dark-gray
+      div.sm-col-right
+        a.button.py2.button-nav-dark Welcome Corentin
+      
+    
+    div.clearfix.mxn2
+    
+      nav.sm-col.sticky.top-0.px2.py2.sm-col.sm-col-2.sm-show
+       a.button.button-nav-light.block(href="/") Dashboard
+       a.button.button-nav-light.block(href="/levels") Levels
+       a.button.button-nav-light.block(href="/organizations") Organizations
+       
+      div.sm-col.sm-col-10.px2.py2(ui-view)
+
+    //- bower:js
+    //- endinject
+
+    //- inject:js
+    //- endinject
+
+    if env == "production"
+
+      script.
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-897884-2', 'auto');

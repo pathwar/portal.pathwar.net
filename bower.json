@@ -1,0 +1,26 @@
+{
+  "name": "portal.pathwar.net",
+  "version": "0.0.1",
+  "authors": [
+    "Corentin Kerisit <corentin@pathwar.net>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.8",
+    "angular-route": "~1.3.8",
+    "angular-animate": "~1.3.8",
+    "angular-ui-router": "~0.2.11",
+    "moment": "~2.8.3",
+    "traceur-runtime": "~0.0.66",
+    "font-awesome": "~4.2.0",
+    "animate.css": "~3.2.0",
+    "restangular": "~1.4.0"
+  }
+}

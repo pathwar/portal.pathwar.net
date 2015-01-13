@@ -1,0 +1,5 @@
+*~
+*.log
+vendor
+node_modules
+build
