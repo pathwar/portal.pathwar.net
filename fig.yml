@@ -3,3 +3,18 @@ portal:
   ports:
   - 8090:8090
   - 35729:35729
+  links:
+  - "mock:api"
+  volumes:
+  - ".:/usr/src/app/"
+
+mock:
+  image: pathwar/api.pathwar.net-mock
+  links:
+  - "mongo:mongo"
+  ports:
+  - "5000:5000"
+
+mongo:
+  image: mongo
+  command: --smallfiles
