@@ -5,6 +5,8 @@ portal:
   - 35729:35729
   links:
   - "mock:api"
+  volumes:
+  - ".:/usr/src/app/"
 
 mock:
   image: pathwar/api.pathwar.net-mock
