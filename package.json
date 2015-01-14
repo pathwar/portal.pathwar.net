@@ -7,8 +7,8 @@
     "prestart": "bower --allow-root install",
     "start": "gulp"
   },
-  "author": "Corentin Kerisit",
-  "license": "BSD",
+  "author": "Pathwar team <team@pathwar.net> (@pathwar_net)",
+  "license": "MIT",
   "devDependencies": {},
   "dependencies": {
     "bower": "^1.3.12",
