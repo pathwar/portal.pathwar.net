@@ -19,18 +19,20 @@ html(ng-app="portal", lang="en")
   body(ng-class="{frontpage: state == 'home'}")
 
     nav.clearfix.white.bg-dark-gray
+      div.sm-col
+        a.button.button-nav-dark.py2 Pathwar Portal
       div.sm-col-right
         a.button.py2.button-nav-dark Welcome Corentin
       
     
-    div.clearfix.mxn2
+    div.clearfix
     
-      nav.sm-col.sticky.top-0.px2.py2.sm-col.sm-col-2.sm-show
+      nav.side-menu.py2.bg-dark-gray.white.sm-show
        a.button.button-nav-light.block(href="/") Dashboard
        a.button.button-nav-light.block(href="/levels") Levels
        a.button.button-nav-light.block(href="/organizations") Organizations
        
-      div.sm-col.sm-col-10.px2.py2(ui-view)
+      div.px2.py2.content(ui-view)
 
     //- bower:js
     //- endinject
