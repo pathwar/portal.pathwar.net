@@ -1,4 +1,4 @@
-var orgs = angular.module('portal.organizations', ['ui.router', 'templates', 'ngAnimate']);
+var orgs = angular.module('portal.organizations', ['ui.router', 'templates', 'ngAnimate', 'restangular']);
 
 orgs.config(function($stateProvider) {
 
@@ -10,6 +10,13 @@ orgs.config(function($stateProvider) {
 
 });
 
-orgs.controller('OrganizationsController', function($scope, $http, $sce, $timeout) {
-  $scope.loaded = true
+orgs.controller('OrganizationsController', function($scope, $http, $sce, $timeout, Restangular) {
+
+  var Orgs = Restangular.service('organizations');
+
+  Orgs.getList().then(function(orgs) {
+    $scope.orgs = orgs;
+    $scope.loaded = true;
+  });
+
 });

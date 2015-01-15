@@ -1,1 +1,11 @@
-p LEVELS
+h1.mt0 Levels
+
+table.table-light
+  thead
+    tr
+      th Name
+      th Price
+  tbody
+    tr(ng-repeat="level in levels")
+      td {{::level.name}}
+      td {{::level.price}}

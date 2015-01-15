@@ -1,1 +1,9 @@
-| ORGS
+h1.mt0 Organizations
+
+table.table-light
+  thead
+    tr
+      th Name
+  tbody
+    tr(ng-repeat="org in orgs")
+      td {{::org.name}}

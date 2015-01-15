@@ -1,4 +1,4 @@
-var levels = angular.module('portal.levels', ['ui.router', 'templates', 'ngAnimate']);
+var levels = angular.module('portal.levels', ['ui.router', 'templates', 'ngAnimate', 'restangular']);
 
 levels.config(function($stateProvider) {
 
@@ -10,6 +10,13 @@ levels.config(function($stateProvider) {
 
 });
 
-levels.controller('LevelsController', function($scope, $http, $sce, $timeout) {
-  $scope.loaded = true
+levels.controller('LevelsController', function($scope, $http, $sce, $timeout, Restangular) {
+
+  var Level = Restangular.service('levels');
+
+  Level.getList().then(function(levels) {
+    $scope.levels = levels;
+    $scope.loaded = true;
+  });
+
 });
