@@ -5,7 +5,7 @@ orgs.config(function($stateProvider) {
   $stateProvider.state('organizations', {
     url: '/organizations',
     controller: 'OrganizationsController',
-    templateUrl: 'organizations/organizations.tpl.html',
+    templateUrl: 'modules/organizations/views/list.tpl.html',
   });
 
 });

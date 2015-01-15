@@ -5,7 +5,7 @@ home.config(function($stateProvider) {
   $stateProvider.state('home', {
     url: '/',
     controller: 'HomeController',
-    templateUrl: 'home/home.tpl.html',
+    templateUrl: 'modules/home/views/main.tpl.html',
   });
 
 });

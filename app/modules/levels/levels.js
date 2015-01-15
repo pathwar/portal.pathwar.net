@@ -5,7 +5,7 @@ levels.config(function($stateProvider) {
   $stateProvider.state('levels', {
     url: '/levels',
     controller: 'LevelsController',
-    templateUrl: 'levels/levels.tpl.html',
+    templateUrl: 'modules/levels/views/list.tpl.html',
   });
 
 });
