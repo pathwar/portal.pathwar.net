@@ -30,6 +30,22 @@ portal.config(function($locationProvider, $urlRouterProvider, RestangularProvide
 
   });
 
+  RestangularProvider.addFullRequestInterceptor(function(element, operation, route, url, headers, params, httpConfig) {
+
+    if (operation == 'patch') {
+      headers['If-Match'] = element._etag;
+      delete element._etag;
+    }
+
+    return {
+      element: element,
+      headers: headers,
+      params: params,
+      httpConfig: httpConfig
+    };
+
+  });
+
 });
 
 portal.run(function ($rootScope, $location) {
