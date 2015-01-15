@@ -31,6 +31,7 @@ gulp.task("templates", function() {
 gulp.task("scripts", ["templates"], function() {
 
   return gulp.src("app/**/*.js")
+    .pipe(plugins.plumber())
     .pipe(plugins.using({prefix: 'Compiling JS'}))
     .pipe(plugins.traceur({experimental: false}))
     .pipe(plugins.if(env == 'production', plugins.ngAnnotate()))
@@ -46,6 +47,7 @@ gulp.task("scripts", ["templates"], function() {
 gulp.task("styles", function() {
 
   return gulp.src('app/**/*.styl')
+    .pipe(plugins.plumber())
     .pipe(plugins.using({prefix: 'Compiling CSS'}))
     .pipe(plugins.stylus())
     .pipe(plugins.if(env == 'production', plugins.concat('app.css')))
