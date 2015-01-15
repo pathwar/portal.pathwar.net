@@ -5,7 +5,8 @@ var portal = angular.module('portal', [
   'restangular',
   'portal.home',
   'portal.levels',
-  'portal.organizations'
+  'portal.organizations',
+  'portal.users'
   ]);
 
 portal.config(function($locationProvider, $urlRouterProvider, RestangularProvider) {

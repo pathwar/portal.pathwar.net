@@ -1,0 +1,17 @@
+table.table-light
+  thead
+    tr
+      th Login
+      th Email
+      th Role
+      th Active
+      th
+  tbody
+    tr(ng-repeat="user in users")
+      td: a(ui-sref="^.view({id: user._id})") {{::user.login}}
+      td {{::user.email}}
+      td {{::user.role}}
+      td {{::user.active}}
+      td.right
+        button(ui-sref="^.edit({id: user._id})").button-blue.button-small.h6 Edit
+        button.button-red.button-small.h6.ml1 Remove
