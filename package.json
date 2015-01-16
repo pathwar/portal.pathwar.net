@@ -4,7 +4,9 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prestart": "bower --allow-root install",
+    "prestart": "npm run bower",
+    "postinstall": "npm run bower",
+    "bower": "bower --allow-root install",
     "start": "gulp clean && gulp"
   },
   "author": "Pathwar team <team@pathwar.net> (@pathwar_net)",
