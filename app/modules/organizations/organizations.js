@@ -60,7 +60,6 @@ organizations.controller('OrganizationsAddCtrl', function($scope, $state, Restan
   $scope.organization = {};
 
   $scope.save = function() {
-    console.log('test');
     Orgs.post($scope.organization).then(function(response) {
       $state.transitionTo('organizations.list');
     });
