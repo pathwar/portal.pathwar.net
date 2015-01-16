@@ -1,4 +1,4 @@
-.PHONY:	dev clean dist
+.PHONY:	dev clean dist release release_do release_teardown
 
 
 all:	dev
@@ -18,3 +18,25 @@ clean:
 
 vendor:	bower.json .bowerrc
 	echo n | fig run --no-deps portal bower --allow-root --force install
+
+
+release:	clean
+	$(MAKE) release_do || $(MAKE) release_teardown
+
+
+release_do:
+	git branch -D gh-pages || true
+	git checkout -b gh-pages
+	$(MAKE) dist
+	ls -la
+	find . ! -name .git ! -name build -maxdepth 1 -exec rm -rf {} \;
+	mv build/* .
+	rmdir build
+	git add .
+	git commit -am "Build gh-pages"
+	git push -u origin gh-pages -f
+	$(MAKE) release_teardown
+
+
+release_teardown:
+	git checkout master
