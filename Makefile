@@ -40,3 +40,12 @@ release_do:
 
 release_teardown:
 	git checkout master
+
+
+local_install:
+	npm install
+	npm run prestart
+
+
+travis:
+	echo "FIXME: add tests"
