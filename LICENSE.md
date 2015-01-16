@@ -1,7 +1,7 @@
 The MIT License
 ===============
 
-Copyright (c) 2014-2015 Pathwar Team <team@pathwar.net> (@pathwar_net)
+Copyright (c) **2014-2015 Pathwar Team** <team@pathwar.net> ([@pathwar_net](https://twitter.com/pathwar_net))
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
