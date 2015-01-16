@@ -1,4 +1,4 @@
-portal.pathwar.net
+portal.pathwar.net [![Build Status](https://travis-ci.org/pathwar/portal.pathwar.net.svg?branch=master)](https://travis-ci.org/pathwar/portal.pathwar.net)
 ==================
 
 Pathwar portal - an api-driven javascript-powered static website
