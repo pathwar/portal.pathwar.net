@@ -6,7 +6,8 @@ var portal = angular.module('portal', [
   'portal.home',
   'portal.levels',
   'portal.organizations',
-  'portal.users'
+  'portal.users',
+  'portal.crud'
   ]);
 
 portal.config(function($locationProvider, $urlRouterProvider, RestangularProvider) {
@@ -26,7 +27,12 @@ portal.config(function($locationProvider, $urlRouterProvider, RestangularProvide
 
   RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
 
-    if (operation == 'getList') return data._items;
+    if (operation == 'getList') {
+      if (what == '/')
+        return data._links.child;
+      else
+        return data._items;
+    }
     return response;
 
   });

@@ -21,6 +21,10 @@
     "traceur-runtime": "~0.0.66",
     "font-awesome": "~4.2.0",
     "animate.css": "~3.2.0",
-    "restangular": "~1.4.0"
+    "restangular": "~1.4.0",
+    "angular-formly": "~1.0.0"
+  },
+  "resolutions": {
+    "angular": "~1.3.8"
   }
 }

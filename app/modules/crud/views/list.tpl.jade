@@ -1,0 +1,17 @@
+div.flex.flex-center.mb2
+  h2.m0.flex-auto: a(ui-sref="crud.model.list({model: model})") {{model}}
+  button.button-blue.flex-none(ui-sref="^.add()") Add
+
+table.table-light
+  thead
+    tr
+      th Name
+      th ID
+      th
+  tbody
+    tr(ng-repeat="model in models")
+      td: a(ui-sref="^.view({id: model._id})") {{::model.title}}
+      td {{model._id}}
+      td(style="text-align: right")
+        button(ui-sref="^.edit({id: model._id})").button-blue.button-small.h6 Edit
+        button.button-red.button-small.h6.ml1 Remove

@@ -1,0 +1,7 @@
+table.table-light
+  thead
+    tr
+      th Model
+  tbody
+    tr(ng-repeat="model in models")
+      td: a(ui-sref="^.model.list({model: model.href})") {{::model.title}}
