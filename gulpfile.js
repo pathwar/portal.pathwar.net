@@ -85,6 +85,11 @@ gulp.task("vendor-styles", function() {
 
 });
 
+gulp.task("assets", function() {
+	return gulp.src(["assets/**/*"])
+	    .pipe(gulp.dest("./build/assets"));
+});
+
 gulp.task("index", function() {
 
   var vendorJs = es.merge(
@@ -136,7 +141,7 @@ gulp.task('connect', function() {
 
 });
 
-gulp.task('build', ['vendor-scripts', 'vendor-styles', 'vendor-fonts', 'templates', 'scripts', 'styles'], function() {
+gulp.task('build', ['vendor-scripts', 'vendor-styles', 'vendor-fonts', 'assets', 'templates', 'scripts', 'styles'], function() {
   gulp.start('index');
 });
 
