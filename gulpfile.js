@@ -1,4 +1,4 @@
-var bowerFiles  = require('main-bower-files')
+var bowerFiles  = require('main-bower-files');
 var es          = require('event-stream');
 var gulp        = require("gulp");
 var plugins     = require('gulp-load-plugins')();
@@ -33,7 +33,7 @@ gulp.task("scripts", ["templates"], function() {
   return gulp.src("app/**/*.js")
     .pipe(plugins.plumber())
     .pipe(plugins.using({prefix: 'Compiling JS'}))
-    .pipe(plugins.traceur({experimental: false}))
+    .pipe(plugins['6to5']())
     .pipe(plugins.if(env == 'production', plugins.ngAnnotate()))
     .pipe(plugins.if(env == 'production', plugins.concat('app.js')))
     .pipe(plugins.if(env == 'production', plugins.uglify()))
