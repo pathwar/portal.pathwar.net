@@ -29,9 +29,9 @@ portal.config(function($locationProvider, $urlRouterProvider, RestangularProvide
 
     if (operation == 'getList') {
       if (what == '/')
-        return data._links.child;
-      else
-        return data._items;
+        data._items = data._links.child;
+      data._items.meta = data._meta;
+      return data._items;
     }
     return response;
 
