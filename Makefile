@@ -9,7 +9,8 @@ dev:	vendor
 
 
 dist:	vendor
-	fig run --no-deps portal gulp build
+	fig build
+	BASE_PATH=/portal.pathwar.net/ fig run --no-deps portal gulp build
 
 
 clean:
@@ -29,7 +30,7 @@ release_do:
 	git checkout -b gh-pages
 	$(MAKE) dist
 	ls -la
-	find . ! -name .git ! -name build -maxdepth 1 -exec rm -rf {} \;
+	find . ! -name .git ! -name build ! -name Makefile ! -name fig.yml -maxdepth 1 -exec rm -rf {} \;
 	mv build/* .
 	rmdir build
 	git add .
