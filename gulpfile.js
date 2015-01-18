@@ -2,11 +2,9 @@ var bowerFiles  = require('main-bower-files');
 var es          = require('event-stream');
 var gulp        = require("gulp");
 var plugins     = require('gulp-load-plugins')();
-var sort        = require('sort-stream');
 var historyApiFallback = require('connect-history-api-fallback');
-var proxy       = require('proxy-middleware');
-var url         = require('url');
 var del         = require('del');
+var through2    = require('through2');
 
 var env = process.env.NODE_ENV;
 
@@ -25,6 +23,38 @@ gulp.task("templates", function() {
     }))
     .pipe(gulp.dest('./build'))
     .pipe(plugins.connect.reload());
+
+});
+
+gulp.task("config", function() {
+
+  function alterConfig() {
+    return through2.obj(function(file, enc, next) {
+
+      var config = JSON.parse(file.contents.toString());
+
+      if (process.env.PATHWAR_API_ENDPOINT) {
+        config.ApiConfig.endpoint = process.env.API_ENDPOINT;
+      }
+
+      else if (process.env.API_PORT_5000_TCP_PORT) {
+        config.ApiConfig.endpoint = null;
+        config.ApiConfig.port = process.env.API_PORT_5000_TCP_PORT;
+      }
+
+      file.contents = new Buffer(JSON.stringify(config));
+
+      next(null ,file);
+    })
+  }
+
+  return gulp.src("config.json")
+  .pipe(alterConfig())
+  .pipe(plugins.ngConstant({
+    name: 'portal.config'
+  }))
+  .pipe(gulp.dest('./build'))
+  .pipe(plugins.connect.reload());
 
 });
 
@@ -141,15 +171,16 @@ gulp.task('connect', function() {
 
 });
 
-gulp.task('build', ['vendor-scripts', 'vendor-styles', 'vendor-fonts', 'assets', 'templates', 'scripts', 'styles'], function() {
+gulp.task('build', ['vendor-scripts', 'vendor-styles', 'vendor-fonts', 'assets', 'config', 'templates', 'scripts', 'styles'], function() {
   gulp.start('index');
 });
 
 gulp.task('default', ['build', 'connect'], function() {
 
+  gulp.watch("config.json",       ["config"]);
   gulp.watch("app/**/*.styl",     ['styles']);
   gulp.watch("app/**/*.js",       ['scripts']);
-  gulp.watch("app/index.jade", ['index']);
+  gulp.watch("app/index.jade",    ['index']);
   gulp.watch(["app/**/*.jade", '!app/index.jade'], ['templates']);
 
 });

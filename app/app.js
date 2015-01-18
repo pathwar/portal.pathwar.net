@@ -3,6 +3,7 @@ var portal = angular.module('portal', [
   'ngRoute',
   'templates',
   'restangular',
+  'portal.config',
   'portal.home',
   'portal.levels',
   'portal.organizations',
@@ -10,12 +11,15 @@ var portal = angular.module('portal', [
   'portal.crud'
   ]);
 
-portal.config(function($locationProvider, $urlRouterProvider, RestangularProvider) {
+portal.config(function($locationProvider, $urlRouterProvider, RestangularProvider, ApiConfig) {
 
   $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise('/');
 
-  RestangularProvider.setBaseUrl('//'+document.domain+':5000');
+  if (ApiConfig.port)
+    ApiConfig.endpoint = '//'+document.domain+':'+ApiConfig.port;
+
+  RestangularProvider.setBaseUrl(ApiConfig.endpoint);
 
   RestangularProvider.setRestangularFields({
     id: "_id"

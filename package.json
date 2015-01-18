@@ -32,6 +32,7 @@
     "gulp-jade": "^0.8.0",
     "gulp-load-plugins": "^0.7.0",
     "gulp-ng-annotate": "^0.3.3",
+    "gulp-ng-constant": "^0.2.0",
     "gulp-order": "^1.1.1",
     "gulp-plumber": "^0.6.6",
     "gulp-rev": "^1.1.0",
@@ -45,6 +46,7 @@
     "matchdep": "~0.1.2",
     "proxy-middleware": "^0.6.0",
     "sort-stream": "^1.0.0",
+    "through2": "^0.6.3",
     "underscore": "~1.6.0",
     "url": "^0.10.1"
   }
