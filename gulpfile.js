@@ -143,7 +143,8 @@ gulp.task("index", function() {
     )
     .pipe(plugins.jade({
       locals: {
-        env: env
+        env: env,
+        BASE_PATH: process.env.BASE_PATH ? process.env.BASE_PATH : '/'
       },
       pretty: env == 'production' ? false : true
     }))
