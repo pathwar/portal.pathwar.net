@@ -133,12 +133,14 @@ gulp.task("index", function() {
     .pipe(
       plugins.inject(vendorJs.pipe(plugins.using({prefix: 'Injecting'})), {
         ignorePath: 'build',
+        addRootSlash: false,
         name: 'bower'
       })
     )
     .pipe(
       plugins.inject(gulp.src(['./build/**/*.js', './build/**/*.css', '!./build/vendor/**/*'], {read: false}), {
-        ignorePath: 'build'
+        ignorePath: 'build',
+        addRootSlash: false
       })
     )
     .pipe(plugins.jade({
