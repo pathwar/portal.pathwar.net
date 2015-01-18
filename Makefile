@@ -10,7 +10,7 @@ dev:	vendor
 
 dist:	vendor
 	fig build
-	BASE_PATH=/portal.pathwar.net/ fig run --no-deps portal gulp build
+	API_ENDPOINT=http://212.83.158.125:1337/ BASE_PATH=/portal.pathwar.net/ fig run --no-deps portal gulp build
 
 
 clean:

@@ -9,6 +9,7 @@ portal:
   - ".:/usr/src/app/"
   environment:
   - BASE_PATH
+  - API_ENDPOINT
 
 mock:
   image: pathwar/api.pathwar.net-mock

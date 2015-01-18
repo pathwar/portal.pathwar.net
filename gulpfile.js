@@ -33,7 +33,7 @@ gulp.task("config", function() {
 
       var config = JSON.parse(file.contents.toString());
 
-      if (process.env.PATHWAR_API_ENDPOINT) {
+      if (process.env.API_ENDPOINT) {
         config.ApiConfig.endpoint = process.env.API_ENDPOINT;
       }
 
