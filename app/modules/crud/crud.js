@@ -20,7 +20,7 @@ crud.config(function($stateProvider, formlyConfigProvider) {
   });
 
   $stateProvider.state('crud.model', {
-    url: '/:model',
+    url: '/:model?page',
     abstract: true,
     controller: function($scope, $stateParams) {
       $scope.model = $stateParams.model;
@@ -143,14 +143,25 @@ crud.controller('CrudListCtrl', function($scope, Restangular) {
 
 });
 
-crud.controller('CrudModelsListCtrl', function($scope, $stateParams, Restangular) {
+crud.controller('CrudModelsListCtrl', function($scope, $stateParams, $location, Restangular) {
 
   var Models = Restangular.all($stateParams.model);
 
-  Models.getList().then(function(models) {
+  $scope.pager = {
+    currentPage: +$stateParams.page
+  };
+
+  Models.getList({page: $stateParams.page}).then(function(models) {
     _.each(models, (model) => { model.title = model[Schema[$stateParams.model.replace('-', '_', 'g')].title]; });
+    $scope.pager.totalItems = models.meta.total;
+    $scope.pager.maxPage = _.range(1, Math.ceil(models.meta.total / models.meta.max_results) + 1);
     $scope.models = models;
   });
+
+  $scope.$watch('pager.currentPage', function(page) {
+    $location.search({page: page});
+  });
+
 
 });
 
