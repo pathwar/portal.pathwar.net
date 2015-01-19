@@ -2,7 +2,17 @@ div.flex.flex-center.mb2
   h2.m0.flex-auto: a(ui-sref="crud.model.list({model: model})") {{model}}
   button.button-blue.flex-none(ui-sref="^.add()") Add
 
-table.table-light
+div.inline-block.overflow-hidden.right(ng-if="::pager.maxPage")
+  a(ng-click="pager.currentPage = pager.currentPage - 1").left.button.button-nav-light
+    i.fa.fa-chevron-left.icon-button
+    | Previous
+  a(ng-click="pager.currentPage = pager.currentPage + 1").right.button.button-nav-light
+    | Next
+    i.fa.fa-chevron-right.icon-button
+  div.overflow-hidden.sm-show
+    a(ng-repeat="page in pager.maxPage track by $index", ng-click="pager.currentPage = 1", ng-class="{'dark-gray': pager.currentPage == $index + 1}").left.button.button-nav-light {{$index + 1}}
+
+table.table-light.mb2
   thead
     tr
       th Name
