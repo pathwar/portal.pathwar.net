@@ -1,11 +1,6 @@
-h1.mt0 {{::user.login}}
+h1.mt0 {{::model.title}}
 
 dl
-  dt Login
-  dd {{::user.session}}
-  dt Email
-  dd {{::user.email}}
-  dt Role
-  dd {{::user.role}}
-  dt Active
-  dd {{::user.active}}
+  div(ng-repeat="field in formFields").mb2
+    dt.mb1.bold {{::field.label}}
+    dd {{::model[field.key]}}

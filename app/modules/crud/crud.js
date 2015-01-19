@@ -154,12 +154,32 @@ crud.controller('CrudModelsListCtrl', function($scope, $stateParams, Restangular
 
 });
 
-crud.controller('CrudModelsViewCtrl', function($scope, $stateParams, Restangular) {
+crud.controller('CrudModelsViewCtrl', function($scope, $stateParams, Restangular, CrudSchema) {
 
-  var Users = Restangular.service('users');
+  var Models = Restangular.service($stateParams.model);
+  var Model = Models.one($stateParams.id);
 
-  Users.one($stateParams.id).get().then(function(response) {
-    $scope.user = response.data;
+  Model.get().then(function(response) {
+    var model = response.data;
+    model.title = model[Schema[$stateParams.model.replace('-', '_', 'g')].title];
+    $scope.model = model;
+  });
+
+  $scope.formFields = [];
+
+  CrudSchema.getSchema($stateParams.model).then(function(fields) {
+
+    fields = _.chain(fields).sortBy('required').reverse().value();
+
+    _.each(fields, function(field) {
+      if (field.name == '_id') return;
+      $scope.formFields.push({
+        key: field.name,
+        type: 'text',
+        label: field.name,
+        required: field.required
+      });
+    });
   });
 
 });
