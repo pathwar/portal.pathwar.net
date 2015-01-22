@@ -138,7 +138,8 @@ gulp.task("index", function() {
       })
     )
     .pipe(
-      plugins.inject(gulp.src(['./build/**/*.js', './build/**/*.css', '!./build/vendor/**/*'], {read: false}), {
+      plugins.inject(
+        gulp.src(['./build/**/*.js', './build/**/*.css', '!./build/vendor/**/*'], {read: false}).pipe(plugins.angularFilesort()), {
         ignorePath: 'build',
         addRootSlash: false
       })
