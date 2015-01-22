@@ -6,6 +6,7 @@ var users = angular.module('portal.users', [
 
 users.config(function($stateProvider) {
 
+  // CRUD
   $stateProvider.state('users', {
     url: '/users',
     abstract: true,
@@ -32,6 +33,13 @@ users.config(function($stateProvider) {
     templateUrl: 'modules/users/views/form.tpl.html',
   });
 
+  // Other
+  $stateProvider.state('login', {
+    url: '^/login',
+    controller: 'UsersLoginController',
+    templateUrl: 'modules/users/views/login.tpl.html'
+  });
+
 });
 
 users.controller('UsersListCtrl', function($scope, Restangular) {
@@ -41,6 +49,21 @@ users.controller('UsersListCtrl', function($scope, Restangular) {
   $scope.users = Users.getList().$object;
 
 });
+
+users.controller('UsersLoginController', function($scope, $state, AuthService) {
+
+  var credentials = {};
+
+  $scope.credentials = credentials;
+
+  $scope.login = function() {
+    AuthService.login($scope.credentials).then(function(token) {
+      $state.transitionTo('home');
+    });
+  }
+
+});
+
 
 users.controller('UsersViewCtrl', function($scope, $stateParams, Restangular) {
 
