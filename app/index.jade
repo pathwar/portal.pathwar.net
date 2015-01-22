@@ -13,13 +13,13 @@ html(ng-app="portal", lang="en")
 
     //- inject:css
     //- endinject
-
+    
   body(ng-class="{frontpage: state == 'home'}")
 
-    nav.clearfix.white.bg-dark-gray
+    nav.clearfix.white.bg-dark-gray(ng-controller="NavController")
       div.sm-col
         a.button.button-nav-dark.py2 Pathwar Portal
-      div.sm-col-right
+      div.sm-col-right(ng-show="isAuthentificated()")
         a.button.button-narrow.py2.button-nav-dark.regular
           | Corentin
           img(src="https://www.gravatar.com/avatar/e1300527bd1b39f11673d0545fbfd017?s=48&amp;d=mm", width="32", height="32").circle.avatar-button
@@ -27,12 +27,13 @@ html(ng-app="portal", lang="en")
     
     div.clearfix
     
-      nav.side-menu.py2.bg-light-gray.white.sm-show
+      nav.side-menu.py2.bg-light-gray.white.sm-show(ng-controller="NavController")
        a.button.button-nav-light.block(ui-sref="home") Dashboard
        a.button.button-nav-light.block(ui-sref="crud.list") CRUD
        a.button.button-nav-light.block(ui-sref="levels") Levels
        a.button.button-nav-light.block(ui-sref="users.list") Users
        a.button.button-nav-light.block(ui-sref="organizations.list") Organizations
+       a.button.button-nav-light.block(ng-click="logout()") Logout
        
       div.px2.py2.content(ui-view)
 

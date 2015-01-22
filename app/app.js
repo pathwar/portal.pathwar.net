@@ -4,6 +4,8 @@ var portal = angular.module('portal', [
   'templates',
   'restangular',
   'portal.config',
+  'portal.services',
+  'portal.controllers',
   'portal.home',
   'portal.levels',
   'portal.organizations',
@@ -23,10 +25,6 @@ portal.config(function($locationProvider, $urlRouterProvider, RestangularProvide
 
   RestangularProvider.setRestangularFields({
     id: "_id"
-  });
-
-  RestangularProvider.setDefaultHeaders({
-    Authorization: 'Basic cm9vdC10b2tlbjo='
   });
 
   RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
