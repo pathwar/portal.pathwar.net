@@ -62,6 +62,7 @@ gulp.task("scripts", function() {
 
   return gulp.src("app/**/*.js")
     .pipe(plugins.plumber())
+    .pipe(plugins.changed('./build/'))
     .pipe(plugins.using({prefix: 'Compiling JS'}))
     .pipe(plugins['6to5']())
     .pipe(plugins.if(env == 'production', plugins.ngAnnotate()))
