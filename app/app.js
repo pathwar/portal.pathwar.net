@@ -57,8 +57,18 @@ portal.config(function($locationProvider, $urlRouterProvider, RestangularProvide
 
 });
 
-portal.run(function ($rootScope, $location) {
+portal.run(function ($rootScope, $location, AuthService, Restangular) {
   $rootScope.$on('$stateChangeStart', function (event, toState) {
     $rootScope.state = toState.name;
   });
+
+  if (AuthService.isAuthentificated()) {
+    var token = AuthService.getAuthToken();
+    var basic = 'Basic '+window.btoa(token+':');
+
+    console.log('logged in');
+
+    Restangular.setDefaultHeaders({ Authorization: basic });
+  }
+
 });
