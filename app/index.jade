@@ -18,22 +18,49 @@ html(ng-app="portal", lang="en")
 
     nav.clearfix.white.bg-dark-gray(ng-controller="NavController")
       div.sm-col
-        a.button.button-nav-dark.py2 Pathwar Portal
+        a.button.button-nav-dark.py2
+          img(src="//placehold.it/32x32", width="32", height="32").rounded.avatar-button-left.ml0
+          | Pathwar Portal
       div.sm-col-right(ng-show="isAuthentificated()")
-        a.button.button-narrow.py2.button-nav-dark.regular
-          | Corentin
-          img(src="https://www.gravatar.com/avatar/e1300527bd1b39f11673d0545fbfd017?s=48&amp;d=mm", width="32", height="32").circle.avatar-button
+        div(data-disclosure, style="vertical-align: top").inline-block
+          div(data-details).fixed.top-0.right-0.bottom-0.left-0
+          div.relative
+              a.button.button-narrow.button-nav-dark.py2.px1
+                img(src="//placehold.it/32x32", width="32", height="32").rounded.avatar-button-left.ml0
+                | Mobylette
+                i.fa.fa-sort-down.icon-button
+              div(data-details).absolute.left-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1
+                a(href="#").button.block.button-nav-dark.py2.px1
+                  img(src="//placehold.it/32x32", width="32", height="32").rounded.avatar-button-left.ml0
+                  | Motorcycle
+                a(href="#").button.block.button-nav-dark.py2.px1
+                  img(src="//placehold.it/32x32", width="32", height="32").rounded.avatar-button-left.ml0
+                  | Anjunabeats
+                a(href="#").button.block.button-nav-dark.py2.px1
+                  img(src="//placehold.it/32x32", width="32", height="32").rounded.avatar-button-left.ml0
+                  | Chinese Army
+                a(href="#").button.block.button-nav-dark.py2.px1
+                  | Create organization
+        div(data-disclosure, style="vertical-align: top").inline-block
+          div(data-details).fixed.top-0.right-0.bottom-0.left-0
+          div.relative
+            a.button.button-narrow.py2.px1.button-nav-dark.regular
+              img(src="https://www.gravatar.com/avatar/e1300527bd1b39f11673d0545fbfd017?s=48&amp;d=mm", width="32", height="32").rounded.avatar-button
+            div(data-details).absolute.left-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1
+              a(href="#").button.block.button-nav-dark.py2.px1
+                | Profile
+              a(href="#").button.block.button-nav-dark.py2.px1
+                | Log out
       
     
     div.clearfix
-    
-      nav.side-menu.py2.bg-light-gray.white.sm-show(ng-controller="NavController")
-       a.button.button-nav-light.block(ui-sref="home") Dashboard
-       a.button.button-nav-light.block(ui-sref="crud.list") CRUD
-       a.button.button-nav-light.block(ui-sref="levels") Levels
-       a.button.button-nav-light.block(ui-sref="users.list") Users
-       a.button.button-nav-light.block(ui-sref="organizations.list") Organizations
-       a.button.button-nav-light.block(ng-click="logout()") Logout
+      nav.side-menu.bg-light-gray.py1.sm-show(ng-controller="NavController")
+        a.button.button-nav-light.block(ui-sref="home") Dashboard
+        a.button.button-nav-light.block(ui-sref="crud.list") CRUD
+        a.button.button-nav-light.block(ui-sref="levels") Levels
+        a.button.button-nav-light.block(ui-sref="users.list") Users
+        a.button.button-nav-light.block(ui-sref="organizations.list") Organizations
+        a.button.button-nav-light.block(ng-click="logout()") Logout
        
       div.px2.py2.content(ui-view)
 

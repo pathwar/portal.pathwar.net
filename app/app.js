@@ -5,6 +5,7 @@ var portal = angular.module('portal', [
   'restangular',
   'portal.config',
   'portal.services',
+  'portal.directives',
   'portal.controllers',
   'portal.home',
   'portal.levels',
