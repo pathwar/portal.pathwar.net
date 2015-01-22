@@ -10,6 +10,6 @@ home.config(function($stateProvider) {
 
 });
 
-home.controller('HomeController', function($scope, $http, $sce, $timeout) {
+home.controller('HomeController', function($scope) {
   $scope.loaded = true
 });
