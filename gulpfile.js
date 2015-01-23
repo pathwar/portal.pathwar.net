@@ -131,6 +131,9 @@ gulp.task("index", function() {
               "!./build/vendor/js/angular.js"], {read: false})
   );
 
+  var appJs = gulp.src(['./build/**/*.js', '!./build/vendor/**/*']).pipe(plugins.angularFilesort());
+  var appCss = gulp.src(['./build/**/*.css', '!./build/vendor/**/*'], {read: false});
+
   return gulp.src("app/index.jade")
     .pipe(
       plugins.inject(vendorJs.pipe(plugins.using({prefix: 'Injecting'})), {
@@ -140,8 +143,7 @@ gulp.task("index", function() {
       })
     )
     .pipe(
-      plugins.inject(
-        gulp.src(['./build/**/*.js', './build/**/*.css', '!./build/vendor/**/*'], {read: false}).pipe(plugins.angularFilesort()), {
+      plugins.inject(es.merge(appJs, appCss), {
         ignorePath: 'build',
         addRootSlash: false
       })
