@@ -51,18 +51,17 @@ html(ng-app="portal", lang="en")
             div(data-details).absolute.left-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1
               a(href="#").button.block.button-nav-dark.py2.px1
                 | Profile
-              a(href="#").button.block.button-nav-dark.py2.px1
+              a(ng-click="logout()").button.block.button-nav-dark.py2.px1
                 | Log out
       
     
     div.clearfix
-      nav.side-menu.bg-lighter-gray.py1.sm-show(ng-controller="NavController")
+      nav.side-menu.bg-lighter-gray.py1.sm-show
         a.button.button-nav-light.block(ui-sref="home") Dashboard
         a.button.button-nav-light.block(ui-sref="crud.list") CRUD
         a.button.button-nav-light.block(ui-sref="levels") Levels
         a.button.button-nav-light.block(ui-sref="users.list") Users
         a.button.button-nav-light.block(ui-sref="organizations.list") Organizations
-        a.button.button-nav-light.block(ng-click="logout()") Logout
        
       div.px2.py2.content(ui-view)
 
