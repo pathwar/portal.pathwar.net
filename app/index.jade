@@ -18,8 +18,8 @@ html(ng-app="portal", lang="en")
 
     nav.clearfix.white.bg-dark-gray(ng-controller="NavController")
       div.sm-col
-        a.button.button-nav-dark.py2
-          img(src="//placehold.it/32x32", width="32", height="32").rounded.avatar-button-left.ml0
+        a(ui-sref="home").button.button-nav-dark.py2
+          img(src="#{BASE_PATH}assets/img/logo.png", width="32", height="32").rounded.avatar-button-left.ml0
           | Pathwar Portal
       div.sm-col-right(ng-hide="isAuthentificated()")
         a(ui-sref="login").button.button-nav-dark.py2 Login
