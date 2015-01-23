@@ -1,0 +1,26 @@
+div.container-small
+  h1 Create an organization
+  
+  div(ng-init="step = 1", ng-show="step == 1")
+    h2 Choose a session first
+    div.mxn2.clearfix
+      div(ng-repeat="session in sessions", ng-click="formData.session = session").sm-col.sm-col-3.px2
+        div(ng-class="formData.session == session ? 'bg-blue' : 'bg-lighter-gray'").rounded.p2
+          img(src="//placehold.it/200x200").rounded.full-width
+          | {{session.name}}
+
+    div.mt2
+      button(ng-disabled="formData.session == null", ng-click="step = 2").button.button-blue Next
+      
+  div(ng-show="step == 2")
+    h2 Choose a name
+    label Name
+    input(type="text", placeholder="Name of your organization", ng-model="formData.name").sm-col-4.block.field-light.mb2
+    p.h5 Great organization names are short and memorable. Need inspiration ? How about <b>mobylette</b>
+    label Description (Optional)
+    input(type="text", placeholder="Quick description", ng-model="formData.description").sm-col-8.block.field-light.mb2
+    div.mt2
+      button(ng-disabled="formData.session == null", ng-click="create()").button-blue Create
+      | 
+      button(ng-click="step = step - 1").button-gray Cancel
+    

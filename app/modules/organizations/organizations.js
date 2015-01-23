@@ -2,7 +2,8 @@ var organizations = angular.module('portal.organizations', [
   'ui.router',
   'templates',
   'ngAnimate',
-  'restangular']);
+  'restangular',
+  'portal.services']);
 
 organizations.config(function($stateProvider) {
 
@@ -21,15 +22,15 @@ organizations.config(function($stateProvider) {
     controller: 'OrganizationsViewCtrl',
     templateUrl: 'modules/organizations/views/view.tpl.html',
   })
-  .state('organizations.add', {
-    url: '/add',
-    controller: 'OrganizationsAddCtrl',
-    templateUrl: 'modules/organizations/views/form.tpl.html',
-  })
   .state('organizations.edit', {
     url: '/:id/edit',
     controller: 'OrganizationsEditCtrl',
     templateUrl: 'modules/organizations/views/form.tpl.html',
+  })
+  .state('createOrganization', {
+    url: '/organization/create',
+    controller: 'OrganizationsCreateCtrl',
+    templateUrl: 'modules/organizations/views/create.tpl.html',
   });
 
 });
@@ -53,17 +54,22 @@ organizations.controller('OrganizationsViewCtrl', function($scope, $stateParams,
 
 });
 
-organizations.controller('OrganizationsAddCtrl', function($scope, $state, Restangular) {
+organizations.controller('OrganizationsCreateCtrl', function($scope, $state, SessionsService, OrganizationsService, Restangular) {
 
-  var Orgs = Restangular.service('organizations');
+  SessionsService.getSessions().then(function(sessions) {
+    $scope.sessions = sessions;
+  });
 
-  $scope.organization = {};
+  $scope.formData = {};
 
-  $scope.save = function() {
-    Orgs.post($scope.organization).then(function(response) {
-      $state.transitionTo('organizations.list');
+  $scope.create = function() {
+    var org = angular.copy($scope.formData);
+    org.session = org.session._id;
+
+    OrganizationsService.create(org).then(function(response) {
+      $state.transitionTo('crud.list');
     });
-  };
+  }
 
 });
 
