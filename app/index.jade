@@ -21,6 +21,8 @@ html(ng-app="portal", lang="en")
         a.button.button-nav-dark.py2
           img(src="//placehold.it/32x32", width="32", height="32").rounded.avatar-button-left.ml0
           | Pathwar Portal
+      div.sm-col-right(ng-hide="isAuthentificated()")
+        a(ui-sref="login").button.button-nav-dark.py2 Login
       div.sm-col-right(ng-show="isAuthentificated()")
         div(data-disclosure, style="vertical-align: top").inline-block
           div(data-details).fixed.top-0.right-0.bottom-0.left-0
