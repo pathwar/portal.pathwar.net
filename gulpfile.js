@@ -17,6 +17,7 @@ gulp.task('clean', function(cb) {
 gulp.task("templates", function() {
 
   return gulp.src(["app/**/*.jade", '!app/index.jade'])
+    .pipe(plugins.plumber())
     .pipe(plugins.jade())
     .pipe(plugins.angularTemplatecache({
       standalone: true
