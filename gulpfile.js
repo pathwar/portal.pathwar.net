@@ -42,11 +42,16 @@ gulp.task("config", function() {
         config.ApiConfig.endpoint = null;
         config.ApiConfig.port = process.env.API_PORT_5000_TCP_PORT;
       }
+      if (process.env.NO_PUSHSTATE) {
+        config.ApiConfig.html5Mode = false;
+      } else {
+        config.ApiConfig.html5Mode = true;
+      }
 
       file.contents = new Buffer(JSON.stringify(config));
 
       next(null ,file);
-    })
+    });
   }
 
   return gulp.src("config.json")

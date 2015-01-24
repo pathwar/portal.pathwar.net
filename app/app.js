@@ -16,7 +16,7 @@ var portal = angular.module('portal', [
 
 portal.config(function($locationProvider, $urlRouterProvider, RestangularProvider, ApiConfig) {
 
-  $locationProvider.html5Mode(true);
+  $locationProvider.html5Mode(ApiConfig.html5Mode);
   $urlRouterProvider.otherwise('/');
 
   if (ApiConfig.port)
