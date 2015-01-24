@@ -190,10 +190,15 @@ gulp.task('build', ['vendor-scripts', 'vendor-styles', 'vendor-fonts', 'assets',
 
 gulp.task('default', ['build', 'connect'], function() {
 
-  gulp.watch("config.json",       ["config"]);
-  gulp.watch("app/**/*.styl",     ['styles']);
-  gulp.watch("app/**/*.js",       ['scripts']);
-  gulp.watch("app/index.jade",    ['index']);
-  gulp.watch(["app/**/*.jade", '!app/index.jade'], ['templates']);
+  var options = {
+    interval: 500
+  };
+
+  gulp.watch(["app/**/*.jade",  '!app/index.jade'], options, ['templates']);
+
+  gulp.watch("config.json",     options, ["config"]);
+  gulp.watch("app/**/*.styl",   options, ['styles']);
+  gulp.watch("app/**/*.js",     options, ['scripts']);
+  gulp.watch("app/index.jade",  options, ['index']);
 
 });
