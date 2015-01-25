@@ -3,16 +3,9 @@ var services = angular.module('portal.services');
 //TODO: Use UserService
 services.factory('AuthService', function($q, Restangular, $window) {
 
-  var authService = {};
+  var service = {};
 
-  authService.getAuthToken = function() {
-    //TODO: Add this in UserService
-    return $window.localStorage.getItem('user_token');
-  };
-
-  authService.isAuthentificated = authService.getAuthToken;
-
-  authService.login = function(credentials) {
+  service.login = function(credentials) {
     var basic = credentials.username+':'+credentials.password;
 
     var Tokens = Restangular.all('user-tokens');
@@ -25,24 +18,18 @@ services.factory('AuthService', function($q, Restangular, $window) {
         Authorization: 'Basic '+window.btoa(basic)
       })
       .then(function(token) {
-        //TODO: Add logic in UserService
-        $window.localStorage.setItem('user_token', token.data.token);
         Restangular.setDefaultHeaders({ Authorization: "Basic "+window.btoa(token.data.token+':') });
-        return token;
+        return token.data.token;
       });
     });
   };
 
-  authService.logout = function() {
+  service.logout = function() {
     return $q(function(resolve, reject) {
-      $window.localStorage.removeItem('user_token');
+      // placeholder
       resolve();
     });
   };
 
-  authService.register = function() {
-    console.log('TODO: Register');
-  };
-
-  return authService;
+  return service;
 });
