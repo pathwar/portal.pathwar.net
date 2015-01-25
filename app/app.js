@@ -58,13 +58,15 @@ portal.config(function($locationProvider, $urlRouterProvider, RestangularProvide
 
 });
 
-portal.run(function ($rootScope, $location, AuthService, Restangular) {
+portal.run(function ($rootScope, $location, CurrentUserService, Restangular) {
   $rootScope.$on('$stateChangeStart', function (event, toState) {
     $rootScope.state = toState.name;
   });
 
-  if (AuthService.isAuthentificated()) {
-    var token = AuthService.getAuthToken();
+  CurrentUserService.restore();
+
+  if (CurrentUserService.isAuthentificated()) {
+    var token = CurrentUserService.getAuthToken();
     var basic = 'Basic '+window.btoa(token+':');
 
     console.log('logged in');

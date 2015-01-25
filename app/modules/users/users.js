@@ -50,14 +50,14 @@ users.controller('UsersListCtrl', function($scope, Restangular) {
 
 });
 
-users.controller('UsersLoginController', function($scope, $state, AuthService) {
+users.controller('UsersLoginController', function($scope, $state, CurrentUserService) {
 
   var credentials = {};
 
   $scope.credentials = credentials;
 
   $scope.login = function() {
-    AuthService.login($scope.credentials).then(function(token) {
+    CurrentUserService.login($scope.credentials).then(function(token) {
       $state.transitionTo('home');
     });
   }
