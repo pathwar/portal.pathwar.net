@@ -1,7 +1,7 @@
 var services = angular.module('portal.services');
 
 //TODO: Use UserService
-services.factory('AuthService', function($q, Restangular, $window) {
+services.factory('AuthService', function($q, $cacheFactory, Restangular, $window) {
 
   var service = {};
 
@@ -27,6 +27,7 @@ services.factory('AuthService', function($q, Restangular, $window) {
   service.logout = function() {
     return $q(function(resolve, reject) {
       // placeholder
+      Restangular.setDefaultHeaders({});
       resolve();
     });
   };

@@ -58,13 +58,12 @@ angular
     // Persistency
     service.restore = function() {
       var currentUser = $window.localStorage.getItem('currentUser');
-      if (currentUser) {
-        storage = JSON.parse(currentUser);
-      }
+      storage = JSON.parse(currentUser) || {};
     };
 
     service.clear = function() {
       $window.localStorage.removeItem('currentUser');
+      storage = {};
     };
 
     return service;
