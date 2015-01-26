@@ -76,6 +76,7 @@ portal.run(function ($rootScope, CurrentUserService, Restangular) {
 
       Restangular.setDefaultHeaders({ Authorization: basic });
 
+      //FIX ME: LoadUserInfo should not require argument
       CurrentUserService.loadUserInfo(user.user._id).then(function(user) {
         $rootScope.setCurrentUser(user);
       });
