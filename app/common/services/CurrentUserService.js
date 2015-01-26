@@ -6,8 +6,9 @@ angular
 
     var storage = {
       authToken: null,
-      user: {},
-      organization: {}
+      user: null,
+      organization: null,
+      organizations: null
     };
 
     service.login = function(credentials) {
@@ -36,6 +37,7 @@ angular
     service.loadUserInfo = function (userId) {
       return loadUser(userId)
         .then(loadOrganizations)
+        .then(loadDefaultSettings)
         .then(returnStorage);
     }
 
@@ -73,6 +75,16 @@ angular
     };
 
     // Current Organization
+
+    service.getOrganizations = function() {
+      return storage.organizations;
+    };
+
+    service.setOrganizations = function(orgs) {
+      storage.organizations = orgs;
+      persist();
+    };
+
     service.switchOrganization = function(org) {
       storage.organization = org;
       persist();
@@ -97,7 +109,19 @@ angular
     function loadOrganizations(user) {
       return OrganizationsService.getOrganizationsByUserId(user._id)
       .then(function(orgs) {
+        storage.organizations = orgs;
         return orgs;
+      });
+    }
+
+    function loadDefaultSettings(orgs) {
+      return $q(function(resolve, reject) {
+
+        // default organization to the last created
+        if (!storage.organization && orgs[0])
+          service.switchOrganization(orgs[0]);
+
+        resolve();
       });
     }
 
