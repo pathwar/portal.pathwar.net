@@ -58,7 +58,8 @@ portal.config(function($locationProvider, $urlRouterProvider, RestangularProvide
 
 });
 
-portal.run(function ($rootScope, $location, CurrentUserService, Restangular) {
+portal.run(function ($rootScope, CurrentUserService, Restangular) {
+
   $rootScope.$on('$stateChangeStart', function (event, toState) {
     $rootScope.state = toState.name;
   });

@@ -8,7 +8,7 @@ angular
       return Restangular.one('users', id).get().then(function(response) {
         return response.data;
       });
-    }
+    };
 
     return service;
 
