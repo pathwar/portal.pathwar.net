@@ -63,11 +63,18 @@ portal.run(function ($rootScope, $location, CurrentUserService, Restangular) {
     $rootScope.state = toState.name;
   });
 
-  CurrentUserService.restore();
+  CurrentUserService.restore().then(function(user) {
 
-  if (CurrentUserService.isAuthentificated()) {
-    var token = CurrentUserService.getAuthToken();
-    var basic = 'Basic '+window.btoa(token+':');
+    if (CurrentUserService.isAuthentificated()) {
+      var token = CurrentUserService.getAuthToken();
+      var basic = 'Basic '+window.btoa(token+':');
+
+      Restangular.setDefaultHeaders({ Authorization: basic });
+
+      CurrentUserService.loadUserInfo();
+    }
+
+  });
 
     console.log('logged in');
 

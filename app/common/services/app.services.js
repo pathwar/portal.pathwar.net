@@ -1,1 +1,1 @@
-angular.module('portal.services', []);
+angular.module('portal.services', ['portal.users']);
