@@ -19,7 +19,7 @@ services.factory('AuthService', function($q, $cacheFactory, Restangular, $window
       })
       .then(function(token) {
         Restangular.setDefaultHeaders({ Authorization: "Basic "+window.btoa(token.data.token+':') });
-        return token.data.token;
+        return token.data;
       });
     });
   };
