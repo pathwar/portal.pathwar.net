@@ -57,7 +57,8 @@ users.controller('UsersLoginController', function($scope, $state, CurrentUserSer
   $scope.credentials = credentials;
 
   $scope.login = function() {
-    CurrentUserService.login($scope.credentials).then(function(token) {
+    CurrentUserService.login($scope.credentials).then(function(user) {
+      $scope.setCurrentUser(user);
       $state.transitionTo('home');
     });
   }

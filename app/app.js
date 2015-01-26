@@ -76,9 +76,10 @@ portal.run(function ($rootScope, $location, CurrentUserService, Restangular) {
 
   });
 
-    console.log('logged in');
+  $rootScope.setCurrentUser = function(user) {
+    $rootScope.currentUser = user;
+  };
 
-    Restangular.setDefaultHeaders({ Authorization: basic });
-  }
+  $rootScope.setCurrentUser(CurrentUserService.getUser());
 
 });
