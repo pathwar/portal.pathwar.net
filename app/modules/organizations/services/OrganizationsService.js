@@ -18,6 +18,13 @@ angular
       embedded: JSON.stringify({
         organization: 1
       })
+    })
+    .then(function(orgs) {
+      var _orgs = [];
+      angular.forEach(orgs, function(org) {
+        _orgs.push(org.organization);
+      });
+      return _orgs;
     });
   };
 
