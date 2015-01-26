@@ -64,6 +64,10 @@ portal.run(function ($rootScope, CurrentUserService, Restangular) {
     $rootScope.state = toState.name;
   });
 
+  $rootScope.setCurrentUser = function(user) {
+    $rootScope.currentUser = user;
+  };
+
   CurrentUserService.restore().then(function(user) {
 
     if (CurrentUserService.isAuthentificated()) {
@@ -72,15 +76,11 @@ portal.run(function ($rootScope, CurrentUserService, Restangular) {
 
       Restangular.setDefaultHeaders({ Authorization: basic });
 
-      CurrentUserService.loadUserInfo();
+      CurrentUserService.loadUserInfo(user.user._id).then(function(user) {
+        $rootScope.setCurrentUser(user);
+      });
     }
 
   });
-
-  $rootScope.setCurrentUser = function(user) {
-    $rootScope.currentUser = user;
-  };
-
-  $rootScope.setCurrentUser(CurrentUserService.getUser());
 
 });
