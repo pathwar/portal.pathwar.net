@@ -1,229 +1,38 @@
 {
   "domains": {
-    "organization-levels": {
-      "/organization-levels": {
+    "achievements": {
+      "/achievements": {
         "POST": {
           "params": [
             {
-              "name": "organization",
-              "data_relation": {
-                "field": "_id",
-                "resource": "organizations",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            },
-            {
               "required": false,
               "type": "uuid",
-              "name": "_id"
-            },
-            {
-              "name": "level",
-              "data_relation": {
-                "field": "_id",
-                "resource": "levels",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            }
-          ],
-          "label": "Create a organization bought level"
-        },
-        "DELETE": {
-          "params": [],
-          "label": "Delete all organization-levels"
-        },
-        "GET": {
-          "params": [],
-          "label": "Retrieve all organization-levels"
-        }
-      },
-      "/organization-levels/{_id}": {
-        "PUT": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Replace a organization bought level"
-        },
-        "PATCH": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            },
-            {
-              "name": "organization",
-              "data_relation": {
-                "field": "_id",
-                "resource": "organizations",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            },
-            {
-              "name": "level",
-              "data_relation": {
-                "field": "_id",
-                "resource": "levels",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            }
-          ],
-          "label": "Update a organization bought level"
-        },
-        "DELETE": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Delete a organization bought level"
-        },
-        "GET": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Retrieve a organization bought level"
-        }
-      }
-    },
-    "user-tokens": {
-      "/user-tokens/{_id}": {
-        "PUT": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Replace a user token"
-        },
-        "PATCH": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
               "name": "_id"
             },
             {
               "unique": true,
-              "name": "token",
-              "default": "random token",
               "required": false,
-              "type": "string"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
+              "type": "string",
+              "name": "name"
             },
             {
               "required": false,
               "type": "string",
               "name": "description"
-            },
-            {
-              "name": "user",
-              "data_relation": {
-                "field": "_id",
-                "resource": "users",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
             }
           ],
-          "label": "Update a user token"
+          "label": "Create a achievement"
         },
         "DELETE": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Delete a user token"
+          "params": [],
+          "label": "Delete all achievements"
         },
         "GET": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Retrieve a user token"
+          "params": [],
+          "label": "Retrieve all achievements"
         }
       },
-      "/user-tokens": {
-        "POST": {
-          "params": [
-            {
-              "unique": true,
-              "name": "token",
-              "default": "random token",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            },
-            {
-              "required": false,
-              "type": "string",
-              "name": "description"
-            },
-            {
-              "name": "user",
-              "data_relation": {
-                "field": "_id",
-                "resource": "users",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            }
-          ],
-          "label": "Create a user token"
-        },
-        "DELETE": {
-          "params": [],
-          "label": "Delete all user-tokens"
-        },
-        "GET": {
-          "params": [],
-          "label": "Retrieve all user-tokens"
-        }
-      }
-    },
-    "organization-coupons": {
-      "/organization-coupons/{_id}": {
+      "/achievements/{_id}": {
         "PUT": {
           "params": [
             {
@@ -232,7 +41,7 @@
               "name": "_id"
             }
           ],
-          "label": "Replace a organization validated coupon"
+          "label": "Replace a achievement"
         },
         "PATCH": {
           "params": [
@@ -242,32 +51,23 @@
               "name": "_id"
             },
             {
-              "name": "coupon",
-              "data_relation": {
-                "field": "_id",
-                "resource": "coupons",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            },
-            {
-              "name": "organization",
-              "data_relation": {
-                "field": "_id",
-                "resource": "organizations",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            },
-            {
               "required": false,
               "type": "uuid",
               "name": "_id"
+            },
+            {
+              "unique": true,
+              "required": false,
+              "type": "string",
+              "name": "name"
+            },
+            {
+              "required": false,
+              "type": "string",
+              "name": "description"
             }
           ],
-          "label": "Update a organization validated coupon"
+          "label": "Update a achievement"
         },
         "DELETE": {
           "params": [
@@ -277,7 +77,7 @@
               "name": "_id"
             }
           ],
-          "label": "Delete a organization validated coupon"
+          "label": "Delete a achievement"
         },
         "GET": {
           "params": [
@@ -287,47 +87,7 @@
               "name": "_id"
             }
           ],
-          "label": "Retrieve a organization validated coupon"
-        }
-      },
-      "/organization-coupons": {
-        "POST": {
-          "params": [
-            {
-              "name": "coupon",
-              "data_relation": {
-                "field": "_id",
-                "resource": "coupons",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            },
-            {
-              "name": "organization",
-              "data_relation": {
-                "field": "_id",
-                "resource": "organizations",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            }
-          ],
-          "label": "Create a organization validated coupon"
-        },
-        "DELETE": {
-          "params": [],
-          "label": "Delete all organization-coupons"
-        },
-        "GET": {
-          "params": [],
-          "label": "Retrieve all organization-coupons"
+          "label": "Retrieve a achievement"
         }
       }
     },
@@ -502,1859 +262,6 @@
         }
       }
     },
-    "level-hints": {
-      "/level-hints": {
-        "POST": {
-          "params": [
-            {
-              "required": false,
-              "type": "integer",
-              "name": "price"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            },
-            {
-              "required": false,
-              "type": "string",
-              "name": "name"
-            },
-            {
-              "name": "level",
-              "data_relation": {
-                "field": "_id",
-                "resource": "levels",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            }
-          ],
-          "label": "Create a level hint"
-        },
-        "DELETE": {
-          "params": [],
-          "label": "Delete all level-hints"
-        },
-        "GET": {
-          "params": [],
-          "label": "Retrieve all level-hints"
-        }
-      },
-      "/level-hints/{_id}": {
-        "PUT": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Replace a level hint"
-        },
-        "PATCH": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            },
-            {
-              "required": false,
-              "type": "integer",
-              "name": "price"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            },
-            {
-              "required": false,
-              "type": "string",
-              "name": "name"
-            },
-            {
-              "name": "level",
-              "data_relation": {
-                "field": "_id",
-                "resource": "levels",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            }
-          ],
-          "label": "Update a level hint"
-        },
-        "DELETE": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Delete a level hint"
-        },
-        "GET": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Retrieve a level hint"
-        }
-      }
-    },
-    "user-sessions": {
-      "/user-sessions": {
-        "POST": {
-          "params": [
-            {
-              "unique": true,
-              "name": "token",
-              "default": "random token",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            },
-            {
-              "name": "user",
-              "data_relation": {
-                "field": "_id",
-                "resource": "users",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            }
-          ],
-          "label": "Create a user session"
-        },
-        "DELETE": {
-          "params": [],
-          "label": "Delete all user-sessions"
-        },
-        "GET": {
-          "params": [],
-          "label": "Retrieve all user-sessions"
-        }
-      },
-      "/user-sessions/{_id}": {
-        "PUT": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Replace a user session"
-        },
-        "PATCH": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            },
-            {
-              "unique": true,
-              "name": "token",
-              "default": "random token",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            },
-            {
-              "name": "user",
-              "data_relation": {
-                "field": "_id",
-                "resource": "users",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            }
-          ],
-          "label": "Update a user session"
-        },
-        "DELETE": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Delete a user session"
-        },
-        "GET": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Retrieve a user session"
-        }
-      }
-    },
-    "user-organization-invites": {
-      "/user-organization-invites": {
-        "POST": {
-          "params": [
-            {
-              "name": "organization",
-              "data_relation": {
-                "field": "_id",
-                "resource": "organizations",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            },
-            {
-              "name": "user",
-              "data_relation": {
-                "field": "_id",
-                "resource": "users",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            }
-          ],
-          "label": "Create a user organization invite"
-        },
-        "DELETE": {
-          "params": [],
-          "label": "Delete all user-organization-invites"
-        },
-        "GET": {
-          "params": [],
-          "label": "Retrieve all user-organization-invites"
-        }
-      },
-      "/user-organization-invites/{_id}": {
-        "PUT": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Replace a user organization invite"
-        },
-        "PATCH": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            },
-            {
-              "name": "organization",
-              "data_relation": {
-                "field": "_id",
-                "resource": "organizations",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            },
-            {
-              "name": "user",
-              "data_relation": {
-                "field": "_id",
-                "resource": "users",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            }
-          ],
-          "label": "Update a user organization invite"
-        },
-        "DELETE": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Delete a user organization invite"
-        },
-        "GET": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Retrieve a user organization invite"
-        }
-      }
-    },
-    "organization-users": {
-      "/organization-users": {
-        "POST": {
-          "params": [
-            {
-              "name": "organization",
-              "data_relation": {
-                "field": "_id",
-                "resource": "organizations",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            },
-            {
-              "name": "role",
-              "allowed": [
-                "pwner",
-                "owner"
-              ],
-              "default": "owner",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "user",
-              "data_relation": {
-                "field": "_id",
-                "resource": "users",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            }
-          ],
-          "label": "Create a organization item"
-        },
-        "DELETE": {
-          "params": [],
-          "label": "Delete all organization-users"
-        },
-        "GET": {
-          "params": [],
-          "label": "Retrieve all organization-users"
-        }
-      },
-      "/organization-users/{_id}": {
-        "PUT": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Replace a organization item"
-        },
-        "PATCH": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            },
-            {
-              "name": "organization",
-              "data_relation": {
-                "field": "_id",
-                "resource": "organizations",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            },
-            {
-              "name": "role",
-              "allowed": [
-                "pwner",
-                "owner"
-              ],
-              "default": "owner",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "user",
-              "data_relation": {
-                "field": "_id",
-                "resource": "users",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            }
-          ],
-          "label": "Update a organization item"
-        },
-        "DELETE": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Delete a organization item"
-        },
-        "GET": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Retrieve a organization item"
-        }
-      }
-    },
-    "achievements": {
-      "/achievements": {
-        "POST": {
-          "params": [
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            },
-            {
-              "unique": true,
-              "required": false,
-              "type": "string",
-              "name": "name"
-            },
-            {
-              "required": false,
-              "type": "string",
-              "name": "description"
-            }
-          ],
-          "label": "Create a achievement"
-        },
-        "DELETE": {
-          "params": [],
-          "label": "Delete all achievements"
-        },
-        "GET": {
-          "params": [],
-          "label": "Retrieve all achievements"
-        }
-      },
-      "/achievements/{_id}": {
-        "PUT": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Replace a achievement"
-        },
-        "PATCH": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            },
-            {
-              "unique": true,
-              "required": false,
-              "type": "string",
-              "name": "name"
-            },
-            {
-              "required": false,
-              "type": "string",
-              "name": "description"
-            }
-          ],
-          "label": "Update a achievement"
-        },
-        "DELETE": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Delete a achievement"
-        },
-        "GET": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Retrieve a achievement"
-        }
-      }
-    },
-    "users": {
-      "/users/{_id}": {
-        "PUT": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Replace a user"
-        },
-        "PATCH": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            },
-            {
-              "required": false,
-              "type": "string",
-              "name": "otp_secret"
-            },
-            {
-              "required": false,
-              "type": "string",
-              "name": "email_verification_token"
-            },
-            {
-              "required": false,
-              "type": "list",
-              "name": "social_links",
-              "schema": {
-                "kind": {
-                  "type": "string"
-                }
-              }
-            },
-            {
-              "required": false,
-              "type": "string",
-              "name": "social_links.kind"
-            },
-            {
-              "unique": true,
-              "name": "email",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "role",
-              "allowed": [
-                "user",
-                "superuser",
-                "admin"
-              ],
-              "default": "user",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "required": false,
-              "type": "dict",
-              "name": "location",
-              "schema": {
-                "city": {
-                  "type": "string"
-                },
-                "country": {
-                  "type": "string"
-                }
-              }
-            },
-            {
-              "required": false,
-              "type": "string",
-              "name": "location.city"
-            },
-            {
-              "required": false,
-              "type": "string",
-              "name": "location.country"
-            },
-            {
-              "default": false,
-              "required": false,
-              "type": "boolean",
-              "name": "active"
-            },
-            {
-              "required": false,
-              "type": "list",
-              "name": "available_sessions",
-              "schema": {
-                "type": "uuid",
-                "data_relation": {
-                  "field": "_id",
-                  "resource": "sessions",
-                  "embeddable": true
-                }
-              }
-            },
-            {
-              "unique": true,
-              "name": "login",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            },
-            {
-              "required": false,
-              "type": "string",
-              "name": "password_blowfish"
-            }
-          ],
-          "label": "Update a user"
-        },
-        "DELETE": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Delete a user"
-        },
-        "GET": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Retrieve a user"
-        }
-      },
-      "/users": {
-        "POST": {
-          "params": [
-            {
-              "required": false,
-              "type": "string",
-              "name": "otp_secret"
-            },
-            {
-              "required": false,
-              "type": "string",
-              "name": "email_verification_token"
-            },
-            {
-              "required": false,
-              "type": "list",
-              "name": "social_links",
-              "schema": {
-                "kind": {
-                  "type": "string"
-                }
-              }
-            },
-            {
-              "required": false,
-              "type": "string",
-              "name": "social_links.kind"
-            },
-            {
-              "unique": true,
-              "name": "email",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "role",
-              "allowed": [
-                "user",
-                "superuser",
-                "admin"
-              ],
-              "default": "user",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "required": false,
-              "type": "dict",
-              "name": "location",
-              "schema": {
-                "city": {
-                  "type": "string"
-                },
-                "country": {
-                  "type": "string"
-                }
-              }
-            },
-            {
-              "required": false,
-              "type": "string",
-              "name": "location.city"
-            },
-            {
-              "required": false,
-              "type": "string",
-              "name": "location.country"
-            },
-            {
-              "default": false,
-              "required": false,
-              "type": "boolean",
-              "name": "active"
-            },
-            {
-              "required": false,
-              "type": "list",
-              "name": "available_sessions",
-              "schema": {
-                "type": "uuid",
-                "data_relation": {
-                  "field": "_id",
-                  "resource": "sessions",
-                  "embeddable": true
-                }
-              }
-            },
-            {
-              "unique": true,
-              "name": "login",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            },
-            {
-              "required": false,
-              "type": "string",
-              "name": "password_blowfish"
-            }
-          ],
-          "label": "Create a user"
-        },
-        "DELETE": {
-          "params": [],
-          "label": "Delete all users"
-        },
-        "GET": {
-          "params": [],
-          "label": "Retrieve all users"
-        }
-      }
-    },
-    "sessions": {
-      "/sessions/{_id}": {
-        "PUT": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Replace a session"
-        },
-        "PATCH": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            },
-            {
-              "default": true,
-              "required": false,
-              "type": "boolean",
-              "name": "allow_update_organizations"
-            },
-            {
-              "unique": true,
-              "required": false,
-              "type": "string",
-              "name": "name"
-            },
-            {
-              "default": true,
-              "required": false,
-              "type": "boolean",
-              "name": "active"
-            },
-            {
-              "default": true,
-              "required": false,
-              "type": "boolean",
-              "name": "allow_new_organizations"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            },
-            {
-              "default": false,
-              "required": false,
-              "type": "boolean",
-              "name": "public"
-            }
-          ],
-          "label": "Update a session"
-        },
-        "DELETE": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Delete a session"
-        },
-        "GET": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Retrieve a session"
-        }
-      },
-      "/sessions": {
-        "POST": {
-          "params": [
-            {
-              "default": true,
-              "required": false,
-              "type": "boolean",
-              "name": "allow_update_organizations"
-            },
-            {
-              "unique": true,
-              "required": false,
-              "type": "string",
-              "name": "name"
-            },
-            {
-              "default": true,
-              "required": false,
-              "type": "boolean",
-              "name": "active"
-            },
-            {
-              "default": true,
-              "required": false,
-              "type": "boolean",
-              "name": "allow_new_organizations"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            },
-            {
-              "default": false,
-              "required": false,
-              "type": "boolean",
-              "name": "public"
-            }
-          ],
-          "label": "Create a session"
-        },
-        "DELETE": {
-          "params": [],
-          "label": "Delete all sessions"
-        },
-        "GET": {
-          "params": [],
-          "label": "Retrieve all sessions"
-        }
-      }
-    },
-    "scorings": {
-      "/scorings": {
-        "POST": {
-          "params": [
-            {
-              "default": 0,
-              "required": false,
-              "type": "integer",
-              "name": "achievements"
-            },
-            {
-              "default": 0,
-              "required": false,
-              "type": "integer",
-              "name": "gold_medals"
-            },
-            {
-              "default": 0,
-              "required": false,
-              "type": "integer",
-              "name": "cash"
-            },
-            {
-              "default": 0,
-              "required": false,
-              "type": "integer",
-              "name": "silver_medals"
-            },
-            {
-              "default": 0,
-              "required": false,
-              "type": "integer",
-              "name": "bronze_medals"
-            },
-            {
-              "default": 0,
-              "required": false,
-              "type": "integer",
-              "name": "score"
-            },
-            {
-              "name": "organization",
-              "data_relation": {
-                "field": "_id",
-                "resource": "organizations",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            }
-          ],
-          "label": "Create a scoring"
-        },
-        "DELETE": {
-          "params": [],
-          "label": "Delete all scorings"
-        },
-        "GET": {
-          "params": [],
-          "label": "Retrieve all scorings"
-        }
-      },
-      "/scorings/{_id}": {
-        "PUT": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Replace a scoring"
-        },
-        "PATCH": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            },
-            {
-              "default": 0,
-              "required": false,
-              "type": "integer",
-              "name": "achievements"
-            },
-            {
-              "default": 0,
-              "required": false,
-              "type": "integer",
-              "name": "gold_medals"
-            },
-            {
-              "default": 0,
-              "required": false,
-              "type": "integer",
-              "name": "cash"
-            },
-            {
-              "default": 0,
-              "required": false,
-              "type": "integer",
-              "name": "silver_medals"
-            },
-            {
-              "default": 0,
-              "required": false,
-              "type": "integer",
-              "name": "bronze_medals"
-            },
-            {
-              "default": 0,
-              "required": false,
-              "type": "integer",
-              "name": "score"
-            },
-            {
-              "name": "organization",
-              "data_relation": {
-                "field": "_id",
-                "resource": "organizations",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            }
-          ],
-          "label": "Update a scoring"
-        },
-        "DELETE": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Delete a scoring"
-        },
-        "GET": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Retrieve a scoring"
-        }
-      }
-    },
-    "level-instances": {
-      "/level-instances": {
-        "POST": {
-          "params": [
-            {
-              "required": false,
-              "type": "list",
-              "name": "organizations",
-              "schema": {
-                "type": "uuid",
-                "data_relation": {
-                  "field": "_id",
-                  "resource": "organizations",
-                  "embeddable": true
-                }
-              }
-            },
-            {
-              "unique": true,
-              "required": false,
-              "type": "string",
-              "name": "hash"
-            },
-            {
-              "name": "level",
-              "data_relation": {
-                "field": "_id",
-                "resource": "levels",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            },
-            {
-              "required": false,
-              "type": "list",
-              "name": "overrides",
-              "schema": {
-                "type": "dict",
-                "schema": {
-                  "key": {
-                    "type": "string",
-                    "allowed": [
-                      "cpu_shares",
-                      "memory_limit",
-                      "redump",
-                      "rootable"
-                    ]
-                  },
-                  "value": {
-                    "type": "string"
-                  }
-                }
-              }
-            },
-            {
-              "name": "server",
-              "data_relation": {
-                "field": "_id",
-                "resource": "servers",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            }
-          ],
-          "label": "Create a level instance"
-        },
-        "DELETE": {
-          "params": [],
-          "label": "Delete all level-instances"
-        },
-        "GET": {
-          "params": [],
-          "label": "Retrieve all level-instances"
-        }
-      },
-      "/level-instances/{_id}": {
-        "PUT": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Replace a level instance"
-        },
-        "PATCH": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            },
-            {
-              "required": false,
-              "type": "list",
-              "name": "organizations",
-              "schema": {
-                "type": "uuid",
-                "data_relation": {
-                  "field": "_id",
-                  "resource": "organizations",
-                  "embeddable": true
-                }
-              }
-            },
-            {
-              "unique": true,
-              "required": false,
-              "type": "string",
-              "name": "hash"
-            },
-            {
-              "name": "level",
-              "data_relation": {
-                "field": "_id",
-                "resource": "levels",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            },
-            {
-              "required": false,
-              "type": "list",
-              "name": "overrides",
-              "schema": {
-                "type": "dict",
-                "schema": {
-                  "key": {
-                    "type": "string",
-                    "allowed": [
-                      "cpu_shares",
-                      "memory_limit",
-                      "redump",
-                      "rootable"
-                    ]
-                  },
-                  "value": {
-                    "type": "string"
-                  }
-                }
-              }
-            },
-            {
-              "name": "server",
-              "data_relation": {
-                "field": "_id",
-                "resource": "servers",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            }
-          ],
-          "label": "Update a level instance"
-        },
-        "DELETE": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Delete a level instance"
-        },
-        "GET": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Retrieve a level instance"
-        }
-      }
-    },
-    "levels": {
-      "/levels": {
-        "POST": {
-          "params": [
-            {
-              "default": "en",
-              "required": false,
-              "type": "string",
-              "name": "lang"
-            },
-            {
-              "default": 600,
-              "required": false,
-              "type": "integer",
-              "name": "default_redump"
-            },
-            {
-              "default": true,
-              "required": false,
-              "type": "boolean",
-              "name": "default_rootable"
-            },
-            {
-              "default": 1,
-              "required": false,
-              "type": "integer",
-              "name": "passphrases_amount"
-            },
-            {
-              "required": false,
-              "type": "string",
-              "name": "description"
-            },
-            {
-              "required": false,
-              "type": "list",
-              "name": "tags"
-            },
-            {
-              "default": 4242,
-              "required": false,
-              "type": "integer",
-              "name": "price"
-            },
-            {
-              "default": "Anonymous",
-              "required": false,
-              "type": "string",
-              "name": "author"
-            },
-            {
-              "default": "16M",
-              "required": false,
-              "type": "string",
-              "name": "default_memory_limit"
-            },
-            {
-              "required": false,
-              "type": "string",
-              "name": "registry_url"
-            },
-            {
-              "default": "dev",
-              "required": false,
-              "type": "string",
-              "name": "version"
-            },
-            {
-              "default": "1/10",
-              "required": false,
-              "type": "string",
-              "name": "default_cpu_shares"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            },
-            {
-              "unique": true,
-              "name": "name",
-              "maxlength": 16,
-              "minlength": 3,
-              "required": false,
-              "type": "string"
-            }
-          ],
-          "label": "Create a level"
-        },
-        "DELETE": {
-          "params": [],
-          "label": "Delete all levels"
-        },
-        "GET": {
-          "params": [],
-          "label": "Retrieve all levels"
-        }
-      },
-      "/levels/{_id}": {
-        "PUT": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Replace a level"
-        },
-        "PATCH": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            },
-            {
-              "default": "en",
-              "required": false,
-              "type": "string",
-              "name": "lang"
-            },
-            {
-              "default": 600,
-              "required": false,
-              "type": "integer",
-              "name": "default_redump"
-            },
-            {
-              "default": true,
-              "required": false,
-              "type": "boolean",
-              "name": "default_rootable"
-            },
-            {
-              "default": 1,
-              "required": false,
-              "type": "integer",
-              "name": "passphrases_amount"
-            },
-            {
-              "required": false,
-              "type": "string",
-              "name": "description"
-            },
-            {
-              "required": false,
-              "type": "list",
-              "name": "tags"
-            },
-            {
-              "default": 4242,
-              "required": false,
-              "type": "integer",
-              "name": "price"
-            },
-            {
-              "default": "Anonymous",
-              "required": false,
-              "type": "string",
-              "name": "author"
-            },
-            {
-              "default": "16M",
-              "required": false,
-              "type": "string",
-              "name": "default_memory_limit"
-            },
-            {
-              "required": false,
-              "type": "string",
-              "name": "registry_url"
-            },
-            {
-              "default": "dev",
-              "required": false,
-              "type": "string",
-              "name": "version"
-            },
-            {
-              "default": "1/10",
-              "required": false,
-              "type": "string",
-              "name": "default_cpu_shares"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            },
-            {
-              "unique": true,
-              "name": "name",
-              "maxlength": 16,
-              "minlength": 3,
-              "required": false,
-              "type": "string"
-            }
-          ],
-          "label": "Update a level"
-        },
-        "DELETE": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Delete a level"
-        },
-        "GET": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Retrieve a level"
-        }
-      }
-    },
-    "servers": {
-      "/servers/{_id}": {
-        "PUT": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Replace a server"
-        },
-        "PATCH": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            },
-            {
-              "unique": true,
-              "required": false,
-              "type": "string",
-              "name": "name"
-            },
-            {
-              "default": [
-                "linux",
-                "public"
-              ],
-              "required": false,
-              "type": "list",
-              "name": "tags"
-            },
-            {
-              "required": false,
-              "type": "string",
-              "name": "token"
-            },
-            {
-              "default": true,
-              "required": false,
-              "type": "boolean",
-              "name": "active"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            },
-            {
-              "required": false,
-              "type": "string",
-              "name": "ip_address"
-            }
-          ],
-          "label": "Update a server"
-        },
-        "DELETE": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Delete a server"
-        },
-        "GET": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Retrieve a server"
-        }
-      },
-      "/servers": {
-        "POST": {
-          "params": [
-            {
-              "unique": true,
-              "required": false,
-              "type": "string",
-              "name": "name"
-            },
-            {
-              "default": [
-                "linux",
-                "public"
-              ],
-              "required": false,
-              "type": "list",
-              "name": "tags"
-            },
-            {
-              "required": false,
-              "type": "string",
-              "name": "token"
-            },
-            {
-              "default": true,
-              "required": false,
-              "type": "boolean",
-              "name": "active"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            },
-            {
-              "required": false,
-              "type": "string",
-              "name": "ip_address"
-            }
-          ],
-          "label": "Create a server"
-        },
-        "DELETE": {
-          "params": [],
-          "label": "Delete all servers"
-        },
-        "GET": {
-          "params": [],
-          "label": "Retrieve all servers"
-        }
-      }
-    },
-    "coupons": {
-      "/coupons": {
-        "POST": {
-          "params": [
-            {
-              "name": "session",
-              "data_relation": {
-                "field": "_id",
-                "resource": "sessions",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            },
-            {
-              "unique": true,
-              "name": "hash",
-              "maxlength": 32,
-              "minlength": 3,
-              "required": false,
-              "type": "string"
-            },
-            {
-              "default": 1,
-              "required": false,
-              "type": "integer",
-              "name": "value"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            }
-          ],
-          "label": "Create a coupon"
-        },
-        "DELETE": {
-          "params": [],
-          "label": "Delete all coupons"
-        },
-        "GET": {
-          "params": [],
-          "label": "Retrieve all coupons"
-        }
-      },
-      "/coupons/{_id}": {
-        "PUT": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Replace a coupon"
-        },
-        "PATCH": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            },
-            {
-              "name": "session",
-              "data_relation": {
-                "field": "_id",
-                "resource": "sessions",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            },
-            {
-              "unique": true,
-              "name": "hash",
-              "maxlength": 32,
-              "minlength": 3,
-              "required": false,
-              "type": "string"
-            },
-            {
-              "default": 1,
-              "required": false,
-              "type": "integer",
-              "name": "value"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            }
-          ],
-          "label": "Update a coupon"
-        },
-        "DELETE": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Delete a coupon"
-        },
-        "GET": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Retrieve a coupon"
-        }
-      }
-    },
-    "organizations": {
-      "/organizations/{_id}": {
-        "PUT": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Replace a organization"
-        },
-        "PATCH": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            },
-            {
-              "name": "session",
-              "data_relation": {
-                "field": "_id",
-                "resource": "sessions",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            },
-            {
-              "unique": true,
-              "required": false,
-              "type": "string",
-              "name": "name"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            }
-          ],
-          "label": "Update a organization"
-        },
-        "DELETE": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Delete a organization"
-        },
-        "GET": {
-          "params": [
-            {
-              "required": true,
-              "type": "string",
-              "name": "_id"
-            }
-          ],
-          "label": "Retrieve a organization"
-        }
-      },
-      "/organizations": {
-        "POST": {
-          "params": [
-            {
-              "name": "session",
-              "data_relation": {
-                "field": "_id",
-                "resource": "sessions",
-                "embeddable": true
-              },
-              "required": true,
-              "type": "uuid"
-            },
-            {
-              "unique": true,
-              "required": false,
-              "type": "string",
-              "name": "name"
-            },
-            {
-              "required": false,
-              "type": "uuid",
-              "name": "_id"
-            }
-          ],
-          "label": "Create a organization"
-        },
-        "DELETE": {
-          "params": [],
-          "label": "Delete all organizations"
-        },
-        "GET": {
-          "params": [],
-          "label": "Retrieve all organizations"
-        }
-      }
-    },
     "organization-items": {
       "/organization-items/{_id}": {
         "PUT": {
@@ -2461,6 +368,414 @@
         "GET": {
           "params": [],
           "label": "Retrieve all organization-items"
+        }
+      }
+    },
+    "users": {
+      "/users/{_id}": {
+        "PUT": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Replace a user"
+        },
+        "PATCH": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            },
+            {
+              "readonly": true,
+              "required": false,
+              "type": "string",
+              "name": "otp_secret"
+            },
+            {
+              "default": false,
+              "required": false,
+              "type": "boolean",
+              "name": "otp_enabled"
+            },
+            {
+              "readonly": true,
+              "required": false,
+              "type": "string",
+              "name": "password_salt"
+            },
+            {
+              "readonly": true,
+              "required": false,
+              "type": "string",
+              "name": "email_verification_token"
+            },
+            {
+              "required": false,
+              "type": "list",
+              "name": "social_links",
+              "schema": {
+                "kind": {
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "required": false,
+              "type": "string",
+              "name": "social_links.kind"
+            },
+            {
+              "name": "role",
+              "allowed": [
+                "user",
+                "superuser",
+                "admin"
+              ],
+              "default": "user",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "required": false,
+              "type": "dict",
+              "name": "location",
+              "schema": {
+                "city": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "required": false,
+              "type": "string",
+              "name": "location.city"
+            },
+            {
+              "required": false,
+              "type": "string",
+              "name": "location.country"
+            },
+            {
+              "default": false,
+              "required": false,
+              "type": "boolean",
+              "name": "active"
+            },
+            {
+              "required": false,
+              "type": "list",
+              "name": "available_sessions",
+              "schema": {
+                "type": "uuid",
+                "data_relation": {
+                  "field": "_id",
+                  "resource": "sessions",
+                  "embeddable": true
+                }
+              }
+            },
+            {
+              "unique": true,
+              "name": "login",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "required": false,
+              "type": "string",
+              "name": "password"
+            },
+            {
+              "unique": true,
+              "name": "email",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "label": "Update a user"
+        },
+        "DELETE": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Delete a user"
+        },
+        "GET": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Retrieve a user"
+        }
+      },
+      "/users": {
+        "POST": {
+          "params": [
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            },
+            {
+              "readonly": true,
+              "required": false,
+              "type": "string",
+              "name": "otp_secret"
+            },
+            {
+              "default": false,
+              "required": false,
+              "type": "boolean",
+              "name": "otp_enabled"
+            },
+            {
+              "readonly": true,
+              "required": false,
+              "type": "string",
+              "name": "password_salt"
+            },
+            {
+              "readonly": true,
+              "required": false,
+              "type": "string",
+              "name": "email_verification_token"
+            },
+            {
+              "required": false,
+              "type": "list",
+              "name": "social_links",
+              "schema": {
+                "kind": {
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "required": false,
+              "type": "string",
+              "name": "social_links.kind"
+            },
+            {
+              "name": "role",
+              "allowed": [
+                "user",
+                "superuser",
+                "admin"
+              ],
+              "default": "user",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "required": false,
+              "type": "dict",
+              "name": "location",
+              "schema": {
+                "city": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "required": false,
+              "type": "string",
+              "name": "location.city"
+            },
+            {
+              "required": false,
+              "type": "string",
+              "name": "location.country"
+            },
+            {
+              "default": false,
+              "required": false,
+              "type": "boolean",
+              "name": "active"
+            },
+            {
+              "required": false,
+              "type": "list",
+              "name": "available_sessions",
+              "schema": {
+                "type": "uuid",
+                "data_relation": {
+                  "field": "_id",
+                  "resource": "sessions",
+                  "embeddable": true
+                }
+              }
+            },
+            {
+              "unique": true,
+              "name": "login",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "required": false,
+              "type": "string",
+              "name": "password"
+            },
+            {
+              "unique": true,
+              "name": "email",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "label": "Create a user"
+        },
+        "DELETE": {
+          "params": [],
+          "label": "Delete all users"
+        },
+        "GET": {
+          "params": [],
+          "label": "Retrieve all users"
+        }
+      }
+    },
+    "organizations": {
+      "/organizations/{_id}": {
+        "PUT": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Replace a organization"
+        },
+        "PATCH": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            },
+            {
+              "name": "session",
+              "data_relation": {
+                "field": "_id",
+                "resource": "sessions",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            },
+            {
+              "name": "statistics",
+              "data_relation": {
+                "field": "_id",
+                "resource": "organization-statistics",
+                "embeddable": true
+              },
+              "required": false,
+              "type": "uuid"
+            },
+            {
+              "unique": true,
+              "required": false,
+              "type": "string",
+              "name": "name"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            }
+          ],
+          "label": "Update a organization"
+        },
+        "DELETE": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Delete a organization"
+        },
+        "GET": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Retrieve a organization"
+        }
+      },
+      "/organizations": {
+        "POST": {
+          "params": [
+            {
+              "name": "session",
+              "data_relation": {
+                "field": "_id",
+                "resource": "sessions",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            },
+            {
+              "name": "statistics",
+              "data_relation": {
+                "field": "_id",
+                "resource": "organization-statistics",
+                "embeddable": true
+              },
+              "required": false,
+              "type": "uuid"
+            },
+            {
+              "unique": true,
+              "required": false,
+              "type": "string",
+              "name": "name"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            }
+          ],
+          "label": "Create a organization"
+        },
+        "DELETE": {
+          "params": [],
+          "label": "Delete all organizations"
+        },
+        "GET": {
+          "params": [],
+          "label": "Retrieve all organizations"
         }
       }
     },
@@ -2748,6 +1063,1037 @@
         }
       }
     },
+    "sessions": {
+      "/sessions/{_id}": {
+        "PUT": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Replace a session"
+        },
+        "PATCH": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            },
+            {
+              "default": true,
+              "required": false,
+              "type": "boolean",
+              "name": "allow_update_organizations"
+            },
+            {
+              "unique": true,
+              "required": false,
+              "type": "string",
+              "name": "name"
+            },
+            {
+              "default": true,
+              "required": false,
+              "type": "boolean",
+              "name": "active"
+            },
+            {
+              "default": true,
+              "required": false,
+              "type": "boolean",
+              "name": "allow_new_organizations"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            },
+            {
+              "default": false,
+              "required": false,
+              "type": "boolean",
+              "name": "public"
+            }
+          ],
+          "label": "Update a session"
+        },
+        "DELETE": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Delete a session"
+        },
+        "GET": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Retrieve a session"
+        }
+      },
+      "/sessions": {
+        "POST": {
+          "params": [
+            {
+              "default": true,
+              "required": false,
+              "type": "boolean",
+              "name": "allow_update_organizations"
+            },
+            {
+              "unique": true,
+              "required": false,
+              "type": "string",
+              "name": "name"
+            },
+            {
+              "default": true,
+              "required": false,
+              "type": "boolean",
+              "name": "active"
+            },
+            {
+              "default": true,
+              "required": false,
+              "type": "boolean",
+              "name": "allow_new_organizations"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            },
+            {
+              "default": false,
+              "required": false,
+              "type": "boolean",
+              "name": "public"
+            }
+          ],
+          "label": "Create a session"
+        },
+        "DELETE": {
+          "params": [],
+          "label": "Delete all sessions"
+        },
+        "GET": {
+          "params": [],
+          "label": "Retrieve all sessions"
+        }
+      }
+    },
+    "level-hints": {
+      "/level-hints": {
+        "POST": {
+          "params": [
+            {
+              "required": false,
+              "type": "integer",
+              "name": "price"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            },
+            {
+              "required": false,
+              "type": "string",
+              "name": "name"
+            },
+            {
+              "name": "level",
+              "data_relation": {
+                "field": "_id",
+                "resource": "levels",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            }
+          ],
+          "label": "Create a level hint"
+        },
+        "DELETE": {
+          "params": [],
+          "label": "Delete all level-hints"
+        },
+        "GET": {
+          "params": [],
+          "label": "Retrieve all level-hints"
+        }
+      },
+      "/level-hints/{_id}": {
+        "PUT": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Replace a level hint"
+        },
+        "PATCH": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            },
+            {
+              "required": false,
+              "type": "integer",
+              "name": "price"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            },
+            {
+              "required": false,
+              "type": "string",
+              "name": "name"
+            },
+            {
+              "name": "level",
+              "data_relation": {
+                "field": "_id",
+                "resource": "levels",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            }
+          ],
+          "label": "Update a level hint"
+        },
+        "DELETE": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Delete a level hint"
+        },
+        "GET": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Retrieve a level hint"
+        }
+      }
+    },
+    "organization-coupons": {
+      "/organization-coupons/{_id}": {
+        "PUT": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Replace a organization validated coupon"
+        },
+        "PATCH": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            },
+            {
+              "name": "coupon",
+              "data_relation": {
+                "field": "_id",
+                "resource": "coupons",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            },
+            {
+              "name": "organization",
+              "data_relation": {
+                "field": "_id",
+                "resource": "organizations",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            }
+          ],
+          "label": "Update a organization validated coupon"
+        },
+        "DELETE": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Delete a organization validated coupon"
+        },
+        "GET": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Retrieve a organization validated coupon"
+        }
+      },
+      "/organization-coupons": {
+        "POST": {
+          "params": [
+            {
+              "name": "coupon",
+              "data_relation": {
+                "field": "_id",
+                "resource": "coupons",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            },
+            {
+              "name": "organization",
+              "data_relation": {
+                "field": "_id",
+                "resource": "organizations",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            }
+          ],
+          "label": "Create a organization validated coupon"
+        },
+        "DELETE": {
+          "params": [],
+          "label": "Delete all organization-coupons"
+        },
+        "GET": {
+          "params": [],
+          "label": "Retrieve all organization-coupons"
+        }
+      }
+    },
+    "organization-users": {
+      "/organization-users": {
+        "POST": {
+          "params": [
+            {
+              "name": "organization",
+              "data_relation": {
+                "field": "_id",
+                "resource": "organizations",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            },
+            {
+              "name": "role",
+              "allowed": [
+                "pwner",
+                "owner"
+              ],
+              "default": "owner",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "user",
+              "data_relation": {
+                "field": "_id",
+                "resource": "users",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            }
+          ],
+          "label": "Create a organization user"
+        },
+        "DELETE": {
+          "params": [],
+          "label": "Delete all organization-users"
+        },
+        "GET": {
+          "params": [],
+          "label": "Retrieve all organization-users"
+        }
+      },
+      "/organization-users/{_id}": {
+        "PUT": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Replace a organization user"
+        },
+        "PATCH": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            },
+            {
+              "name": "organization",
+              "data_relation": {
+                "field": "_id",
+                "resource": "organizations",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            },
+            {
+              "name": "role",
+              "allowed": [
+                "pwner",
+                "owner"
+              ],
+              "default": "owner",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "user",
+              "data_relation": {
+                "field": "_id",
+                "resource": "users",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            }
+          ],
+          "label": "Update a organization user"
+        },
+        "DELETE": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Delete a organization user"
+        },
+        "GET": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Retrieve a organization user"
+        }
+      }
+    },
+    "level-instances": {
+      "/level-instances": {
+        "POST": {
+          "params": [
+            {
+              "required": false,
+              "type": "list",
+              "name": "organizations",
+              "schema": {
+                "type": "uuid",
+                "data_relation": {
+                  "field": "_id",
+                  "resource": "organizations",
+                  "embeddable": true
+                }
+              }
+            },
+            {
+              "unique": true,
+              "required": false,
+              "type": "string",
+              "name": "hash"
+            },
+            {
+              "name": "level",
+              "data_relation": {
+                "field": "_id",
+                "resource": "levels",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            },
+            {
+              "required": false,
+              "type": "list",
+              "name": "overrides",
+              "schema": {
+                "type": "dict",
+                "schema": {
+                  "key": {
+                    "type": "string",
+                    "allowed": [
+                      "cpu_shares",
+                      "memory_limit",
+                      "redump",
+                      "rootable"
+                    ]
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            {
+              "required": false,
+              "type": "list",
+              "name": "passphrases",
+              "schema": {
+                "type": "dict",
+                "schema": {
+                  "key": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            {
+              "name": "server",
+              "data_relation": {
+                "field": "_id",
+                "resource": "servers",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            }
+          ],
+          "label": "Create a level instance"
+        },
+        "DELETE": {
+          "params": [],
+          "label": "Delete all level-instances"
+        },
+        "GET": {
+          "params": [],
+          "label": "Retrieve all level-instances"
+        }
+      },
+      "/level-instances/{_id}": {
+        "PUT": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Replace a level instance"
+        },
+        "PATCH": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            },
+            {
+              "required": false,
+              "type": "list",
+              "name": "organizations",
+              "schema": {
+                "type": "uuid",
+                "data_relation": {
+                  "field": "_id",
+                  "resource": "organizations",
+                  "embeddable": true
+                }
+              }
+            },
+            {
+              "unique": true,
+              "required": false,
+              "type": "string",
+              "name": "hash"
+            },
+            {
+              "name": "level",
+              "data_relation": {
+                "field": "_id",
+                "resource": "levels",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            },
+            {
+              "required": false,
+              "type": "list",
+              "name": "overrides",
+              "schema": {
+                "type": "dict",
+                "schema": {
+                  "key": {
+                    "type": "string",
+                    "allowed": [
+                      "cpu_shares",
+                      "memory_limit",
+                      "redump",
+                      "rootable"
+                    ]
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            {
+              "required": false,
+              "type": "list",
+              "name": "passphrases",
+              "schema": {
+                "type": "dict",
+                "schema": {
+                  "key": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            {
+              "name": "server",
+              "data_relation": {
+                "field": "_id",
+                "resource": "servers",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            }
+          ],
+          "label": "Update a level instance"
+        },
+        "DELETE": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Delete a level instance"
+        },
+        "GET": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Retrieve a level instance"
+        }
+      }
+    },
+    "levels": {
+      "/levels": {
+        "POST": {
+          "params": [
+            {
+              "default": "en",
+              "required": false,
+              "type": "string",
+              "name": "lang"
+            },
+            {
+              "default": 600,
+              "required": false,
+              "type": "integer",
+              "name": "default_redump"
+            },
+            {
+              "default": true,
+              "required": false,
+              "type": "boolean",
+              "name": "default_rootable"
+            },
+            {
+              "default": 1,
+              "required": false,
+              "type": "integer",
+              "name": "passphrases_amount"
+            },
+            {
+              "required": false,
+              "type": "string",
+              "name": "description"
+            },
+            {
+              "required": false,
+              "type": "list",
+              "name": "tags"
+            },
+            {
+              "default": 4242,
+              "required": false,
+              "type": "integer",
+              "name": "price"
+            },
+            {
+              "default": "Anonymous",
+              "required": false,
+              "type": "string",
+              "name": "author"
+            },
+            {
+              "default": "16M",
+              "required": false,
+              "type": "string",
+              "name": "default_memory_limit"
+            },
+            {
+              "required": false,
+              "type": "string",
+              "name": "registry_url"
+            },
+            {
+              "default": "dev",
+              "required": false,
+              "type": "string",
+              "name": "version"
+            },
+            {
+              "default": "1/10",
+              "required": false,
+              "type": "string",
+              "name": "default_cpu_shares"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            },
+            {
+              "unique": true,
+              "name": "name",
+              "maxlength": 16,
+              "minlength": 3,
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "label": "Create a level"
+        },
+        "DELETE": {
+          "params": [],
+          "label": "Delete all levels"
+        },
+        "GET": {
+          "params": [],
+          "label": "Retrieve all levels"
+        }
+      },
+      "/levels/{_id}": {
+        "PUT": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Replace a level"
+        },
+        "PATCH": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            },
+            {
+              "default": "en",
+              "required": false,
+              "type": "string",
+              "name": "lang"
+            },
+            {
+              "default": 600,
+              "required": false,
+              "type": "integer",
+              "name": "default_redump"
+            },
+            {
+              "default": true,
+              "required": false,
+              "type": "boolean",
+              "name": "default_rootable"
+            },
+            {
+              "default": 1,
+              "required": false,
+              "type": "integer",
+              "name": "passphrases_amount"
+            },
+            {
+              "required": false,
+              "type": "string",
+              "name": "description"
+            },
+            {
+              "required": false,
+              "type": "list",
+              "name": "tags"
+            },
+            {
+              "default": 4242,
+              "required": false,
+              "type": "integer",
+              "name": "price"
+            },
+            {
+              "default": "Anonymous",
+              "required": false,
+              "type": "string",
+              "name": "author"
+            },
+            {
+              "default": "16M",
+              "required": false,
+              "type": "string",
+              "name": "default_memory_limit"
+            },
+            {
+              "required": false,
+              "type": "string",
+              "name": "registry_url"
+            },
+            {
+              "default": "dev",
+              "required": false,
+              "type": "string",
+              "name": "version"
+            },
+            {
+              "default": "1/10",
+              "required": false,
+              "type": "string",
+              "name": "default_cpu_shares"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            },
+            {
+              "unique": true,
+              "name": "name",
+              "maxlength": 16,
+              "minlength": 3,
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "label": "Update a level"
+        },
+        "DELETE": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Delete a level"
+        },
+        "GET": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Retrieve a level"
+        }
+      }
+    },
+    "user-organization-invites": {
+      "/user-organization-invites": {
+        "POST": {
+          "params": [
+            {
+              "name": "organization",
+              "data_relation": {
+                "field": "_id",
+                "resource": "organizations",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            },
+            {
+              "name": "user",
+              "data_relation": {
+                "field": "_id",
+                "resource": "users",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            }
+          ],
+          "label": "Create a user organization invite"
+        },
+        "DELETE": {
+          "params": [],
+          "label": "Delete all user-organization-invites"
+        },
+        "GET": {
+          "params": [],
+          "label": "Retrieve all user-organization-invites"
+        }
+      },
+      "/user-organization-invites/{_id}": {
+        "PUT": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Replace a user organization invite"
+        },
+        "PATCH": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            },
+            {
+              "name": "organization",
+              "data_relation": {
+                "field": "_id",
+                "resource": "organizations",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            },
+            {
+              "name": "user",
+              "data_relation": {
+                "field": "_id",
+                "resource": "users",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            }
+          ],
+          "label": "Update a user organization invite"
+        },
+        "DELETE": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Delete a user organization invite"
+        },
+        "GET": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Retrieve a user organization invite"
+        }
+      }
+    },
     "organization-achievements": {
       "/organization-achievements": {
         "POST": {
@@ -2953,6 +2299,683 @@
         "GET": {
           "params": [],
           "label": "Retrieve all user-notifications"
+        }
+      }
+    },
+    "organization-levels": {
+      "/organization-levels": {
+        "POST": {
+          "params": [
+            {
+              "name": "organization",
+              "data_relation": {
+                "field": "_id",
+                "resource": "organizations",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            },
+            {
+              "name": "level",
+              "data_relation": {
+                "field": "_id",
+                "resource": "levels",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            }
+          ],
+          "label": "Create a organization bought level"
+        },
+        "DELETE": {
+          "params": [],
+          "label": "Delete all organization-levels"
+        },
+        "GET": {
+          "params": [],
+          "label": "Retrieve all organization-levels"
+        }
+      },
+      "/organization-levels/{_id}": {
+        "PUT": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Replace a organization bought level"
+        },
+        "PATCH": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            },
+            {
+              "name": "organization",
+              "data_relation": {
+                "field": "_id",
+                "resource": "organizations",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            },
+            {
+              "name": "level",
+              "data_relation": {
+                "field": "_id",
+                "resource": "levels",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            }
+          ],
+          "label": "Update a organization bought level"
+        },
+        "DELETE": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Delete a organization bought level"
+        },
+        "GET": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Retrieve a organization bought level"
+        }
+      }
+    },
+    "servers": {
+      "/servers/{_id}": {
+        "PUT": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Replace a server"
+        },
+        "PATCH": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            },
+            {
+              "unique": true,
+              "required": false,
+              "type": "string",
+              "name": "name"
+            },
+            {
+              "default": [
+                "linux",
+                "public"
+              ],
+              "required": false,
+              "type": "list",
+              "name": "tags"
+            },
+            {
+              "required": false,
+              "type": "string",
+              "name": "token"
+            },
+            {
+              "default": true,
+              "required": false,
+              "type": "boolean",
+              "name": "active"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            },
+            {
+              "required": false,
+              "type": "string",
+              "name": "ip_address"
+            }
+          ],
+          "label": "Update a server"
+        },
+        "DELETE": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Delete a server"
+        },
+        "GET": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Retrieve a server"
+        }
+      },
+      "/servers": {
+        "POST": {
+          "params": [
+            {
+              "unique": true,
+              "required": false,
+              "type": "string",
+              "name": "name"
+            },
+            {
+              "default": [
+                "linux",
+                "public"
+              ],
+              "required": false,
+              "type": "list",
+              "name": "tags"
+            },
+            {
+              "required": false,
+              "type": "string",
+              "name": "token"
+            },
+            {
+              "default": true,
+              "required": false,
+              "type": "boolean",
+              "name": "active"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            },
+            {
+              "required": false,
+              "type": "string",
+              "name": "ip_address"
+            }
+          ],
+          "label": "Create a server"
+        },
+        "DELETE": {
+          "params": [],
+          "label": "Delete all servers"
+        },
+        "GET": {
+          "params": [],
+          "label": "Retrieve all servers"
+        }
+      }
+    },
+    "organization-statistics": {
+      "/organization-statistics": {
+        "POST": {
+          "params": [
+            {
+              "default": 0,
+              "required": false,
+              "type": "integer",
+              "name": "achievements"
+            },
+            {
+              "default": 0,
+              "required": false,
+              "type": "integer",
+              "name": "gold_medals"
+            },
+            {
+              "default": 0,
+              "required": false,
+              "type": "integer",
+              "name": "cash"
+            },
+            {
+              "default": 0,
+              "required": false,
+              "type": "integer",
+              "name": "silver_medals"
+            },
+            {
+              "default": 0,
+              "required": false,
+              "type": "integer",
+              "name": "bronze_medals"
+            },
+            {
+              "default": 0,
+              "required": false,
+              "type": "integer",
+              "name": "score"
+            },
+            {
+              "name": "organization",
+              "data_relation": {
+                "field": "_id",
+                "resource": "organizations",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            }
+          ],
+          "label": "Create a organization statistics"
+        },
+        "DELETE": {
+          "params": [],
+          "label": "Delete all organization-statistics"
+        },
+        "GET": {
+          "params": [],
+          "label": "Retrieve all organization-statistics"
+        }
+      },
+      "/organization-statistics/{_id}": {
+        "PUT": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Replace a organization statistics"
+        },
+        "PATCH": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            },
+            {
+              "default": 0,
+              "required": false,
+              "type": "integer",
+              "name": "achievements"
+            },
+            {
+              "default": 0,
+              "required": false,
+              "type": "integer",
+              "name": "gold_medals"
+            },
+            {
+              "default": 0,
+              "required": false,
+              "type": "integer",
+              "name": "cash"
+            },
+            {
+              "default": 0,
+              "required": false,
+              "type": "integer",
+              "name": "silver_medals"
+            },
+            {
+              "default": 0,
+              "required": false,
+              "type": "integer",
+              "name": "bronze_medals"
+            },
+            {
+              "default": 0,
+              "required": false,
+              "type": "integer",
+              "name": "score"
+            },
+            {
+              "name": "organization",
+              "data_relation": {
+                "field": "_id",
+                "resource": "organizations",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            }
+          ],
+          "label": "Update a organization statistics"
+        },
+        "DELETE": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Delete a organization statistics"
+        },
+        "GET": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Retrieve a organization statistics"
+        }
+      }
+    },
+    "coupons": {
+      "/coupons": {
+        "POST": {
+          "params": [
+            {
+              "name": "session",
+              "data_relation": {
+                "field": "_id",
+                "resource": "sessions",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            },
+            {
+              "unique": true,
+              "name": "hash",
+              "maxlength": 32,
+              "minlength": 3,
+              "required": false,
+              "type": "string"
+            },
+            {
+              "default": 1,
+              "required": false,
+              "type": "integer",
+              "name": "value"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            }
+          ],
+          "label": "Create a coupon"
+        },
+        "DELETE": {
+          "params": [],
+          "label": "Delete all coupons"
+        },
+        "GET": {
+          "params": [],
+          "label": "Retrieve all coupons"
+        }
+      },
+      "/coupons/{_id}": {
+        "PUT": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Replace a coupon"
+        },
+        "PATCH": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            },
+            {
+              "name": "session",
+              "data_relation": {
+                "field": "_id",
+                "resource": "sessions",
+                "embeddable": true
+              },
+              "required": true,
+              "type": "uuid"
+            },
+            {
+              "unique": true,
+              "name": "hash",
+              "maxlength": 32,
+              "minlength": 3,
+              "required": false,
+              "type": "string"
+            },
+            {
+              "default": 1,
+              "required": false,
+              "type": "integer",
+              "name": "value"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            }
+          ],
+          "label": "Update a coupon"
+        },
+        "DELETE": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Delete a coupon"
+        },
+        "GET": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Retrieve a coupon"
+        }
+      }
+    },
+    "user-tokens": {
+      "/user-tokens/{_id}": {
+        "PUT": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Replace a user token"
+        },
+        "PATCH": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            },
+            {
+              "name": "scopes",
+              "nullable": false,
+              "default": "*",
+              "required": false,
+              "type": "string",
+              "empty": false
+            },
+            {
+              "default": "",
+              "required": false,
+              "type": "string",
+              "name": "description"
+            },
+            {
+              "default": false,
+              "required": false,
+              "type": "boolean",
+              "name": "is_session"
+            },
+            {
+              "unique": true,
+              "name": "token",
+              "default": "FIXME: generate a random token",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "readonly": true,
+              "name": "expiry_date",
+              "nullable": true,
+              "default": null,
+              "required": false,
+              "type": "datetime"
+            },
+            {
+              "name": "user",
+              "data_relation": {
+                "field": "_id",
+                "resource": "users",
+                "embeddable": true
+              },
+              "required": false,
+              "type": "uuid"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            }
+          ],
+          "label": "Update a user token"
+        },
+        "DELETE": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Delete a user token"
+        },
+        "GET": {
+          "params": [
+            {
+              "required": true,
+              "type": "string",
+              "name": "_id"
+            }
+          ],
+          "label": "Retrieve a user token"
+        }
+      },
+      "/user-tokens": {
+        "POST": {
+          "params": [
+            {
+              "name": "scopes",
+              "nullable": false,
+              "default": "*",
+              "required": false,
+              "type": "string",
+              "empty": false
+            },
+            {
+              "default": "",
+              "required": false,
+              "type": "string",
+              "name": "description"
+            },
+            {
+              "default": false,
+              "required": false,
+              "type": "boolean",
+              "name": "is_session"
+            },
+            {
+              "unique": true,
+              "name": "token",
+              "default": "FIXME: generate a random token",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "readonly": true,
+              "name": "expiry_date",
+              "nullable": true,
+              "default": null,
+              "required": false,
+              "type": "datetime"
+            },
+            {
+              "name": "user",
+              "data_relation": {
+                "field": "_id",
+                "resource": "users",
+                "embeddable": true
+              },
+              "required": false,
+              "type": "uuid"
+            },
+            {
+              "required": false,
+              "type": "uuid",
+              "name": "_id"
+            }
+          ],
+          "label": "Create a user token"
+        },
+        "DELETE": {
+          "params": [],
+          "label": "Delete all user-tokens"
+        },
+        "GET": {
+          "params": [],
+          "label": "Retrieve all user-tokens"
         }
       }
     }

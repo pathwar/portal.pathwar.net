@@ -1,17 +1,17 @@
 angular
 .module('portal.organizations')
-.factory('ScoringsService', function(Restangular) {
+.factory('OrganizationStatisticsService', function(Restangular) {
 
   var service = {};
 
-  service.getScoringByOrganizationId = function(orgId) {
-    return Restangular.all('scorings').getList({
+  service.getStatisticsByOrganizationId = function(orgId) {
+    return Restangular.all('organization-statistics').getList({
       where: JSON.stringify({
         organization: orgId
       })
     })
-    .then(function(scorings) {
-      return scorings[0] || {};
+    .then(function(statistics) {
+      return statistics[0] || {};
     });
   };
 
