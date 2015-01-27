@@ -131,7 +131,6 @@ angular
       return ScoringsService.getScoringByOrganizationId(orgId)
       .then(function(scoring) {
         storage.scoring = scoring;
-        console.log(scoring);
         return scoring;
       });
     }
