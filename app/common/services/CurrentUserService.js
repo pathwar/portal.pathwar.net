@@ -1,6 +1,6 @@
 angular
   .module('portal.services')
-  .factory('CurrentUserService', function($q, $window, AuthService, UsersService, OrganizationsService) {
+  .factory('CurrentUserService', function($q, $window, AuthService, UsersService, OrganizationsService, ScoringsService) {
 
     var service = {};
 
@@ -38,6 +38,7 @@ angular
       return loadUser(userId)
         .then(loadOrganizations)
         .then(loadDefaultSettings)
+        .then(loadScoring)
         .then(returnStorage);
     }
 
@@ -122,6 +123,16 @@ angular
           service.switchOrganization(orgs[0]);
 
         resolve();
+      });
+    }
+
+    function loadScoring() {
+      var orgId = storage.organization._id;
+      return ScoringsService.getScoringByOrganizationId(orgId)
+      .then(function(scoring) {
+        storage.scoring = scoring;
+        console.log(scoring);
+        return scoring;
       });
     }
 

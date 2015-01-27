@@ -1,1 +1,5 @@
-angular.module('portal.services', ['portal.users']);
+angular.module('portal.services', [
+  'restangular',
+  'portal.users',
+  'portal.organizations'
+]);
