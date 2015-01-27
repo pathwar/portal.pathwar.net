@@ -10,13 +10,10 @@ levels.config(function($stateProvider) {
 
 });
 
-levels.controller('LevelsController', function($scope, $http, $sce, $timeout, Restangular) {
+levels.controller('LevelsController', function($scope, LevelsService) {
 
-  var Level = Restangular.service('levels');
-
-  Level.getList().then(function(levels) {
+  LevelsService.getLevels().then(function(levels) {
     $scope.levels = levels;
-    $scope.loaded = true;
   });
 
 });
