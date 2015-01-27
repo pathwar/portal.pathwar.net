@@ -92,7 +92,7 @@ var Schema = {
   organizations: {
     title: 'name'
   },
-  scorings:  {
+  organization_statistics:  {
     title: 'organization'
   },
   servers:  {
