@@ -5,7 +5,10 @@ table.table-light
     tr
       th Name
       th Price
+      th
   tbody
     tr(ng-repeat="level in levels")
       td {{::level.name}}
       td {{::level.price}}
+      td.right-align
+        button.button-blue(ng-click="buyLevel(level)", ng-disabled="level.bought") Buy
