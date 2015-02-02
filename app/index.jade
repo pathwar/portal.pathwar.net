@@ -16,7 +16,7 @@ html(ng-app="portal", lang="en")
     
   body(ng-class="{frontpage: state == 'home'}")
 
-    nav.clearfix.white.bg-dark-gray(ng-controller="NavController")
+    nav.clearfix.white.bg-dark-gray.fixed.full-width.z1(ng-controller="NavController")
       div.sm-col
         a(ui-sref="home").button.button-nav-dark.py2
           img(src="#{BASE_PATH}assets/img/logo.png", width="32", height="32").rounded.avatar-button-left.ml0
