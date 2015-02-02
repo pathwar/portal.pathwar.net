@@ -25,7 +25,7 @@ html(ng-app="portal", lang="en")
         a(ui-sref="login").button.button-nav-dark.py2 Login
       div.sm-col-right(ng-show="isAuthentificated()")
         div.inline-block
-          a.button.button-nav-dark.py2.px1 Cash: {{currentUser.scoring.cash}}
+          a.button.button-nav-dark.py2.px1 Cash: {{currentUser.statistics.cash}}
         div(data-disclosure, style="vertical-align: top").inline-block
           div(data-details).fixed.top-0.right-0.bottom-0.left-0
           div.relative
