@@ -62,10 +62,14 @@ levels.controller('LevelsController', function($q, $scope, LevelsService, Curren
 
 levels.controller('LevelController', function($scope, $stateParams, LevelsService) {
 
-
   LevelsService.getLevel($stateParams.id).then(function(_level) {
     console.log(_level);
     $scope.level = _level;
+  });
+
+  LevelsService.getLevelInstances({level: $stateParams.id}).then(function(instances) {
+    console.log(instances[0].server);
+    $scope.instances = instances;
   });
 
 });

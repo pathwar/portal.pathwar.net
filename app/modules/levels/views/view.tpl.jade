@@ -15,3 +15,16 @@ div.clearfix
     div.p2.bg-dark-gray.rounded
       div.py2.center Price: {{level.price}}
       button(ng-click="buyLevel(level)", ng-disabled="level.bought").rounded.block.full-width Buy now
+
+h2 Level Instances
+table(ng-if="instances").table-light
+  thead.bold.bg-darken-1
+    tr
+      th Instance
+      th Server
+      th
+  tbody
+    tr(ng-repeat="instance in instances")
+      td {{instance.server.ip_address}}
+      td {{instance.server.name}}
+      td.right-align: button.button-blue Play
