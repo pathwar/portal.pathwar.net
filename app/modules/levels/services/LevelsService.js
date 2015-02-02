@@ -33,6 +33,13 @@ angular
       });
     };
 
+    service.getLevel = function(levelId) {
+      return Restangular.one('levels', levelId).get().then(function(response) {
+        return response.data;
+      });
+    };
+
+
     return service;
 
   });
