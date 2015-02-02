@@ -1,6 +1,6 @@
 h1.mt0 {{user.login}}
 
-div.sm-col-6
+form.sm-col-6
   #{'formly-form'}(result="model", fields="formFields")
     button(ng-click="save()").button-blue.mb1 Save
     button.button-red.mb1.ml1(ui-sref="^.list") Cancel
