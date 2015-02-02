@@ -26,6 +26,16 @@ angular
       });
     };
 
+    // takes an object with a level attribute containing the level ID
+    service.getLevelInstances = function(opts) {
+      opts = opts || {};
+      opts.embedded = JSON.stringify({
+        server: 1
+      });
+
+      return Restangular.all('level-instances').getList(opts);
+    };
+
     service.buyLevelbyOrganizationId = function(levelId, orgId, opts) {
       return Restangular.all('organization-levels').post({
         organization: orgId,
