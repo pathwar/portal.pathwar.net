@@ -1,0 +1,17 @@
+div.clearfix
+
+  div.sm-col.sm-col-9
+    div.mb2
+      h1.m0 Level {{level.name}}
+      div.h6
+        a(href="")
+          {{level.author}}
+        |&nbsp; (Author)
+    
+    h2 Description
+    p {{level.description}}
+    
+  div.sm-col.sm-col-3.white
+    div.p2.bg-dark-gray.rounded
+      div.py2.center Price: {{level.price}}
+      button(ng-click="buyLevel(level)", ng-disabled="level.bought").rounded.block.full-width Buy now

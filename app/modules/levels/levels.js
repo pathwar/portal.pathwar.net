@@ -4,8 +4,18 @@ levels.config(function($stateProvider) {
 
   $stateProvider.state('levels', {
     url: '/levels',
+    abstract: true,
+    template: '<ui-view/>'
+  })
+  .state('levels.list', {
+    url: '',
     controller: 'LevelsController',
     templateUrl: 'modules/levels/views/list.tpl.html',
+  })
+  .state('levels.view', {
+    url: '/:id',
+    controller: 'LevelController',
+    templateUrl: 'modules/levels/views/view.tpl.html'
   });
 
 });
@@ -47,5 +57,15 @@ levels.controller('LevelsController', function($q, $scope, LevelsService, Curren
       console.log('level '+level._id+' successfully bought !');
     });
   };
+
+});
+
+levels.controller('LevelController', function($scope, $stateParams, LevelsService) {
+
+
+  LevelsService.getLevel($stateParams.id).then(function(_level) {
+    console.log(_level);
+    $scope.level = _level;
+  });
 
 });

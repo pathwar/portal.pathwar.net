@@ -1,14 +1,14 @@
 h1.mt0 Levels
 
 table.table-light
-  thead
+  thead.bg-darken-1.bold
     tr
       th Name
       th Price
       th
   tbody
     tr(ng-repeat="level in levels")
-      td {{::level.name}}
+      td: a(ui-sref="levels.view({id: level._id})") {{::level.name}}
       td {{::level.price}}
       td.right-align
         button.button-blue(ng-click="buyLevel(level)", ng-disabled="level.bought") Buy
