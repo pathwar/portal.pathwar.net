@@ -1,3 +1,6 @@
+PROD_API_ENDPOINT ?=	http://212.83.158.125:1337/
+
+
 .PHONY:	dev clean dist release release_do release_teardown
 
 
@@ -10,7 +13,7 @@ dev:	vendor
 
 dist:	vendor
 	fig build
-	NO_PUSHSTATE=1 API_ENDPOINT=http://212.83.158.125:1337/ BASE_PATH=/portal.pathwar.net/ fig run --no-deps portal gulp build
+	NO_PUSHSTATE=1 API_ENDPOINT=$(PROD_API_ENDPOINT) BASE_PATH=/portal.pathwar.net/ fig run --no-deps portal gulp build
 
 
 clean:
