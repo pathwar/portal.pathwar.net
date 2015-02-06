@@ -10,6 +10,7 @@ portal:
   environment:
   - BASE_PATH
   - API_ENDPOINT
+  - NO_PUSHSTATE
 
 mock:
   image: pathwar/api.pathwar.net-mock
