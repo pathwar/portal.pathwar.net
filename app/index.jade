@@ -14,7 +14,7 @@ html(ng-app="portal", lang="en")
     //- inject:css
     //- endinject
     
-  body(ng-class="{frontpage: state == 'home'}")
+  body(ng-class="{frontpage: state == 'home'}").bg-light-gray
 
     nav.clearfix.white.bg-dark-gray.fixed.full-width.z1(ng-controller="NavController")
       div.sm-col
@@ -65,7 +65,7 @@ html(ng-app="portal", lang="en")
         a.button.button-nav-light.block(ui-sref="users.list") Users
         a.button.button-nav-light.block(ui-sref="organizations.list") Organizations
        
-      div.px2.py2.content(ui-view)
+      div.p3.content(ui-view)
 
     //- bower:js
     //- endinject
