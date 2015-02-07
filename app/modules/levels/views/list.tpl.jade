@@ -1,14 +1,23 @@
-h1.mt0 Levels
+h2.mt0.mb2.regular.mid-gray
+  a(ui-sref="levels.list")
+    | Levels
 
-table.table-light
-  thead.bg-darken-1.bold
-    tr
-      th Name
-      th Price
-      th
-  tbody
-    tr(ng-repeat="level in levels")
-      td: a(ui-sref="levels.view({id: level._id})") {{::level.name}}
-      td {{::level.price}}
-      td.right-align
-        button.button-blue(ng-click="buyLevel(level)", ng-disabled="level.bought") Buy
+div.p3.bg-white.rounded
+  h1.mt0 Welcome to the level library
+
+div.p3.bg-white.rounded.mt3
+
+  h2.mt0.mb2.regular.mid-gray Levels
+
+  table.table-light
+    thead.bg-darken-1.bold
+      tr
+        th Name
+        th Price
+        th
+    tbody
+      tr(ng-repeat="level in levels")
+        td: a(ui-sref="levels.view({id: level._id})") {{::level.name}}
+        td {{::level.price}}
+        td.right-align
+          button.button-blue(ng-click="buyLevel(level)", ng-disabled="level.bought") Buy
