@@ -5,7 +5,7 @@ levels.config(function($stateProvider) {
   $stateProvider.state('levels', {
     url: '/levels',
     abstract: true,
-    template: '<ui-view/>'
+    template: '<div ui-view></div>'
   })
   .state('levels.list', {
     url: '',
