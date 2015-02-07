@@ -15,37 +15,49 @@ html(ng-app="portal", lang="en")
     //- endinject
     
   body(ng-class="{frontpage: state == 'home'}").bg-light-gray
-
-    nav.clearfix.white.bg-dark-gray.fixed.full-width.z1(ng-controller="NavController")
-      div.sm-col
-        a(ui-sref="home").button.button-nav-dark.py2
-          img(src="#{BASE_PATH}assets/img/logo.png", width="32", height="32").rounded.avatar-button-left.ml0
-          | Pathwar Portal
+    
+    div.side-menu.bg-lighter-gray.sm-show
+      a(ui-sref="home").button.button-nav-light.py2
+        img(src="#{BASE_PATH}assets/img/logo.png", width="32", height="32").rounded.avatar-button-left.ml0
+        | Pathwar
+      nav
+        a.button.button-nav-light.block(ui-sref="home") Dashboard
+        a.button.button-nav-light.block(ui-sref="crud.list") CRUD
+        a.button.button-nav-light.block(ui-sref="levels.list") Levels
+        a.button.button-nav-light.block(ui-sref="users.list") Users
+        a.button.button-nav-light.block(ui-sref="organizations.list") Organizations
+       
+      
+    nav.clearfix.white.bg-dark-gray.fixed.top-0.right-0.left-0.has-side-menu.z1(ng-controller="NavController")
+    
+      // Anonymous
       div.sm-col-right(ng-hide="isAuthentificated()")
         a(ui-sref="login").button.button-nav-dark.py2 Login
-      div.sm-col-right(ng-show="isAuthentificated()")
-        div.inline-block
-          a.button.button-nav-dark.py2.px1 Cash: {{currentUser.statistics.cash}}
+        
+      // Logged in
+      div(ng-show="isAuthentificated()")
+          
         div(data-disclosure, style="vertical-align: top").inline-block
           div(data-details).fixed.top-0.right-0.bottom-0.left-0
           div.relative
-              a.button.button-narrow.button-nav-dark.py2.px1
+            a.button.button-narrow.button-nav-dark.py2.px1
+              img(src="//placehold.it/32x32", width="32", height="32").rounded.avatar-button-left.ml0
+              | {{currentUser.organization.name}}
+              i.fa.fa-sort-down.icon-button
+            div(data-details).absolute.left-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1
+              a(href="#").button.block.button-nav-dark.py2.px1
                 img(src="//placehold.it/32x32", width="32", height="32").rounded.avatar-button-left.ml0
-                | {{currentUser.organization.name}}
-                i.fa.fa-sort-down.icon-button
-              div(data-details).absolute.left-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1
-                a(href="#").button.block.button-nav-dark.py2.px1
-                  img(src="//placehold.it/32x32", width="32", height="32").rounded.avatar-button-left.ml0
-                  | Motorcycle
-                a(href="#").button.block.button-nav-dark.py2.px1
-                  img(src="//placehold.it/32x32", width="32", height="32").rounded.avatar-button-left.ml0
-                  | Anjunabeats
-                a(href="#").button.block.button-nav-dark.py2.px1
-                  img(src="//placehold.it/32x32", width="32", height="32").rounded.avatar-button-left.ml0
-                  | Chinese Army
-                a(ui-sref="createOrganization").button.block.button-nav-dark.bg-dark-gray.py2.px1.center
-                  | New
-        div(data-disclosure, style="vertical-align: top").inline-block
+                | Motorcycle
+              a(href="#").button.block.button-nav-dark.py2.px1
+                img(src="//placehold.it/32x32", width="32", height="32").rounded.avatar-button-left.ml0
+                | Anjunabeats
+              a(href="#").button.block.button-nav-dark.py2.px1
+                img(src="//placehold.it/32x32", width="32", height="32").rounded.avatar-button-left.ml0
+                | Chinese Army
+              a(ui-sref="createOrganization").button.block.button-nav-dark.bg-dark-gray.py2.px1.center
+                | New
+                
+        div(data-disclosure, style="vertical-align: top").inline-block.right
           div(data-details).fixed.top-0.right-0.bottom-0.left-0
           div.relative
             a.button.button-narrow.py2.px1.button-nav-dark.regular
@@ -55,17 +67,11 @@ html(ng-app="portal", lang="en")
                 | Profile
               a(ng-click="logout()").button.block.button-nav-dark.py2.px1
                 | Log out
+                
+        div.inline-block.right
+          a.button.button-nav-dark.py2.px1 Cash: {{currentUser.statistics.cash}}
       
-    
-    div.clearfix
-      nav.side-menu.bg-lighter-gray.py1.sm-show
-        a.button.button-nav-light.block(ui-sref="home") Dashboard
-        a.button.button-nav-light.block(ui-sref="crud.list") CRUD
-        a.button.button-nav-light.block(ui-sref="levels.list") Levels
-        a.button.button-nav-light.block(ui-sref="users.list") Users
-        a.button.button-nav-light.block(ui-sref="organizations.list") Organizations
-       
-      div.p3.content(ui-view)
+    div.p3.has-side-menu.content(ui-view)
 
     //- bower:js
     //- endinject
