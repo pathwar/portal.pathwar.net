@@ -67,7 +67,7 @@ levels.controller('LevelController', function($scope, $stateParams, LevelsServic
     $scope.level = _level;
   });
 
-  LevelsService.getLevelInstances({level: $stateParams.id}).then(function(instances) {
+  LevelsService.getLevelInstances({where: {level: $stateParams.id}}).then(function(instances) {
     console.log(instances[0].server);
     $scope.instances = instances;
   });
