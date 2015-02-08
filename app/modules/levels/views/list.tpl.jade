@@ -17,7 +17,10 @@ div.p3.bg-white.rounded.mt3
         th
     tbody
       tr(ng-repeat="level in levels")
-        td: a(ui-sref="levels.view({id: level._id})") {{::level.name}}
+        td
+          i(ng-if="::level.bought").fa.fa-dot-circle-o
+          | &nbsp;
+          a(ui-sref="levels.view({id: level._id})") {{::level.name}}
         td {{::level.price}}
         td.right-align
           button.button-blue(ng-click="buyLevel(level)", ng-disabled="level.bought") Buy
