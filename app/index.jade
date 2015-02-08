@@ -20,11 +20,21 @@ html(ng-app="portal", lang="en")
       a(ui-sref="home").button.button-nav-light.py2
         img(src="#{BASE_PATH}assets/img/logo.png", width="32", height="32").rounded.avatar-button-left.ml0
       nav.mt3
-        a.button.button-nav-light.block(ui-sref="home") Dashboard
-        a.button.button-nav-light.block(ui-sref="crud.list") CRUD
-        a.button.button-nav-light.block(ui-sref="levels.list") Levels
-        a.button.button-nav-light.block(ui-sref="users.list") Users
-        a.button.button-nav-light.block(ui-sref="organizations.list") Organizations
+        a.button.button-nav-dark.block(ui-sref="home").h3
+          i.fa.fa-tachometer
+          |&nbsp; Dashboard
+        a.button.button-nav-dark.block(ui-sref="crud.list")
+          i.fa.fa-lock
+          |&nbsp; CRUD
+        a.button.button-nav-dark.block(ui-sref="levels.list")
+          i.fa.fa-desktop
+          |&nbsp; Levels
+        a.button.button-nav-dark.block(ui-sref="users.list")
+          i.fa.fa-users
+          |&nbsp; Users
+        a.button.button-nav-dark.block(ui-sref="organizations.list")
+          i.fa.fa-building-o
+          |&nbsp; Organizations
        
       
     nav.clearfix.white.bg-mid-gray.fixed.top-0.right-0.left-0.has-side-menu.z1(ng-controller="NavController")
