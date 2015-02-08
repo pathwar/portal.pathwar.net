@@ -1,4 +1,4 @@
-PROD_API_ENDPOINT ?=	http://212.83.158.125:1337/
+PROD_API_ENDPOINT ?=	http://api.pathwar.net:1337/
 
 
 .PHONY:	dev clean dist release release_do release_teardown
