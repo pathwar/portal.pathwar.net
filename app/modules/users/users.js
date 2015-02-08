@@ -66,12 +66,14 @@ users.controller('UsersLoginController', function($scope, $state, CurrentUserSer
 });
 
 
-users.controller('UsersViewCtrl', function($scope, $stateParams, Restangular) {
+users.controller('UsersViewCtrl', function($scope, $stateParams, UsersService, OrganizationsService) {
 
-  var Users = Restangular.service('users');
+  UsersService.getUserById($stateParams.id).then(function(user) {
+    $scope.user = user;
+  });
 
-  Users.one($stateParams.id).get().then(function(response) {
-    $scope.user = response.data;
+  OrganizationsService.getOrganizationsByUserId($stateParams.id).then(function(orgs) {
+    $scope.orgs = orgs;
   });
 
 

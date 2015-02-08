@@ -16,11 +16,10 @@ div.p3.mb3.rounded.bg-white
   
   
 h2.mt0.regular.mid-gray Organizations
-div.mxn2
-  each val in [1, 2, 3]
-    div.mb3.md-col.md-col-4.px2
-      div.p2.rounded.bg-white
-        | Orgs #{val}
+div.mxn2.clearfix
+  div(ng-repeat="org in orgs").mb3.md-col.md-col-4.px2
+    div.p2.rounded.bg-white
+      a(ui-sref="organizations.view({id: org._id})") {{::org.name}}
 
 h2.mt0.regular.mid-gray Achievements
 div.mb3.rounded.bg-white.md-col-4
