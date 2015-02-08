@@ -13,7 +13,7 @@ dev:	vendor
 
 dist:	vendor
 	fig build
-	NO_PUSHSTATE=1 API_ENDPOINT=$(PROD_API_ENDPOINT) BASE_PATH=/portal.pathwar.net/ fig run --no-deps portal gulp build
+	NO_PUSHSTATE=1 API_ENDPOINT=$(PROD_API_ENDPOINT) BASE_PATH=/ fig run --no-deps portal gulp build
 	echo portal.pathwar.net > CNAME
 
 
