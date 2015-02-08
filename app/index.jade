@@ -14,13 +14,12 @@ html(ng-app="portal", lang="en")
     //- inject:css
     //- endinject
     
-  body(ng-class="{frontpage: state == 'home'}").bg-light-gray
+  body(ng-class="{frontpage: state == 'home'}").bg-lighter-gray
     
-    div.side-menu.bg-lighter-gray.sm-show
+    div.side-menu.bg-dark-gray.md-show
       a(ui-sref="home").button.button-nav-light.py2
         img(src="#{BASE_PATH}assets/img/logo.png", width="32", height="32").rounded.avatar-button-left.ml0
-        | Pathwar
-      nav
+      nav.mt3
         a.button.button-nav-light.block(ui-sref="home") Dashboard
         a.button.button-nav-light.block(ui-sref="crud.list") CRUD
         a.button.button-nav-light.block(ui-sref="levels.list") Levels
@@ -28,7 +27,7 @@ html(ng-app="portal", lang="en")
         a.button.button-nav-light.block(ui-sref="organizations.list") Organizations
        
       
-    nav.clearfix.white.bg-dark-gray.fixed.top-0.right-0.left-0.has-side-menu.z1(ng-controller="NavController")
+    nav.clearfix.white.bg-mid-gray.fixed.top-0.right-0.left-0.has-side-menu.z1(ng-controller="NavController")
     
       // Anonymous
       div.sm-col-right(ng-hide="isAuthentificated()")
