@@ -1,17 +1,16 @@
-table.table-light
-  thead
-    tr
-      th Login
-      th Email
-      th Role
-      th Active
-      th
-  tbody
-    tr(ng-repeat="user in users")
-      td: a(ui-sref="^.view({id: user._id})") {{::user.login}}
-      td {{::user.email}}
-      td {{::user.role}}
-      td {{::user.active}}
-      td.right
-        button(ui-sref="^.edit({id: user._id})").button-blue.button-small.h6 Edit
-        button.button-red.button-small.h6.ml1 Remove
+h2.mt0.mb2.regular.mid-gray
+  a(ui-sref="users.list")
+    | Users
+
+div.p3.rounded.mb3.bg-white
+  table.table-light
+    thead.bg-lighter-gray
+      tr
+        th Login
+        th Email
+        th Role
+    tbody
+      tr(ng-repeat="user in users")
+        td: a(ui-sref="^.view({id: user._id})") {{::user.login}}
+        td {{::user.email}}
+        td {{::user.role}}
