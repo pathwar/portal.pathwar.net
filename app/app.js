@@ -11,6 +11,7 @@ var portal = angular.module('portal', [
   'portal.levels',
   'portal.organizations',
   'portal.users',
+  'portal.news',
   'portal.crud'
   ]);
 
