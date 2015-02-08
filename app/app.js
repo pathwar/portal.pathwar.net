@@ -72,7 +72,7 @@ portal.run(function ($rootScope, CurrentUserService, Restangular) {
   CurrentUserService.restore().then(function(user) {
 
     $rootScope.setCurrentUser(user);
-    
+
     if (CurrentUserService.isAuthentificated()) {
       var token = CurrentUserService.getAuthToken();
       var basic = 'Basic '+window.btoa(token+':');
