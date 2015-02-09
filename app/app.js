@@ -59,11 +59,7 @@ portal.config(function($locationProvider, $urlRouterProvider, RestangularProvide
 
 });
 
-portal.run(function ($rootScope, CurrentUserService, Restangular) {
-
-  $rootScope.$on('$stateChangeStart', function (event, toState) {
-    $rootScope.state = toState.name;
-  });
+portal.run(function ($rootScope, $location, $state, CurrentUserService, Restangular) {
 
   $rootScope.setCurrentUser = function(user) {
     $rootScope.currentUser = user;
@@ -85,6 +81,16 @@ portal.run(function ($rootScope, CurrentUserService, Restangular) {
       });
     }
 
+  });
+
+  $rootScope.$on('$stateChangeStart', function (event, toState) {
+    $rootScope.state = toState.name;
+
+    // TODO: State Based access definition
+    if (toState.name != 'login' && !CurrentUserService.isAuthentificated()) {
+      event.preventDefault();
+      $state.transitionTo('login');
+    }
   });
 
 });
