@@ -56,7 +56,7 @@ html(ng-app="portal", lang="en")
               img(src="//placehold.it/32x32", width="32", height="32").rounded.avatar-button-left.ml0
               | {{currentUser.organization.name}}
               i.fa.fa-sort-down.icon-button
-            div(data-details).absolute.left-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1
+            div(data-details).absolute.right-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1
               a(href="#").button.block.button-nav-dark.py2.px1
                 img(src="//placehold.it/32x32", width="32", height="32").rounded.avatar-button-left.ml0
                 | Motorcycle
@@ -66,7 +66,7 @@ html(ng-app="portal", lang="en")
               a(href="#").button.block.button-nav-dark.py2.px1
                 img(src="//placehold.it/32x32", width="32", height="32").rounded.avatar-button-left.ml0
                 | Chinese Army
-              a(ui-sref="createOrganization").button.block.button-nav-dark.bg-dark-gray.py2.px1.center
+              a(ui-sref="createOrganization").button.block.button-nav-dark.bg-dark-gray.py2.px1.center.rounded-bottom
                 | New
                 
         div(data-disclosure, style="vertical-align: top").inline-block.right
