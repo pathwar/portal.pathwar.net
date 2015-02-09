@@ -2,7 +2,7 @@ h2.m0.regular.mid-gray
   a(ui-sref="news.list")
     | News
 
-div.p2.bg-white.rounded.mt3.clearfix
+div.p2.bg-white.rounded.mt3.clearfix.shadow-bottom
   i.fa.fa-search.inline-block.px1
   input(type="text", placeholder="Search levels, vulnerabilities").field-light.no-border.m0.inline-block.md-col-8
   div.inline-block.right-align
@@ -11,12 +11,12 @@ div.p2.bg-white.rounded.mt3.clearfix
 div.mxn2.clearfix
   div.md-col.md-col-8.px2
     each val in [1, 2, 3]
-      div.p3.bg-white.rounded.mt3
+      div.p3.bg-white.rounded.mt3.shadow-bottom
         h2.mt0 Lorem Ipsum
         p Lorem ipsum dolor sit amet consecter 
         a Read More
   div.md-col.md-col-4.px2
-    div.p3.bg-white.rounded.mt3
+    div.p3.bg-white.rounded.mt3.shadow-bottom
       h3.mt0 Categories
       ul.list-reset
         each cat in [1, 2, 3]

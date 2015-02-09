@@ -6,16 +6,16 @@ h2.mt0.mb2.regular.mid-gray
 div.rounded.p2.mb3.bg-yellow
   | You must buy this level before accessing it. This level costs {{level.price}}, <a href="">Buy it here !</a>
 
-div.rounded.mb3.bg-blue
+div.rounded.mb3.bg-blue.shadow-bottom
 
   div.p3.white
     h1.m0 Congratulations
     p.mt2.sm-col-8 You validated this level
 
-  div.px2.py2.bg-white.rounded-bottom
+  div.px2.py2.bg-white.rounded-bottom.border-top.border-lighter-gray
     a.button.button-blue Next Level
 
-div.rounded.mb3.bg-white
+div.rounded.mb3.bg-white.shadow-bottom
   div.p3
     h3.mt0.regular.light-gray Level
     h1.m0.ucfirst {{level.name}}
@@ -30,7 +30,7 @@ div.rounded.mb3.bg-white
       a.button.border.rounded.ml2 Training
       a.button.border.rounded.ml2 XSS
   
-  div.px3.py2.bg-lighter-gray.rounded-bottom
+  div.px3.py2.bg-lightest-gray.rounded-bottom.border-top.border-lighter-gray
     //button(ng-click="buyLevel(level)", ng-disabled="level.bought").rounded.mr2 Buy now
     div(data-disclosure).relative.inline-block
       a.button.button-blue.px3
