@@ -91,8 +91,12 @@ portal.run(function ($rootScope, $location, $state, CurrentUserService, Restangu
     // TODO: State Based access definition
     if (toState.name != 'login' && !CurrentUserService.isAuthentificated()) {
       event.preventDefault();
-      $state.transitionTo('login');
+      $state.go('login');
     }
   });
+
+  $rootScope.setCurrentUser = function(user) {
+    $rootScope.currentUser = user;
+  };
 
 });
