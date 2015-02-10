@@ -61,9 +61,11 @@ portal.config(function($locationProvider, $urlRouterProvider, RestangularProvide
 
 portal.run(function ($rootScope, $location, $state, CurrentUserService, Restangular) {
 
-  $rootScope.setCurrentUser = function(user) {
-    $rootScope.currentUser = user;
-  };
+  Restangular.setErrorInterceptor(function(response, deffered, responseHandler) {
+    if (response.status == 401) {
+      $state.go('login');
+    }
+  });
 
   CurrentUserService.restore().then(function(user) {
 
