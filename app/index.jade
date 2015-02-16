@@ -13,9 +13,9 @@ html(ng-app="portal", lang="en")
 
     //- inject:css
     //- endinject
-    
+
   body(ng-class="{frontpage: state == 'home'}").bg-lighter-gray
-    
+
     div.side-menu.bg-dark-gray.md-show
       a(ui-sref="home").button.button-nav-light.py2
         img(src="#{BASE_PATH}assets/img/logo.png", width="32", height="32").rounded.avatar-button-left.ml0
@@ -38,17 +38,17 @@ html(ng-app="portal", lang="en")
         a.button.button-nav-dark.block(ui-sref="organizations.list")
           i.fa.fa-building-o
           |&nbsp; Organizations
-       
-      
+
+
     nav.clearfix.white.bg-mid-gray.fixed.top-0.right-0.left-0.has-side-menu.z1(ng-controller="NavController")
-    
+
       // Anonymous
       div.sm-col-right(ng-hide="isAuthentificated()")
         a(ui-sref="login").button.button-nav-dark.py2 Login
-        
+
       // Logged in
       div(ng-show="isAuthentificated()")
-          
+
         div(data-disclosure, style="vertical-align: top").inline-block
           div(data-details).fixed.top-0.right-0.bottom-0.left-0
           div.relative
@@ -68,7 +68,7 @@ html(ng-app="portal", lang="en")
                 | Chinese Army
               a(ui-sref="createOrganization").button.block.button-nav-dark.bg-dark-gray.py2.px1.center.rounded-bottom
                 | New
-                
+
         div(data-disclosure, style="vertical-align: top").inline-block.right
           div(data-details).fixed.top-0.right-0.bottom-0.left-0
           div.relative
@@ -79,10 +79,10 @@ html(ng-app="portal", lang="en")
                 | Profile
               a(ng-click="logout()").button.block.button-nav-dark.py2.px1
                 | Log out
-                
+
         div.inline-block.right
           a.button.button-nav-dark.py2.px1 Cash: {{currentUser.statistics.cash}}
-      
+
     div.p3.has-side-menu.content(ui-view)
 
     //- bower:js

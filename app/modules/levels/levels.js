@@ -1,4 +1,7 @@
-var levels = angular.module('portal.levels', ['ui.router', 'templates', 'ngAnimate', 'restangular']);
+var levels = angular.module('portal.levels', [
+  'ui.router', 'templates', 'ngAnimate', 'restangular'
+]);
+
 
 levels.config(function($stateProvider) {
 
@@ -10,7 +13,7 @@ levels.config(function($stateProvider) {
   .state('levels.list', {
     url: '',
     controller: 'LevelsController',
-    templateUrl: 'modules/levels/views/list.tpl.html',
+    templateUrl: 'modules/levels/views/list.tpl.html'
   })
   .state('levels.view', {
     url: '/:id',
@@ -20,9 +23,14 @@ levels.config(function($stateProvider) {
 
 });
 
-levels.controller('LevelsController', function($q, $scope, LevelsService, CurrentUserService) {
 
-  var currentOrgId = $scope.currentUser.organization._id; // FIXME: Can be outdated (see app.run) ...
+levels.controller('LevelsController', function(
+  $q, $scope, LevelsService, CurrentUserService
+) {
+
+  var currentOrgId = $scope.currentUser.organization._id;
+  // FIXME: Can be outdated (see app.run) ...
+
   var levels = [];
 
   $q.all([
@@ -50,9 +58,10 @@ levels.controller('LevelsController', function($q, $scope, LevelsService, Curren
     $scope.levels = levels;
   });
 
-
   $scope.buyLevel = function(level) {
-    LevelsService.buyLevelbyOrganizationId(level._id, $scope.currentUser.organization._id).then(function() {
+    LevelsService.buyLevelbyOrganizationId(
+      level._id, $scope.currentUser.organization._id
+    ).then(function() {
       level.bought = true;
       console.log('level '+level._id+' successfully bought !');
       CurrentUserService.loadOrganizationStatistics();
@@ -61,14 +70,21 @@ levels.controller('LevelsController', function($q, $scope, LevelsService, Curren
 
 });
 
-levels.controller('LevelController', function($scope, $stateParams, LevelsService) {
+
+levels.controller('LevelController', function(
+  $scope, $stateParams, LevelsService
+) {
 
   LevelsService.getLevel($stateParams.id).then(function(_level) {
     console.log(_level);
     $scope.level = _level;
   });
 
-  LevelsService.getLevelInstances({where: {level: $stateParams.id}}).then(function(instances) {
+  LevelsService.getLevelInstances({
+    where: {
+      level: $stateParams.id
+    }
+  }).then(function(instances) {
     console.log(instances[0].server);
     $scope.instances = instances;
   });

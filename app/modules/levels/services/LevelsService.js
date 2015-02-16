@@ -17,15 +17,16 @@ angular
       opts.where = opts.where || {};
       opts.where.organization = orgId;
 
-      return Restangular.all('organization-levels').getList(opts || {}).then(function(orgLevels) {
-        var levels = []
+      return Restangular.all('organization-levels').getList(opts || {})
+        .then(function(orgLevels) {
+          var levels = [];
 
-        _.forEach(orgLevels, function(orgLevel) {
-          levels.push(orgLevel.level);
+          _.forEach(orgLevels, function(orgLevel) {
+            levels.push(orgLevel.level);
+          });
+
+          return levels;
         });
-
-        return levels;
-      });
     };
 
     // takes an object with a level attribute containing the level ID
@@ -46,11 +47,11 @@ angular
     };
 
     service.getLevel = function(levelId) {
-      return Restangular.one('levels', levelId).get().then(function(response) {
-        return response.data;
-      });
+      return Restangular.one('levels', levelId).get()
+        .then(function(response) {
+          return response.data;
+        });
     };
-
 
     return service;
 

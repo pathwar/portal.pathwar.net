@@ -15,7 +15,10 @@ var portal = angular.module('portal', [
   'portal.crud'
   ]);
 
-portal.config(function($locationProvider, $urlRouterProvider, RestangularProvider, ApiConfig) {
+
+portal.config(function(
+  $locationProvider, $urlRouterProvider, RestangularProvider, ApiConfig
+) {
 
   $locationProvider.html5Mode(ApiConfig.html5Mode);
   $urlRouterProvider.otherwise('/');
@@ -29,7 +32,9 @@ portal.config(function($locationProvider, $urlRouterProvider, RestangularProvide
     id: "_id"
   });
 
-  RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
+  RestangularProvider.addResponseInterceptor(function(
+    data, operation, what, url, response, deferred
+  ) {
 
     if (operation == 'getList') {
       if (what == '/')
@@ -41,7 +46,9 @@ portal.config(function($locationProvider, $urlRouterProvider, RestangularProvide
 
   });
 
-  RestangularProvider.addFullRequestInterceptor(function(element, operation, route, url, headers, params, httpConfig) {
+  RestangularProvider.addFullRequestInterceptor(function(
+    element, operation, route, url, headers, params, httpConfig
+  ) {
 
     if (operation == 'patch') {
       headers['If-Match'] = element._etag;
@@ -59,13 +66,18 @@ portal.config(function($locationProvider, $urlRouterProvider, RestangularProvide
 
 });
 
-portal.run(function ($rootScope, $location, $state, CurrentUserService, Restangular) {
+
+portal.run(function (
+  $rootScope, $location, $state, CurrentUserService, Restangular
+) {
 
   $rootScope.setCurrentUser = function(user) {
     $rootScope.currentUser = user;
   };
-  
-  Restangular.setErrorInterceptor(function(response, deffered, responseHandler) {
+
+  Restangular.setErrorInterceptor(function(
+    response, deffered, responseHandler
+  ) {
     if (response.status == 401) {
       $state.go('login');
     }

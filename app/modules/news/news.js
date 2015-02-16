@@ -1,4 +1,7 @@
-var levels = angular.module('portal.news', ['ui.router', 'templates', 'ngAnimate', 'restangular']);
+var levels = angular.module('portal.news', [
+  'ui.router', 'templates', 'ngAnimate', 'restangular'
+]);
+
 
 levels.config(function($stateProvider) {
 
@@ -10,7 +13,7 @@ levels.config(function($stateProvider) {
   .state('news.list', {
     url: '',
     controller: 'NewsController',
-    templateUrl: 'modules/news/views/list.tpl.html',
+    templateUrl: 'modules/news/views/list.tpl.html'
   })
   .state('news.view', {
     url: '/:id',
@@ -20,12 +23,16 @@ levels.config(function($stateProvider) {
 
 });
 
-levels.controller('NewsController', function($q, $scope, CurrentUserService) {
 
-
+levels.controller('NewsController', function(
+  $q, $scope, CurrentUserService
+) {
+  // pass
 });
 
-levels.controller('NewsPostController', function($scope, $stateParams) {
 
-
+levels.controller('NewsPostController', function(
+  $scope, $stateParams
+) {
+  // pass
 });

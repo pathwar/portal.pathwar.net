@@ -1,7 +1,9 @@
 angular
   .module('portal.services')
-  .factory('CurrentUserService', function($q, $window, AuthService, UsersService, OrganizationsService, OrganizationStatisticsService) {
-
+  .factory('CurrentUserService', function(
+    $q, $window, AuthService, UsersService, OrganizationsService,
+    OrganizationStatisticsService
+  ) {
     var service = {};
 
     var storage = {
@@ -40,7 +42,11 @@ angular
         .then(loadDefaultSettings)
         .then(loadOrganizationStatistics)
         .then(returnStorage);
-    }
+    };
+
+    service.loadOrganizationStatistics = function() {
+      return loadOrganizationStatistics();
+    };
 
     service.loadOrganizationStatistics = function() {
       return loadOrganizationStatistics();
@@ -73,7 +79,7 @@ angular
       persist();
     };
 
-    service.getAuthToken = function() { return storage.authToken; }
+    service.getAuthToken = function() { return storage.authToken; };
 
     service.isAuthentificated = function() {
       return service.getAuthToken() != undefined;
@@ -132,12 +138,13 @@ angular
 
     function loadOrganizationStatistics() {
       var orgId = storage.organization._id;
-      return OrganizationStatisticsService.getStatisticsByOrganizationId(orgId)
-      .then(function(statistics) {
-        storage.statistics = statistics;
-        console.log(statistics);
-        return statistics;
-      });
+      return OrganizationStatisticsService
+        .getStatisticsByOrganizationId(orgId)
+        .then(function(statistics) {
+          storage.statistics = statistics;
+          console.log(statistics);
+          return statistics;
+        });
     }
 
     function returnStorage(orgs) {

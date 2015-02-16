@@ -4,7 +4,7 @@ angular
 
   var Organizations = Restangular.all('organizations');
 
-  var service = {}
+    var service = {};
 
   service.create = function(org) {
     return Organizations.post(org);

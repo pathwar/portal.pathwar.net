@@ -5,6 +5,7 @@ var organizations = angular.module('portal.organizations', [
   'restangular',
   'portal.services']);
 
+
 organizations.config(function($stateProvider) {
 
   $stateProvider.state('organizations', {
@@ -15,27 +16,30 @@ organizations.config(function($stateProvider) {
   .state('organizations.list', {
     url: '',
     controller: 'OrganizationsListCtrl',
-    templateUrl: 'modules/organizations/views/list.tpl.html',
+    templateUrl: 'modules/organizations/views/list.tpl.html'
   })
   .state('organizations.view', {
     url: '/:id',
     controller: 'OrganizationsViewCtrl',
-    templateUrl: 'modules/organizations/views/view.tpl.html',
+    templateUrl: 'modules/organizations/views/view.tpl.html'
   })
   .state('organizations.edit', {
     url: '/:id/edit',
     controller: 'OrganizationsEditCtrl',
-    templateUrl: 'modules/organizations/views/form.tpl.html',
+    templateUrl: 'modules/organizations/views/form.tpl.html'
   })
   .state('createOrganization', {
     url: '/organization/create',
     controller: 'OrganizationsCreateCtrl',
-    templateUrl: 'modules/organizations/views/create.tpl.html',
+    templateUrl: 'modules/organizations/views/create.tpl.html'
   });
 
 });
 
-organizations.controller('OrganizationsListCtrl', function($scope, Restangular) {
+
+organizations.controller('OrganizationsListCtrl', function(
+  $scope, Restangular
+) {
 
   var Orgs = Restangular.service('organizations');
 
@@ -43,7 +47,10 @@ organizations.controller('OrganizationsListCtrl', function($scope, Restangular) 
 
 });
 
-organizations.controller('OrganizationsViewCtrl', function($scope, $stateParams, Restangular) {
+
+organizations.controller('OrganizationsViewCtrl', function(
+  $scope, $stateParams, Restangular
+) {
 
   var Orgs = Restangular.service('organizations');
 
@@ -51,10 +58,12 @@ organizations.controller('OrganizationsViewCtrl', function($scope, $stateParams,
     $scope.organization = response.data;
   });
 
-
 });
 
-organizations.controller('OrganizationsCreateCtrl', function($scope, $state, SessionsService, OrganizationsService, Restangular) {
+
+organizations.controller('OrganizationsCreateCtrl', function(
+  $scope, $state, SessionsService, OrganizationsService, Restangular
+) {
 
   SessionsService.getSessions().then(function(sessions) {
     $scope.sessions = sessions;
@@ -69,11 +78,14 @@ organizations.controller('OrganizationsCreateCtrl', function($scope, $state, Ses
     OrganizationsService.create(org).then(function(response) {
       $state.transitionTo('crud.list');
     });
-  }
+  };
 
 });
 
-organizations.controller('OrganizationsEditCtrl', function($scope, $state, $stateParams, Restangular) {
+
+organizations.controller('OrganizationsEditCtrl', function(
+  $scope, $state, $stateParams, Restangular
+) {
 
   var Orgs = Restangular.service('organizations');
   var organization = Orgs.one($stateParams.id);

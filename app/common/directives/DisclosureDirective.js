@@ -25,7 +25,7 @@ directives.directive('disclosure', function() {
         } else {
           el.hide();
         }
-      }
+      };
       el.addEventListener('click', function(e) {
         el.toggle(e);
       });
