@@ -8,12 +8,14 @@ angular
       return Restangular.all('levels').getList(opts || {});
     };
 
-    service.getLevelsByOrganizationId = function(id, opts) {
+    service.getLevelsByOrganizationId = function(orgId, opts) {
 
       opts = opts || {};
       opts.embedded = JSON.stringify({
           level: 1
       });
+      opts.where = opts.where || {};
+      opts.where.organization = orgId;
 
       return Restangular.all('organization-levels').getList(opts || {}).then(function(orgLevels) {
         var levels = []
