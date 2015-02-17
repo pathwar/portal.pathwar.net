@@ -73,7 +73,7 @@ html(ng-app="portal", lang="en")
           div(data-details).fixed.top-0.right-0.bottom-0.left-0
           div.relative
             a.button.button-narrow.py2.px1.button-nav-dark.regular
-              img(src="https://www.gravatar.com/avatar/e1300527bd1b39f11673d0545fbfd017?s=48&amp;d=mm", width="32", height="32").rounded.avatar-button
+              img(src="https://www.gravatar.com/avatar/{{currentUser.user.gravatar_hash}}s=48&d=mm", width="32", height="32").rounded.avatar-button
             div(data-details).absolute.left-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1
               a(href="#").button.block.button-nav-dark.py2.px1
                 | Profile
