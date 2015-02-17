@@ -1,5 +1,5 @@
 div.p3.mb3.rounded.bg-white.clearfix.shadow-bottom
-  img(src="//placehold.it/150x150").rounded.left.mr3
+  img(src="https://www.gravatar.com/avatar/{{organization.gravatar_hash}}?s=150&d=mm", width="150", height="150").rounded.left.mr3
   div
     h1.m0.ucfirst {{::organization.name}}
     h4.mt0.light-gray Formed 2012
@@ -12,10 +12,10 @@ div.clearfix.mxn2
       dl
         dt Levels finished
         dd 3
-        
+
         dt Cash spent
         dd 12982
-        
+
   div.md-col.md-col-6.px2
     h2.mt0.regular.mid-gray Achievements
     div.mb3.rounded.bg-white.md-col-4.shadow-bottom
@@ -23,10 +23,10 @@ div.clearfix.mxn2
         | Achievement
 
 
-  
-  
+
+
 h2.mt0.regular.mid-gray Members
-div.mxn2.clearfix 
+div.mxn2.clearfix
   each val in [1, 2, 3, 4, 5, 6]
     div.mb3.md-col.md-col-4.px2
       div.p2.rounded.bg-white.clearfix.shadow-bottom
