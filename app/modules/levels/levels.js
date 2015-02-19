@@ -55,6 +55,7 @@ levels.controller('LevelsController', function($q, $scope, LevelsService, Curren
     LevelsService.buyLevelbyOrganizationId(level._id, $scope.currentUser.organization._id).then(function() {
       level.bought = true;
       console.log('level '+level._id+' successfully bought !');
+      CurrentUserService.loadOrganizationStatistics();
     });
   };
 
