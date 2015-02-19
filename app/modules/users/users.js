@@ -4,6 +4,7 @@ var users = angular.module('portal.users', [
   'ngAnimate',
   'restangular']);
 
+
 users.config(function($stateProvider) {
 
   // CRUD
@@ -15,22 +16,22 @@ users.config(function($stateProvider) {
   .state('users.list', {
     url: '',
     controller: 'UsersListCtrl',
-    templateUrl: 'modules/users/views/list.tpl.html',
+    templateUrl: 'modules/users/views/list.tpl.html'
   })
   .state('users.view', {
     url: '/:id',
     controller: 'UsersViewCtrl',
-    templateUrl: 'modules/users/views/view.tpl.html',
+    templateUrl: 'modules/users/views/view.tpl.html'
   })
   .state('users.add', {
     url: '/add',
     controller: 'UsersAddCtrl',
-    templateUrl: 'modules/users/views/form.tpl.html',
+    templateUrl: 'modules/users/views/form.tpl.html'
   })
   .state('users.edit', {
     url: '/:id/edit',
     controller: 'UsersEditCtrl',
-    templateUrl: 'modules/users/views/form.tpl.html',
+    templateUrl: 'modules/users/views/form.tpl.html'
   });
 
   // Other
@@ -42,6 +43,7 @@ users.config(function($stateProvider) {
 
 });
 
+
 users.controller('UsersListCtrl', function($scope, Restangular) {
 
   var Users = Restangular.service('users');
@@ -50,7 +52,10 @@ users.controller('UsersListCtrl', function($scope, Restangular) {
 
 });
 
-users.controller('UsersLoginController', function($scope, $state, CurrentUserService) {
+
+users.controller('UsersLoginController', function(
+  $scope, $state, CurrentUserService
+) {
 
   var credentials = {};
 
@@ -61,23 +66,27 @@ users.controller('UsersLoginController', function($scope, $state, CurrentUserSer
       $scope.setCurrentUser(user);
       $state.transitionTo('home');
     });
-  }
+  };
 
 });
 
 
-users.controller('UsersViewCtrl', function($scope, $stateParams, UsersService, OrganizationsService) {
+users.controller('UsersViewCtrl', function(
+  $scope, $stateParams, UsersService, OrganizationsService
+) {
 
   UsersService.getUserById($stateParams.id).then(function(user) {
     $scope.user = user;
   });
 
-  OrganizationsService.getOrganizationsByUserId($stateParams.id).then(function(orgs) {
-    $scope.orgs = orgs;
-  });
-
+  OrganizationsService
+    .getOrganizationsByUserId($stateParams.id)
+    .then(function(orgs) {
+      $scope.orgs = orgs;
+    });
 
 });
+
 
 users.controller('UsersAddCtrl', function($scope, $state, Restangular) {
 
@@ -93,7 +102,10 @@ users.controller('UsersAddCtrl', function($scope, $state, Restangular) {
 
 });
 
-users.controller('UsersEditCtrl', function($scope, $state, $stateParams, Restangular) {
+
+users.controller('UsersEditCtrl', function(
+  $scope, $state, $stateParams, Restangular
+) {
 
   var Users = Restangular.service('users');
   var user = Users.one($stateParams.id);

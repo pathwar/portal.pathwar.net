@@ -4,7 +4,7 @@ angular
 
     var Sessions = Restangular.all('sessions');
 
-    var service = {}
+    var service = {};
 
     service.getSessions = function(opts) {
       return Sessions.getList();

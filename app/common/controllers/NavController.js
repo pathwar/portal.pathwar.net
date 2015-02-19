@@ -1,6 +1,8 @@
 var controllers = angular.module('portal.controllers');
 
-controllers.controller('NavController', function($scope, $state, CurrentUserService) {
+controllers.controller('NavController', function(
+  $scope, $state, CurrentUserService
+) {
 
   $scope.isAuthentificated = CurrentUserService.isAuthentificated;
 
@@ -10,5 +12,4 @@ controllers.controller('NavController', function($scope, $state, CurrentUserServ
       $state.transitionTo('home');
     });
   };
-
 });

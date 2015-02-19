@@ -1,8 +1,9 @@
 var services = angular.module('portal.services');
 
 //TODO: Use UserService
-services.factory('AuthService', function($q, $cacheFactory, Restangular, $window) {
-
+services.factory('AuthService', function(
+  $q, $cacheFactory, Restangular, $window
+) {
   var service = {};
 
   service.login = function(credentials) {
@@ -18,7 +19,9 @@ services.factory('AuthService', function($q, $cacheFactory, Restangular, $window
         Authorization: 'Basic '+window.btoa(basic)
       })
       .then(function(token) {
-        Restangular.setDefaultHeaders({ Authorization: "Basic "+window.btoa(token.data.token+':') });
+        Restangular.setDefaultHeaders({
+          Authorization: "Basic "+window.btoa(token.data.token+':')
+        });
         return token.data;
       });
     });

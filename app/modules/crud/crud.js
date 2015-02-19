@@ -6,6 +6,7 @@ var crud = angular.module('portal.crud', [
   'formly',
   'formly.render']);
 
+
 crud.config(function($stateProvider, formlyConfigProvider) {
 
   $stateProvider.state('crud', {
@@ -16,7 +17,7 @@ crud.config(function($stateProvider, formlyConfigProvider) {
   .state('crud.list', {
     url: '',
     controller: 'CrudListCtrl',
-    templateUrl: 'modules/crud/views/models.list.tpl.html',
+    templateUrl: 'modules/crud/views/models.list.tpl.html'
   });
 
   $stateProvider.state('crud.model', {
@@ -30,27 +31,30 @@ crud.config(function($stateProvider, formlyConfigProvider) {
   .state('crud.model.list', {
     url: '',
     controller: 'CrudModelsListCtrl',
-    templateUrl: 'modules/crud/views/list.tpl.html',
+    templateUrl: 'modules/crud/views/list.tpl.html'
   })
   .state('crud.model.add', {
     url: '/add',
     controller: 'CrudModelsAddCtrl',
-    templateUrl: 'modules/crud/views/form.tpl.html',
+    templateUrl: 'modules/crud/views/form.tpl.html'
   })
   .state('crud.model.view', {
     url: '/:id',
     controller: 'CrudModelsViewCtrl',
-    templateUrl: 'modules/crud/views/view.tpl.html',
+    templateUrl: 'modules/crud/views/view.tpl.html'
   })
   .state('crud.model.edit', {
     url: '/:id/edit',
     controller: 'CrudModelsEditCtrl',
-    templateUrl: 'modules/crud/views/form.tpl.html',
-  })
+    templateUrl: 'modules/crud/views/form.tpl.html'
+  });
 
-  formlyConfigProvider.setTemplateUrl('text', 'modules/crud/form-templates/formly-field-text.tpl.html');
+  formlyConfigProvider.setTemplateUrl(
+    'text', 'modules/crud/form-templates/formly-field-text.tpl.html'
+  );
 
 });
+
 
 var Schema = {
   achievements:  {
@@ -121,6 +125,7 @@ var Schema = {
   }
 };
 
+
 crud.factory('CrudSchema', function($http) {
 
   var promise = $http.get('/assets/json/spec.json');
@@ -135,6 +140,7 @@ crud.factory('CrudSchema', function($http) {
 
 });
 
+
 crud.controller('CrudListCtrl', function($scope, Restangular) {
 
    Restangular.all('/').getList().then(function(response) {
@@ -143,7 +149,10 @@ crud.controller('CrudListCtrl', function($scope, Restangular) {
 
 });
 
-crud.controller('CrudModelsListCtrl', function($scope, $stateParams, $location, Restangular) {
+
+crud.controller('CrudModelsListCtrl', function(
+  $scope, $stateParams, $location, Restangular
+) {
 
   var Models = Restangular.all($stateParams.model);
 
@@ -152,9 +161,14 @@ crud.controller('CrudModelsListCtrl', function($scope, $stateParams, $location, 
   };
 
   Models.getList({page: $stateParams.page}).then(function(models) {
-    _.each(models, (model) => { model.title = model[Schema[$stateParams.model.replace('-', '_', 'g')].title]; });
+    _.each(models, (model) => {
+      model.title = model[Schema[$stateParams.model.replace('-', '_', 'g')]
+                          .title];
+    });
     $scope.pager.totalItems = models.meta.total;
-    $scope.pager.maxPage = _.range(1, Math.ceil(models.meta.total / models.meta.max_results) + 1);
+    $scope.pager.maxPage = _.range(
+      1, Math.ceil(models.meta.total / models.meta.max_results) + 1
+    );
     $scope.models = models;
   });
 
@@ -162,17 +176,21 @@ crud.controller('CrudModelsListCtrl', function($scope, $stateParams, $location, 
     $location.search({page: page});
   });
 
-
 });
 
-crud.controller('CrudModelsViewCtrl', function($scope, $stateParams, Restangular, CrudSchema) {
+
+crud.controller('CrudModelsViewCtrl', function(
+  $scope, $stateParams, Restangular, CrudSchema
+) {
 
   var Models = Restangular.service($stateParams.model);
   var Model = Models.one($stateParams.id);
 
   Model.get().then(function(response) {
     var model = response.data;
-    model.title = model[Schema[$stateParams.model.replace('-', '_', 'g')].title];
+    model.title = model[
+      Schema[$stateParams.model.replace('-', '_', 'g')].title
+    ];
     $scope.model = model;
   });
 
@@ -195,7 +213,10 @@ crud.controller('CrudModelsViewCtrl', function($scope, $stateParams, Restangular
 
 });
 
-crud.controller('CrudModelsAddCtrl', function($scope, $state, $stateParams, Restangular, CrudSchema) {
+
+crud.controller('CrudModelsAddCtrl', function(
+  $scope, $state, $stateParams, Restangular, CrudSchema
+) {
 
   var Models = Restangular.service($stateParams.model);
 
@@ -225,7 +246,10 @@ crud.controller('CrudModelsAddCtrl', function($scope, $state, $stateParams, Rest
 
 });
 
-crud.controller('CrudModelsEditCtrl', function($scope, $state, $stateParams, Restangular, CrudSchema) {
+
+crud.controller('CrudModelsEditCtrl', function(
+  $scope, $state, $stateParams, Restangular, CrudSchema
+) {
 
   var Models = Restangular.service($stateParams.model);
   var Model = Models.one($stateParams.id);
