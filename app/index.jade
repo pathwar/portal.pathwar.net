@@ -85,9 +85,14 @@ html(ng-app="portal", lang="en")
         div.inline-block.right
           a.button.button-nav-dark.py2.px1 Cash: {{currentUser.statistics.cash}}
           
-        div.inline-block.right
-          a.button.button-nav-dark.py2.px2
-            i.fa.fa-bell-o
+        div(data-disclosure).inline-block.right
+          div(data-details).fixed.top-0.right-0.bottom-0.left-0
+          div.relative
+            a.button.button-nav-dark.py2.px2.relative
+              i.fa.fa-bell-o
+              div.rounded.bg-red.h6.px1.inline-block 25
+            div(data-details).absolute.right-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1
+              h2 Notifications
 
     div.p3.has-side-menu.content(ui-view)
 
