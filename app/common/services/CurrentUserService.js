@@ -33,11 +33,11 @@ angular
       var currentUser = $window.localStorage.getItem('currentUser');
       storage = JSON.parse(currentUser) || {};
 
-      return returnStorage();
+      return storage;
     };
 
-    service.loadUserInfo = function (userId) {
-      return loadUser(userId)
+    service.loadUserInfo = function () {
+      return loadUser(storage.user._id)
         .then(loadOrganizations)
         .then(loadDefaultSettings)
         .then(loadOrganizationStatistics)

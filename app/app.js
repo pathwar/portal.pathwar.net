@@ -83,23 +83,20 @@ portal.run(function (
     }
   });
 
-  CurrentUserService.restore().then(function(user) {
+  console.log('restore');
+  CurrentUserService.restore();
 
-    $rootScope.setCurrentUser(user);
+  if (CurrentUserService.isAuthentificated()) {
+    var token = CurrentUserService.getAuthToken();
+    var basic = 'Basic '+window.btoa(token+':');
 
-    if (CurrentUserService.isAuthentificated()) {
-      var token = CurrentUserService.getAuthToken();
-      var basic = 'Basic '+window.btoa(token+':');
+    console.log('set auth');
+    Restangular.setDefaultHeaders({ Authorization: basic });
 
-      Restangular.setDefaultHeaders({ Authorization: basic });
-
-      //FIX ME: LoadUserInfo should not require argument
-      CurrentUserService.loadUserInfo(user.user._id).then(function(user) {
-        $rootScope.setCurrentUser(user);
-      });
-    }
-
-  });
+    CurrentUserService.loadUserInfo().then(function(user) {
+      $rootScope.setCurrentUser(user);
+    });
+  }
 
   $rootScope.$on('$stateChangeStart', function (event, toState) {
     $rootScope.state = toState.name;
