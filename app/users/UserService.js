@@ -1,6 +1,6 @@
 angular
   .module('portal.users')
-  .factory('UsersService', function(Restangular) {
+  .factory('UserService', function(Restangular) {
 
     var service = {};
 

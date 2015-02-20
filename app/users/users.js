@@ -14,24 +14,24 @@ angular.module('portal.users', [
   })
   .state('users.list', {
     url: '',
-    controller: 'UsersListCtrl',
+    controller: 'UserListCtrl',
     templateUrl: 'users/views/list.tpl.html'
   })
   .state('users.view', {
     url: '/:id',
-    controller: 'UsersViewCtrl',
+    controller: 'UserViewCtrl',
     templateUrl: 'users/views/view.tpl.html'
   })
   .state('users.edit', {
     url: '/:id/edit',
-    controller: 'UsersEditCtrl',
+    controller: 'UserEditCtrl',
     templateUrl: 'users/views/form.tpl.html'
   });
 
   // Other
   $stateProvider.state('login', {
     url: '^/login',
-    controller: 'UsersLoginController',
+    controller: 'UserLoginController',
     templateUrl: 'users/views/login.tpl.html'
   });
 

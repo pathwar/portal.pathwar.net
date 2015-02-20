@@ -1,7 +1,7 @@
 angular
   .module('portal.services')
   .factory('CurrentUserService', function(
-    $q, $window, AuthService, UsersService, OrganizationsService,
+    $q, $window, AuthService, UserService, OrganizationService,
     ScoringService
   ) {
     var service = {};
@@ -106,7 +106,7 @@ angular
     //
 
     function loadUser(userId) {
-      return UsersService.getUserById(userId)
+      return UserService.getUserById(userId)
       .then(function(user) {
         service.setUser(user);
         return user;
@@ -114,7 +114,7 @@ angular
     }
 
     function loadOrganizations(user) {
-      return OrganizationsService.getOrganizationsByUserId(user._id)
+      return OrganizationService.getOrganizationsByUserId(user._id)
       .then(function(orgs) {
         storage.organizations = orgs;
         return orgs;

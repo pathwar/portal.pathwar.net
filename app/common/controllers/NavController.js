@@ -1,5 +1,5 @@
 angular
-  .module('portal.controllers');
+  .module('portal.controllers')
   .controller('NavController', function(
     $scope, $state, CurrentUserService
   ) {

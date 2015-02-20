@@ -1,5 +1,5 @@
 angular
-  .module('portal.directives');
+  .module('portal.directives')
   .directive('disclosure', function() {
     return {
       restrict: 'A',

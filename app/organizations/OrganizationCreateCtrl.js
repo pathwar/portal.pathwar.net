@@ -1,7 +1,7 @@
 angular
   .module('portal.organizations')
   .controller('OrganizationCreateCtrl', function(
-    $scope, $state, SessionsService, OrganizationsService, Restangular
+    $scope, $state, SessionService, OrganizationsService, Restangular
   ) {
 
     SessionsService.getSessions().then(function(sessions) {
