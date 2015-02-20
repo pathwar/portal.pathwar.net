@@ -48,10 +48,6 @@ angular
       return loadOrganizationStatistics();
     };
 
-    service.loadOrganizationStatistics = function() {
-      return loadOrganizationStatistics();
-    };
-
     service.logout = function() {
       return AuthService.logout().then(function() {
         service.clear();
