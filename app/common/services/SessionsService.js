@@ -1,6 +1,6 @@
 angular
   .module('portal.services')
-  .factory('SessionsService', function(Restangular) {
+  .factory('SessionService', function(Restangular) {
 
     var Sessions = Restangular.all('sessions');
 

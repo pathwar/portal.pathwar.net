@@ -1,6 +1,6 @@
 angular
   .module('portal.organizations')
-  .factory('OrganizationsService', function(Restangular) {
+  .factory('OrganizationService', function(Restangular) {
 
   var Organizations = Restangular.all('organizations');
 

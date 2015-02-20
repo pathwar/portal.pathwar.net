@@ -1,38 +1,38 @@
-var levels = angular.module('portal.news', [
-  'ui.router', 'templates', 'ngAnimate', 'restangular'
-]);
+angular
+  .module('portal.news', [
+    'ui.router',
+    'templates',
+    'ngAnimate',
+    'restangular'
+  ])
+  .config(function($stateProvider) {
 
+    $stateProvider.state('news', {
+      url: '/news',
+      abstract: true,
+      template: '<div ui-view></div>'
+    })
+    .state('news.list', {
+      url: '',
+      controller: 'NewsController',
+      templateUrl: 'news/views/list.tpl.html'
+    })
+    .state('news.view', {
+      url: '/:id',
+      controller: 'NewsPostController',
+      templateUrl: 'news/views/view.tpl.html'
+    });
 
-levels.config(function($stateProvider) {
-
-  $stateProvider.state('news', {
-    url: '/news',
-    abstract: true,
-    template: '<div ui-view></div>'
   })
-  .state('news.list', {
-    url: '',
-    controller: 'NewsController',
-    templateUrl: 'news/views/list.tpl.html'
+
+  .controller('NewsController', function(
+    $q, $scope, CurrentUserService
+  ) {
+    // pass
   })
-  .state('news.view', {
-    url: '/:id',
-    controller: 'NewsPostController',
-    templateUrl: 'news/views/view.tpl.html'
+
+  .controller('NewsPostController', function(
+    $scope, $stateParams
+  ) {
+    // pass
   });
-
-});
-
-
-levels.controller('NewsController', function(
-  $q, $scope, CurrentUserService
-) {
-  // pass
-});
-
-
-levels.controller('NewsPostController', function(
-  $scope, $stateParams
-) {
-  // pass
-});

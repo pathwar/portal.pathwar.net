@@ -1,1 +1,2 @@
-angular.module('portal.directives', []);
+angular
+  .module('portal.directives', []);

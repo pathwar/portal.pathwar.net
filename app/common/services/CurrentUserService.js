@@ -2,7 +2,7 @@ angular
   .module('portal.services')
   .factory('CurrentUserService', function(
     $q, $window, AuthService, UsersService, OrganizationsService,
-    OrganizationStatisticsService
+    ScoringService
   ) {
     var service = {};
 
@@ -134,7 +134,7 @@ angular
 
     function loadOrganizationStatistics() {
       var orgId = storage.organization._id;
-      return OrganizationStatisticsService
+      return ScoringService
         .getStatisticsByOrganizationId(orgId)
         .then(function(statistics) {
           storage.statistics = statistics;

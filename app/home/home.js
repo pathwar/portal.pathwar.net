@@ -1,9 +1,9 @@
-var home = angular.module('portal.home', [
-  'ui.router', 'templates', 'ngAnimate'
-]);
-
-
-home.config(function($stateProvider) {
+angular.module('portal.home', [
+  'ui.router',
+  'templates',
+  'ngAnimate'
+])
+.config(function($stateProvider) {
 
   $stateProvider.state('home', {
     url: '/',
@@ -11,9 +11,7 @@ home.config(function($stateProvider) {
     templateUrl: 'home/views/main.tpl.html'
   });
 
-});
-
-
-home.controller('HomeController', function($scope) {
+})
+.controller('HomeController', function($scope) {
   $scope.loaded = true;
 });

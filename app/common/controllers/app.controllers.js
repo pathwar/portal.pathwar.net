@@ -1,1 +1,4 @@
-angular.module('portal.controllers', ['portal.services']);
+angular
+  .module('portal.controllers', [
+    'portal.services'
+  ]);
