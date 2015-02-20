@@ -28,14 +28,14 @@ levels.controller('LevelsController', function(
   $q, $scope, LevelsService, CurrentUserService
 ) {
 
-  var currentOrgId = $scope.currentUser.organization._id;
+  var currentOrg = CurrentUserService.getOrganization();
   // FIXME: Can be outdated (see app.run) ...
 
   var levels = [];
 
   $q.all([
     LevelsService.getLevels(),
-    LevelsService.getLevelsByOrganizationId(currentOrgId)
+    LevelsService.getLevelsByOrganizationId(currentOrg._id)
   ])
   .then(function(results) {
 
