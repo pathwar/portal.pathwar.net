@@ -1,7 +1,7 @@
 angular
   .module('portal.levels')
-  .controller('LevelsListViewController', function(
-    $q, $scope, LevelsService, CurrentUserService
+  .controller('LevelListViewCtrl', function(
+    $q, $scope, LevelService, CurrentUserService
   ) {
 
     var currentOrg = CurrentUserService.getOrganization();
@@ -10,8 +10,8 @@ angular
     var levels = [];
 
     $q.all([
-      LevelsService.getLevels(),
-      LevelsService.getLevelsByOrganizationId(currentOrg._id)
+      LevelService.getLevels(),
+      LevelService.getLevelsByOrganizationId(currentOrg._id)
     ])
     .then(function(results) {
 
@@ -35,7 +35,7 @@ angular
     });
 
     $scope.buyLevel = function(level) {
-      LevelsService.buyLevelbyOrganizationId(
+      LevelService.buyLevelbyOrganizationId(
         level._id, $scope.currentUser.organization._id
       ).then(function() {
         level.bought = true;

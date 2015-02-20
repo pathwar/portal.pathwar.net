@@ -1,6 +1,6 @@
 angular
   .module('portal.levels')
-  .factory('LevelsService', function(Restangular) {
+  .factory('LevelService', function(Restangular) {
 
     var service = {};
 

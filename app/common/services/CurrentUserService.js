@@ -138,7 +138,6 @@ angular
         .getStatisticsByOrganizationId(orgId)
         .then(function(statistics) {
           storage.statistics = statistics;
-          console.log(statistics);
           return statistics;
         });
     }

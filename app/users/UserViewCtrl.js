@@ -1,14 +1,14 @@
 angular
   .module('portal.users')
   .controller('UserViewCtrl', function(
-    $scope, $stateParams, UsersService, OrganizationsService
+    $scope, $stateParams, UserService, OrganizationService
   ) {
 
-    UsersService.getUserById($stateParams.id).then(function(user) {
+    UserService.getUserById($stateParams.id).then(function(user) {
       $scope.user = user;
     });
 
-    OrganizationsService
+    OrganizationService
       .getOrganizationsByUserId($stateParams.id)
       .then(function(orgs) {
         $scope.orgs = orgs;
