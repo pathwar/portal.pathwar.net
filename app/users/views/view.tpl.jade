@@ -1,0 +1,27 @@
+div.p3.mb3.rounded.bg-white.shadow-bottom.clearfix
+  img(src="//placehold.it/150x150").rounded.left.mr3
+  div
+    h1.m0.ucfirst {{::vm.user.login}}
+    h4.mt0.light-gray Joined 2012
+    h4 Paris, France
+
+h2.mt0.regular.mid-gray Statistics
+div.p3.mb3.rounded.bg-white.shadow-bottom
+  dl
+    dt Levels finished
+    dd 3
+    
+    dt Cash spent
+    dd 12982
+  
+  
+h2.mt0.regular.mid-gray Organizations
+div.mxn2.clearfix
+  div(ng-repeat="org in vm.orgs").mb3.md-col.md-col-4.px2
+    div.p2.rounded.bg-white.shadow-bottom
+      a(ui-sref="organizations.view({id: org._id})") {{::org.name}}
+
+h2.mt0.regular.mid-gray Achievements
+div.mb3.rounded.bg-white.shadow-bottom.md-col-4
+  div.p2
+    | Achievement

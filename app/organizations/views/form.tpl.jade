@@ -1,0 +1,9 @@
+h1.mt0 {{vm.organization.name}}
+
+form.sm-col-6
+  label Name
+  input(type="text", ng-model="vm.organization.name").block.full-width.field-light
+  label Session ID
+  input(type="text", ng-model="vm.organization.session").block.full-width.field-light.mb2
+  button(ng-click="save()").button-blue.mb1 Save
+  button.button-red.mb1.ml1(ui-sref="^.list") Cancel

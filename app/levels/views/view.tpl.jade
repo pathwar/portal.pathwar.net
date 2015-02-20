@@ -1,0 +1,64 @@
+h2.mt0.mb2.regular.mid-gray
+  a(ui-sref="levels.list")
+    i.fa.fa-arrow-left
+    |&nbsp; Levels
+
+div.rounded.p2.mb3.bg-yellow
+  | You must buy this level before accessing it. This level costs {{level.price}}, <a href="">Buy it here !</a>
+
+div.rounded.mb3.bg-blue.shadow-bottom
+
+  div.p3.white
+    h1.m0 Congratulations
+    p.mt2.sm-col-8 You validated this level
+
+  div.px2.py2.bg-white.rounded-bottom.border-top.border-lighter-gray
+    a.button.button-blue Next Level
+
+div.rounded.mb3.bg-white.shadow-bottom
+  div.p3
+    h3.mt0.regular.light-gray Level
+    h1.m0.ucfirst {{vm.level.name}}
+    div.h6
+      a(href="")
+        | {{vm.level.author}}
+        |&nbsp; (Author)
+
+    p.mt2.sm-col-8 {{vm.level.description}} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut odio magna, ullamcorper quis facilisis ac
+    
+    div.mxn2
+      a.button.border.rounded.ml2(ng-repeat="tag in ::vm.level.tags | orderBy:tag") {{::tag}}
+  
+  div.px3.py2.bg-lightest-gray.rounded-bottom.border-top.border-lighter-gray
+    //button(ng-click="buyLevel(level)", ng-disabled="level.bought").rounded.mr2 Buy now
+    div(data-disclosure).relative.inline-block
+      a.button.button-blue.px3
+        | Go &nbsp;
+        i.fa.fa-arrow-right
+      div(data-details).fixed.top-0.right-0.bottom-0.left-0
+      div(data-details).absolute.left-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1
+        a(ng-repeat="instance in vm.instances", ng-href="{{::instance.urls[0].url}}", target="_blank").button.button-nav-dark.block
+          | {{ ::instance.urls[0].url ? "Instance #"+($index+1) : "Not available"}}
+
+// Validation
+
+div.p3.bg-dark-gray.white.rounded
+  h3.mt0.light-gray.regular Validation
+  form.sm-col-6
+    textarea(placeholder="Enter you validation message here").rounded.field-dark.block.full-width.mb0
+    div.mt2
+      input(type="submit", value="Submit your validation").button.button-blue
+  
+
+h2 Level Instances
+table(ng-if="vm.instances").table-light
+  thead.bold.bg-darken-1
+    tr
+      th Instance
+      th Server
+      th
+  tbody
+    tr(ng-repeat="instance in vm.instances")
+      td {{instance.server.ip_address}}
+      td {{instance.server.name}}
+      td.right-align: button.button-blue Play

@@ -1,8 +1,8 @@
 angular
   .module('portal.services')
   .factory('CurrentUserService', function(
-    $q, $window, AuthService, UsersService, OrganizationsService,
-    OrganizationStatisticsService
+    $q, $window, AuthService, UserService, OrganizationService,
+    ScoringService
   ) {
     var service = {};
 
@@ -19,6 +19,7 @@ angular
         return AuthService.login(credentials)
         .then(function(token) {
           service.setAuthToken(token.token);
+          service.setUser({_id: token.user});
           return token.user;
         });
       };
@@ -106,7 +107,7 @@ angular
     //
 
     function loadUser(userId) {
-      return UsersService.getUserById(userId)
+      return UserService.getUserById(userId)
       .then(function(user) {
         service.setUser(user);
         return user;
@@ -114,7 +115,7 @@ angular
     }
 
     function loadOrganizations(user) {
-      return OrganizationsService.getOrganizationsByUserId(user._id)
+      return OrganizationService.getOrganizationsByUserId(user._id)
       .then(function(orgs) {
         storage.organizations = orgs;
         return orgs;
@@ -134,11 +135,10 @@ angular
 
     function loadOrganizationStatistics() {
       var orgId = storage.organization._id;
-      return OrganizationStatisticsService
+      return ScoringService
         .getStatisticsByOrganizationId(orgId)
         .then(function(statistics) {
           storage.statistics = statistics;
-          console.log(statistics);
           return statistics;
         });
     }

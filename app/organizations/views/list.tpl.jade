@@ -1,0 +1,12 @@
+h2.mt0.mb2.regular.mid-gray
+  a(ui-sref="organizations.list")
+    | Organizations
+
+div.p3.rounded.mb3.bg-white.shadow-bottom
+  table.table-light
+    thead.bg-lighter-gray
+      tr
+        th Name
+    tbody
+      tr(ng-repeat="organization in vm.organizations")
+        td: a(ui-sref="^.view({id: organization._id})") {{::organization.name}}

@@ -40,14 +40,14 @@ html(ng-app="portal", lang="en")
           |&nbsp; Organizations
 
 
-    nav.clearfix.white.bg-mid-gray.fixed.top-0.right-0.left-0.has-side-menu.z1(ng-controller="NavController")
+    nav.clearfix.white.bg-mid-gray.fixed.top-0.right-0.left-0.has-side-menu.z1(ng-controller="NavCtrl as nav")
 
       // Anonymous
-      div.sm-col-right(ng-hide="isAuthentificated()")
+      div.sm-col-right(ng-hide="nav.isAuthentificated()")
         a(ui-sref="login").button.button-nav-dark.py2 Login
 
       // Logged in
-      div(ng-show="isAuthentificated()")
+      div(ng-show="nav.isAuthentificated()")
 
         div(data-disclosure, style="vertical-align: top").inline-block
           div(data-details).fixed.top-0.right-0.bottom-0.left-0
@@ -79,7 +79,7 @@ html(ng-app="portal", lang="en")
             div(data-details).absolute.left-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1
               a(href="#").button.block.button-nav-dark.py2.px1
                 | Profile
-              a(ng-click="logout()").button.block.button-nav-dark.py2.px1
+              a(ng-click="nav.logout()").button.block.button-nav-dark.py2.px1
                 | Log out
 
         div.inline-block.right
