@@ -23,7 +23,7 @@ div.p3.bg-white.rounded.mt3.shadow-bottom
         th Price
         th
     tbody
-      tr(ng-repeat="level in levels")
+      tr(ng-repeat="level in vm.levels")
         td
           i(ng-if="::level.bought").fa.fa-dot-circle-o
           | &nbsp;

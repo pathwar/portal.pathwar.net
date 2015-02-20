@@ -1,24 +1,34 @@
-angular
-  .module('portal.users')
-  .controller('UserEditCtrl', function(
-    $scope, $state, $stateParams, Restangular
-  ) {
+function UserEditCtrl(
+  $scope, $state, $stateParams, Restangular
+) {
+  var vm = this;
 
+  vm.user = {};
+  vm.save = save;
+
+  init();
+
+  function init() {
     var Users = Restangular.service('users');
     var user = Users.one($stateParams.id);
 
     user.get().then(function(response) {
-      $scope.user = response.data;
+      vm.user = response.data;
+    });
+  }
+
+  function save(user) {
+    var toSend = _.pick(user, function(value, key) {
+      return key.charAt(0) != '_' || key == '_etag';
     });
 
-    $scope.save = function() {
-      var toSend = _.pick($scope.user, function(value, key) {
-        return key.charAt(0) != '_' || key == '_etag';
-      });
+    user.patch(toSend).then(function(response) {
+      $state.transitionTo('users.list');
+    });
+  };
 
-      user.patch(toSend).then(function(response) {
-        $state.transitionTo('users.list');
-      });
-    };
+}
 
-  });
+angular
+  .module('portal.users')
+  .controller('UserEditCtrl', UserEditCtrl);

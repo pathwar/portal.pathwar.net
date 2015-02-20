@@ -1,27 +1,25 @@
-angular
-  .module('portal.levels')
-  .controller('LevelListViewCtrl', function(
-    $q, $scope, LevelService, CurrentUserService
-  ) {
+function LevelListViewCtrl($q, LevelService, CurrentUserService) {
 
-    var currentOrg = CurrentUserService.getOrganization();
-    // FIXME: Can be outdated (see app.run) ...
+  var vm = this;
+  var currentOrg = CurrentUserService.getOrganization();
 
-    var levels = [];
+  vm.levels = [];
+  vm.buyLevel = buyLevel;
 
+  init();
+
+  /** Get levels and mark the ones already bought */
+  function init() {
     $q.all([
       LevelService.getLevels(),
       LevelService.getLevelsByOrganizationId(currentOrg._id)
     ])
-    .then(function(results) {
+    .then(function (results) {
+      vm.levels = results[0];
+      var boughtLevels = results[1];
 
-      levels = results[0];
-
-      var _boughtLevels = results[1];
-      var boughtLevels = [];
-
-      _.each(levels, function(level) {
-        var isAlreadyBought = _.find(_boughtLevels, function(boughtLevel) {
+      _.each(vm.levels, function(level) {
+        var isAlreadyBought = _.find(boughtLevels, function(boughtLevel) {
           return level._id == boughtLevel._id;
         });
 
@@ -30,18 +28,26 @@ angular
         else
           level.bought = false;
       });
-
-      $scope.levels = levels;
     });
+  }
 
-    $scope.buyLevel = function(level) {
-      LevelService.buyLevelbyOrganizationId(
-        level._id, $scope.currentUser.organization._id
-      ).then(function() {
-        level.bought = true;
-        console.log('level '+level._id+' successfully bought !');
-        CurrentUserService.loadOrganizationStatistics();
-      });
-    };
+  /** Buys a level and reload organization info */
+  function buyLevel(level) {
+    return LevelService.buyLevelbyOrganizationId(
+      level._id, currentOrg._id
+    )
+    .then(buyLevelSuccess);
 
-  });
+    function buyLevelSuccess() {
+      console.log('level '+level._id+' successfully bought !');
+      level.bought = true;
+
+      CurrentUserService.loadOrganizationStatistics();
+    }
+  }
+
+}
+
+angular
+  .module('portal.levels')
+  .controller('LevelListViewCtrl', LevelListViewCtrl);

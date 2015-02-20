@@ -15,21 +15,25 @@ angular.module('portal.organizations', [
   .state('organizations.list', {
     url: '',
     controller: 'OrganizationListCtrl',
+    controllerAs: 'vm',
     templateUrl: 'organizations/views/list.tpl.html'
   })
   .state('organizations.view', {
     url: '/:id',
     controller: 'OrganizationViewCtrl',
+    controllerAs: 'vm',
     templateUrl: 'organizations/views/view.tpl.html'
   })
   .state('organizations.edit', {
     url: '/:id/edit',
     controller: 'OrganizationEditCtrl',
+    controllerAs: 'vm',
     templateUrl: 'organizations/views/form.tpl.html'
   })
   .state('createOrganization', {
     url: '/organization/create',
     controller: 'OrganizationCreateCtrl',
+    controllerAs: 'vm',
     templateUrl: 'organizations/views/create.tpl.html'
   });
 

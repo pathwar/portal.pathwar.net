@@ -15,11 +15,13 @@ angular
     .state('levels.list', {
       url: '',
       controller: 'LevelListViewCtrl',
+      controllerAs: 'vm',
       templateUrl: 'levels/views/list.tpl.html'
     })
     .state('levels.view', {
       url: '/:id',
       controller: 'LevelViewCtrl',
+      controllerAs: 'vm',
       templateUrl: 'levels/views/view.tpl.html'
     });
 

@@ -8,5 +8,5 @@ div.p3.rounded.mb3.bg-white.shadow-bottom
       tr
         th Name
     tbody
-      tr(ng-repeat="organization in organizations")
+      tr(ng-repeat="organization in vm.organizations")
         td: a(ui-sref="^.view({id: organization._id})") {{::organization.name}}

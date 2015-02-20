@@ -1,24 +1,34 @@
-angular
-  .module('portal.organizations')
-  .controller('OrganizationEditCtrl', function(
-    $scope, $state, $stateParams, Restangular
-  ) {
+function OrganizationEditCtrl(
+  $state, $stateParams, Restangular
+) {
+  var vm = this;
 
+  vm.organization = {};
+  vm.save = save;
+
+  init();
+
+  function init() {
     var Orgs = Restangular.service('organizations');
-    var organization = Orgs.one($stateParams.id);
+    var org = Orgs.one($stateParams.id);
 
-    organization.get().then(function(response) {
-      $scope.organization = response.data;
+    org.get().then(function(response) {
+      vm.organization = response.data;
+    });
+  }
+
+  function save(organization) {
+    var toSend = _.pick(organization, function(value, key) {
+      return key.charAt(0) != '_' || key == '_etag';
     });
 
-    $scope.save = function() {
-      var toSend = _.pick($scope.organization, function(value, key) {
-        return key.charAt(0) != '_' || key == '_etag';
-      });
+    organization.patch(toSend).then(function(response) {
+      $state.transitionTo('organizations.list');
+    });
+  };
 
-      organization.patch(toSend).then(function(response) {
-        $state.transitionTo('organizations.list');
-      });
-    };
+}
 
-  });
+angular
+  .module('portal.organizations')
+  .controller('OrganizationEditCtrl', OrganizationEditCtrl);

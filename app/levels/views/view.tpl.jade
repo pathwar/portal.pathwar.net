@@ -18,16 +18,16 @@ div.rounded.mb3.bg-blue.shadow-bottom
 div.rounded.mb3.bg-white.shadow-bottom
   div.p3
     h3.mt0.regular.light-gray Level
-    h1.m0.ucfirst {{level.name}}
+    h1.m0.ucfirst {{vm.level.name}}
     div.h6
       a(href="")
-        | {{level.author}}
+        | {{vm.level.author}}
         |&nbsp; (Author)
 
-    p.mt2.sm-col-8 {{level.description}} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut odio magna, ullamcorper quis facilisis ac
+    p.mt2.sm-col-8 {{vm.level.description}} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut odio magna, ullamcorper quis facilisis ac
     
     div.mxn2
-      a.button.border.rounded.ml2(ng-repeat="tag in ::level.tags | orderBy:tag") {{::tag}}
+      a.button.border.rounded.ml2(ng-repeat="tag in ::vm.level.tags | orderBy:tag") {{::tag}}
   
   div.px3.py2.bg-lightest-gray.rounded-bottom.border-top.border-lighter-gray
     //button(ng-click="buyLevel(level)", ng-disabled="level.bought").rounded.mr2 Buy now
@@ -37,7 +37,7 @@ div.rounded.mb3.bg-white.shadow-bottom
         i.fa.fa-arrow-right
       div(data-details).fixed.top-0.right-0.bottom-0.left-0
       div(data-details).absolute.left-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1
-        a(ng-repeat="instance in instances", ng-href="{{::instance.urls[0].url}}", target="_blank").button.button-nav-dark.block
+        a(ng-repeat="instance in vm.instances", ng-href="{{::instance.urls[0].url}}", target="_blank").button.button-nav-dark.block
           | {{ ::instance.urls[0].url ? "Instance #"+($index+1) : "Not available"}}
 
 // Validation
@@ -51,14 +51,14 @@ div.p3.bg-dark-gray.white.rounded
   
 
 h2 Level Instances
-table(ng-if="instances").table-light
+table(ng-if="vm.instances").table-light
   thead.bold.bg-darken-1
     tr
       th Instance
       th Server
       th
   tbody
-    tr(ng-repeat="instance in instances")
+    tr(ng-repeat="instance in vm.instances")
       td {{instance.server.ip_address}}
       td {{instance.server.name}}
       td.right-align: button.button-blue Play

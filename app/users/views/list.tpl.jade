@@ -10,7 +10,7 @@ div.p3.rounded.mb3.bg-white.shadow-bottom
         th Email
         th Role
     tbody
-      tr(ng-repeat="user in users")
+      tr(ng-repeat="user in vm.users")
         td: a(ui-sref="^.view({id: user._id})") {{::user.login}}
         td {{::user.email}}
         td {{::user.role}}

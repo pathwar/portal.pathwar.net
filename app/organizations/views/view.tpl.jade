@@ -1,7 +1,7 @@
 div.p3.mb3.rounded.bg-white.clearfix.shadow-bottom
-  img(src="https://www.gravatar.com/avatar/{{organization.gravatar_hash}}?s=150&d=mm", width="150", height="150").rounded.left.mr3
+  img(src="https://www.gravatar.com/avatar/{{::vm.organization.gravatar_hash}}?s=150&d=mm", width="150", height="150").rounded.left.mr3
   div
-    h1.m0.ucfirst {{::organization.name}}
+    h1.m0.ucfirst {{::vm.organization.name}}
     h4.mt0.light-gray Formed 2012
     h4 Paris, France
 

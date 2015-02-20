@@ -1,9 +1,8 @@
+function NewsService(Restangular) {
+  var service = {};
+  return service;
+}
+
 angular
   .module('portal.news')
-  .factory('NewsService', function(Restangular) {
-
-    var service = {};
-
-    return service;
-
-  });
+  .factory('NewsService', NewsService);

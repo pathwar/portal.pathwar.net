@@ -1,9 +1,19 @@
-angular
-  .module('portal.users')
-  .controller('UserListCtrl', function($scope, Restangular) {
+function UserListCtrl($scope, Restangular) {
+  var vm = this;
 
+  vm.users = [];
+
+  init();
+
+  function init() {
     var Users = Restangular.service('users');
 
-    $scope.users = Users.getList().$object;
+    Users.getList().then(function(users) {
+      vm.users = users;
+    });
+  }
+}
 
-  });
+angular
+  .module('portal.users')
+  .controller('UserListCtrl', UserListCtrl);

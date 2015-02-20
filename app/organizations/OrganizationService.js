@@ -1,6 +1,4 @@
-angular
-  .module('portal.organizations')
-  .factory('OrganizationService', function(Restangular) {
+function OrganizationService(Restangular) {
 
   var Organizations = Restangular.all('organizations');
 
@@ -29,4 +27,8 @@ angular
   };
 
   return service;
-});
+}
+
+angular
+  .module('portal.organizations')
+  .factory('OrganizationService', OrganizationService);

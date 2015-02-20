@@ -1,11 +1,17 @@
-angular
-  .module('portal.levels')
-  .controller('LevelViewCtrl', function(
-    $scope, $stateParams, LevelService
-  ) {
+function LevelViewCtrl(
+  $stateParams, LevelService
+) {
+  var vm = this;
 
-    LevelService.getLevel($stateParams.id).then(function(_level) {
-      $scope.level = _level;
+  vm.level = {};
+  vm.instances = [];
+
+  init();
+  
+  /** Retrieve level info along side level instances */
+  function init() {
+    LevelService.getLevel($stateParams.id).then(function(level) {
+      vm.level = level;
     });
 
     LevelService.getLevelInstances({
@@ -13,7 +19,11 @@ angular
         level: $stateParams.id
       }
     }).then(function(instances) {
-      $scope.instances = instances;
+      vm.instances = instances;
     });
+  }
+}
 
-  });
+angular
+  .module('portal.levels')
+  .controller('LevelViewCtrl', LevelViewCtrl);

@@ -19,6 +19,7 @@ angular
         return AuthService.login(credentials)
         .then(function(token) {
           service.setAuthToken(token.token);
+          service.setUser({_id: token.user});
           return token.user;
         });
       };

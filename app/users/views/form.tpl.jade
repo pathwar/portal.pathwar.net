@@ -2,12 +2,12 @@ h1.mt0 {{user.login}}
 
 form.sm-col-6
   label Login
-  input(type="text", ng-model="user.login").block.full-width.field-light
+  input(type="text", ng-model="vm.user.login").block.full-width.field-light
   label Email
-  input(type="text", ng-model="user.email").block.full-width.field-light
+  input(type="text", ng-model="vm.user.email").block.full-width.field-light
   label Role
-  input(type="text", ng-model="user.role").block.full-width.field-light
+  input(type="text", ng-model="vm.user.role").block.full-width.field-light
   label Active
-  input(type="checkbox", ng-model="user.active")
-  button(ng-click="save()").button-blue.mb1 Save
+  input(type="checkbox", ng-model="vm.user.active")
+  button(ng-click="vm.save(vm.user)").button-blue.mb1 Save
   button.button-red.mb1.ml1(ui-sref="^.list") Cancel
