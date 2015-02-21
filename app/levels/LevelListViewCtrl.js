@@ -9,6 +9,7 @@ function LevelListViewCtrl($q, LevelService, CurrentUserService) {
   init();
 
   /** Get levels and mark the ones already bought */
+  // TODO: Should be in a service
   function init() {
     $q.all([
       LevelService.getLevels(),
@@ -32,6 +33,7 @@ function LevelListViewCtrl($q, LevelService, CurrentUserService) {
   }
 
   /** Buys a level and reload organization info */
+  // TODO: Should be in a service
   function buyLevel(level) {
     return LevelService.buyLevelbyOrganizationId(
       level._id, currentOrg._id
