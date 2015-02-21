@@ -30,4 +30,4 @@ div.p3.bg-white.rounded.mt3.shadow-bottom
           a(ui-sref="levels.view({id: level._id})") {{::level.name}}
         td {{::level.price}}
         td.right-align
-          button.button-blue(ng-click="buyLevel(level)", ng-disabled="level.bought") Buy
+          button.button-blue(ng-click="vm.buyLevel(level)", ng-disabled="level.bought") Buy
