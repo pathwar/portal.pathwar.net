@@ -57,7 +57,7 @@ html(ng-app="portal", lang="en")
               | {{currentUser.organization.name}}
               i.fa.fa-sort-down.icon-button
               // FIXME: add the current session name {{currentUser.organization.session}}
-            div(data-details).absolute.right-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1
+            div(data-details).absolute.left-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1.ml1
               a(href="#").button.block.button-nav-dark.py2.px1
                 img(src="//placehold.it/32x32", width="32", height="32").rounded.avatar-button-left.ml0
                 | Motorcycle
@@ -76,7 +76,7 @@ html(ng-app="portal", lang="en")
           div.relative
             a.button.button-narrow.py2.px1.button-nav-dark.regular
               img(ng-src="https://www.gravatar.com/avatar/{{currentUser.user.gravatar_hash}}?s=32&d=mm", width="32", height="32").rounded.avatar-button
-            div(data-details).absolute.left-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1
+            div(data-details).absolute.right-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1.mr1
               a(href="#").button.block.button-nav-dark.py2.px1
                 | Profile
               a(ng-click="nav.logout()").button.block.button-nav-dark.py2.px1
@@ -95,7 +95,7 @@ html(ng-app="portal", lang="en")
         div(data-disclosure).inline-block.right
           div(data-details).fixed.top-0.right-0.bottom-0.left-0
           div.relative
-            a.button.button-nav-dark.py2.px2.relative
+            a.button.button-nav-dark.py2.px1.relative
               i.fa.fa-bell-o
               div.rounded.bg-red.h6.px1.inline-block 25
             div(data-details).absolute.right-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1
