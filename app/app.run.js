@@ -35,7 +35,7 @@ angular
       $rootScope.state = toState.name;
 
       // TODO: State Based access definition
-      if (toState.name != 'login' && !CurrentUserService.isAuthentificated()) {
+      if (['login', 'register'].indexOf(toState.name) == -1 && !CurrentUserService.isAuthentificated()) {
         event.preventDefault();
         $state.go('login');
       }
