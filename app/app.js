@@ -8,6 +8,7 @@ angular
     'portal.services',
     'portal.directives',
     'portal.controllers',
+    'portal.notifications',
     'portal.home',
     'portal.levels',
     'portal.organizations',
