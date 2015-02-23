@@ -43,8 +43,9 @@ html(ng-app="portal", lang="en")
     nav.clearfix.white.bg-mid-gray.fixed.top-0.right-0.left-0.has-side-menu.z1(ng-controller="NavCtrl as nav")
 
       // Anonymous
-      div.sm-col-right(ng-hide="nav.isAuthentificated()")
+      div.sm-col-right(ng-if="!nav.isAuthentificated()")
         a(ui-sref="login").button.button-nav-dark.py2 Login
+        a(ui-sref="register").button.button-nav-dark.py2 Register
 
       // Logged in
       div(ng-show="nav.isAuthentificated()")
