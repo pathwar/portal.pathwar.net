@@ -28,6 +28,7 @@ function LevelViewCtrl(
   /** Validate level with passphrase and validation message */
   function validate(validation) {
     console.log(validation);
+    vm.level.validated = true;
   };
 
 }

@@ -4,9 +4,9 @@ h2.mt0.mb2.regular.mid-gray
     |&nbsp; Levels
 
 div.rounded.p2.mb3.bg-yellow
-  | You must buy this level before accessing it. This level costs {{level.price}}, <a href="">Buy it here !</a>
+  | You must buy this level before accessing it. This level costs {{vm.level.price}}, <a href="">Buy it here !</a>
 
-div.rounded.mb3.bg-blue.shadow-bottom
+div(ng-if="vm.level.validated").rounded.mb3.bg-blue.shadow-bottom
 
   div.p3.white
     h1.m0 Congratulations
