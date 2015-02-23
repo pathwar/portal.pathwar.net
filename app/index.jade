@@ -81,10 +81,17 @@ html(ng-app="portal", lang="en")
                 | Profile
               a(ng-click="nav.logout()").button.block.button-nav-dark.py2.px1
                 | Log out
-
-        div.inline-block.right
-          a.button.button-nav-dark.py2.px1 Cash: {{currentUser.statistics.cash}}
-          
+        
+        div(data-disclosure).inline-block.right
+          div(data-details).fixed.top-0.right-0.bottom-0.left-0
+          div.relative
+            a.button.button-nav-dark.py2.px1.relative
+              i.fa.fa-usd
+              div.rounded.bg-yellow.h6.px1.inline-block {{currentUser.statistics.cash}}
+            div(data-details).absolute.right-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1
+              a(href="#").button.block.button-nav-dark.py2.px1
+                | Redeem a coupon
+              
         div(data-disclosure).inline-block.right
           div(data-details).fixed.top-0.right-0.bottom-0.left-0
           div.relative
