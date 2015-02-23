@@ -1,0 +1,8 @@
+div.center
+  h1 Register to Pathwar
+  form(ng-submit="vm.register(vm.user)").sm-col-6.inline-block
+    input(type="text", ng-model="vm.user.login", placeholder="Username").block.full-width.field-light
+    input(type="email", ng-model="vm.user.email", placeholder="email").block.full-width.field-light
+    input(type="password", ng-model="vm.user.password", placeholder="Password").block.full-width.field-light
+    br
+    button(ng-click="").button-blue.mb1.block.full-width Register

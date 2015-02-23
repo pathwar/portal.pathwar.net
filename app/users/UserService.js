@@ -8,6 +8,12 @@ function UserService(Restangular) {
     });
   };
 
+  service.register = function(userModel) {
+    return Restangular.all('users').post(userModel).then(function(response) {
+      return response.data;
+    });
+  };
+
   return service;
 }
 

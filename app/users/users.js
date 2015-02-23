@@ -37,6 +37,12 @@ angular.module('portal.users', [
     controller: 'UserLoginCtrl',
     controllerAs: 'vm',
     templateUrl: 'users/views/login.tpl.html'
+  })
+  .state('register', {
+    url: '^/register',
+    controller: 'UserRegisterCtrl',
+    controllerAs: 'vm',
+    templateUrl: 'users/views/register.tpl.html'
   });
 
 });
