@@ -44,8 +44,9 @@ div.rounded.mb3.bg-white.shadow-bottom
 
 div.p3.bg-dark-gray.white.rounded
   h3.mt0.light-gray.regular Validation
-  form.sm-col-6
-    textarea(placeholder="Enter you validation message here").rounded.field-dark.block.full-width.mb0
+  form(ng-submit="vm.validate(validation)").sm-col-6
+    input(type="text", placeholder="Enter the passphrase", ng-model="validation.passphrase").field-dark
+    textarea(placeholder="Enter you validation message here", ng-model="validation.message").rounded.field-dark.block.full-width.mb0
     div.mt2
       input(type="submit", value="Submit your validation").button.button-blue
   

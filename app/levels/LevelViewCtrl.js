@@ -6,8 +6,10 @@ function LevelViewCtrl(
   vm.level = {};
   vm.instances = [];
 
+  vm.validate = validate;
+
   init();
-  
+
   /** Retrieve level info along side level instances */
   function init() {
     LevelService.getLevel($stateParams.id).then(function(level) {
@@ -22,6 +24,12 @@ function LevelViewCtrl(
       vm.instances = instances;
     });
   }
+
+  /** Validate level with passphrase and validation message */
+  function validate(validation) {
+    console.log(validation);
+  };
+
 }
 
 angular
