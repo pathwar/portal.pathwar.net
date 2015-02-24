@@ -108,8 +108,9 @@ html(ng-app="portal", lang="en")
             a.button.button-nav-dark.py2.px1.relative
               i.fa.fa-bell-o
               div.rounded.bg-red.h6.px1.inline-block {{nav.notifications.length}}
-            div(data-details).absolute.right-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1
-              h2 Notifications
+            div(data-details, style="min-width: 400px").absolute.right-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1
+              div(notifications)
+              
 
     div.p3.has-side-menu.content(ui-view)
 

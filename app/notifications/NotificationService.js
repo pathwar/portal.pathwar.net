@@ -1,4 +1,4 @@
-function NotificationService(Restangular) {
+function NotificationService(Restangular, CurrentUserService) {
   var service = {};
 
   service.items = [];
@@ -8,16 +8,19 @@ function NotificationService(Restangular) {
   return service;
 
   function getNotifications() {
-    angular.copy([
-      {
-        message: "Yo bienvenue",
-      },
-      {
-        message: "T'es beau"
-      }
-    ], service.items);
-
-    return service.items;
+    return Restangular.all('user-notifications')
+      .getList({
+        where: JSON.stringify({
+          user: CurrentUserService.getUser()._id
+        }),
+        sort: '-c_created'
+      })
+      .then(
+        function(items) {
+          angular.copy(items, service.items);
+          return service.items;
+        }
+      );
   }
 }
 

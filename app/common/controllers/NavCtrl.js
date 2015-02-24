@@ -3,17 +3,8 @@ function NavCtrl(
 ) {
   var vm = this;
 
-  vm.notifications = NotificationService.items;
-
-
   vm.isAuthentificated = CurrentUserService.isAuthentificated;
   vm.logout = logout;
-
-  init();
-
-  function init() {
-    NotificationService.getNotifications();
-  }
 
   function logout() {
     CurrentUserService.logout().then(function() {
