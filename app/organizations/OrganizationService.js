@@ -1,4 +1,4 @@
-function OrganizationService(Restangular) {
+function OrganizationService(Restangular, Organization) {
 
   var Organizations = Restangular.all('organizations');
 
@@ -20,7 +20,7 @@ function OrganizationService(Restangular) {
     .then(function(orgs) {
       var _orgs = [];
       angular.forEach(orgs, function(org) {
-        _orgs.push(org.organization);
+        _orgs.push(Organization.build(org.organization));
       });
       return _orgs;
     });
