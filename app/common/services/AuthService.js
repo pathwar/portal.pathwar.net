@@ -6,7 +6,7 @@ angular
     var service = {};
 
     service.login = function(credentials) {
-      var basic = credentials.username+':'+credentials.password;
+      var basic = credentials.login+':'+credentials.password;
 
       var Tokens = Restangular.all('user-tokens');
 
