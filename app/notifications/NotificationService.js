@@ -13,7 +13,7 @@ function NotificationService(Restangular, CurrentUserService) {
         where: JSON.stringify({
           user: CurrentUserService.getUser()._id
         }),
-        sort: '-c_created'
+        sort: '-created'
       })
       .then(
         function(items) {
