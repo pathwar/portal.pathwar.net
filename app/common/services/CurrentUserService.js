@@ -1,52 +1,67 @@
 angular
   .module('portal.services')
-  .factory('CurrentUserService', function(
-    $q, $window, AuthService, UserService, OrganizationService,
-    ScoringService
+  .factory('CurrentUserService', function CurrentUserService(
+    $q, $window, AuthService, User, UserService,
+    Organization, OrganizationService, ScoringService
   ) {
     var service = {};
 
-    var storage = {
-      authToken: null,
-      user: null,
-      organization: null,
-      organizations: null
-    };
+    var organizations = [];
+
+    var storedUserJson = $window.localStorage.getItem('currentUser') || "{}";
+    var storedUser = angular.fromJson(storedUserJson);
+
+    var user = User.build(storedUser);
+    user.authToken = storedUser.authToken;
+    user.organization = Organization.build(storedUser.organization)
 
     service.login = function(credentials) {
-
-      var authentificateUser = function(credentials) {
-        return AuthService.login(credentials)
+      return AuthService.login(credentials)
         .then(function(token) {
-          service.setAuthToken(token.token);
-          service.setUser({_id: token.user});
-          return token.user;
-        });
-      };
-
-      return authentificateUser(credentials)
-              .then(service.loadUserInfo);
-    };
-
-    // Persistency
-    service.restore = function() {
-
-      var currentUser = $window.localStorage.getItem('currentUser');
-      storage = JSON.parse(currentUser) || {};
-
-      return storage;
+          angular.extend(user, {
+            _id: token.user,
+            authToken: token.token
+          });
+          return user;
+        })
+        .then(service.loadUserInfo);
     };
 
     service.loadUserInfo = function () {
-      return loadUser(storage.user._id)
+      return loadUser(user._id)
         .then(loadOrganizations)
-        .then(loadDefaultSettings)
-        .then(loadOrganizationStatistics)
+        .then(loadCurrentOrganization)
         .then(returnStorage);
     };
 
     service.loadOrganizationStatistics = function() {
       return loadOrganizationStatistics();
+    };
+
+    // User
+    service.getUser = function() {
+      return user;
+    };
+
+    service.getAuthToken = function() { return user.authToken; };
+
+    service.isAuthentificated = function() {
+      return service.getAuthToken() != undefined;
+    };
+
+    // Current Organization
+    service.getOrganizations = function() {
+      return organizations;
+    };
+
+    service.switchOrganization = function(org) {
+      user.organization = org;
+      persist();
+      return loadOrganizationStatistics();
+    };
+
+    service.getOrganization = function() {
+      return user.organization;
     };
 
     service.logout = function() {
@@ -57,100 +72,62 @@ angular
 
     service.clear = function() {
       $window.localStorage.removeItem('currentUser');
-      storage = {};
-    };
-
-    // User
-    service.setUser = function(user) {
-      storage.user = user;
-      persist();
-    };
-
-    service.getUser = function() {
-      return storage.user;
-    };
-
-    // Authentification
-    service.setAuthToken = function(token) {
-      storage.authToken = token;
-      persist();
-    };
-
-    service.getAuthToken = function() { return storage.authToken; };
-
-    service.isAuthentificated = function() {
-      return service.getAuthToken() != undefined;
-    };
-
-    // Current Organization
-
-    service.getOrganizations = function() {
-      return storage.organizations;
-    };
-
-    service.setOrganizations = function(orgs) {
-      storage.organizations = orgs;
-      persist();
-    };
-
-    service.switchOrganization = function(org) {
-      storage.organization = org;
-      persist();
-    };
-
-    service.getOrganization = function() {
-      return storage.organization;
+      user = {};
     };
 
     return service;
 
-    //
+    ////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
 
-    function loadUser(userId) {
-      return UserService.getUserById(userId)
-      .then(function(user) {
-        service.setUser(user);
+    function loadUser() {
+      return UserService.getUserById(user._id)
+      .then(function(_user) {
+        angular.extend(user, _user);
+        persist();
         return user;
       });
     }
 
-    function loadOrganizations(user) {
+    function loadOrganizations() {
       return OrganizationService.getOrganizationsByUserId(user._id)
       .then(function(orgs) {
-        storage.organizations = orgs;
+        angular.copy(orgs, organizations);
         return orgs;
       });
     }
 
-    function loadDefaultSettings(orgs) {
+    function loadCurrentOrganization(orgs) {
       return $q(function(resolve, reject) {
 
         // default organization to the last created
-        if (!storage.organization && orgs[0])
+        if (!user.organization._id && orgs[0]) {
           service.switchOrganization(orgs[0]);
+        }
 
         resolve();
       });
     }
 
     function loadOrganizationStatistics() {
-      var orgId = storage.organization._id;
+      var orgId = user.organization._id;
       return ScoringService
         .getStatisticsByOrganizationId(orgId)
         .then(function(statistics) {
-          storage.statistics = statistics;
-          return statistics;
+          angular.extend(user.organization, {statistics: statistics});
+          persist();
+          return user.organization.statistics;
         });
     }
 
     function returnStorage(orgs) {
       return $q(function(resolve, reject) {
-        resolve(storage);
+        resolve(user);
       });
     }
 
     function persist() {
-      $window.localStorage.setItem('currentUser', JSON.stringify(storage));
+      $window.localStorage.setItem('currentUser', JSON.stringify(user));
     }
-
   });
