@@ -6,9 +6,10 @@ function NavCtrl(
   vm.isAuthentificated = CurrentUserService.isAuthentificated;
   vm.logout = logout;
 
+  vm.currentUser = CurrentUserService.getUser();
+
   function logout() {
     CurrentUserService.logout().then(function() {
-      $scope.setCurrentUser({}); // bad
       $state.transitionTo('home');
     });
   }

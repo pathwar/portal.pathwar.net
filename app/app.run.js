@@ -4,10 +4,6 @@ angular
     $rootScope, $location, $state, CurrentUserService, Restangular
   ) {
 
-    $rootScope.setCurrentUser = function(user) {
-      $rootScope.currentUser = user;
-    };
-
     Restangular.setErrorInterceptor(function(
       response, deffered, responseHandler
     ) {
@@ -23,9 +19,7 @@ angular
       console.log('set auth');
       Restangular.setDefaultHeaders({ Authorization: basic });
 
-      CurrentUserService.loadUserInfo().then(function(user) {
-        $rootScope.setCurrentUser(user);
-      });
+      CurrentUserService.loadUserInfo();
     }
 
     $rootScope.$on('$stateChangeStart', function (event, toState) {

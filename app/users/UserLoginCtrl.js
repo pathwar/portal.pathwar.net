@@ -8,7 +8,6 @@ function UserLoginCtrl(
 
   function login(credentials) {
     CurrentUserService.login(credentials).then(function(user) {
-      $scope.setCurrentUser(user);
       $state.transitionTo('home');
     });
   };

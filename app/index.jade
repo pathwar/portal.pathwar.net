@@ -54,8 +54,8 @@ html(ng-app="portal", lang="en")
           div(data-details).fixed.top-0.right-0.bottom-0.left-0
           div.relative
             a.button.button-narrow.button-nav-dark.py2.px1
-              img(ng-src="https://www.gravatar.com/avatar/{{currentUser.organization.gravatar_hash}}?s=32&d=mm", width="32", height="32").rounded.avatar-button
-              | {{currentUser.organization.name}}
+              img(ng-src="https://www.gravatar.com/avatar/{{nav.currentUser.organization.gravatar_hash}}?s=32&d=mm", width="32", height="32").rounded.avatar-button
+              | {{nav.currentUser.organization.name}}
               i.fa.fa-sort-down.icon-button
               // FIXME: add the current session name {{currentUser.organization.session}}
             div(data-details).absolute.left-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1.ml1
@@ -79,7 +79,7 @@ html(ng-app="portal", lang="en")
           div(data-details).fixed.top-0.right-0.bottom-0.left-0
           div.relative
             a.button.button-narrow.py2.px1.button-nav-dark.regular
-              img(ng-src="https://www.gravatar.com/avatar/{{currentUser.user.gravatar_hash}}?s=32&d=mm", width="32", height="32").rounded.avatar-button
+              img(ng-src="{{nav.currentUser.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button
             div(data-details).absolute.right-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1.mr1
               a(href="#").button.block.button-nav-dark.py2.px1
                 | Profile
@@ -94,7 +94,7 @@ html(ng-app="portal", lang="en")
           div.relative
             a.button.button-nav-dark.py2.px1.relative
               i.fa.fa-usd
-              div.rounded.bg-yellow.h6.px1.inline-block {{currentUser.statistics.cash}}
+              div.rounded.bg-yellow.h6.px1.inline-block {{nav.currentUser.organization.statistics.cash}}
             div(data-details).absolute.right-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1
               a(href="#").button.block.button-nav-dark.py2.px1
                 | Redeem a coupon
