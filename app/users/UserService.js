@@ -1,10 +1,10 @@
-function UserService(Restangular) {
+function UserService(Restangular, User) {
 
   var service = {};
 
   service.getUserById = function(id) {
     return Restangular.one('users', id).get().then(function(response) {
-      return response.data;
+      return User.build(response.data);
     });
   };
 
