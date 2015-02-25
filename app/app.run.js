@@ -16,9 +16,6 @@ angular
       }
     });
 
-    console.log('restore');
-    CurrentUserService.restore();
-
     if (CurrentUserService.isAuthentificated()) {
       var token = CurrentUserService.getAuthToken();
       var basic = 'Basic '+window.btoa(token+':');
