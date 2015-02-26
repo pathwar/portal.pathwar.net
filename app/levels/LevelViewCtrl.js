@@ -1,5 +1,6 @@
 function LevelViewCtrl(
-  $stateParams, LevelService, LevelHintService
+  $stateParams, CurrentUserService, LevelService, LevelHintService,
+  LevelValidationService
 ) {
   var vm = this;
 
@@ -28,7 +29,21 @@ function LevelViewCtrl(
       vm.level.instances = instances;
     });
 
+      // Fetches hints for the level
+      LevelHintService.getHintsForLevel(vm.level)
+        .then(function(hints) {
+          vm.level.hints = hints;
+        });
 
+      // Fetches running instances of the level
+      LevelService.getLevelInstances({
+        where: {
+          level: vm.level._id
+        }
+      }).then(function(instances) {
+        vm.level.instances = instances;
+      });
+    });
   }
 
   /** Validate level with passphrase and validation message */
