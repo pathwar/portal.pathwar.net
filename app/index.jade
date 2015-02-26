@@ -57,21 +57,14 @@ html(ng-app="portal", lang="en")
           div(data-details).fixed.top-0.right-0.bottom-0.left-0
           div.relative
             a.button.button-narrow.button-transparent.py2.px1
-              img(ng-src="https://www.gravatar.com/avatar/{{nav.currentUser.organization.gravatar_hash}}?s=32&d=mm", width="32", height="32").rounded.avatar-button
+              img(src="https://www.gravatar.com/avatar/{{nav.currentUser.organization.gravatar_hash}}?s=32&d=mm", width="32", height="32").rounded.avatar-button
               | {{nav.currentUser.organization.name}}
               i.fa.fa-sort-down.icon-button
               // FIXME: add the current session name {{currentUser.organization.session}}
             div(data-details).absolute.left-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1.ml1
-              a(href="#").button.block.button-transparent.py2.px1
-                img(src="//placehold.it/32x32", width="32", height="32").rounded.avatar-button-left.ml0
-                | Motorcycle
-                // FIXME: add the session name
-              a(href="#").button.block.button-transparent.py2.px1
-                img(src="//placehold.it/32x32", width="32", height="32").rounded.avatar-button-left.ml0
-                | Anjunabeats
-              a(href="#").button.block.button-transparent.py2.px1
-                img(src="//placehold.it/32x32", width="32", height="32").rounded.avatar-button-left.ml0
-                | Chinese Army
+              a(ng-repeat="organization in nav.organizations", ng-click="nav.switchOrganization(organization)").button.block.button-transparent.py2.px1
+                img(ng-src="{{organization.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button-left.ml0
+                | {{organization.name}} {{organization.session}}
               a(ui-sref="createOrganization").button.block.button-transparent.bg-dark.py2.px1.center.rounded-bottom
                 | New
 

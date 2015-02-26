@@ -3,10 +3,12 @@ function NavCtrl(
 ) {
   var vm = this;
 
+  vm.currentUser = CurrentUserService.getUser();
+  vm.organizations = CurrentUserService.getOrganizations();
+
   vm.isAuthentificated = CurrentUserService.isAuthentificated;
   vm.logout = logout;
 
-  vm.currentUser = CurrentUserService.getUser();
 
   function logout() {
     CurrentUserService.logout().then(function() {
