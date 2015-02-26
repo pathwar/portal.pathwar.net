@@ -33,8 +33,12 @@ function LevelViewCtrl(
 
   /** Validate level with passphrase and validation message */
   function validate(validation) {
-    console.log(validation);
-    vm.level.validated = true;
+    LevelValidationService.validateOrganizationLevel(validation, vm.orgLevel)
+      .then(function(data) {
+        console.log('TODO: Notification that level is pending validation');
+      });
+
+    vm.level.validated = true; //switch to orgLevel
   }
 
   function buyHint(hint) {
