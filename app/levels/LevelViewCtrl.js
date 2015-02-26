@@ -5,6 +5,7 @@ function LevelViewCtrl(
   var vm = this;
 
   vm.level = {};
+  vm.orgLevel = {};
 
   vm.validate = validate;
   vm.buyHint = buyHint;
@@ -13,21 +14,17 @@ function LevelViewCtrl(
 
   /** Retrieve level info along side level instances */
   function init() {
+    var currentOrg = CurrentUserService.getOrganization();
+
+    // Fetchs level info then decorates with all available level info
     LevelService.getLevel($stateParams.id).then(function(level) {
       vm.level = level;
 
-      LevelHintService.getHintsForLevel(vm.level).then(function(hints) {
-        vm.level.hints = hints;
-      });
-    });
-
-    LevelService.getLevelInstances({
-      where: {
-        level: $stateParams.id
-      }
-    }).then(function(instances) {
-      vm.level.instances = instances;
-    });
+      // Fetches status of the level for current organization
+      LevelService.getOrganizationLevel(currentOrg, vm.level)
+        .then(function(orgLevel) {
+          vm.orgLevel = orgLevel;
+        });
 
       // Fetches hints for the level
       LevelHintService.getHintsForLevel(vm.level)
