@@ -37,7 +37,7 @@ div.rounded.mb3.bg-white.shadow-bottom
         i.fa.fa-arrow-right
       div(data-details).fixed.top-0.right-0.bottom-0.left-0
       div(data-details).absolute.left-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1
-        a(ng-repeat="instance in vm.instances", ng-href="{{::instance.urls[0].url}}", target="_blank").button.button-nav-dark.block
+        a(ng-repeat="instance in ::vm.level.instances", ng-href="{{instance.urls[0].url}}", target="_blank").button.button-nav-dark.block
           | {{ ::instance.urls[0].url ? "Instance #"+($index+1) : "Not available"}}
 
 // Validation
