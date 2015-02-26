@@ -9,5 +9,5 @@ form.sm-col-6
   input(type="text", ng-model="vm.user.role").block.full-width.field-light
   label Active
   input(type="checkbox", ng-model="vm.user.active")
-  button(ng-click="vm.save(vm.user)").button-blue.mb1 Save
-  button.button-red.mb1.ml1(ui-sref="^.list") Cancel
+  button.button(ng-click="vm.save(vm.user)").mb1 Save
+  button.button.bg-red.mb1.ml1(ui-sref="^.list") Cancel

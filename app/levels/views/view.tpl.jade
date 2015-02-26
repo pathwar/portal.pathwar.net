@@ -13,7 +13,7 @@ div(ng-if="vm.level.validated").rounded.mb3.bg-blue.shadow-bottom
     p.mt2.sm-col-8 You validated this level
 
   div.px2.py2.bg-white.rounded-bottom.border-top.border-lighter-gray
-    a.button.button-blue Next Level
+    a.button Next Level
 
 div.rounded.mb3.bg-white.shadow-bottom
   div.p3
@@ -27,12 +27,12 @@ div.rounded.mb3.bg-white.shadow-bottom
     p.mt2.sm-col-8 {{vm.level.description}} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut odio magna, ullamcorper quis facilisis ac
     
     div.mxn2
-      a.button.border.rounded.ml2(ng-repeat="tag in ::vm.level.tags | orderBy:tag") {{::tag}}
+      a.button.button-outline.blue.ml2(ng-repeat="tag in ::vm.level.tags | orderBy:tag") {{::tag}}
   
   div.px3.py2.bg-lightest-gray.rounded-bottom.border-top.border-lighter-gray
     //button(ng-click="buyLevel(level)", ng-disabled="level.bought").rounded.mr2 Buy now
     div(data-disclosure).relative.inline-block
-      a.button.button-blue.px3
+      a.button.px3
         | Go &nbsp;
         i.fa.fa-arrow-right
       div(data-details).fixed.top-0.right-0.bottom-0.left-0
@@ -42,13 +42,13 @@ div.rounded.mb3.bg-white.shadow-bottom
 
 // Validation
 
-div.p3.bg-dark-gray.white.rounded
+div.p3.bg-black.white.rounded
   h3.mt0.light-gray.regular Validation
   form(ng-submit="vm.validate(validation)").sm-col-6
     input(type="text", placeholder="Enter the passphrase", ng-model="validation.passphrase").field-dark
     textarea(placeholder="Enter you validation message here", ng-model="validation.message").rounded.field-dark.block.full-width.mb0
     div.mt2
-      input(type="submit", value="Submit your validation").button.button-blue
+      input(type="submit", value="Submit your validation").button
 
 
 // Hints
@@ -66,4 +66,4 @@ div.p3.bg-white.rounded.mt3
         td {{hint.name}}
         td {{hint.price}}
         td.right-align
-          button(ng-click="vm.buyHint(hint)").button-blue Buy
+          button.button(ng-click="vm.buyHint(hint)") Buy

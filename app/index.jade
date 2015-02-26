@@ -16,36 +16,36 @@ html(ng-app="portal", lang="en")
 
   body(ng-class="{frontpage: state == 'home'}").bg-lighter-gray
 
-    div.side-menu.bg-dark-gray.md-show
-      a(ui-sref="home").button.button-nav-light.py2
+    div.side-menu.bg-black.white.md-show
+      a(ui-sref="home").button.button-transparent.py2
         img(src="#{BASE_PATH}assets/img/logo.png", width="32", height="32").rounded.avatar-button-left.ml0
       nav.mt3
-        a.button.button-nav-dark.block(ui-sref="home").h3
+        a.button.button-transparent.block(ui-sref="home").h3
           i.fa.fa-tachometer
           |&nbsp; Dashboard
-        a.button.button-nav-dark.block(ui-sref="crud.list")
+        a.button.button-transparent.block(ui-sref="crud.list")
           i.fa.fa-lock
           |&nbsp; CRUD
-        a.button.button-nav-dark.block(ui-sref="levels.list")
+        a.button.button-transparent.block(ui-sref="levels.list")
           i.fa.fa-desktop
           |&nbsp; Levels
-        a.button.button-nav-dark.block(ui-sref="users.list")
+        a.button.button-transparent.block(ui-sref="users.list")
           i.fa.fa-users
           |&nbsp; Users
-        a.button.button-nav-dark.block(ui-sref="news.list")
+        a.button.button-transparent.block(ui-sref="news.list")
           i.fa.fa-rss
           |&nbsp; News
-        a.button.button-nav-dark.block(ui-sref="organizations.list")
+        a.button.button-transparent.block(ui-sref="organizations.list")
           i.fa.fa-building-o
           |&nbsp; Organizations
 
 
-    nav.clearfix.white.bg-mid-gray.fixed.top-0.right-0.left-0.has-side-menu.z1(ng-controller="NavCtrl as nav")
+    nav.clearfix.white.bg-gray.fixed.top-0.right-0.left-0.has-side-menu.z1(ng-controller="NavCtrl as nav")
 
       // Anonymous
       div.sm-col-right(ng-if="!nav.isAuthentificated()")
-        a(ui-sref="login").button.button-nav-dark.py2 Login
-        a(ui-sref="register").button.button-nav-dark.py2 Register
+        a(ui-sref="login").button.button-transparent.py2 Login
+        a(ui-sref="register").button.button-transparent.py2 Register
 
       // Logged in
       div(ng-if="nav.isAuthentificated()")
@@ -53,23 +53,23 @@ html(ng-app="portal", lang="en")
         div(data-disclosure, style="vertical-align: top").inline-block
           div(data-details).fixed.top-0.right-0.bottom-0.left-0
           div.relative
-            a.button.button-narrow.button-nav-dark.py2.px1
+            a.button.button-narrow.button-transparent.py2.px1
               img(ng-src="https://www.gravatar.com/avatar/{{nav.currentUser.organization.gravatar_hash}}?s=32&d=mm", width="32", height="32").rounded.avatar-button
               | {{nav.currentUser.organization.name}}
               i.fa.fa-sort-down.icon-button
               // FIXME: add the current session name {{currentUser.organization.session}}
             div(data-details).absolute.left-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1.ml1
-              a(href="#").button.block.button-nav-dark.py2.px1
+              a(href="#").button.block.button-transparent.py2.px1
                 img(src="//placehold.it/32x32", width="32", height="32").rounded.avatar-button-left.ml0
                 | Motorcycle
                 // FIXME: add the session name
-              a(href="#").button.block.button-nav-dark.py2.px1
+              a(href="#").button.block.button-transparent.py2.px1
                 img(src="//placehold.it/32x32", width="32", height="32").rounded.avatar-button-left.ml0
                 | Anjunabeats
-              a(href="#").button.block.button-nav-dark.py2.px1
+              a(href="#").button.block.button-transparent.py2.px1
                 img(src="//placehold.it/32x32", width="32", height="32").rounded.avatar-button-left.ml0
                 | Chinese Army
-              a(ui-sref="createOrganization").button.block.button-nav-dark.bg-dark-gray.py2.px1.center.rounded-bottom
+              a(ui-sref="createOrganization").button.block.button-transparent.bg-dark.py2.px1.center.rounded-bottom
                 | New
 
         //
@@ -78,12 +78,12 @@ html(ng-app="portal", lang="en")
         div(data-disclosure, style="vertical-align: top").inline-block.right
           div(data-details).fixed.top-0.right-0.bottom-0.left-0
           div.relative
-            a.button.button-narrow.py2.px1.button-nav-dark.regular
+            a.button.button-narrow.py2.px1.button-transparent.regular
               img(ng-src="{{nav.currentUser.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button
             div(data-details).absolute.right-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1.mr1
-              a(href="#").button.block.button-nav-dark.py2.px1
+              a(href="#").button.block.button-transparent.py2.px1
                 | Profile
-              a(ng-click="nav.logout()").button.block.button-nav-dark.py2.px1
+              a(ng-click="nav.logout()").button.block.button-transparent.py2.px1
                 | Log out
         
         //
@@ -92,11 +92,11 @@ html(ng-app="portal", lang="en")
         div(data-disclosure).inline-block.right
           div(data-details).fixed.top-0.right-0.bottom-0.left-0
           div.relative
-            a.button.button-nav-dark.py2.px1.relative
+            a.button.button-transparent.py2.px1.relative
               i.fa.fa-usd
               div.rounded.bg-yellow.h6.px1.inline-block {{nav.currentUser.organization.statistics.cash}}
             div(data-details).absolute.right-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1
-              a(ui-sref="coupons.redeem").button.block.button-nav-dark.py2.px1
+              a(ui-sref="coupons.redeem").button.block.button-transparent.py2.px1
                 | Redeem a coupon
               
         //
@@ -105,7 +105,7 @@ html(ng-app="portal", lang="en")
         div(data-disclosure).inline-block.right
           div(data-details).fixed.top-0.right-0.bottom-0.left-0
           div.relative
-            a.button.button-nav-dark.py2.px1.relative
+            a.button.button-transparent.py2.px1.relative
               i.fa.fa-bell-o
               div.rounded.bg-red.h6.px1.inline-block {{nav.notifications.length}}
             div(data-details, style="min-width: 400px").absolute.right-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1

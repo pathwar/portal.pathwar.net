@@ -10,7 +10,7 @@ div.container-small
           | {{session.name}}
 
     div.mt2
-      button(ng-disabled="vm.formData.session == null", ng-click="step = 2").button.button-blue Next
+      button(ng-disabled="vm.formData.session == null", ng-click="step = 2").button Next
       
   div(ng-show="step == 2")
     h2 Choose a name
@@ -20,7 +20,7 @@ div.container-small
     label Description (Optional)
     input(type="text", placeholder="Quick description").sm-col-8.block.field-light.mb2
     div.mt2
-      button(ng-disabled="vm.formData.session == null", ng-click="vm.create(vm.formData)").button-blue Create
+      button.button(ng-disabled="vm.formData.session == null", ng-click="vm.create(vm.formData)") Create
       | 
-      button(ng-click="step = step - 1").button-gray Cancel
+      button.button.bg-gray(ng-click="step = step - 1") Cancel
     

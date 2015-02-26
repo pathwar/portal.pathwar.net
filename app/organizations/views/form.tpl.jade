@@ -5,5 +5,5 @@ form.sm-col-6
   input(type="text", ng-model="vm.organization.name").block.full-width.field-light
   label Session ID
   input(type="text", ng-model="vm.organization.session").block.full-width.field-light.mb2
-  button(ng-click="save()").button-blue.mb1 Save
-  button.button-red.mb1.ml1(ui-sref="^.list") Cancel
+  button.button(ng-click="save()").mb1 Save
+  button.button.bg-red.mb1.ml1(ui-sref="^.list") Cancel
