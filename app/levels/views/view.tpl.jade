@@ -49,3 +49,21 @@ div.p3.bg-dark-gray.white.rounded
     textarea(placeholder="Enter you validation message here", ng-model="validation.message").rounded.field-dark.block.full-width.mb0
     div.mt2
       input(type="submit", value="Submit your validation").button.button-blue
+
+
+// Hints
+
+div.p3.bg-white.rounded.mt3
+  h3.mt0.light-gray.regular Hints
+  table(ng-if="vm.level.hints").table-light
+    thead.bold.bg-darken-1
+      tr
+        th Hint
+        th Price
+        th
+    tbody
+      tr(ng-repeat="hint in ::vm.level.hints")
+        td {{hint.name}}
+        td {{hint.price}}
+        td.right-align
+          button(ng-click="vm.buyHint(hint)").button-blue Buy
