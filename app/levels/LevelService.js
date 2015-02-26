@@ -8,6 +8,19 @@ angular
       return Restangular.all('levels').getList(opts || {});
     };
 
+    service.getOrganizationLevel = function(organization, level) {
+      return Restangular.all('organization-levels')
+        .getList({
+          where: angular.toJson({
+            organization: organization._id,
+            level: level._id
+          })
+        })
+        .then(function(orgLevels) {
+          return orgLevels[0] || {};
+        });
+    }
+
     service.getLevelsByOrganizationId = function(orgId, opts) {
 
       opts = opts || {};
