@@ -48,7 +48,7 @@ html(ng-app="portal", lang="en")
         a(ui-sref="register").button.button-nav-dark.py2 Register
 
       // Logged in
-      div(ng-show="nav.isAuthentificated()")
+      div(ng-if="nav.isAuthentificated()")
 
         div(data-disclosure, style="vertical-align: top").inline-block
           div(data-details).fixed.top-0.right-0.bottom-0.left-0
