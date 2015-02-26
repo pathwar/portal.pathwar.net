@@ -10,6 +10,10 @@ function LevelViewCtrl(
   vm.validate = validate;
   vm.buyHint = buyHint;
 
+  vm.isLevelBought = function() {
+    return angular.isDefined(vm.orgLevel.level);
+  };
+
   init();
 
   /** Retrieve level info along side level instances */

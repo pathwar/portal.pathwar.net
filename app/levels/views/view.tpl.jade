@@ -3,7 +3,7 @@ h2.mt0.mb2.regular.mid-gray
     i.fa.fa-arrow-left
     |&nbsp; Levels
 
-div.rounded.p2.mb3.bg-yellow
+div(ng-show="!vm.isLevelBought()").rounded.p2.mb3.bg-yellow
   | You must buy this level before accessing it. This level costs {{vm.level.price}}, <a href="">Buy it here !</a>
 
 div(ng-if="vm.level.validated").rounded.mb3.bg-blue.shadow-bottom
