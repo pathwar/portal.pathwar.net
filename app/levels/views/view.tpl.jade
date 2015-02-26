@@ -49,17 +49,3 @@ div.p3.bg-dark-gray.white.rounded
     textarea(placeholder="Enter you validation message here", ng-model="validation.message").rounded.field-dark.block.full-width.mb0
     div.mt2
       input(type="submit", value="Submit your validation").button.button-blue
-  
-
-h2 Level Instances
-table(ng-if="vm.instances").table-light
-  thead.bold.bg-darken-1
-    tr
-      th Instance
-      th Server
-      th
-  tbody
-    tr(ng-repeat="instance in vm.instances")
-      td {{instance.server.ip_address}}
-      td {{instance.server.name}}
-      td.right-align: button.button-blue Play
