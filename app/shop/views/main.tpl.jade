@@ -1,0 +1,24 @@
+h2.m0.regular.mid-gray
+  a(ui-sref="shop")
+    | Shop
+
+div.p3.bg-white.rounded.mt2.shadow-bottom
+  h1.mt0 Welcome to the Shop
+  p.md-col-7.gray Here you can buy loads of items that will help you progress in the challenge
+
+div.mxn1.clearfix.mt2
+  div(ng-repeat="item in vm.items").sm-col.sm-col-4.px1
+    div.bg-white.shadow.shadow-bottom.rounded.mb3
+      div.p2.flex.flex-start
+        div
+          img(src="//placehold.it/32x32").left
+        div.flex-auto.px2
+          h3.mt0 {{::item.name}}
+          div.gray {{::item.description}}
+      div.p1.border-top.border-lighter-gray.flex.flex-baseline
+        div.flex-auto
+          button.button Buy
+        div.px1.bold {{::item.price}}$
+    
+
+  
