@@ -103,6 +103,9 @@ function CurrentUserService(
       if (!user.organization._id && orgs[0]) {
         service.switchOrganization(orgs[0]);
       }
+      else {
+        service.switchOrganization(user.organization);
+      }
 
       resolve();
     });
