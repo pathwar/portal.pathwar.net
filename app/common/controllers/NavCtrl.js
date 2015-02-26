@@ -7,8 +7,13 @@ function NavCtrl(
   vm.organizations = CurrentUserService.getOrganizations();
 
   vm.isAuthentificated = CurrentUserService.isAuthentificated;
+  vm.switchOrganization = switchOrganization;
   vm.logout = logout;
 
+  function switchOrganization(organization) {
+    CurrentUserService.switchOrganization(organization);
+    $state.reload();
+  }
 
   function logout() {
     CurrentUserService.logout().then(function() {
