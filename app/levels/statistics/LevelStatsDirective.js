@@ -13,9 +13,17 @@ function LevelStatsDirective() {
   return directive;
 }
 
-function LevelStatsCtrl() {
+function LevelStatsCtrl(LevelStatsService) {
   var vm = this;
 
+  init();
+
+  function init() {
+    LevelStatsService.getStatsForLevel(vm.level)
+      .then(function(stats) {
+        vm.level.statistics = stats;
+      });
+  }
 }
 
 angular
