@@ -56,8 +56,8 @@ html(ng-app="portal", lang="en")
         div(data-disclosure, style="vertical-align: top").inline-block
           div(data-details).fixed.top-0.right-0.bottom-0.left-0
           div.relative
-            a.button.button-narrow.button-transparent.py2.px1
-              img(src="https://www.gravatar.com/avatar/{{nav.currentUser.organization.gravatar_hash}}?s=32&d=mm", width="32", height="32").rounded.avatar-button
+            a.button.button-narrow.button-transparent.py2
+              img(ng-src="{{nav.currentUser.organization.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button-left.ml0
               | {{nav.currentUser.organization.name}}
               i.fa.fa-sort-down.icon-button
               // FIXME: add the current session name {{currentUser.organization.session}}
