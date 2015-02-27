@@ -6,7 +6,7 @@ h2.mt0.mb2.regular.mid-gray
 div(ng-show="!vm.organizationBoughtLevel(vm.orgLevel)").rounded.p2.bg-yellow
   | You must buy this level before accessing it. This level costs {{vm.level.price}}, <a href="">Buy it here !</a>
 
-div(ng-if="vm.level.validated").rounded.mb3.bg-blue.shadow-bottom
+div(ng-if="vm.level.validated").rounded.mt3.bg-blue.shadow-bottom
 
   div.p3.white
     h1.m0 Congratulations
@@ -15,7 +15,7 @@ div(ng-if="vm.level.validated").rounded.mb3.bg-blue.shadow-bottom
   div.px2.py2.bg-white.rounded-bottom.border-top.border-lighter-gray
     a.button Next Level
 
-div.rounded.mb3.bg-white.shadow-bottom
+div.rounded.mt3.bg-white.shadow-bottom
   div.p3
     h3.mt0.regular.light-gray Level
     h1.m0.ucfirst {{vm.level.name}}
