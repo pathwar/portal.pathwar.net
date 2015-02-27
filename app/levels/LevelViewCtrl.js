@@ -4,8 +4,9 @@ function LevelViewCtrl(
 ) {
   var vm = this;
 
-  vm.level = {};
-  vm.orgLevel = {};
+  // Init to undefined to avoid Bind Once not listening to future changes
+  vm.level = undefined;
+  vm.orgLevel = undefined;
 
   vm.validate = validate;
   vm.buyHint = buyHint;
