@@ -1,3 +1,17 @@
-h1.mt0 HOME
-
-p Welcome to Pathwar
+h2.m0.regular.mid-gray
+  a(ui-sref="home")
+    | Home
+    
+div.bg-white.rounded.mt2.shadow-bottom.mb3
+  nav.p2
+    a.button.button-narrow.button-transparent Home
+    a.button.button-narrow.button-transparent Leaderboard
+  
+  div.p2.rounded-bottom.bg-lightest-gray.border-top.border-lighter-gray
+    nav
+      a.button.button-small.button-transparent.mr2 Hall of Powned
+      a.button.button-small.button-transparent.mr2 Hall of Success
+      a.button.button-small.button-transparent.mr2 Hall of Who is Who
+      a.button.button-small.button-transparent.mr2 Hall of Deface
+      
+div(ui-view="")
