@@ -40,30 +40,22 @@ div.rounded.mt3.bg-white.shadow-bottom
         a(ng-repeat="instance in ::vm.level.instances", ng-href="{{instance.urls[0].url}}", target="_blank").button.button-nav-dark.block
           | {{ ::instance.urls[0].url ? "Instance #"+($index+1) : "Not available"}}
 
-// Validation
+// TODO: Tab Directive
+// Navigation
 
-div.p3.bg-black.white.rounded
-  h3.mt0.light-gray.regular Validation
-  form(ng-submit="vm.validate(validation)").sm-col-6
-    input(type="text", placeholder="Enter the passphrase", ng-model="validation.passphrase").field-dark
-    textarea(placeholder="Enter you validation message here", ng-model="validation.message").rounded.field-dark.block.full-width.mb0
-    div.mt2
-      input(type="submit", value="Submit your validation").button
+div.bg-white.rounded.shadow-bottom.mt3
+  nav(ng-init="tab.value = 'statistics'").p2
+    a(ng-click="tab.value = 'statistics'").button.button-narrow.button-transparent Statistics
+    a(ng-click="tab.value = 'validation'").button.button-narrow.button-transparent Validation
+    a(ng-click="tab.value = 'hints'").button.button-narrow.button-transparent Hints
 
+// TODO: Menus as Select with directive to change them in menu in not Mobile
+//select(ng-model="tab.value" ng-options="item for item in vm.options")
 
-// Hints
-
-div.p3.bg-white.rounded.mt3
-  h3.mt0.light-gray.regular Hints
-  table(ng-if="vm.level.hints").table-light
-    thead.bold.bg-darken-1
-      tr
-        th Hint
-        th Price
-        th
-    tbody
-      tr(ng-repeat="hint in ::vm.level.hints")
-        td {{hint.name}}
-        td {{hint.price}}
-        td.right-align
-          button.button(ng-click="vm.buyHint(hint)") Buy
+div(ng-switch="tab.value", style="min-height: 25rem")
+  div(ng-switch-default="statistics")
+    div(ng-if="vm.level", pw-level-stats, level="vm.level").mt3
+  div(ng-switch-when="hints")
+    div(ng-if="vm.level", pw-level-hints, level="vm.level", buy-hint="vm.buyHint").mt3
+  div(ng-switch-when="validation")
+    div(ng-if="vm.level", pw-level-validation, level="vm.level", validate="vm.validate").mt3

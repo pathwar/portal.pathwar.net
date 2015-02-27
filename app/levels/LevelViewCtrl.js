@@ -30,12 +30,6 @@ function LevelViewCtrl(
           vm.orgLevel = orgLevel;
         });
 
-      // Fetches hints for the level
-      LevelHintService.getHintsForLevel(vm.level)
-        .then(function(hints) {
-          vm.level.hints = hints;
-        });
-
       // Fetches running instances of the level
       LevelService.getLevelInstances({
         where: {
