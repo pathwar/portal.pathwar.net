@@ -28,6 +28,8 @@ function LevelListViewCtrl($q, LevelService, CurrentUserService) {
           level.bought = true;
         else
           level.bought = false;
+
+        level.reward = level.price + Math.floor((Math.random()*100)+1);
       });
     });
   }

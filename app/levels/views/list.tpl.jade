@@ -21,6 +21,7 @@ div.p3.bg-white.rounded.mt3.shadow-bottom
       tr
         th Name
         th Price
+        th Reward 
         th
     tbody
       tr(ng-repeat="level in vm.levels")
@@ -29,5 +30,6 @@ div.p3.bg-white.rounded.mt3.shadow-bottom
           | &nbsp;
           a(ui-sref="levels.view({id: level._id})") {{::level.name}}
         td {{::level.price}}
+        td {{::level.reward}}
         td.right-align
           button.button(ng-click="vm.buyLevel(level)", ng-disabled="level.bought") Buy
