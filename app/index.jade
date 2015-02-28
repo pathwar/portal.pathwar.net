@@ -20,10 +20,10 @@ html(ng-app="portal", lang="en")
       a(ui-sref="home").button.button-transparent.py2
         img(src="#{BASE_PATH}assets/img/logo.png", width="32", height="32").rounded.avatar-button-left.ml0
       nav.mt3
-        a.button.button-transparent.block(ui-sref="home").h3
-          i.fa.fa-tachometer
-          |&nbsp; Dashboard
         a.button.button-transparent.block(ui-sref="crud.list")
+        a.button.button-transparent.block(ui-sref="home.welcome")
+          i.fa.fa-tachometer.inline-block.mr1
+          span.darken-1 Home
           i.fa.fa-lock
           |&nbsp; CRUD
         a.button.button-transparent.block(ui-sref="levels.list")

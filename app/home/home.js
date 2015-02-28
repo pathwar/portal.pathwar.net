@@ -5,11 +5,24 @@ angular.module('portal.home', [
 ])
 .config(function($stateProvider) {
 
-  $stateProvider.state('home', {
-    url: '/',
-    controller: 'HomeController',
-    templateUrl: 'home/views/main.tpl.html'
-  });
+  $stateProvider
+    .state('home', {
+      url: '',
+      abstract: true,
+      templateUrl: 'home/views/main.tpl.html'
+    })
+    .state('home.welcome', {
+      url: '/',
+      templateUrl: 'home/views/welcome.tpl.html'
+    })
+    .state('home.leaderboard', {
+      url: '/leaderboard',
+      templateUrl: 'home/views/leaderboard.tpl.html'
+    })
+    .state('home.fun', {
+      url: '/',
+      templateUrl: 'home/views/fun.tpl.html'
+    });
 
 })
 .controller('HomeController', function($scope) {

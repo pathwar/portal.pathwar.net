@@ -4,10 +4,11 @@ h2.m0.regular.mid-gray
     
 div.bg-white.rounded.mt2.shadow-bottom.mb3
   nav.p2
-    a.button.button-narrow.button-transparent Home
-    a.button.button-narrow.button-transparent Leaderboard
+    a(ui-sref="home.welcome").button.button-narrow.button-transparent Home
+    a(ui-sref="home.leaderboard").button.button-narrow.button-transparent Leaderboard
+    a(ui-sref="home.fun").button.button-narrow.button-transparent Fun
   
-  div.p2.rounded-bottom.bg-lightest-gray.border-top.border-lighter-gray
+  div(ng-if="state == 'home.fun'").p2.rounded-bottom.bg-lightest-gray.border-top.border-lighter-gray
     nav
       a.button.button-small.button-transparent.mr2 Hall of Powned
       a.button.button-small.button-transparent.mr2 Hall of Success
