@@ -1,3 +1,11 @@
 div.p3.bg-white.rounded.shadow-bottom
   h1.mt0 Welcome home
   p.gray Lorem ipsum
+
+h3.regular.mid-gray Latest News
+div.mxn2.clearfix
+  div.md-col.md-col-8.px2
+    div(ng-repeat="news in ::vm.news").p2.bg-white.rounded.shadow-bottom.mb2
+      h3.mt0 {{news.title}}
+      p.gray.mb1 {{news.content}}
+      a Read More

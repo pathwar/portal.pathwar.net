@@ -1,7 +1,8 @@
 angular.module('portal.home', [
   'ui.router',
   'templates',
-  'ngAnimate'
+  'ngAnimate',
+  'portal.news'
 ])
 .config(function($stateProvider) {
 
@@ -13,6 +14,8 @@ angular.module('portal.home', [
     })
     .state('home.welcome', {
       url: '/',
+      controller: 'HomeCtrl',
+      controllerAs: 'vm',
       templateUrl: 'home/views/welcome.tpl.html'
     })
     .state('home.leaderboard', {
@@ -20,11 +23,17 @@ angular.module('portal.home', [
       templateUrl: 'home/views/leaderboard.tpl.html'
     })
     .state('home.fun', {
-      url: '/',
+      url: '/fun',
       templateUrl: 'home/views/fun.tpl.html'
     });
 
 })
-.controller('HomeController', function($scope) {
-  $scope.loaded = true;
+.controller('HomeCtrl', function(NewsService) {
+  var vm = this;
+
+  vm.news = NewsService.news;
+
+  NewsService.getNews().then(function(news) {
+    console.log(news);
+  });
 });
