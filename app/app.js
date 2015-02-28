@@ -16,5 +16,6 @@ angular
     'portal.users',
     'portal.shop',
     'portal.news',
+    'portal.chat',
     'portal.crud'
   ]);
