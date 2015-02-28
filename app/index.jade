@@ -17,8 +17,11 @@ html(ng-app="portal", lang="en")
   body(ng-class="{frontpage: state == 'home'}").bg-lighter-gray
 
     div.side-menu.bg-black.white.md-show
-      a(ui-sref="home").button.button-transparent.py2
-        img(src="#{BASE_PATH}assets/img/logo.png", width="32", height="32").rounded.avatar-button-left.ml0
+      div.px2.mt2
+        img(src="#{BASE_PATH}assets/img/logo.png", width="32", height="32").rounded
+      a.button.button-transparent.block
+        span PATHWAR
+        
       nav.mt3
         a.button.button-transparent.block(ui-sref="crud.list")
         a.button.button-transparent.block(ui-sref="home.welcome")
