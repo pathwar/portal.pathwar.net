@@ -1,5 +1,5 @@
 div.p3.mb3.rounded.bg-white.clearfix.shadow-bottom
-  img(src="https://www.gravatar.com/avatar/{{::vm.organization.gravatar_hash}}?s=150&d=mm", width="150", height="150").rounded.left.mr3
+  img(ng-src="{{::vm.organization.getAvatarUrl(150)}}", width="150", height="150").rounded.left.mr3
   div
     h1.m0.ucfirst {{::vm.organization.name}}
     h4.mt0.light-gray Formed 2012
@@ -27,8 +27,7 @@ div.clearfix.mxn2
 
 h2.mt0.regular.mid-gray Members
 div.mxn2.clearfix
-  each val in [1, 2, 3, 4, 5, 6]
-    div.mb3.md-col.md-col-4.px2
-      div.p2.rounded.bg-white.clearfix.shadow-bottom
-        img(src="//placehold.it/32x32").rounded.left.mr2
-        a(ui-sref="users.view({id: #{val}})") User #{val}
+  div(ng-repeat="user in ::vm.organization.users").mb3.md-col.md-col-4.px2
+    div.p2.rounded.bg-white.clearfix.shadow-bottom
+      img(src="{{user.getAvatarUrl(32)}}").rounded.left.mr2
+      a(ui-sref="users.view({id: user._id})") {{user.login}}
