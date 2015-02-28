@@ -2,7 +2,10 @@ function LevelService(Restangular) {
 
   var service = {};
 
-  service.getLevels = function(opts) {
+  service.getLevels = function(opts = {}) {
+    opts.embedded = angular.toJson({
+      statistics: 1
+    });
     return Restangular.all('levels').getList(opts || {});
   };
 
@@ -58,7 +61,11 @@ function LevelService(Restangular) {
   };
 
   service.getLevel = function(levelId) {
-    return Restangular.one('levels', levelId).get()
+    return Restangular.one('levels', levelId).get({
+      embedded: angular.toJson({
+        statistics: 1
+      })
+    })
       .then(function(response) {
         return response.data;
       });
