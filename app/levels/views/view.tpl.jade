@@ -4,7 +4,7 @@ h2.mt0.mb2.regular.mid-gray
     |&nbsp; Levels
 
 div(ng-show="!vm.organizationBoughtLevel(vm.orgLevel)").rounded.p2.bg-yellow
-  | You must buy this level before accessing it. This level costs {{vm.level.price}}, <a href="">Buy it here !</a>
+  | You must buy this level before accessing it. This level costs {{vm.level.price}}, <a ng-click="vm.buyLevel(vm.level)">Buy it here !</a>
 
 div(ng-if="vm.level.validated").rounded.mt3.bg-blue.shadow-bottom
 

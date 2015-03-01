@@ -9,7 +9,10 @@ function LevelViewCtrl(
   vm.orgLevel = undefined;
 
   vm.validate = validate;
+  vm.buyLevel = buyLevel;
   vm.buyHint = buyHint;
+
+  var currentOrg = CurrentUserService.getOrganization();
 
   vm.organizationBoughtLevel = function(orgLevel) {
     return orgLevel && angular.isDefined(orgLevel.level);
@@ -19,32 +22,33 @@ function LevelViewCtrl(
 
   /** Retrieve level info along side level instances */
   function init() {
-    var currentOrg = CurrentUserService.getOrganization();
-
     // Fetchs level info then decorates with all available level info
     LevelService.getLevel($stateParams.id).then(function(level) {
-      vm.level = level;
+      vm.level = level
+      loadBoughtLevel();
+    });
+  }
 
-      // Fetches status of the level for current organization
-      LevelService.getOrganizationLevel(currentOrg, vm.level)
-        .then(function(orgLevel) {
-          if (orgLevel._id) {
-            vm.orgLevel = orgLevel;
-            vm.level.bought = true;
-          }
-        });
+  function loadBoughtLevel() {
+    // Fetches status of the level for current organization
+    LevelService.getOrganizationLevel(currentOrg, vm.level)
+      .then(function(orgLevel) {
+        if (orgLevel._id) {
+          vm.orgLevel = orgLevel;
+          vm.level.bought = true;
 
-      // Fetches running instances of the level
-      LevelService.getLevelInstances({
-        where: {
-          level: vm.level._id
-        }
-      }).then(function(instances) {
-        if (instances) {
-          vm.level.instances = instances;
+          // Fetches running instances of the level
+          LevelService.getLevelInstances({
+            where: {
+              level: vm.level._id
+            }
+          }).then(function(instances) {
+            if (instances) {
+              vm.level.instances = instances;
+            }
+          });
         }
       });
-    });
   }
 
   /** Validate level with passphrase and validation message */
@@ -59,6 +63,23 @@ function LevelViewCtrl(
 
   function buyHint(hint) {
     return LevelHintService.buyHintForLevel(hint, vm.level);
+  }
+
+  function buyLevel(level) {
+
+    var currentOrg = CurrentUserService.getOrganization();
+
+    return LevelService.buyLevelbyOrganizationId(
+      level._id, currentOrg._id
+    )
+    .then(buyLevelSuccess);
+
+    function buyLevelSuccess() {
+      level.bought = true;
+
+      CurrentUserService.loadOrganizationStatistics();
+      loadBoughtLevel(); //use object in 201 instead of researching
+    }
   }
 
 }
