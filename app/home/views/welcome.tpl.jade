@@ -1,11 +1,25 @@
-div.p3.bg-white.rounded.shadow-bottom
+div.p3.bg-white.rounded.shadow-bottom.mt2
   h1.mt0 Welcome home
   p.gray Lorem ipsum
 
-h3.regular.mid-gray Latest News
 div.mxn2.clearfix
-  div.md-col.md-col-8.px2
+  div.md-col.md-col-6.px2
+    h3.regular.mid-gray Latest Activities
+    div.bg-white.shadow-bottom.rounded
+      div.p2.gray
+        a.button.button-small.button-transparent.black All
+        a.button.button-small.button-transparent From {{::vm.organization.name}}
+      div.rounded-bottom.bg-lightest-gray.py1
+        div.py1.px2(ng-repeat="activity in ::vm.activities").flex.flex-center
+          img(src="//placehold.it/32x32")
+          div.ml1.flex-auto {{activity.action}}
+      div.p2
+        a.button.button-small.button-transparent See More
+
+  div.md-col.md-col-6.px2
+    h3.regular.mid-gray Latest News
     div(ng-repeat="news in ::vm.news").p2.bg-white.rounded.shadow-bottom.mb2
       h3.mt0 {{news.title}}
       p.gray.mb1 {{news.content}}
       a Read More
+      

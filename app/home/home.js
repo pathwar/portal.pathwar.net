@@ -17,23 +17,24 @@ angular.module('portal.home', [
       controller: 'HomeCtrl',
       controllerAs: 'vm',
       templateUrl: 'home/views/welcome.tpl.html'
-    })
-    .state('home.leaderboard', {
-      url: '/leaderboard',
-      templateUrl: 'home/views/leaderboard.tpl.html'
-    })
-    .state('home.fun', {
-      url: '/fun',
-      templateUrl: 'home/views/fun.tpl.html'
     });
 
 })
-.controller('HomeCtrl', function(NewsService) {
+.controller('HomeCtrl', function(CurrentUserService, NewsService, Restangular) {
   var vm = this;
 
+  vm.organization = CurrentUserService.getOrganization();
   vm.news = NewsService.news;
 
   NewsService.getNews().then(function(news) {
     console.log(news);
   });
+
+  Restangular.all('activities')
+    .getList()
+    .then(function(activities) {
+      vm.activities = activities;
+      console.log(activities);
+    })
+
 });
