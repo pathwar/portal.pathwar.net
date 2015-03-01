@@ -14,6 +14,7 @@ angular
     'portal.levels',
     'portal.organizations',
     'portal.users',
+    'portal.statistics',
     'portal.shop',
     'portal.news',
     'portal.chat',
