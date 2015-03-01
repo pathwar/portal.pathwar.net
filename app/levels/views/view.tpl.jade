@@ -32,9 +32,10 @@ div.rounded.mt3.bg-white.shadow-bottom
 
     p.mt2.sm-col-8 {{vm.level.description}} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut odio magna, ullamcorper quis facilisis ac
     
-    div.mxn2
-      a.button.button-outline.blue.ml2(ng-repeat="tag in ::vm.level.tags | orderBy:tag") {{::tag}}
-  
+    //div.mxn2
+      //a.button.button-outline.blue.ml2(ng-repeat="tag in ::vm.level.tags | orderBy:tag") {{::tag}}
+    span.h5.inline-block.px2.py1.border.border-blue.blue.rounded.mr2(ng-repeat="tag in ::vm.level.tags | orderBy:tag") {{::tag}}
+      
   div.px3.py2.bg-lightest-gray.rounded-bottom.border-top.border-lighter-gray
     //button(ng-click="buyLevel(level)", ng-disabled="level.bought").rounded.mr2 Buy now
     div(data-disclosure).relative.inline-block
