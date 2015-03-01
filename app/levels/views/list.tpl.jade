@@ -8,7 +8,7 @@ div.p3.bg-white.rounded.mt2.shadow-bottom
 
 div.p2.bg-white.rounded.mt3.clearfix.shadow-bottom
   i.fa.fa-search.inline-block.px1
-  input(type="text", placeholder="Search levels, vulnerabilities").field-light.no-border.m0.inline-block.md-col-8
+  input(type="text", placeholder="Search levels, vulnerabilities", ng-model="search.$").field-light.no-border.m0.inline-block.md-col-8
   div.inline-block.right-align
     | # finished
 
@@ -25,7 +25,7 @@ div.p3.bg-white.rounded.mt3.shadow-bottom
         th Reward 
         th
     tbody
-      tr(ng-repeat="level in vm.levels | orderBy:level.statistics.amount_finished")
+      tr(ng-repeat="level in vm.levels | filter:search | orderBy:level.statistics.amount_finished")
         td
           i(ng-if="::level.bought").fa.fa-dot-circle-o
           | &nbsp;
