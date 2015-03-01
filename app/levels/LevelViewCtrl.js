@@ -40,7 +40,9 @@ function LevelViewCtrl(
           level: vm.level._id
         }
       }).then(function(instances) {
-        vm.level.instances = instances;
+        if (instances) {
+          vm.level.instances = instances;
+        }
       });
     });
   }
