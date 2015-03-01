@@ -3,6 +3,7 @@ function LevelValidationDirective() {
     restrict: 'EA',
     templateUrl: 'levels/validations/LevelValidation.tpl.html',
     scope: {
+      level: '=',
       boughtLevel: '=',
       validate: '='
     },
