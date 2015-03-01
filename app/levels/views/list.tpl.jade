@@ -20,6 +20,7 @@ div.p3.bg-white.rounded.mt3.shadow-bottom
     thead.bg-darken-1.bold
       tr
         th Name
+        th Tags
         th Price
         th Reward 
         th
@@ -29,6 +30,8 @@ div.p3.bg-white.rounded.mt3.shadow-bottom
           i(ng-if="::level.bought").fa.fa-dot-circle-o
           | &nbsp;
           a(ui-sref="levels.view({id: level._id})") {{::level.name}}
+        td
+          span(ng-repeat="tag in ::level.tags").h6.inline-block.px1.mr1.blue.border.border-blue.rounded {{::tag}}
         td {{::level.price}}
         td {{::level.reward}}
         td.right-align
