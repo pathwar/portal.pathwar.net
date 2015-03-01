@@ -28,7 +28,10 @@ function LevelViewCtrl(
       // Fetches status of the level for current organization
       LevelService.getOrganizationLevel(currentOrg, vm.level)
         .then(function(orgLevel) {
-          vm.orgLevel = orgLevel;
+          if (orgLevel._id) {
+            vm.orgLevel = orgLevel;
+            vm.level.bought = true;
+          }
         });
 
       // Fetches running instances of the level

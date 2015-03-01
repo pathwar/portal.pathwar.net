@@ -1,6 +1,10 @@
-div.p3.bg-black.white.rounded
+div.p3.bg-black.white.rounded.relative
   h3.mt0.light-gray.regular Validation
-  form(ng-submit="vm.validate(validation)").sm-col-6
+  
+  div(ng-if="!vm.level.bought")
+    p You must buy this level first.
+
+  form(ng-submit="vm.validate(validation)", ng-if="vm.level.bought").sm-col-6
     input(type="text", placeholder="Enter the passphrase", ng-model="validation.passphrase").field-dark
     textarea(placeholder="Enter you validation message here", ng-model="validation.message").rounded.field-dark.block.full-width.mb0
     div.mt2

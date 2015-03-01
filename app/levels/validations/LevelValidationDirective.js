@@ -3,8 +3,8 @@ function LevelValidationDirective() {
     restrict: 'EA',
     templateUrl: 'levels/validations/LevelValidation.tpl.html',
     scope: {
-      level: '=',
-      buyHint: '='
+      boughtLevel: '=',
+      validate: '='
     },
     controller: LevelValidationCtrl,
     controllerAs: 'vm',
@@ -16,13 +16,6 @@ function LevelValidationDirective() {
 
 function LevelValidationCtrl(LevelValidationService) {
   var vm = this;
-
-  // Fetches hints for the level
-  LevelHintService.getHintsForLevel(vm.level)
-    .then(function(hints) {
-      vm.level.hints = hints;
-    });
-
 }
 
 angular
