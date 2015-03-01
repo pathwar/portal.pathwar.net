@@ -21,13 +21,3 @@ div.clearfix.mxn2
     div.mb3.rounded.bg-white.md-col-4.shadow-bottom
       div.p2
         | Achievement
-
-
-
-
-h2.mt0.regular.mid-gray Members
-div.mxn2.clearfix
-  div(ng-repeat="user in ::vm.organization.users").mb3.md-col.md-col-4.px2
-    div.p2.rounded.bg-white.clearfix.shadow-bottom
-      img(src="{{user.getAvatarUrl(32)}}").rounded.left.mr2
-      a(ui-sref="users.view({id: user._id})") {{user.login}}
