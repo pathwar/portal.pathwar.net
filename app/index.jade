@@ -23,28 +23,28 @@ html(ng-app="portal", lang="en")
         span PATHWAR
         
       nav.mt3
-        a.button.button-transparent.block(ui-sref="crud.list")
-        a.button.button-transparent.block(ui-sref="home.welcome")
+        a.button.button-transparent.block.py2(ui-sref="home.welcome")
           i.fa.fa-tachometer.inline-block.mr1
           span.darken-1 Home
+        a.button.button-transparent.block.py2(ui-sref="crud.list")
           i.fa.fa-lock
           |&nbsp; CRUD
-        a.button.button-transparent.block(ui-sref="levels.list")
-          i.fa.fa-desktop
+        a.button.button-transparent.block.py2(ui-sref="levels.list")
+          i.fa.fa-list
           |&nbsp; Levels
-        a.button.button-transparent.block(ui-sref="shop")
+        a.button.button-transparent.block.py2(ui-sref="shop")
           i.fa.fa-shopping-cart
           |&nbsp; Shop
-        a.button.button-transparent.block(ui-sref="users.list")
+        a.button.button-transparent.block.hide.py2(ui-sref="users.list")
           i.fa.fa-users
           |&nbsp; Users
-        a.button.button-transparent.block(ui-sref="news.list")
+        a.button.button-transparent.block.py2(ui-sref="news.list")
           i.fa.fa-rss
           |&nbsp; News
-        a.button.button-transparent.block(ui-sref="chat.room")
-          i.fa.fa-rss
+        a.button.button-transparent.block.py2(ui-sref="chat.room")
+          i.fa.fa-comments
           |&nbsp; Chat
-        a.button.button-transparent.block(ui-sref="organizations.list")
+        a.button.button-transparent.block.py2.hide(ui-sref="organizations.list")
           i.fa.fa-building-o
           |&nbsp; Organizations
 
