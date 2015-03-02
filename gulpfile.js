@@ -122,7 +122,17 @@ gulp.task("vendor-styles", function() {
 
 });
 
-gulp.task("assets", function() {
+gulp.task("icons", function() {
+  return gulp.src(['assets/icons/*.svg'])
+    .pipe(plugins.svgSprite({
+      mode: {
+          defs: true
+      }
+    }))
+    .pipe(gulp.dest('assets/icons'));
+});
+
+gulp.task("assets", ['icons'], function() {
   return gulp.src(["assets/**/*"])
       .pipe(gulp.dest("./build/assets"));
 });
