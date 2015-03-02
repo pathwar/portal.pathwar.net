@@ -17,7 +17,7 @@ function NavCtrl(
 
   function logout() {
     CurrentUserService.logout().then(function() {
-      $state.transitionTo('home');
+      $state.transitionTo('login');
     });
   }
 }

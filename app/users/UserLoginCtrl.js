@@ -8,7 +8,7 @@ function UserLoginCtrl(
 
   function login(credentials) {
     CurrentUserService.login(credentials).then(function(user) {
-      $state.transitionTo('home');
+      $state.transitionTo('home.welcome');
     });
   };
 
