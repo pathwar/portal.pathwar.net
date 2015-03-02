@@ -1,3 +1,4 @@
-h3.m0.p2 Notifications
-a(ng-repeat="notification in vm.notifications").button.block.button-nav-dark.py1.px2
-  | {{::notification.title}}
+h4.m0.p2.regular.gray Notifications
+div.bg-lightest-gray
+  a(ng-repeat="notification in vm.notifications").button.block.button-transparent.py1.px2
+    | {{::notification.title}}

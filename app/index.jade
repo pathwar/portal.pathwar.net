@@ -69,7 +69,7 @@ html(ng-app="portal", lang="en")
               | {{nav.currentUser.organization.name}}
               i.fa.fa-sort-down.icon-button
               // FIXME: add the current session name {{currentUser.organization.session}}
-            div(data-details).absolute.left-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1.ml1
+            div(data-details).absolute.left-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1
               a(ng-repeat="organization in nav.organizations", ng-click="nav.switchOrganization(organization)").button.block.button-transparent.py2.px1
                 img(ng-src="{{organization.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button-left.ml0
                 | {{organization.name}} {{organization.session}}
@@ -84,7 +84,7 @@ html(ng-app="portal", lang="en")
           div.relative
             a.button.button-narrow.py2.px1.button-transparent.regular
               img(ng-src="{{nav.currentUser.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button
-            div(data-details).absolute.right-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1.mr1
+            div(data-details).absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.mr1
               a(ui-sref="users.view({id: nav.currentUser._id})").button.block.button-transparent.py2.px1
                 | Profile
               a(ng-click="nav.logout()").button.block.button-transparent.py2.px1
@@ -99,7 +99,7 @@ html(ng-app="portal", lang="en")
             a.button.button-transparent.py2.px1.relative
               i.fa.fa-usd
               div.rounded.bg-yellow.h6.px1.inline-block {{nav.currentUser.organization.statistics.cash}}
-            div(data-details).absolute.right-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1
+            div(data-details).absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1
               a(ui-sref="coupons.redeem").button.block.button-transparent.py2.px1
                 | Redeem a coupon
               
@@ -112,7 +112,7 @@ html(ng-app="portal", lang="en")
             a.button.button-transparent.py2.px1.relative
               i.fa.fa-bell-o
               div.rounded.bg-red.h6.px1.inline-block {{nav.notifications.length}}
-            div(data-details, style="min-width: 400px").absolute.right-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1
+            div(data-details, style="min-width: 400px").absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1
               div(notifications)
               
 
