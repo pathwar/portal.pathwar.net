@@ -14,8 +14,8 @@ function LevelStatsService(Restangular) {
       })
       .then(function(stats) {
         //TODO: Extend if stats is defined
-        level.statistics = stats;
-        return stats;
+        level.statistics = stats[0] || undefined;
+        return level.statistics;
       });
   }
 }
