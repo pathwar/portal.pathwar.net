@@ -63,6 +63,6 @@ div(ng-switch="tab.value", style="min-height: 25rem")
   div(ng-switch-default="statistics")
     div(ng-if="vm.level", pw-level-stats, level="vm.level").mt3
   div(ng-switch-when="hints")
-    div(ng-if="vm.level", pw-level-hints, level="vm.level", bought-level="vm.orgLevel", buy-hint="vm.buyHint").mt3
+    div(ng-if="vm.level", pw-level-hints, level="vm.level", bought-level="vm.orgLevel").mt3
   div(ng-switch-when="validation")
     div(ng-if="vm.level", pw-level-validation, level="vm.level", bought-level="vm.orgLevel", validate="vm.validate").mt3

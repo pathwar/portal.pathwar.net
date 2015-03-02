@@ -4,7 +4,7 @@ function LevelHintsDirective() {
     templateUrl: 'levels/hints/LevelHints.tpl.html',
     scope: {
       level: '=',
-      buyHint: '='
+      boughtLevel: '='
     },
     controller: LevelHintsCtrl,
     controllerAs: 'vm',
@@ -14,14 +14,40 @@ function LevelHintsDirective() {
   return directive;
 }
 
-function LevelHintsCtrl(LevelHintService) {
+function LevelHintsCtrl($q, LevelHintService) {
   var vm = this;
 
-  // Fetches hints for the level
-  LevelHintService.getHintsForLevel(vm.level)
-    .then(function(hints) {
-      vm.level.hints = hints;
+  vm.buyHint = buyHint;
+
+  init();
+
+  function init() {
+    $q.all([
+      // Fetches hints for the level
+      LevelHintService.getHintsForLevel(vm.level),
+      LevelHintService.getBoughtLevelHints(vm.boughtLevel)
+    ])
+    .then(function (results) {
+      vm.level.hints = results[0];
+      var boughtHints = results[1];
+
+      _.each(vm.level.hints, function(hint) {
+        var isAlreadyBought = _.find(boughtHints, function(boughtHint) {
+          return hint._id == boughtHint.level_hint;
+        });
+
+        hint.bought = isAlreadyBought ? true : false;
+      });
+
     });
+  }
+
+  function buyHint(hint) {
+    LevelHintService.buyHintForLevel(hint, vm.boughtLevel)
+      .then(function(result) {
+        console.log(result);
+      });
+  }
 
 }
 

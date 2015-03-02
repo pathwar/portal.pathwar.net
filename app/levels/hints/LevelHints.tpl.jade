@@ -19,4 +19,4 @@ div.p3.bg-white.rounded.mt3
           td {{hint.name}}
           td {{hint.price}}
           td.right-align
-            button.button(ng-click="vm.buyHint(hint)") Buy
+            button.button(ng-click="vm.buyHint(hint)", ng-disabled="hint.bought") Buy
