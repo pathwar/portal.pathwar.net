@@ -15,9 +15,17 @@ angular
     })
     .state('statistics.main', {
       url: '',
-      controller: 'StatisticsCtrl',
-      controllerAs: 'vm',
       templateUrl: 'statistics/views/statistics.tpl.html'
+    })
+    .state('statistics.hall', {
+      url: '/hall/:hall',
+      controller: function($stateParams) {
+        var vm = this;
+
+        vm.hall = $stateParams.hall;
+      },
+      controllerAs: 'vm',
+      templateUrl: 'statistics/views/hall.tpl.html'
     });
 
   });
