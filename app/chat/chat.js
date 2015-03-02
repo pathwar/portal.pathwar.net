@@ -21,7 +21,7 @@ angular
   })
 
   .controller('ChatRoomCtrl', function(
-    ChatService
+    ChatService, Organization
   ) {
     var vm = this;
 
@@ -38,7 +38,17 @@ angular
     }
 
     function sendMessage(message) {
-      vm.messages.push(message);
+
+      vm.messages.push({
+        message: message.value,
+        created: new Date(),
+        from: Organization.build({
+          name: 'Mobylette',
+          gravatar_hash: 'c@42.am'
+        })
+      });
+
+      message.value = '';
     }
 
   });
