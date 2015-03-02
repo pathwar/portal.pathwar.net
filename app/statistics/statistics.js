@@ -15,6 +15,8 @@ angular
     })
     .state('statistics.main', {
       url: '',
+      controller: 'StatisticsCtrl',
+      controllerAs: 'vm',
       templateUrl: 'statistics/views/statistics.tpl.html'
     })
     .state('statistics.hall', {

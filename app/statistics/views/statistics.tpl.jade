@@ -8,12 +8,11 @@ div.bg-white.rounded.shadow-bottom
   
   div.bg-lightest-gray
     table.table-light
-      - for (var i=1; i<=10; i++) {
-        div.flex.flex-center.border-lighter-gray.border-top.py1.px2
-          div.px1.h5 #{i}
-          div.px2.flex: img(src="//placehold.it/32x32")
-          div.flex-auto Organization #{i}
-      - }
+      div(ng-repeat="organization in ::vm.organizations | limitTo:10").flex.flex-center.border-lighter-gray.border-top.py1.px2
+        div.px1.h5 {{$index + 1}}
+        div.px2.flex: img(ng-src="{{organization.getAvatarUrl(32)}}", width="32", height="32")
+        div.flex-auto
+          a(ui-sref="organizations.view({id: organization._id})") {{organization.name}}
 
 h3.mt3.regular.mid-gray Money Leaderboard
 div.bg-white.rounded.shadow-bottom
@@ -25,9 +24,8 @@ div.bg-white.rounded.shadow-bottom
   
   div.bg-lightest-gray
     table.table-light
-      - for (var i =0; i< 10; i++) {
-        div.flex.flex-center.border-lighter-gray.border-top.py1.px2
-          div.px1.h5 #{i}
-          div.px2.flex: img(src="//placehold.it/32x32")
-          div.flex-auto Organization #{i}
-      - }
+      div(ng-repeat="organization in ::vm.organizations | limitTo:10").flex.flex-center.border-lighter-gray.border-top.py1.px2
+        div.px1.h5 {{$index + 1}}
+        div.px2.flex: img(ng-src="{{organization.getAvatarUrl(32)}}", width="32", height="32")
+        div.flex-auto
+          a(ui-sref="organizations.view({id: organization._id})") {{organization.name}}
