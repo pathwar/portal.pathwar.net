@@ -10,7 +10,6 @@ function LevelViewCtrl(
 
   vm.validate = validate;
   vm.buyLevel = buyLevel;
-  vm.buyHint = buyHint;
 
   var currentOrg = CurrentUserService.getOrganization();
 
@@ -59,10 +58,6 @@ function LevelViewCtrl(
       });
 
     vm.level.validated = true; //switch to orgLevel
-  }
-
-  function buyHint(hint) {
-    return LevelHintService.buyHintForLevel(hint, vm.level);
   }
 
   function buyLevel(level) {
