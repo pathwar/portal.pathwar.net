@@ -9,12 +9,16 @@ div.clearfix.mxn2
   div.md-col.md-col-6.px2
     h2.mt0.regular.mid-gray Statistics
     div.p3.mb3.rounded.bg-white.shadow-bottom
-      dl
-        dt Levels finished
-        dd 3
+      p.gray Score: {{::vm.organization.statistics.score}}
+        
+      p.gray Gold Medals: {{::vm.organization.statistics.gold_medals}}
 
-        dt Cash spent
-        dd 12982
+      p.gray Silver Medals: {{::vm.organization.statistics.silver_medals}}
+      
+      p.gray Bronze Medals: {{::vm.organization.statistics.bronze_medals}}
+      
+      p.gray Achievements: {{::vm.organization.statistics.achievements}}
+      
 
   div.md-col.md-col-6.px2
     h2.mt0.regular.mid-gray Achievements

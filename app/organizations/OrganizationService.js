@@ -8,6 +8,12 @@ function OrganizationService(Restangular, Organization) {
     return Organizations.post(org);
   };
 
+  service.getOrganizationById = function(orgId) {
+    return Restangular.one('organizations', orgId).get().then(function(response) {
+      return Organization.build(response.data);
+    });
+  };
+
   service.getOrganizationsByUserId = function(userId) {
     return Restangular.all('organization-users').getList({
       where: JSON.stringify({

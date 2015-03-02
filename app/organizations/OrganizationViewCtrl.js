@@ -1,20 +1,23 @@
 angular
   .module('portal.organizations')
   .controller('OrganizationViewCtrl', function(
-    $stateParams, Restangular, User, Organization
+    $stateParams, OrganizationService, ScoringService
   ) {
     var vm = this;
 
-    vm.organization = {};
+    vm.organization = undefined;
 
     init();
 
     function init() {
 
-      var Orgs = Restangular.service('organizations');
+      OrganizationService.getOrganizationById($stateParams.id).then(function(organization) {
+        vm.organization = organization;
 
-      Orgs.one($stateParams.id).get().then(function(response) {
-        vm.organization = Organization.build(response.data);
+        ScoringService.getStatisticsByOrganizationId(vm.organization._id)
+          .then(function(stats) {
+            vm.organization.statistics = stats;
+          });
       });
 
     }
