@@ -2,6 +2,7 @@ function LevelHintService(Restangular) {
   var service = {};
 
   service.getHintsForLevel = getHintsForLevel;
+  service.getBoughtLevelHints = getBoughtLevelHints;
   service.buyHintForLevel = buyHintForLevel;
 
   return service;
@@ -18,8 +19,21 @@ function LevelHintService(Restangular) {
       });
   }
 
-  function buyHintForLevel(hint, level) {
-    console.log(hint);
+  function getBoughtLevelHints(boughtLevel) {
+    return Restangular.all('organization-level-hints')
+      .getList({
+        where: angular.toJson({
+          organization_level: boughtLevel._id
+        })
+      });
+  }
+
+  function buyHintForLevel(hint, boughtLevel) {
+    return Restangular.all('organization-level-hints')
+      .post({
+        organization_level: boughtLevel._id,
+        level_hint: hint._id
+      });
   }
 }
 
