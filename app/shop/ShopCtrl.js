@@ -1,8 +1,10 @@
-function ShopCtrl(ItemService) {
+function ShopCtrl(ItemService, CurrentUserService) {
   var vm = this;
 
   vm.items = [];
   vm.buyItem = buyItem;
+
+  var currentOrg = CurrentUserService.getOrganization();
 
   init();
 
@@ -15,7 +17,13 @@ function ShopCtrl(ItemService) {
   }
 
   function buyItem(item) {
-      console.log('buying '+item._id);
+    ItemService
+      .buyItemForOrganization(item, currentOrg)
+      .then(function(result) {
+        item.bought = true;
+        console.log(result);
+        //reload currentuser items
+      });
   }
 
 }
