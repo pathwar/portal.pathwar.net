@@ -111,7 +111,7 @@ html(ng-app="portal", lang="en")
           div.relative
             a.button.button-transparent.py2.px1.relative
               i.fa.fa-bell-o
-              div.rounded.bg-red.h6.px1.inline-block {{nav.notifications.length}}
+              div(ng-if="nav.notificationsCount.total > 0").rounded.bg-red.h6.px1.inline-block {{nav.notificationsCount.total}}
             div(data-details, style="min-width: 400px").absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1
               div(notifications)
               

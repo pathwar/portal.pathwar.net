@@ -5,10 +5,18 @@ function NavCtrl(
 
   vm.currentUser = CurrentUserService.getUser();
   vm.organizations = CurrentUserService.getOrganizations();
-
   vm.isAuthentificated = CurrentUserService.isAuthentificated;
+  vm.notifications = NotificationService.items;
+  vm.notificationsCount = NotificationService.meta;
+
   vm.switchOrganization = switchOrganization;
   vm.logout = logout;
+
+  init();
+
+  function init() {
+    NotificationService.getUnreadNotifications();
+  }
 
   function switchOrganization(organization) {
     CurrentUserService.switchOrganization(organization);
