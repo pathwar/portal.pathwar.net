@@ -25,7 +25,7 @@ function LevelHintsCtrl($q, LevelHintService) {
     $q.all([
       // Fetches hints for the level
       LevelHintService.getHintsForLevel(vm.level),
-      LevelHintService.getBoughtLevelHints(vm.boughtLevel)
+      LevelHintService.getBoughtLevelHints(vm.boughtLevel || {})
     ])
     .then(function (results) {
       vm.level.hints = results[0];
