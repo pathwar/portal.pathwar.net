@@ -75,9 +75,10 @@ html(ng-app="portal", lang="en")
               hr.m0
               a(ng-repeat="organization in nav.organizations", ng-click="nav.switchOrganization(organization)").button.block.button-transparent.py2.px1
                 img(ng-src="{{organization.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button-left.ml0
-                | {{organization.name}}
-              a(ui-sref="createOrganization").button.block.button-transparent.bg-dark.py2.px1.center.rounded-bottom
-                | New
+                | Switch to {{organization.name}}
+              hr.m0
+              a(ui-sref="createOrganization").block.py1.px1.rounded-bottom
+                | Create new organization
 
         //
         // User Menu
