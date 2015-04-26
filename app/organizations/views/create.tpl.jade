@@ -1,26 +1,28 @@
 div.container-small
-  h1 Create an organization
-  
-  div(ng-init="step = 1", ng-show="step == 1")
-    h2 Choose a session first
-    div.mxn2.clearfix
-      div(ng-repeat="session in vm.sessions", ng-click="vm.formData.session = session").sm-col.sm-col-3.px2
-        div(ng-class="vm.formData.session == session ? 'bg-blue' : 'bg-lighter-gray'").rounded.p2
-          img(src="//placehold.it/200x200").rounded.full-width
-          | {{session.name}}
 
-    div.mt2
-      button(ng-disabled="vm.formData.session == null", ng-click="step = 2").button Next
+  h2.mt0.mb2.regular.mid-gray Create an organization
+  div.bg-white.p2.rounded
+  
+    div(ng-init="step = 1", ng-show="step == 1")
+      h2.mt0 Choose a session first
+      div.mxn2.clearfix
+        div(ng-repeat="session in vm.sessions", ng-click="vm.formData.session = session").sm-col.sm-col-3.px2
+          div(ng-class="vm.formData.session == session ? 'bg-blue' : 'bg-lighter-gray'").block.rounded.p2
+            img(src="//placehold.it/200x200").rounded.full-width
+            | {{session.name}}
+
+      div.mt2
+        button(ng-disabled="vm.formData.session == null", ng-click="step = 2").button Next
+        
+    div(ng-show="step == 2")
+      h2.mt0 Choose a name
+      label Name
+      input(type="text", placeholder="Name of your organization", ng-model="vm.formData.name").sm-col-4.block.field-light.mb2
+      p.h5 Great organization names are short and memorable. Need inspiration ? How about <b>mobylette</b>
+      label Description (Optional)
+      input(type="text", placeholder="Quick description").sm-col-8.block.field-light.mb2
+      div.mt2
+        button.button(ng-disabled="vm.formData.session == null", ng-click="vm.create(vm.formData)") Create
+        | 
+        button.button.bg-gray(ng-click="step = step - 1") Cancel
       
-  div(ng-show="step == 2")
-    h2 Choose a name
-    label Name
-    input(type="text", placeholder="Name of your organization", ng-model="vm.formData.name").sm-col-4.block.field-light.mb2
-    p.h5 Great organization names are short and memorable. Need inspiration ? How about <b>mobylette</b>
-    label Description (Optional)
-    input(type="text", placeholder="Quick description").sm-col-8.block.field-light.mb2
-    div.mt2
-      button.button(ng-disabled="vm.formData.session == null", ng-click="vm.create(vm.formData)") Create
-      | 
-      button.button.bg-gray(ng-click="step = step - 1") Cancel
-    

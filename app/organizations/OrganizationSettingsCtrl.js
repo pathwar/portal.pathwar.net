@@ -1,4 +1,4 @@
-function OrganizationEditCtrl(
+function OrganizationSettingsCtrl(
   $state, $stateParams, Restangular
 ) {
   var vm = this;
@@ -31,4 +31,4 @@ function OrganizationEditCtrl(
 
 angular
   .module('portal.organizations')
-  .controller('OrganizationEditCtrl', OrganizationEditCtrl);
+  .controller('OrganizationSettingsCtrl', OrganizationSettingsCtrl);

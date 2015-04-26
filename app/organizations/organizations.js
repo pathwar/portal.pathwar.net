@@ -24,12 +24,35 @@ angular.module('portal.organizations', [
     controllerAs: 'vm',
     templateUrl: 'organizations/views/view.tpl.html'
   })
-  .state('organizations.edit', {
-    url: '/:id/edit',
-    controller: 'OrganizationEditCtrl',
-    controllerAs: 'vm',
-    templateUrl: 'organizations/views/form.tpl.html'
+  .state('organizations.admin', {
+    url: '/:id/admin',
+    abstract: true,
+    templateUrl: 'organizations/views/admin.tpl.html'
   })
+    .state('organizations.admin.settings', {
+      url: '/settings',
+      controller: 'OrganizationSettingsCtrl',
+      controllerAs: 'vm',
+      templateUrl: 'organizations/views/settings.tpl.html'
+    })
+    .state('organizations.admin.members', {
+      url: '/members',
+      controller: 'OrganizationMembersCtrl',
+      controllerAs: 'vm',
+      templateUrl: 'organizations/views/members.tpl.html'
+    })
+    .state('organizations.admin.invites', {
+      url: '/invites',
+      controller: 'OrganizationInvitesCtrl',
+      controllerAs: 'vm',
+      templateUrl: 'organizations/views/invites.tpl.html'
+    })
+    .state('organizations.admin.invite', {
+      url: '/invite',
+      controller: 'OrganizationInviteCtrl',
+      controllerAs: 'vm',
+      templateUrl: 'organizations/views/invite.tpl.html'
+    })
   .state('createOrganization', {
     url: '/organization/create',
     controller: 'OrganizationCreateCtrl',

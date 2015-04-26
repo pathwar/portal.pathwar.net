@@ -1,0 +1,16 @@
+div.bg-white.rounded-bottom
+  div.p2.rounded-top.bg-light-gray
+    | Pending Invites
+    a(ui-sref="^.invite").button.right.avatar-button Invite New Member
+  div.p2
+    p(ng-if="vm.invites.length == 0") You haven't invited anyone
+    div(ng-repeat="invite in vm.invites").flex.flex-center
+      a.block.clearfix.flex-auto
+        img(ng-src="{{invite.user.getAvatarUrl(48)}}").rounded.left.mr2
+        | {{invite.user.login}}
+        br
+        | {{invite.user.email}}
+      div.flex
+        | Invited {{invite._created}}
+        
+    
