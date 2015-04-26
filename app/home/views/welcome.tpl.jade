@@ -22,5 +22,7 @@ div.mxn2.clearfix
     div(ng-repeat="news in ::vm.news").p2.bg-white.rounded.shadow-bottom.mb2
       h3.mt0 {{news.title}}
       p.gray.mb1 {{news.content}}
-      a Read More
+      a(href="{{news.link}}", target="_blank") Read More
+  
+    a.button.bg-gray(href="http://pathwar.tumblr.com", target="_blank") View archives
       

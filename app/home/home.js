@@ -24,10 +24,9 @@ angular.module('portal.home', [
   var vm = this;
 
   vm.organization = CurrentUserService.getOrganization();
-  vm.news = NewsService.news;
 
   NewsService.getNews().then(function(news) {
-    console.log(news);
+    vm.news = NewsService.news;
   });
 
   Restangular.all('activities')

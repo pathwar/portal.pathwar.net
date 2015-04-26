@@ -1,4 +1,4 @@
-function NewsService($q, Restangular) {
+function NewsService($q, $http, $sce, Restangular) {
   var service = {};
 
   service.news = [];
@@ -23,13 +23,21 @@ function NewsService($q, Restangular) {
   }
 
   function getNews() {
-    return $q(function(resolve, reject) {
-      resolve(
-        getFakeNews().then(function(news) {
-          angular.copy(news, service.news);
-          return service.news;
-        })
-      );
+
+    return $http.jsonp('http://ajax.googleapis.com/ajax/services/feed/load?callback=JSON_CALLBACK', {
+      params: {
+        v: "1.0",
+        q: "http://pathwar.tumblr.com/rss",
+        num: 10
+      }
+    })
+    .then(function(response) {
+      angular.copy(response.data.responseData.feed.entries, service.news);
+      angular.forEach(service.news, function(news) {
+        news.content = news.contentSnippet;
+        //$sce.trustAsHtml(news.content);
+      });
+      return service.news;
     });
   }
 }
