@@ -30,7 +30,8 @@ div.rounded.mt3.bg-white.shadow-bottom
       i.fa.fa-star.yellow
       i.fa.fa-star
 
-    p.mt2.sm-col-8 {{vm.level.description}} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut odio magna, ullamcorper quis facilisis ac
+    p(ng-if="!vm.level.description").mt2.sm-col-8 Self explanatory 
+    p.mt2.sm-col-8 {{vm.level.description}}
     
     //div.mxn2
       //a.button.button-outline.blue.ml2(ng-repeat="tag in ::vm.level.tags | orderBy:tag") {{::tag}}
