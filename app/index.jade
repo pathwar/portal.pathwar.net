@@ -63,8 +63,8 @@ html(ng-app="portal", lang="en")
               | {{nav.currentUser.organization.name}}
               i.fa.fa-sort-down.icon-button
               // FIXME: add the current session name {{currentUser.organization.session}}
-            div(data-details).absolute.left-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1
-              a(ui-sref="organizations.admin.settings({id: nav.currentUser.organization._id})").block.py1.px1
+            div(data-details).absolute.left-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.box-shadow.gray
+              a(ui-sref="organizations.admin.settings({id: nav.currentUser.organization._id})").button.block.button-transparent.p1.regular
                 | Organization Admin
               hr.m0
               a(ng-repeat="organization in nav.organizations", ng-click="nav.switchOrganization(organization)").button.block.button-transparent.py2.px1
@@ -97,7 +97,7 @@ html(ng-app="portal", lang="en")
             a.button.button-transparent.py2.px1.relative
               i.fa.fa-usd
               div.rounded.bg-yellow.h6.px1.inline-block {{nav.currentUser.organization.statistics.cash}}
-            div(data-details).absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1
+            div(data-details).absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.box-shadow
               a(ui-sref="coupons.redeem").button.block.button-transparent.py2.px1
                 | Redeem a coupon
 
@@ -110,7 +110,7 @@ html(ng-app="portal", lang="en")
             a.button.button-transparent.py2.px1.relative
               i.fa.fa-bell-o
               div(ng-if="nav.notificationsCount.total > 0").rounded.bg-red.h6.px1.inline-block {{nav.notificationsCount.total}}
-            div(data-details, style="min-width: 400px").absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1
+            div(data-details, style="min-width: 400px").absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.box-shadow
               div(notifications)
               
 
