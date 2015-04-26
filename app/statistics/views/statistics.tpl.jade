@@ -10,7 +10,7 @@ div.bg-white.rounded.shadow-bottom
     table.table-light
       div(ng-repeat="organization in ::vm.organizations | limitTo:10").flex.flex-center.border-lighter-gray.border-top.py1.px2
         div.px1.h5 {{$index + 1}}
-        div.px2.flex: img(ng-src="{{organization.getAvatarUrl(32)}}", width="32", height="32")
+        //div.px2.flex: img(ng-src="{{organization.getAvatarUrl(32)}}", width="32", height="32")
         div.flex-auto
           a(ui-sref="organizations.view({id: organization._id})") {{organization.name}}
 
@@ -26,6 +26,6 @@ div.bg-white.rounded.shadow-bottom
     table.table-light
       div(ng-repeat="organization in ::vm.organizations | limitTo:10").flex.flex-center.border-lighter-gray.border-top.py1.px2
         div.px1.h5 {{$index + 1}}
-        div.px2.flex: img(ng-src="{{organization.getAvatarUrl(32)}}", width="32", height="32")
+        //div.px2.flex: img(ng-src="{{organization.getAvatarUrl(32)}}", width="32", height="32")
         div.flex-auto
           a(ui-sref="organizations.view({id: organization._id})") {{organization.name}}
