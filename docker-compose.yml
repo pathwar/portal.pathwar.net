@@ -1,5 +1,5 @@
 portal:
-  extend:
+  extends:
     file: _common.yml
     service: portal
   links:
@@ -10,7 +10,7 @@ portal:
 
 
 mock:
-  extend:
+  extends:
     file: _common.yml
     service: mock
   links:
@@ -20,6 +20,6 @@ mock:
 
 
 mongo:
-  extend:
+  extends:
     file: _common.yml
     service: mongo

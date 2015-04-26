@@ -8,12 +8,12 @@ all:	dev
 
 
 dev:	vendor
-	fig up -d --no-deps mock; fig logs
+	docker-compose up -d --no-deps mock; docker-compose logs
 
 
 dist:	vendor
-	fig build
-	NO_PUSHSTATE=1 API_ENDPOINT=$(PROD_API_ENDPOINT) BASE_PATH=/ fig run --no-deps portal gulp build
+	docker-compose build
+	NO_PUSHSTATE=1 API_ENDPOINT=$(PROD_API_ENDPOINT) BASE_PATH=/ docker-compose run --no-deps portal gulp build
 	echo portal.pathwar.net > CNAME
 	touch .nojekyll
 
@@ -23,7 +23,7 @@ clean:
 
 
 vendor:	bower.json .bowerrc
-	echo n | fig run --no-deps portal bower --allow-root --force install
+	echo n | docker-compose run --no-deps portal bower --allow-root --force install
 
 
 release:	clean
@@ -35,7 +35,7 @@ release_do:
 	git checkout -b gh-pages
 	$(MAKE) dist
 	ls -la
-	find . ! -name .git ! -name build ! -name CNAME ! -name Makefile ! -name fig.yml -maxdepth 1 -exec rm -rf {} \;
+	find . ! -name .git ! -name build ! -name CNAME ! -name Makefile ! -name docker-compose.yml -maxdepth 1 -exec rm -rf {} \;
 	mv build/* .
 	rmdir build
 	git add .
