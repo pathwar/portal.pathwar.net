@@ -62,7 +62,7 @@ html(ng-app="portal", lang="en")
           div(data-details).fixed.top-0.right-0.bottom-0.left-0
           div.relative
             a.button.button-narrow.button-transparent.py2
-              img(ng-src="{{nav.currentUser.organization.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button-left.ml0
+              //img(ng-src="{{nav.currentUser.organization.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button-left.ml0
               | {{nav.currentUser.organization.name}}
               i.fa.fa-sort-down.icon-button
               // FIXME: add the current session name {{currentUser.organization.session}}
@@ -70,11 +70,11 @@ html(ng-app="portal", lang="en")
               a(ui-sref="organizations.admin.settings({id: nav.currentUser.organization._id})").button.block.button-transparent.p1.regular
                 | Organization Admin
               hr.m0
-              a(ng-repeat="organization in nav.organizations", ng-click="nav.switchOrganization(organization)").button.block.button-transparent.py2.px1
-                img(ng-src="{{organization.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button-left.ml0
-                | Switch to {{organization.name}}
+              a(ng-repeat="organization in nav.organizations", ng-click="nav.switchOrganization(organization)").button.block.button-transparent.p1.regular
+                //img(ng-src="{{organization.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button-left.ml0
+                | Switch to <span class="black">{{organization.name}}</span>
               hr.m0
-              a(ui-sref="createOrganization").block.py1.px1.rounded-bottom
+              a(ui-sref="createOrganization").button.block.button-transparent.p1.rounded-bottom.regular
                 | Create new organization
 
         //
