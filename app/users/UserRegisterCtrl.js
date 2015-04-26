@@ -8,7 +8,7 @@ function UserRegisterCtrl(
   function register(user) {
     UserService.register(user).then(function(result) {
       CurrentUserService.login(user).then(function(result) {
-        $state.go('home');
+        $state.go('home.welcome');
       });
       console.log(result);
       console.log('user created');
