@@ -85,11 +85,19 @@ html(ng-app="portal", lang="en")
           div.relative
             a.button.button-narrow.py2.px1.button-transparent.regular
               img(ng-src="{{nav.currentUser.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button
-            div(data-details).absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.mr1
+            div(data-details).absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.mr1.box-shadow
               a(ui-sref="users.view({id: nav.currentUser._id})").button.block.button-transparent.py2.px1
                 | Profile
               a(ng-click="nav.logout()").button.block.button-transparent.py2.px1
                 | Log out
+        
+        //
+        // Score
+        //
+        
+        a.button.button-transparent.inline-block.px1.py2.right
+          i.fa.fa-star
+          div.rounded.bg-yellow.h6.px1.inline-block {{nav.currentUser.organization.statistics.score}}
         
         //
         // Money
