@@ -1,0 +1,9 @@
+h2.mt0.regular.mid-gray Invitations
+div.p2.bg-white.rounded.shadow-bottom
+  p(ng-if="vm.invites.length == 0") You haven't received any invitation
+  div(ng-repeat="invite in vm.invites").flex.flex-center
+    div.flex-auto
+      p.mb0 You were invited to join the <b> {{invite.organization.name}}</b> organization
+    button(ng-click="vm.accept(invite)").button-small.flex-right.white.rounded.bg-blue.regular.mr1 Accept
+    button(ng-click="vm.deny(invite)").button-small.flex-right.white.rounded.bg-red.regular Deny
+    

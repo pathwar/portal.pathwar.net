@@ -29,6 +29,12 @@ angular.module('portal.users', [
     controller: 'UserEditCtrl',
     controllerAs: 'vm',
     templateUrl: 'users/views/form.tpl.html'
+  })
+  .state('users.invitations', {
+    url: '/:id/invitations',
+    controller: 'UserInvitationsCtrl',
+    controllerAs: 'vm',
+    templateUrl: 'users/views/invitations.tpl.html'
   });
 
   // Other
