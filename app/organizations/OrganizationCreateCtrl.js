@@ -1,5 +1,5 @@
 function OrganizationCreateCtrl(
-  $scope, $state, SessionService, OrganizationService, Restangular
+  $scope, $state, CurrentUserService, SessionService, OrganizationService, Restangular
 ) {
   var vm = this;
 
@@ -32,9 +32,16 @@ function OrganizationCreateCtrl(
     var org = angular.copy(formData);
     org.session = org.session._id;
 
-    OrganizationService.create(org).then(function(response) {
-      //TODO: Switch to newly created organization
-      $state.transitionTo('organizations.list');
+    OrganizationService.create(org).then(function(organization) {
+      //TODO: This is DIRTY
+        CurrentUserService.switchOrganization(organization)
+          .then(CurrentUserService.loadUserInfo)
+          .then(function() {
+            $state.go('organizations.admin.members');
+          });
+    })
+    .catch(function(response) {
+      alert(response.data._error.message);
     });
   };
 

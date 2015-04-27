@@ -5,7 +5,9 @@ function OrganizationService(Restangular, Organization) {
     var service = {};
 
   service.create = function(org) {
-    return Organizations.post(org);
+    return Organizations.post(org).then(function(response) {
+      return service.getOrganizationById(response.data._id);
+    });
   };
 
   service.getOrganizationById = function(orgId) {
