@@ -1,5 +1,5 @@
 function LevelViewCtrl(
-  $stateParams, CurrentUserService, LevelService, LevelHintService,
+  $state, $stateParams, CurrentUserService, LevelService, LevelHintService,
   LevelValidationService
 ) {
   var vm = this;
@@ -53,11 +53,19 @@ function LevelViewCtrl(
   /** Validate level with passphrase and validation message */
   function validate(validation) {
     LevelValidationService.validateOrganizationLevel(validation, vm.orgLevel)
-      .then(function(data) {
-        console.log('TODO: Notification that level is pending validation');
-      });
+      .then(
+        //SUCCESS
+        function(data) {
+          vm.orgLevel.has_access = false; //switch to orgLevel
+          alert('Congratulations, your validation is pending validation !');
+          $state.reload();
+        },
+        // ERROR
+        function(res) {
+          alert(res.data._error.message);
+        }
+      );
 
-    vm.level.validated = true; //switch to orgLevel
   }
 
   function buyLevel(level) {
