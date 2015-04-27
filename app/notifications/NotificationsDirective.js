@@ -23,6 +23,7 @@ function NotificationDirectiveCtrl(NotificationService) {
   init();
 
   function init() {
+    NotificationService.getUnreadNotifications();
     NotificationService.getNotifications();
   }
 }

@@ -15,7 +15,6 @@ function NavCtrl(
   init();
 
   function init() {
-    NotificationService.getUnreadNotifications();
   }
 
   function switchOrganization(organization) {
