@@ -8,15 +8,26 @@ function StatisticsCtrl(
   init();
 
   /** Retrieve all organizations */
-  /** FIXME: Dummy listing for now */
+  /** TODO: put this in a service */
   function init() {
-    Restangular.service('organizations')
-      .getList().then(function(orgs) {
+    getOrganizationsSortedBy('cash');
+    getOrganizationsSortedBy('score');
+
+  }
+
+  function getOrganizationsSortedBy(sort) {
+    return Restangular.service('organization-statistics')
+      .getList({
+        sort: '-'+sort,
+        embedded: JSON.stringify({
+          organization: 1
+        })
+      }).then(function(res) {
         var _orgs = [];
-        _.each(orgs, function(org) {
-          _orgs.push(Organization.build(org));
+        _.each(res, function(stats) {
+          _orgs.push(Organization.build(stats.organization));
         });
-        vm.organizations = _orgs;
+        vm['organizations_by_'+sort] = _orgs;
       });
   }
 }

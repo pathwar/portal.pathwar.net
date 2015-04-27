@@ -1,31 +1,41 @@
-h3.mt0.regular.mid-gray Level Leaderboard
-div.bg-white.rounded.shadow-bottom
-  div.p2
-    nav.clearfix
-      a.button.button-transparent This Week
-      a.button.button-transparent This Month
-      a.button.button-transparent All Time
-  
-  div.bg-lightest-gray
-    table.table-light
-      div(ng-repeat="organization in ::vm.organizations | limitTo:10").flex.flex-center.border-lighter-gray.border-top.py1.px2
-        div.px1.h5 {{$index + 1}}
-        //div.px2.flex: img(ng-src="{{organization.getAvatarUrl(32)}}", width="32", height="32")
-        div.flex-auto
-          a(ui-sref="organizations.view({id: organization._id})") {{organization.name}}
+div.mxn2
+  div.sm-col.sm-col-6.px2
+    div.bg-white.rounded.shadow-bottom
+      div.p2
+        h3.m0.regular.mid-gray
+          i.fa.fa-star
+          &nbsp;
+          | Score Leaderboard
+        //nav.clearfix
+          //a.button.button-transparent This Week
+          //a.button.button-transparent This Month
+          //a.button.button-transparent All Time
+      
+      div.bg-lightest-gray
+        table.table-light
+          div(ng-repeat="organization in ::vm.organizations_by_score | limitTo:10").flex.flex-center.border-lighter-gray.border-top.py1.px2
+            div.px1.h5 {{$index + 1}}
+            //div.px2.flex: img(ng-src="{{organization.getAvatarUrl(32)}}", width="32", height="32")
+            div.flex-auto
+              a(ui-sref="organizations.view({id: organization._id})").ucfirst {{organization.name}}
 
-h3.mt3.regular.mid-gray Money Leaderboard
-div.bg-white.rounded.shadow-bottom
-  div.p2
-    nav.clearfix
-      a.button.button-transparent This Week
-      a.button.button-transparent This Month
-      a.button.button-transparent All Time
-  
-  div.bg-lightest-gray
-    table.table-light
-      div(ng-repeat="organization in ::vm.organizations | limitTo:10").flex.flex-center.border-lighter-gray.border-top.py1.px2
-        div.px1.h5 {{$index + 1}}
-        //div.px2.flex: img(ng-src="{{organization.getAvatarUrl(32)}}", width="32", height="32")
-        div.flex-auto
-          a(ui-sref="organizations.view({id: organization._id})") {{organization.name}}
+
+  div.sm-col.sm-col-6.px2
+    div.bg-white.rounded.shadow-bottom
+      div.p2
+        h3.m0.regular.mid-gray
+          i.fa.fa-dollar
+          &nbsp;
+          | Money Leaderboard
+        //nav.clearfix
+          //a.button.button-transparent This Week
+          //a.button.button-transparent This Month
+          //a.button.button-transparent All Time
+      
+      div.bg-lightest-gray
+        table.table-light
+          div(ng-repeat="organization in ::vm.organizations_by_cash | limitTo:10").flex.flex-center.border-lighter-gray.border-top.py1.px2
+            div.px1.h5 {{$index + 1}}
+            //div.px2.flex: img(ng-src="{{organization.getAvatarUrl(32)}}", width="32", height="32")
+            div.flex-auto
+              a(ui-sref="organizations.view({id: organization._id})").ucfirst {{organization.name}}
