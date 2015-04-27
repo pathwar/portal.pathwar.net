@@ -23,11 +23,43 @@ function NotificationDirectiveCtrl(NotificationService) {
   init();
 
   function init() {
+    NotificationService.getNotifications().then(function() {
+      NotificationService.markAsAllRead();
+    });
+  }
+}
+
+function NotificationCountDirective() {
+    var directive = {
+      restrict: 'EA',
+      controller: NotificationCountDirectiveCtrl,
+      controllerAs: 'vm',
+      bindToController: true,
+      link: link,
+    };
+
+    return directive;
+
+    function link(scope, element, attrs) {
+      //console.log('linked');
+    }
+}
+
+
+function NotificationCountDirectiveCtrl(NotificationService) {
+  var vm = this;
+
+  vm.getUnreadNotificationsCount = NotificationService.getUnreadNotificationsCount;
+
+  init();
+
+  function init() {
+    console.log('fetching unread notifs');
     NotificationService.getUnreadNotifications();
-    NotificationService.getNotifications();
   }
 }
 
 angular
   .module('portal.notifications')
+  .directive('notificationsCount', NotificationCountDirective)
   .directive('notifications', NotificationDirective);

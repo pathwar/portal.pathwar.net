@@ -128,13 +128,13 @@ html(ng-app="portal", lang="en")
         //
         // Notifications
         //
-        div(data-disclosure).inline-block.right
-          div(data-details).fixed.top-0.right-0.bottom-0.left-0
+        div.inline-block.right
+          div(ng-show="nav.notificationsOpened").fixed.top-0.right-0.bottom-0.left-0
           div.relative
-            a.button.button-transparent.py2.px1.relative
+            a(ng-click="nav.toggleNotifications()").button.button-transparent.py2.px1.relative 
               i.fa.fa-bell-o
-              div(ng-if="nav.notificationsCount.total > 0").rounded.bg-red.h6.px1.inline-block {{nav.notificationsCount.total}}
-            div(data-details, style="min-width: 400px").absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.box-shadow
+              div(notifications-count).rounded.bg-red.h6.px1.inline-block {{vm.getUnreadNotificationsCount()}}
+            div(ng-if="nav.notificationsOpened", style="min-width: 400px").absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.box-shadow
               div(notifications)
               
 

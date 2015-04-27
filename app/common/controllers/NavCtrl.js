@@ -6,15 +6,25 @@ function NavCtrl(
   vm.currentUser = CurrentUserService.getUser();
   vm.organizations = CurrentUserService.getOrganizations();
   vm.isAuthentificated = CurrentUserService.isAuthentificated;
-  vm.notifications = NotificationService.items;
-  vm.notificationsCount = NotificationService.meta;
+
+  //TODO: SUPER UBER UGLY, should be in a disclosure, with transclude
+  vm.notificationsOpened = false;
+  vm.toggleNotifications = toggleNotifications;
 
   vm.switchOrganization = switchOrganization;
   vm.logout = logout;
 
   init();
 
-  function init() {
+  function init() {}
+
+  function toggleNotifications() {
+    if (vm.notificationsOpened == false) {
+      vm.notificationsOpened = true;
+    }
+    else {
+      vm.notificationsOpened = false;
+    }
   }
 
   function switchOrganization(organization) {

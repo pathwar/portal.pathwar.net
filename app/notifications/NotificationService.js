@@ -1,13 +1,42 @@
-function NotificationService(Restangular, CurrentUserService) {
+function NotificationService($q, $interval, Restangular, CurrentUserService) {
   var service = {};
 
   service.items = [];
-  service.meta = {}; //DIRTY
 
   service.getNotifications = getNotifications;
   service.getUnreadNotifications = getUnreadNotifications;
 
+  service.unreadNotificationsCount = 0;
+  service.getUnreadNotificationsCount = getUnreadNotificationsCount;
+  service.markAsAllRead = markAsAllRead;
+
+  var fetcher = $interval(getUnreadNotifications, 10000);
+
   return service;
+
+  function getUnreadNotificationsCount() {
+    return service.unreadNotificationsCount;
+  }
+
+  function markAsAllRead() {
+    var promises = [];
+
+    angular.forEach(service.items, function(item) {
+      if (item.read == false) {
+        var toSend = _.pick(item, function(value, key) {
+          return key.charAt(0) != '_' || key == '_etag';
+        });
+
+        toSend.read = true;
+        promises.push(item.patch(toSend));
+      }
+    });
+
+    return $q.all(promises)
+      .then(function(result) {
+        service.unreadNotificationsCount = 0;
+      });
+  }
 
   function getUnreadNotifications() {
     return Restangular.all('user-notifications')
@@ -19,7 +48,7 @@ function NotificationService(Restangular, CurrentUserService) {
       })
       .then(
         function(items) {
-          angular.extend(service.meta, items.meta); //DIRTY
+          service.unreadNotificationsCount = items.meta.total;
           return items;
         }
       );
