@@ -3,7 +3,7 @@ div.p2.bg-white.rounded
   form(ng-submit="vm.invite(vm.invites)").sm-col-4
     div(ng-repeat="invite in vm.invites")
       label Invite \#{{$index + 1}}
-      input(type="text", ng-model="invite.handle", placeholder="Login or email").field-light.block.full-width.mb2
+      input(type="text", ng-model="invite.user", placeholder="Login or email").field-light.block.full-width.mb2
   button(ng-click="vm.add()").button-small.rounded Add another
   hr
   input(type="submit", value="Send invites", ng-click="vm.invite(vm.invites)").button

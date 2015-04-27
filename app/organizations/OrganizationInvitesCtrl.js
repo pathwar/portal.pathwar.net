@@ -1,5 +1,5 @@
 function OrganizationInvitesCtrl(
-  $state, $stateParams, User, Restangular
+  $state, $stateParams, User, Restangular, CurrentUserService
 ) {
   var vm = this;
   vm.invites = [];
@@ -10,9 +10,12 @@ function OrganizationInvitesCtrl(
 
   function init() {
 
+    var currentOrg = CurrentUserService.getOrganization();
+
     return Restangular.all('user-organization-invites').getList({
       where: JSON.stringify({
-        organization: $stateParams.id
+        organization: currentOrg._id,
+        status: 'pending'
       }),
       embedded: JSON.stringify({
         user: 1

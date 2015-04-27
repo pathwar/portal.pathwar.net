@@ -1,5 +1,5 @@
 function OrganizationInviteCtrl(
-  $state, $stateParams, Restangular
+  $state, $stateParams, Restangular, CurrentUserService
 ) {
   var vm = this;
 
@@ -16,16 +16,19 @@ function OrganizationInviteCtrl(
   }
 
   function add() {
-    vm.invites.push({});
+    var currentOrg = CurrentUserService.getOrganization();
+
+    vm.invites.push({
+      user: "",
+      organization: currentOrg._id
+    });
   }
 
   function invite(invites) {
-    Restangular.all('user-organization-invites').post({
-      user: invites[0].handle,
-      organization: $stateParams.id
-    })
+    Restangular.all('user-organization-invites').post(invites)
     .then(function(res) {
       console.log(res);
+
     });
   }
 

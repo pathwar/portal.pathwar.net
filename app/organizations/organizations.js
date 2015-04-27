@@ -25,7 +25,7 @@ angular.module('portal.organizations', [
     templateUrl: 'organizations/views/view.tpl.html'
   })
   .state('organizations.admin', {
-    url: '/:id/admin',
+    url: '/admin',
     abstract: true,
     templateUrl: 'organizations/views/admin.tpl.html'
   })

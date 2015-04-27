@@ -1,5 +1,5 @@
 function OrganizationMembersCtrl(
-  $state, $stateParams, Restangular, User
+  $state, $stateParams, Restangular, CurrentUserService, User
 ) {
   var vm = this;
 
@@ -10,9 +10,11 @@ function OrganizationMembersCtrl(
 
   function init() {
 
+    var currentOrg = CurrentUserService.getOrganization();
+
     return Restangular.all('organization-users').getList({
       where: JSON.stringify({
-        organization: $stateParams.id
+        organization: currentOrg._id
       }),
       embedded: JSON.stringify({
         user: 1

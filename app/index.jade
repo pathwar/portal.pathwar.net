@@ -73,7 +73,7 @@ html(ng-app="portal", lang="en")
             
               a(ui-sref="organizations.view({id: nav.currentUser.organization._id})").button.block.button-transparent.p1.regular
                 | Organization Profile
-              a(ui-sref="organizations.admin.settings({id: nav.currentUser.organization._id})").button.block.button-transparent.p1.regular
+              a(ui-sref="organizations.admin.members").button.block.button-transparent.p1.regular
                 | Organization Admin
               hr.m0
               a(ng-repeat="organization in nav.organizations", ng-click="nav.switchOrganization(organization)").button.block.button-transparent.p1.regular
