@@ -4,11 +4,11 @@ div.container-small
   div.bg-white.p2.rounded
   
     div(ng-init="step = 1", ng-show="step == 1")
-      h2.mt0 Choose a session first
+      h3.mt0.regular.gray Choose a session first
       div.mxn2.clearfix
         div(ng-repeat="session in vm.sessions", ng-click="vm.formData.session = session").sm-col.sm-col-3.px2
           div(ng-class="vm.formData.session == session ? 'bg-blue' : 'bg-lighter-gray'").block.rounded.p2
-            img(src="//placehold.it/200x200").rounded.full-width
+            img(ng-src="{{session.avatar}}").rounded.full-width
             | {{session.name}}
 
       div.mt2
