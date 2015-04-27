@@ -27,8 +27,7 @@ function OrganizationInviteCtrl(
   function invite(invites) {
     Restangular.all('user-organization-invites').post(invites)
     .then(function(res) {
-      console.log(res);
-
+      $state.go('^.invites');
     });
   }
 
