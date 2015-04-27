@@ -10,8 +10,9 @@ function CouponRedeemCtrl(CouponService, CurrentUserService) {
       .then(function(response) {
         CurrentUserService.loadOrganizationStatistics();
       })
-      .catch(function(error) {
+      .catch(function(response) {
         console.log('TODO: Handle error');
+        alert(response.data._error.message);
       });
   }
 }

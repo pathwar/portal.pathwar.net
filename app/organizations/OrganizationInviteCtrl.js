@@ -28,6 +28,10 @@ function OrganizationInviteCtrl(
     Restangular.all('user-organization-invites').post(invites)
     .then(function(res) {
       $state.go('^.invites');
+    })
+    .catch(function(response) {
+      console.log(response.data);
+      alert(response.data._error.message);
     });
   }
 

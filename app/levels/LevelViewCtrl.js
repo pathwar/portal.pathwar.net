@@ -47,6 +47,9 @@ function LevelViewCtrl(
             }
           });
         }
+      })
+      .catch(function(response) {
+        alert(response.data._error.message);
       });
   }
 

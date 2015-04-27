@@ -6,13 +6,16 @@ function UserRegisterCtrl(
   vm.register = register;
 
   function register(user) {
-    UserService.register(user).then(function(result) {
-      CurrentUserService.login(user).then(function(result) {
-        $state.go('home.welcome');
-      });
-      console.log(result);
-      console.log('user created');
-    });
+    UserService.register(user).then(
+      function success(result) {
+        CurrentUserService.login(user).then(function(result) {
+          $state.go('home.welcome');
+        });
+      },
+      function error(response) {
+        alert(response.data._error.message);
+      }
+    );
   };
 
 }

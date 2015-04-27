@@ -47,7 +47,10 @@ function LevelListViewCtrl($q, LevelService, CurrentUserService) {
     return LevelService.buyLevelbyOrganizationId(
       level._id, currentOrg._id
     )
-    .then(buyLevelSuccess);
+    .then(buyLevelSuccess)
+    .catch(function(response) {
+      alert(response.data._error.message);
+    });
 
     function buyLevelSuccess() {
       console.log('level '+level._id+' successfully bought !');

@@ -7,9 +7,14 @@ function UserLoginCtrl(
   vm.login = login;
 
   function login(credentials) {
-    CurrentUserService.login(credentials).then(function(user) {
-      $state.transitionTo('home.welcome');
-    });
+    CurrentUserService.login(credentials).then(
+      function success(user) {
+        $state.transitionTo('home.welcome');
+      },
+      function error(response) {
+        alert(response.data._error.message);
+      }
+    );
   };
 
 }
