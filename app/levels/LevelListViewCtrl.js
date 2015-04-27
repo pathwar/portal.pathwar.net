@@ -35,6 +35,15 @@ function LevelListViewCtrl($q, LevelService, CurrentUserService) {
   /** Buys a level and reload organization info */
   // TODO: Should be in a service
   function buyLevel(level) {
+
+    var currentOrg = CurrentUserService.getOrganization();
+
+    if (currentOrg.statistics.cash - level.price < 0) {
+      alert('You do not have enough cash to buy this level')
+      console.log('not_enough_cash');
+      return false;
+    }
+
     return LevelService.buyLevelbyOrganizationId(
       level._id, currentOrg._id
     )
