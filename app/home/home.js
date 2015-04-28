@@ -29,11 +29,23 @@ angular.module('portal.home', [
     vm.news = NewsService.news;
   });
 
+  var activityMessages = {
+    'user-tokens-create': 'A user logged in',
+    'users-create': 'A user registered',
+    'organizations-create': 'An organization has been created',
+    'organization-levels-create': 'An organization bought a level'
+  };
+
   Restangular.all('activities')
     .getList()
     .then(function(activities) {
-      vm.activities = activities;
+
+      angular.forEach(activities, function(activity) {
+        activity.message = activityMessages[activity.action] || activity.action;
+      });
       console.log(activities);
+      
+      vm.activities = activities;
     })
 
 });
