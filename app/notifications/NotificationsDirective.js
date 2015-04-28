@@ -57,7 +57,6 @@ function NotificationCountDirectiveCtrl(NotificationService) {
   init();
 
   function init() {
-    console.log('fetching unread notifs');
     NotificationService.getUnreadNotifications();
   }
 }
