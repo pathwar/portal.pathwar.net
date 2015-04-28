@@ -16,8 +16,8 @@ angular
     'portal.organizations',
     'portal.users',
     'portal.statistics',
+    'portal.achievements',
     //'portal.shop',
     'portal.news',
     //'portal.chat',
-    'portal.crud'
   ]);

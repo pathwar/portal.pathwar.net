@@ -1,7 +1,0 @@
-table.table-light
-  thead
-    tr
-      th Model
-  tbody
-    tr(ng-repeat="model in models | orderBy:'title'")
-      td: a(ui-sref="^.model.list({model: model.href})") {{::model.title}}

@@ -21,7 +21,6 @@
     "font-awesome": "~4.2.0",
     "animate.css": "~3.2.0",
     "restangular": "~1.4.0",
-    "angular-formly": "~1.0.0",
     "basscss": "~5.0.0"
   },
   "resolutions": {
