@@ -4,6 +4,7 @@ angular
     'ngRoute',
     'templates',
     'restangular',
+    'cfp.hotkeys',
     'portal.config',
     'portal.services',
     'portal.directives',
