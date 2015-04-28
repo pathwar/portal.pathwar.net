@@ -43,8 +43,7 @@ angular.module('portal.home', [
       angular.forEach(activities, function(activity) {
         activity.message = activityMessages[activity.action] || activity.action;
       });
-      console.log(activities);
-      
+
       vm.activities = activities;
     })
 

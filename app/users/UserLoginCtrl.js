@@ -9,7 +9,6 @@ function UserLoginCtrl(
   function login(credentials) {
     CurrentUserService.login(credentials).then(
       function success(user) {
-        console.log(LoggerService);
         LoggerService.success('Login successful ! Welcome back '+user.login+' !');
         $state.transitionTo('home.welcome');
       },

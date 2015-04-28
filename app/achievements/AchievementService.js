@@ -12,7 +12,6 @@ function AchievementService(Restangular) {
       })
     })
     .then(function(res) {
-      console.log(res);
     });
   }
 
