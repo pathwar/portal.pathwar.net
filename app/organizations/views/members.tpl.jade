@@ -1,6 +1,6 @@
 div.p2.bg-white.rounded
-  a(ng-repeat="user in vm.users").block.clearfix
-    img(ng-src="{{user.getAvatarUrl(32)}}").rounded.left.mr2
-    | {{user.login}}
+  a(ng-repeat="user in vm.users").block.clearfix.mb2
+    img(ng-src="{{user.getAvatarUrl(48)}}").rounded.left.mr2
+    span.ucfirst {{user.login}}
     br
     | {{user.email}}
