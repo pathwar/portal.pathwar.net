@@ -1,6 +1,6 @@
 function CurrentUserService(
   $q, $window, AuthService, User, UserService,
-  Organization, OrganizationService, ScoringService
+  Organization, OrganizationService, ScoringService, Restangular
 ) {
   var service = {};
 
@@ -80,12 +80,14 @@ function CurrentUserService(
   ////////////////////////////////////////////////////////////////////////////
 
   function loadUser() {
-    return UserService.getUserById(user._id)
-    .then(function(_user) {
+
+    return Restangular.one('accounts', user._id).get().then(function(response) {
+      var _user = User.build(response.data);
       angular.extend(user, _user);
       persist();
       return user;
     });
+
   }
 
   function loadOrganizations() {

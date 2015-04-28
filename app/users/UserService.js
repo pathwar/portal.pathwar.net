@@ -9,7 +9,7 @@ function UserService(Restangular, User) {
   };
 
   service.register = function(userModel) {
-    return Restangular.all('users').post(userModel).then(function(response) {
+    return Restangular.all('accounts').post(userModel).then(function(response) {
       return response.data;
     });
   };
