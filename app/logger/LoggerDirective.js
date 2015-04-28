@@ -15,6 +15,7 @@ function LoggerDirective() {
   }
 }
 
+// @ngInject
 function LoggerDirectiveCtrl(LoggerService) {
   var vm = this;
 

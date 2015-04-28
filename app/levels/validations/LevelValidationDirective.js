@@ -15,6 +15,7 @@ function LevelValidationDirective() {
   return directive;
 }
 
+// @ngInject
 function LevelValidationCtrl(LevelValidationService) {
   var vm = this;
 }

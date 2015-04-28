@@ -13,6 +13,7 @@ function LevelStatsDirective() {
   return directive;
 }
 
+// @ngInject
 function LevelStatsCtrl(LevelStatsService) {
   var vm = this;
 

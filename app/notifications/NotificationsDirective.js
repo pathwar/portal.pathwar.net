@@ -15,6 +15,7 @@ function NotificationDirective() {
   }
 }
 
+// @ngInject
 function NotificationDirectiveCtrl(NotificationService) {
   var vm = this;
 
@@ -45,7 +46,7 @@ function NotificationCountDirective() {
     }
 }
 
-
+// @ngInject
 function NotificationCountDirectiveCtrl(NotificationService) {
   var vm = this;
 
