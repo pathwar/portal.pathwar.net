@@ -1,8 +1,17 @@
 angular
   .module('portal')
   .run(function (
-    $rootScope, $location, $state, CurrentUserService, Restangular
+    $rootScope, $location, $state, CurrentUserService, Restangular, hotkeys
   ) {
+
+    hotkeys.add({
+      combo: 'R',
+      description: 'Reload current state',
+      callback: function() {
+        $state.reload();
+        console.log('reload');
+      }
+    });
 
     Restangular.setErrorInterceptor(function(
       response, deffered, responseHandler
