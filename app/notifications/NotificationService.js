@@ -10,7 +10,11 @@ function NotificationService($q, $interval, Restangular, CurrentUserService) {
   service.getUnreadNotificationsCount = getUnreadNotificationsCount;
   service.markAsAllRead = markAsAllRead;
 
-  var fetcher = $interval(getUnreadNotifications, 10000);
+  var fetcher = $interval(function() {
+    if (CurrentUserService.isAuthentificated()) {
+      getUnreadNotifications();
+    }
+  }, 10000);
 
   return service;
 
