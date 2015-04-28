@@ -1,5 +1,6 @@
-div(ng-repeat="log in vm.logs", ng-class="vm.getClass(log)").rounded.shadow-bottom.p2.mb1.flex.flex-start
-  div.flex-left.mr2.h1
-    i(ng-class="vm.getIconClass(log)").fa
-  p.mb0.ml1.flex-auto {{log.message}}
-  a(ng-click="vm.dismiss(log)").button.button-transparent.p0.flex-right.h1 &times
+div(ng-if="vm.logs.length > 0").p2
+  div(ng-repeat="log in vm.logs", ng-class="vm.getClass(log)").rounded.shadow-bottom.p2.mb1.flex.flex-start
+    div.flex-left.mr2.h1
+      i(ng-class="vm.getIconClass(log)").fa
+    p.mb0.ml1.flex-auto {{log.message}}
+    a(ng-click="vm.dismiss(log)").button.button-transparent.p0.flex-right.h1 &times

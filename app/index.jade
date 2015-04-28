@@ -71,18 +71,18 @@ html(ng-app="portal", lang="en")
               // FIXME: add the current session name {{currentUser.organization.session}}
             div(data-details).absolute.left-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.box-shadow.gray
             
-              a(ui-sref="organizations.view({id: nav.currentUser.organization._id})").button.block.button-transparent.p1.regular
+              a(ui-sref="organizations.view({id: nav.currentUser.organization._id})").button.block.button-transparent.px3.py2.regular
                 | Organization Profile
-              a(ui-sref="organizations.admin.members").button.block.button-transparent.p1.regular
+              a(ui-sref="organizations.admin.members").button.block.button-transparent.px3.py2.regular
                 | Organization Admin
               hr.m0
-              a(ng-repeat="organization in nav.organizations", ng-click="nav.switchOrganization(organization)").button.block.button-transparent.p1.regular
+              a(ng-repeat="organization in nav.organizations", ng-click="nav.switchOrganization(organization)").button.block.button-transparent.px3.regular
                 //img(ng-src="{{organization.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button-left.ml0
                 i.fa.fa-random.icon-button.black
                 &nbsp;
                 | Switch to <span class="black ucfirst">{{organization.name}}</span>
               hr.m0
-              a(ui-sref="createOrganization").button.block.button-transparent.p1.rounded-bottom.regular
+              a(ui-sref="createOrganization").button.block.button-transparent.px3.py2.rounded-bottom.regular
                 i.fa.fa-plus.icon-button.black
                 &nbsp;
                 | Create new organization
@@ -96,10 +96,10 @@ html(ng-app="portal", lang="en")
             a.button.button-narrow.py2.px1.button-transparent.regular
               img(ng-src="{{nav.currentUser.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button
             div(data-details).absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.mr1.box-shadow
-              a(ui-sref="users.invitations({id: nav.currentUser._id})").button.block.button-transparent.p1.regular
+              a(ui-sref="users.invitations({id: nav.currentUser._id})").button.block.button-transparent.px3.py2.regular
                 | View Invitations
               hr.m0
-              a(ng-click="nav.logout()").button.block.button-transparent.p1.regular
+              a(ng-click="nav.logout()").button.block.button-transparent.px3.py2.regular
                 i.fa.fa-sign-out.icon-button.black
                 &nbsp;
                 | Log out
@@ -122,7 +122,7 @@ html(ng-app="portal", lang="en")
               i.fa.fa-usd
               div.rounded.bg-yellow.h6.px1.inline-block {{nav.currentUser.organization.statistics.cash}}
             div(data-details).absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.box-shadow
-              a(ui-sref="coupons.redeem").button.block.button-transparent.p1.regular
+              a(ui-sref="coupons.redeem").button.block.button-transparent.px3.py2.regular
                 | Redeem a coupon
 
         //
@@ -141,7 +141,7 @@ html(ng-app="portal", lang="en")
     div.p3.has-side-menu.content
       div(ui-view)
 
-    div(logger).fixed.top-0.right-0.p2.full-width.sm-col.sm-col-4.z2
+    div(logger).fixed.top-0.right-0.full-width.sm-col.sm-col-4.z2
     //- bower:js
     //- endinject
 
