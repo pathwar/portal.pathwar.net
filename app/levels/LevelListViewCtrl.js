@@ -54,7 +54,7 @@ function LevelListViewCtrl($q, LevelService, CurrentUserService, LoggerService) 
     function buyLevelSuccess() {
       level.bought = true;
 
-      LoggerService.error("Level "+level.name+" succesfully bought !");
+      LoggerService.success("Level "+level.name+" succesfully bought !");
       CurrentUserService.loadOrganizationStatistics();
     }
   }
