@@ -100,7 +100,9 @@ function CurrentUserService(
     return $q(function(resolve, reject) {
 
       // default organization to the last created
-      if (!user.organization._id && orgs[0]) {
+      if ((user.organization === undefined
+          || user.organization._id === undefined)
+          && orgs[0]) {
         service.switchOrganization(orgs[0]);
       }
       else {
