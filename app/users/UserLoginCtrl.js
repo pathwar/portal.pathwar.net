@@ -1,5 +1,5 @@
 function UserLoginCtrl(
-  $scope, $state, CurrentUserService
+  $scope, $state, CurrentUserService, LoggerService
 ) {
   var vm = this;
 
@@ -9,10 +9,12 @@ function UserLoginCtrl(
   function login(credentials) {
     CurrentUserService.login(credentials).then(
       function success(user) {
+        console.log(LoggerService);
+        LoggerService.success('Login successful ! Welcome back '+user.login+' !');
         $state.transitionTo('home.welcome');
       },
       function error(response) {
-        alert(response.data._error.message);
+        LoggerService.error(response.data._error.message);
       }
     );
   };

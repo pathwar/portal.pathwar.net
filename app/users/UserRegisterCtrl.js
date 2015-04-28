@@ -1,5 +1,5 @@
 function UserRegisterCtrl(
-  $scope, $state, UserService, CurrentUserService,
+  $scope, $state, UserService, CurrentUserService, LoggerService
 ) {
   var vm = this;
 
@@ -9,11 +9,12 @@ function UserRegisterCtrl(
     UserService.register(user).then(
       function success(result) {
         CurrentUserService.login(user).then(function(result) {
+          LoggerService.success('Registration successful ! Welcome to Pathwar !');
           $state.go('home.welcome');
         });
       },
       function error(response) {
-        alert(response.data._error.message);
+        LoggerService.error(response.data._error.message);
       }
     );
   };

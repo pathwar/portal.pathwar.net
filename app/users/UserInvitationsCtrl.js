@@ -1,5 +1,5 @@
 function UserInvitationsCtrl(
-  $state, $stateParams, Restangular, Organization
+  $state, $stateParams, Restangular, Organization, LoggerService
 ) {
   var vm = this;
   vm.accept = accept;
@@ -37,12 +37,17 @@ function UserInvitationsCtrl(
       return key.charAt(0) != '_' || key == '_etag';
     });
 
+    var _organization = toSend.organization;
+
     delete toSend.organization;
     toSend.status = 'accepted';
 
     invite.patch(toSend).then(function(response) {
-      // TODO: confirmation
+      LoggerService.success('Congratulations, you are now part of '+_organization.name);
       $state.reload();
+    })
+    .catch(function(response) {
+      LoggerService.error(response.data._error.message);
     });
 
   }

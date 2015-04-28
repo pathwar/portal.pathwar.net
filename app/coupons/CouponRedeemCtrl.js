@@ -1,4 +1,6 @@
-function CouponRedeemCtrl(CouponService, CurrentUserService) {
+function CouponRedeemCtrl(
+  CouponService, CurrentUserService, LoggerService
+) {
   var vm = this;
 
   vm.redeem = redeem;
@@ -8,11 +10,11 @@ function CouponRedeemCtrl(CouponService, CurrentUserService) {
     var currentOrg = CurrentUserService.getOrganization();
     return CouponService.redeemCouponForOrganization(currentOrg, coupon.value)
       .then(function(response) {
+        LoggerService.success('Coupon successfully redeemed ! You haz more cash !');
         CurrentUserService.loadOrganizationStatistics();
       })
       .catch(function(response) {
-        console.log('TODO: Handle error');
-        alert(response.data._error.message);
+        LoggerService.error(response.data._error.message);
       });
   }
 }

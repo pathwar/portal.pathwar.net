@@ -1,5 +1,6 @@
 function OrganizationCreateCtrl(
-  $scope, $state, CurrentUserService, SessionService, OrganizationService, Restangular
+  $scope, $state, CurrentUserService, SessionService, OrganizationService,
+  Restangular, LoggerService
 ) {
   var vm = this;
 
@@ -37,11 +38,12 @@ function OrganizationCreateCtrl(
         CurrentUserService.switchOrganization(organization)
           .then(CurrentUserService.loadUserInfo)
           .then(function() {
-            $state.go('organizations.admin.members');
+            LoggerService.success('Organization '+organization.name+' successfully created !');
+            $state.go('organizations.admin.invites');
           });
     })
     .catch(function(response) {
-      alert(response.data._error.message);
+      LoggerService.error(response.data._error.message);
     });
   };
 

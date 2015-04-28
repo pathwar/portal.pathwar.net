@@ -1,6 +1,6 @@
 function LevelViewCtrl(
   $state, $stateParams, CurrentUserService, LevelService, LevelHintService,
-  LevelValidationService
+  LevelValidationService, LoggerService
 ) {
   var vm = this;
 
@@ -47,9 +47,6 @@ function LevelViewCtrl(
             }
           });
         }
-      })
-      .catch(function(response) {
-        alert(response.data._error.message);
       });
   }
 
@@ -60,12 +57,12 @@ function LevelViewCtrl(
         //SUCCESS
         function(data) {
           vm.orgLevel.has_access = false; //switch to orgLevel
-          alert('Congratulations, your validation is pending validation !');
+          LoggerService.success('Congratulations, your validation is pending validation !');
           $state.reload();
         },
         // ERROR
-        function(res) {
-          alert(res.data._error.message);
+        function(response) {
+          LoggerService.error(response.data._error.message);
         }
       );
 
@@ -76,19 +73,22 @@ function LevelViewCtrl(
     var currentOrg = CurrentUserService.getOrganization();
 
     if (currentOrg.statistics.cash - level.price < 0) {
-      alert('You do not have enough cash to buy this level')
-      console.log('not_enough_cash');
+      LoggerService.error('You do not have enough cash to buy this level');
       return false;
     }
 
     return LevelService.buyLevelbyOrganizationId(
       level._id, currentOrg._id
     )
-    .then(buyLevelSuccess);
+    .then(buyLevelSuccess)
+    .catch(function(response) {
+      LoggerService.error(response.data._error.message);
+    });
 
     function buyLevelSuccess() {
       level.bought = true;
 
+      LoggerService.error("Level "+level.name+" succesfully bought !");
       CurrentUserService.loadOrganizationStatistics();
       loadBoughtLevel(); //use object in 201 instead of researching
     }

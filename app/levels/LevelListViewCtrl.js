@@ -1,4 +1,4 @@
-function LevelListViewCtrl($q, LevelService, CurrentUserService) {
+function LevelListViewCtrl($q, LevelService, CurrentUserService, LoggerService) {
 
   var vm = this;
   var currentOrg = CurrentUserService.getOrganization();
@@ -39,8 +39,7 @@ function LevelListViewCtrl($q, LevelService, CurrentUserService) {
     var currentOrg = CurrentUserService.getOrganization();
 
     if (currentOrg.statistics.cash - level.price < 0) {
-      alert('You do not have enough cash to buy this level')
-      console.log('not_enough_cash');
+      LoggerService.error('You do not have enough cash to buy this level');
       return false;
     }
 
@@ -49,13 +48,13 @@ function LevelListViewCtrl($q, LevelService, CurrentUserService) {
     )
     .then(buyLevelSuccess)
     .catch(function(response) {
-      alert(response.data._error.message);
+      LoggerService.error(response.data._error.message);
     });
 
     function buyLevelSuccess() {
-      console.log('level '+level._id+' successfully bought !');
       level.bought = true;
 
+      LoggerService.error("Level "+level.name+" succesfully bought !");
       CurrentUserService.loadOrganizationStatistics();
     }
   }

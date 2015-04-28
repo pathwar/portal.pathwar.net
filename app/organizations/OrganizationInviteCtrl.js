@@ -1,5 +1,5 @@
 function OrganizationInviteCtrl(
-  $state, $stateParams, Restangular, CurrentUserService
+  $state, $stateParams, Restangular, CurrentUserService, LoggerService
 ) {
   var vm = this;
 
@@ -27,11 +27,11 @@ function OrganizationInviteCtrl(
   function invite(invites) {
     Restangular.all('user-organization-invites').post(invites)
     .then(function(res) {
+      LoggerService.success('Invitation successfully sent !');
       $state.go('^.invites');
     })
     .catch(function(response) {
-      console.log(response.data);
-      alert(response.data._error.message);
+      LoggerService.error(response.data._error.message);
     });
   }
 
