@@ -8,7 +8,7 @@ div.bg-white.rounded-bottom
     div(ng-repeat="invite in vm.pending_invites").flex.flex-center.mb2
       a.block.clearfix.flex-auto
         img(ng-src="{{invite.user.getAvatarUrl(48)}}").rounded.left.mr2
-        | {{invite.user.login}}
+        span.ucfirst {{invite.user.login}}
         br
         | {{invite.user.email}}
       div.flex
