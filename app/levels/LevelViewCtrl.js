@@ -88,7 +88,7 @@ function LevelViewCtrl(
     function buyLevelSuccess() {
       level.bought = true;
 
-      LoggerService.error("Level "+level.name+" succesfully bought !");
+      LoggerService.success("Level "+level.name+" succesfully bought !");
       CurrentUserService.loadOrganizationStatistics();
       loadBoughtLevel(); //use object in 201 instead of researching
     }
