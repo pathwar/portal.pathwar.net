@@ -47,7 +47,7 @@ function UserInvitationsCtrl(
       $state.reload();
     })
     .catch(function(response) {
-      LoggerService.error(response.data._error.message);
+      LoggerService.errorFromResponse(response);
     });
 
   }

@@ -43,7 +43,7 @@ function OrganizationCreateCtrl(
           });
     })
     .catch(function(response) {
-      LoggerService.error(response.data._error.message);
+      LoggerService.errorFromResponse(response);
     });
   };
 

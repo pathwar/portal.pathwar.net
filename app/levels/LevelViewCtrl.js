@@ -62,7 +62,7 @@ function LevelViewCtrl(
         },
         // ERROR
         function(response) {
-          LoggerService.error(response.data._error.message);
+          LoggerService.errorFromResponse(response);
         }
       );
 
@@ -82,7 +82,7 @@ function LevelViewCtrl(
     )
     .then(buyLevelSuccess)
     .catch(function(response) {
-      LoggerService.error(response.data._error.message);
+      LoggerService.errorFromResponse(response);
     });
 
     function buyLevelSuccess() {

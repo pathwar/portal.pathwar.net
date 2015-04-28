@@ -14,7 +14,7 @@ function UserRegisterCtrl(
         });
       },
       function error(response) {
-        LoggerService.error(response.data._error.message);
+        LoggerService.errorFromResponse(response);
       }
     );
   };

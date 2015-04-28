@@ -31,7 +31,7 @@ function OrganizationInviteCtrl(
       $state.go('^.invites');
     })
     .catch(function(response) {
-      LoggerService.error(response.data._error.message);
+      LoggerService.errorFromResponse(response);
     });
   }
 

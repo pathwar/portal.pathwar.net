@@ -4,6 +4,7 @@ function LoggerService($q, $timeout, $interval, Restangular, CurrentUserService)
   service.items = [];
   service.success = success;
   service.error = error;
+  service.errorFromResponse = errorFromResponse;
   service.info = info;
   service.warning = warning;
 
@@ -15,6 +16,10 @@ function LoggerService($q, $timeout, $interval, Restangular, CurrentUserService)
 
   function error(message, opts) {
     return _log('error', message, opts);
+  }
+
+  function errorFromResponse(response, opts) {
+    return _log('error', response.data._error.message, opts);
   }
 
   function info(message, delay) {

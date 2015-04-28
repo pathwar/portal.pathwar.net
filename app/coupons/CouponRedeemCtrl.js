@@ -14,7 +14,7 @@ function CouponRedeemCtrl(
         CurrentUserService.loadOrganizationStatistics();
       })
       .catch(function(response) {
-        LoggerService.error(response.data._error.message);
+        LoggerService.errorFromResponse(response);
       });
   }
 }

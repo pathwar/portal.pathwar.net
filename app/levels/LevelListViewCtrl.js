@@ -48,7 +48,7 @@ function LevelListViewCtrl($q, LevelService, CurrentUserService, LoggerService) 
     )
     .then(buyLevelSuccess)
     .catch(function(response) {
-      LoggerService.error(response.data._error.message);
+      LoggerService.errorFromResponse(response);
     });
 
     function buyLevelSuccess() {

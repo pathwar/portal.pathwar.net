@@ -14,7 +14,7 @@ function UserLoginCtrl(
         $state.transitionTo('home.welcome');
       },
       function error(response) {
-        LoggerService.error(response.data._error.message);
+        LoggerService.errorFromResponse(response);
       }
     );
   };
