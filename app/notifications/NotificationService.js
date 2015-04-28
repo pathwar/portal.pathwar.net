@@ -64,7 +64,7 @@ function NotificationService($q, $interval, Restangular, CurrentUserService) {
         where: JSON.stringify({
           user: CurrentUserService.getUser()._id
         }),
-        sort: '-created'
+        sort: '-_created'
       })
       .then(
         function(items) {
