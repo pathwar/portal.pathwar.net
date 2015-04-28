@@ -45,6 +45,7 @@ function UserInvitationsCtrl(
 
     invite.patch(toSend).then(function(response) {
       LoggerService.success('Congratulations, you are now part of '+_organization.name);
+      CurrentUserService.loadUserInfo();
       $state.reload();
     })
     .catch(function(response) {
