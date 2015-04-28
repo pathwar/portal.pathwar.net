@@ -39,6 +39,7 @@ function OrganizationCreateCtrl(
           .then(CurrentUserService.loadUserInfo)
           .then(function() {
             LoggerService.success('Organization '+organization.name+' successfully created !');
+            LoggerService.success('You are now logged as '+organization.name);
             $state.go('organizations.admin.invites');
           });
     })

@@ -1,5 +1,5 @@
 function NavCtrl(
-  $scope, $state, CurrentUserService, NotificationService
+  $scope, $state, CurrentUserService, NotificationService, LoggerService
 ) {
   var vm = this;
 
@@ -29,6 +29,7 @@ function NavCtrl(
 
   function switchOrganization(organization) {
     CurrentUserService.switchOrganization(organization);
+    LoggerService.success('You are now logged as '+organization.name);
     $state.reload();
   }
 

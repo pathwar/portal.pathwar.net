@@ -1,5 +1,6 @@
 function UserInvitationsCtrl(
-  $state, $stateParams, Restangular, Organization, LoggerService
+  $state, $stateParams, Restangular, Organization, CurrentUserService,
+  LoggerService
 ) {
   var vm = this;
   vm.accept = accept;
