@@ -16,7 +16,7 @@ function NotificationDirective() {
 }
 
 // @ngInject
-function NotificationDirectiveCtrl(NotificationService) {
+function NotificationDirectiveCtrl($scope, NotificationService) {
   var vm = this;
 
   vm.notifications = NotificationService.items;
@@ -24,7 +24,9 @@ function NotificationDirectiveCtrl(NotificationService) {
   init();
 
   function init() {
-    NotificationService.getNotifications().then(function() {
+    NotificationService.getNotifications();
+
+    $scope.$on('$destroy', function() {
       NotificationService.markAsAllRead();
     });
   }
