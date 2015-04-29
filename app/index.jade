@@ -127,8 +127,9 @@ html(ng-app="portal", lang="en")
                 i.fa.fa-usd
                 div.rounded.bg-yellow.h6.px1.inline-block {{nav.currentUser.organization.statistics.cash}}
               div(data-details).absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.box-shadow
-                a(ui-sref="coupons.redeem").button.block.button-transparent.px3.py2.regular
-                  | Redeem a coupon
+                div.absolute.top-0.right-0
+                  a.inline-block.right.py1.px2.h2.ui-link &times;
+                div(pw-coupon-redeem)
 
           //
           // Notifications
