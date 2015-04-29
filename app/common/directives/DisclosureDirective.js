@@ -28,11 +28,18 @@ angular
         };
 
         el.addEventListener('click', function(e) {
-          if (e.target.tagName == 'A'
-          || e.target.getAttribute('data-details') != null) {
+          if (e.target.className.indexOf('opener') == -1
+          && (e.target.tagName == 'A'
+          || e.target.getAttribute('data-details') != null)) {
             el.toggle(e);
           }
         });
+
+        var opener = el.querySelector('.opener');
+        if (opener) {
+          opener.addEventListener('click', el.toggle);
+        }
+
         el.hide();
       }
     };

@@ -69,7 +69,7 @@ html(ng-app="portal", lang="en")
           div(data-disclosure, style="vertical-align: top").inline-block
             div(data-details).fixed.top-0.right-0.bottom-0.left-0
             div.relative
-              a.button.button-narrow.button-transparent.py2.ucfirst
+              a.button.button-narrow.button-transparent.py2.ucfirst.opener
                 //img(ng-src="{{nav.currentUser.organization.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button-left.ml0
                 | {{nav.currentUser.organization.name}}
                 i.fa.fa-sort-down.icon-button
@@ -98,7 +98,7 @@ html(ng-app="portal", lang="en")
           div(data-disclosure, style="vertical-align: top").inline-block.right
             div(data-details).fixed.top-0.right-0.bottom-0.left-0
             div.relative
-              a.button.button-narrow.py2.px1.button-transparent.regular
+              a.button.button-narrow.py2.px1.button-transparent.regular.opener
                 img(ng-src="{{nav.currentUser.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button
               div(data-details).absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.mr1.box-shadow
                 a(ui-sref="users.invitations({id: nav.currentUser._id})").button.block.button-transparent.px3.py2.regular
@@ -123,7 +123,7 @@ html(ng-app="portal", lang="en")
           div(data-disclosure).inline-block.right
             div(data-details).fixed.top-0.right-0.bottom-0.left-0
             div.relative
-              a.button.button-transparent.py2.px1.relative
+              a.button.button-transparent.py2.px1.relative.opener
                 i.fa.fa-usd
                 div.rounded.bg-yellow.h6.px1.inline-block {{nav.currentUser.organization.statistics.cash}}
               div(data-details).absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.box-shadow
