@@ -26,8 +26,10 @@ angular
             el.hide();
           }
         };
-        el.addEventListener('click', function(e) {
-          el.toggle(e);
+        _.each(el.querySelectorAll('a'), function(subel) {
+          subel.addEventListener('click', function(e) {
+            el.toggle(e);
+          });
         });
         el.hide();
       }
