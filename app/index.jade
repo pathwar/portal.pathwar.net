@@ -16,132 +16,137 @@ html(ng-app="portal", lang="en")
 
   body(ng-class="{frontpage: state == 'home'}").bg-lighter-gray
 
-    div.side-menu.bg-black.white.md-show
-      div.px2.mt2
-        img(src="#{BASE_PATH}assets/img/logo.png", width="32", height="32").rounded
-      a.button.button-transparent.block
-        span PATHWAR
-        
-      nav.mt3
-        a.button.button-transparent.block.py2(ui-sref="home.welcome")
-          i.fa.fa-tachometer.inline-block.mr1
-          span.darken-1 Home
-        a.button.button-transparent.block.py2(ui-sref="statistics.main")
-          i.fa.fa-bar-chart.inline-block.mr1
-          span.darken-1 Statistics
-        a.button.button-transparent.block.py2(ui-sref="levels.list")
-          i.fa.fa-list
-          |&nbsp; Levels
-        //a.button.button-transparent.block.py2(ui-sref="shop")
-          //i.fa.fa-shopping-cart
-          //|&nbsp; Shop
-        a.button.button-transparent.block.hide.py2(ui-sref="users.list")
-          i.fa.fa-users
-          |&nbsp; Users
-        a.button.button-transparent.block.py2.hide(ui-sref="news.list")
-          i.fa.fa-rss
-          |&nbsp; News
-        //a.button.button-transparent.block.py2(ui-sref="chat.room")
-          //i.fa.fa-comments
-          //|&nbsp; Chat
-        a.button.button-transparent.block.py2(href="https://github.com/pathwar/pathwar.net#faq", target="_blank")
-          i.fa.fa-question-circle
-          |&nbsp; FAQ
+    div(ng-cloak).splash.center.mt4
+      img(src="#{BASE_PATH}assets/img/logo.png", width="180").rounded
+      h1.mt0 Loading
 
-    nav.bg-lighter-gray.clearfix.fixed.top-0.right-0.left-0.has-side-menu.z1.px3(ng-controller="NavCtrl as nav")
+    div(ng-cloak)
+      div.side-menu.bg-black.white.md-show
+        div.px2.mt2
+          img(src="#{BASE_PATH}assets/img/logo.png", width="32", height="32").rounded
+        a.button.button-transparent.block
+          span PATHWAR
+          
+        nav.mt3
+          a.button.button-transparent.block.py2(ui-sref="home.welcome")
+            i.fa.fa-tachometer.inline-block.mr1
+            span.darken-1 Home
+          a.button.button-transparent.block.py2(ui-sref="statistics.main")
+            i.fa.fa-bar-chart.inline-block.mr1
+            span.darken-1 Statistics
+          a.button.button-transparent.block.py2(ui-sref="levels.list")
+            i.fa.fa-list
+            |&nbsp; Levels
+          //a.button.button-transparent.block.py2(ui-sref="shop")
+            //i.fa.fa-shopping-cart
+            //|&nbsp; Shop
+          a.button.button-transparent.block.hide.py2(ui-sref="users.list")
+            i.fa.fa-users
+            |&nbsp; Users
+          a.button.button-transparent.block.py2.hide(ui-sref="news.list")
+            i.fa.fa-rss
+            |&nbsp; News
+          //a.button.button-transparent.block.py2(ui-sref="chat.room")
+            //i.fa.fa-comments
+            //|&nbsp; Chat
+          a.button.button-transparent.block.py2(href="https://github.com/pathwar/pathwar.net#faq", target="_blank")
+            i.fa.fa-question-circle
+            |&nbsp; FAQ
 
-      // Anonymous
-      div.sm-col-right(ng-if="!nav.isAuthentificated()")
-        a(ui-sref="login").button.button-transparent.py2 Login
-        a(ui-sref="register").button.button-transparent.py2 Register
+      nav.bg-lighter-gray.clearfix.fixed.top-0.right-0.left-0.has-side-menu.z1.px3(ng-controller="NavCtrl as nav")
 
-      // Logged in
-      div(ng-if="nav.isAuthentificated()")
+        // Anonymous
+        div.sm-col-right(ng-if="!nav.isAuthentificated()")
+          a(ui-sref="login").button.button-transparent.py2 Login
+          a(ui-sref="register").button.button-transparent.py2 Register
 
-        //
-        // Organization
-        //
-        div(data-disclosure, style="vertical-align: top").inline-block
-          div(data-details).fixed.top-0.right-0.bottom-0.left-0
-          div.relative
-            a.button.button-narrow.button-transparent.py2.ucfirst
-              //img(ng-src="{{nav.currentUser.organization.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button-left.ml0
-              | {{nav.currentUser.organization.name}}
-              i.fa.fa-sort-down.icon-button
-              // FIXME: add the current session name {{currentUser.organization.session}}
-            div(data-details).absolute.left-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.box-shadow.gray
-            
-              a(ui-sref="organizations.view({id: nav.currentUser.organization._id})").button.block.button-transparent.px3.py2.regular
-                | Organization Profile
-              a(ui-sref="organizations.admin.members").button.block.button-transparent.px3.py2.regular
-                | Organization Admin
-              hr.m0
-              a(ng-repeat="organization in nav.organizations", ng-click="nav.switchOrganization(organization)").button.block.button-transparent.px3.regular
-                //img(ng-src="{{organization.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button-left.ml0
-                i.fa.fa-random.icon-button.black
-                &nbsp;
-                | Switch to <span class="black ucfirst">{{organization.name}}</span>
-              hr.m0
-              a(ui-sref="createOrganization").button.block.button-transparent.px3.py2.rounded-bottom.regular
-                i.fa.fa-plus.icon-button.black
-                &nbsp;
-                | Create new organization
+        // Logged in
+        div(ng-if="nav.isAuthentificated()")
 
-        //
-        // User Menu
-        //
-        div(data-disclosure, style="vertical-align: top").inline-block.right
-          div(data-details).fixed.top-0.right-0.bottom-0.left-0
-          div.relative
-            a.button.button-narrow.py2.px1.button-transparent.regular
-              img(ng-src="{{nav.currentUser.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button
-            div(data-details).absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.mr1.box-shadow
-              a(ui-sref="users.invitations({id: nav.currentUser._id})").button.block.button-transparent.px3.py2.regular
-                | View Invitations
-              hr.m0
-              a(ng-click="nav.logout()").button.block.button-transparent.px3.py2.regular
-                i.fa.fa-sign-out.icon-button.black
-                &nbsp;
-                | Log out
-        
-        //
-        // Score
-        //
-        
-        a.button.button-transparent.inline-block.px1.py2.right
-          i.fa.fa-star
-          div.rounded.bg-yellow.h6.px1.inline-block {{nav.currentUser.organization.statistics.score}}
-        
-        //
-        // Money
-        //
-        div(data-disclosure).inline-block.right
-          div(data-details).fixed.top-0.right-0.bottom-0.left-0
-          div.relative
-            a.button.button-transparent.py2.px1.relative
-              i.fa.fa-usd
-              div.rounded.bg-yellow.h6.px1.inline-block {{nav.currentUser.organization.statistics.cash}}
-            div(data-details).absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.box-shadow
-              a(ui-sref="coupons.redeem").button.block.button-transparent.px3.py2.regular
-                | Redeem a coupon
-
-        //
-        // Notifications
-        //
-        div.inline-block.right
-          div(ng-show="nav.notificationsOpened").fixed.top-0.right-0.bottom-0.left-0
-          div.relative
-            a(ng-click="nav.toggleNotifications()").button.button-transparent.py2.px1.relative 
-              i.fa.fa-bell-o
-              div(notifications-count).rounded.bg-red.h6.px1.inline-block {{vm.getUnreadNotificationsCount()}}
-            div(ng-if="nav.notificationsOpened", style="min-width: 400px").absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.box-shadow
-              div(notifications)
+          //
+          // Organization
+          //
+          div(data-disclosure, style="vertical-align: top").inline-block
+            div(data-details).fixed.top-0.right-0.bottom-0.left-0
+            div.relative
+              a.button.button-narrow.button-transparent.py2.ucfirst
+                //img(ng-src="{{nav.currentUser.organization.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button-left.ml0
+                | {{nav.currentUser.organization.name}}
+                i.fa.fa-sort-down.icon-button
+                // FIXME: add the current session name {{currentUser.organization.session}}
+              div(data-details).absolute.left-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.box-shadow.gray
               
+                a(ui-sref="organizations.view({id: nav.currentUser.organization._id})").button.block.button-transparent.px3.py2.regular
+                  | Organization Profile
+                a(ui-sref="organizations.admin.members").button.block.button-transparent.px3.py2.regular
+                  | Organization Admin
+                hr.m0
+                a(ng-repeat="organization in nav.organizations", ng-click="nav.switchOrganization(organization)").button.block.button-transparent.px3.regular
+                  //img(ng-src="{{organization.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button-left.ml0
+                  i.fa.fa-random.icon-button.black
+                  &nbsp;
+                  | Switch to <span class="black ucfirst">{{organization.name}}</span>
+                hr.m0
+                a(ui-sref="createOrganization").button.block.button-transparent.px3.py2.rounded-bottom.regular
+                  i.fa.fa-plus.icon-button.black
+                  &nbsp;
+                  | Create new organization
 
-    div.p3.has-side-menu.content
-      div(ui-view)
+          //
+          // User Menu
+          //
+          div(data-disclosure, style="vertical-align: top").inline-block.right
+            div(data-details).fixed.top-0.right-0.bottom-0.left-0
+            div.relative
+              a.button.button-narrow.py2.px1.button-transparent.regular
+                img(ng-src="{{nav.currentUser.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button
+              div(data-details).absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.mr1.box-shadow
+                a(ui-sref="users.invitations({id: nav.currentUser._id})").button.block.button-transparent.px3.py2.regular
+                  | View Invitations
+                hr.m0
+                a(ng-click="nav.logout()").button.block.button-transparent.px3.py2.regular
+                  i.fa.fa-sign-out.icon-button.black
+                  &nbsp;
+                  | Log out
+          
+          //
+          // Score
+          //
+          
+          a.button.button-transparent.inline-block.px1.py2.right
+            i.fa.fa-star
+            div.rounded.bg-yellow.h6.px1.inline-block {{nav.currentUser.organization.statistics.score}}
+          
+          //
+          // Money
+          //
+          div(data-disclosure).inline-block.right
+            div(data-details).fixed.top-0.right-0.bottom-0.left-0
+            div.relative
+              a.button.button-transparent.py2.px1.relative
+                i.fa.fa-usd
+                div.rounded.bg-yellow.h6.px1.inline-block {{nav.currentUser.organization.statistics.cash}}
+              div(data-details).absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.box-shadow
+                a(ui-sref="coupons.redeem").button.block.button-transparent.px3.py2.regular
+                  | Redeem a coupon
 
-    div(logger).fixed.top-0.right-0.full-width.sm-col.sm-col-4.z2
+          //
+          // Notifications
+          //
+          div.inline-block.right
+            div(ng-show="nav.notificationsOpened").fixed.top-0.right-0.bottom-0.left-0
+            div.relative
+              a(ng-click="nav.toggleNotifications()").button.button-transparent.py2.px1.relative 
+                i.fa.fa-bell-o
+                div(notifications-count).rounded.bg-red.h6.px1.inline-block {{vm.getUnreadNotificationsCount()}}
+              div(ng-if="nav.notificationsOpened", style="min-width: 400px").absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.box-shadow
+                div(notifications)
+                
+
+      div.p3.has-side-menu.content
+        div(ui-view)
+
+      div(logger).fixed.top-0.right-0.full-width.sm-col.sm-col-4.z2
     //- bower:js
     //- endinject
 

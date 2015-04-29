@@ -11,6 +11,7 @@ h1, h2, h3, h4, h5, h6
     &:hover
       text-decoration: none
 
+// UGLY =D
 button, .button
   font-weight: 600
 
@@ -80,3 +81,12 @@ button, .button
 
 [ng-click]
   cursor: pointer
+
+[ng-cloak]
+  display: none
+
+.splash
+  display: none;
+
+[ng-cloak].splash
+  display: block !important
