@@ -7,9 +7,22 @@ angular
     hotkeys.add({
       combo: 'r',
       description: 'Reload current state',
+      callback: $state.reload
+    });
+    hotkeys.add({
+      combo: 'g t',
+      description: 'Go to team page',
       callback: function() {
-        $state.reload();
-        console.log('reload');
+        $state.go('organizations.view', {
+          id: CurrentUserService.getOrganization()._id
+        });
+      }
+    });
+    hotkeys.add({
+      combo: 'g l',
+      description: 'Go to levels page',
+      callback: function() {
+        $state.go('levels.list');
       }
     });
 
