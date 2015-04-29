@@ -43,9 +43,14 @@ div.rounded.mt3.bg-white.shadow-bottom
         i.fa.fa-arrow-right
       div(data-details).fixed.top-0.right-0.bottom-0.left-0
       div(data-details).absolute.left-0.mt1.nowrap.bg-blue.rounded.animation-fadein.z1
-        a(ng-repeat="instance in ::vm.level.instances", ng-href="{{instance.urls[0].url}}", target="_blank").button.button-nav-dark.block
+        a(ng-repeat="instance in ::vm.level.instances", ng-click="vm.requestLevelInstance(instance)").button.button-nav-dark.block
           | {{ ::instance.urls[0].url ? "Instance #"+($index+1) : "Not available"}}
 
+div(ng-if="vm.selectedInstance").bg-white.p2.mt2.rounded-shadow-bottom
+  div.clearfix.mb2
+    span.h3.mt0.regular.gray Embedded View
+    a(ng-href="{{vm.selectedInstance.grantedUrl}}", target="_blank").button.right Open in new window
+  iframe(ng-src="{{vm.selectedInstance.grantedUrl}}", style="border: 0; height: 600px").full-width
 // TODO: Tab Directive
 // Navigation
 

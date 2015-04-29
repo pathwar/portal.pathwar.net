@@ -1,6 +1,6 @@
 function LevelViewCtrl(
-  $state, $stateParams, CurrentUserService, LevelService, LevelHintService,
-  LevelValidationService, LoggerService
+  $sce, $state, $stateParams, CurrentUserService, LevelService, LevelHintService,
+  LevelValidationService, LoggerService, Restangular
 ) {
   var vm = this;
 
@@ -10,6 +10,7 @@ function LevelViewCtrl(
 
   vm.validate = validate;
   vm.buyLevel = buyLevel;
+  vm.requestLevelInstance = requestLevelInstance;
 
   var currentOrg = CurrentUserService.getOrganization();
 
@@ -92,6 +93,36 @@ function LevelViewCtrl(
       CurrentUserService.loadOrganizationStatistics();
       loadBoughtLevel(); //use object in 201 instead of researching
     }
+  }
+
+  function requestLevelInstance(instance) {
+    //TODO: Put this in a service
+
+    return Restangular.all('level-instance-users').post({
+      level_instance: instance._id,
+      organization: vm.orgLevel.organization
+    })
+    .then(function(response) {
+      return Restangular.one('level-instance-users', response.data._id)
+        .get()
+        .then(function(userLevelInstance) {
+          var user = CurrentUserService.getUser();
+          var hash = userLevelInstance.data.hash;
+          var parts = instance.urls[0].url
+                      .replace('http://', '').replace('/', '').split(':');
+
+          var url = 'http://'+user.login+':'+hash+'@'+parts[0]+':'+parts[1]+'/';
+          instance.grantedUrl = $sce.trustAsResourceUrl(url);
+
+          selectInstance(instance);
+        });
+      LoggerService.success('New access granted to level '+vm.level.name+'.');
+    })
+    .catch(LoggerService.errorFromResponse);
+  }
+
+  function selectInstance(instance) {
+    vm.selectedInstance = instance;
   }
 
 }
