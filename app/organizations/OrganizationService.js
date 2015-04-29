@@ -1,11 +1,12 @@
 function OrganizationService(Restangular, Organization) {
 
-  var Organizations = Restangular.all('organizations');
+  var Organizations = Restangular.all('organizations'); //public
+  var Teams = Restangular.all('teams'); //private
 
     var service = {};
 
   service.create = function(org) {
-    return Organizations.post(org).then(function(response) {
+    return Teams.post(org).then(function(response) {
       return service.getOrganizationById(response.data._id);
     });
   };
