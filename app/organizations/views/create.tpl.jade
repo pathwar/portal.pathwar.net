@@ -6,8 +6,10 @@ div.container-small
     div(ng-init="step = 1", ng-show="step == 1")
       h3.mt0.regular.gray Choose a session first
       div.mxn2.clearfix
-        div(ng-repeat="session in vm.sessions", ng-click="vm.formData.session = session").sm-col.sm-col-3.px2
-          div(ng-class="vm.formData.session == session ? 'bg-blue' : 'bg-lighter-gray'").block.rounded.p2
+        div(ng-repeat="session in vm.sessions").sm-col.sm-col-3.px2.relative
+          div(ng-show="session.userHasOrganization", style="opacity: 0.8; cursor: no-drop").absolute.top-0.left-0.right-0.bottom-0.bg-white.ml2.mr2.z2
+          div(ng-click="vm.formData.session = session",
+              ng-class="vm.formData.session == session ? 'bg-blue white' : 'bg-lighter-gray'").block.rounded.p2.relative
             img(ng-src="{{session.avatar}}").rounded.full-width
             | {{session.name}}
 
