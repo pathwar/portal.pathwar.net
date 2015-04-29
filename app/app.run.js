@@ -5,7 +5,7 @@ angular
   ) {
 
     hotkeys.add({
-      combo: 'R',
+      combo: 'r',
       description: 'Reload current state',
       callback: function() {
         $state.reload();
