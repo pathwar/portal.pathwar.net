@@ -19,7 +19,16 @@ function LoggerService($q, $timeout, $interval, Restangular, CurrentUserService)
   }
 
   function errorFromResponse(response, opts) {
-    return _log('error', response.data._error.message, opts);
+    var message;
+
+    if (response.data == null
+    || (response.data._error && response.data._error == undefined)) {
+      message = 'Oops, an error occured on our side.';
+    }
+    else {
+      message = response.data._error.message;
+    }
+    return _log('error', message, opts);
   }
 
   function info(message, delay) {
