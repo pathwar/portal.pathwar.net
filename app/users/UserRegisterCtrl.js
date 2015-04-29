@@ -8,10 +8,8 @@ function UserRegisterCtrl(
   function register(user) {
     UserService.register(user).then(
       function success(result) {
-        CurrentUserService.login(user).then(function(result) {
-          LoggerService.success('Registration successful ! Welcome to Pathwar !');
-          $state.go('home.welcome');
-        });
+        LoggerService.success('Registration successful !');
+        vm.success = true;
       },
       function error(response) {
         LoggerService.errorFromResponse(response);
