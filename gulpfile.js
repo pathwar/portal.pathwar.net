@@ -5,6 +5,7 @@ var plugins     = require('gulp-load-plugins')();
 var historyApiFallback = require('connect-history-api-fallback');
 var del         = require('del');
 var through2    = require('through2');
+var rev         = require('git-rev');
 
 var env = process.env.NODE_ENV;
 
@@ -48,9 +49,17 @@ gulp.task("config", function() {
         config.ApiConfig.html5Mode = true;
       }
 
-      file.contents = new Buffer(JSON.stringify(config));
+      //Dirty to do this here like this ...
+      rev.long(function(str) {
 
-      next(null ,file);
+        config.PortalConfig = {
+          version: str
+        };
+
+        file.contents = new Buffer(JSON.stringify(config));
+
+        next(null ,file);
+      });
     });
   }
 
