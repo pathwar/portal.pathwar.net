@@ -1,5 +1,4 @@
-div.center
-  h1 Redeem
-  form(ng-submit="vm.redeem(coupon)").sm-col-6.inline-block
-    input(type="text", placeholder="Enter your coupon", ng-model="coupon.value").field-light.block.full-width
-    input(type="submit").button.block.full-width
+h4.m0.p2.regular.gray Redeem a coupon
+form(ng-submit="vm.redeem(coupon)", style="width: 200px").p2.bg-lightest-gray
+  input(type="text", placeholder="Enter your coupon", ng-model="coupon.value", required="true").field-light.block.full-width
+  input(type="submit", value="Redeem").button.block.full-width
