@@ -26,10 +26,12 @@ angular
             el.hide();
           }
         };
-        _.each(el.querySelectorAll('a'), function(subel) {
-          subel.addEventListener('click', function(e) {
+
+        el.addEventListener('click', function(e) {
+          if (e.target.tagName == 'A'
+          || e.target.getAttribute('data-details') != null) {
             el.toggle(e);
-          });
+          }
         });
         el.hide();
       }
