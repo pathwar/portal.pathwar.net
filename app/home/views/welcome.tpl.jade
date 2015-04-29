@@ -7,15 +7,23 @@ div.mxn2.clearfix
   div.md-col.md-col-6.px2
     h3.regular.mid-gray Latest Activities
     div.bg-white.shadow-bottom.rounded
-      div.p2.gray
-        a.button.button-small.button-transparent.black All
-        a.button.button-small.button-transparent From {{::vm.organization.name}}
-      div.rounded-bottom.bg-lightest-gray.py1
-        div.py1.px2(ng-repeat="activity in ::vm.activities").flex.flex-center
-          img(src="//placehold.it/32x32")
-          div.ml1.flex-auto {{activity.message}}
-      div.p2
-        a.button.button-small.button-transparent See More
+      div(ng-init="tab = { item: 'important'}").p2.gray
+        a(ng-click="tab.item = 'important'").button.button-small.button-transparent.black Important
+        a(ng-click="tab.item = 'all'").button.button-small.button-transparent All
+      div(ng-if="tab.item == 'important'")
+        div.rounded-bottom.bg-lightest-gray.py1
+          div.py1.px2(ng-repeat="activity in ::vm.activities.private").flex.flex-center
+            img(src="//placehold.it/32x32")
+            div.ml1.flex-auto {{activity.message}}
+        div.p2
+          a.button.button-small.button-transparent See More
+      div(ng-if="tab.item == 'all'")
+        div.rounded-bottom.bg-lightest-gray.py1
+          div.py1.px2(ng-repeat="activity in ::vm.activities.public").flex.flex-center
+            img(src="//placehold.it/32x32")
+            div.ml1.flex-auto {{activity.message}}
+        div.p2
+          a.button.button-small.button-transparent See More
 
   div.md-col.md-col-6.px2
     h3.regular.mid-gray Latest News
