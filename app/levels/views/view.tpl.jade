@@ -4,23 +4,23 @@ h2.mt0.mb2.regular.mid-gray
     |&nbsp; Levels
 
 div(ng-show="!vm.organizationBoughtLevel(vm.orgLevel)").rounded.p2.bg-yellow.shadow-bottom.flex.flex-center
-  span.flex-auto You must buy this level before accessing it. This level costs <b>{{vm.level.price}}</b>
+  span.flex-auto You must buy this level before accessing it. This level costs <b>{{vm.level.price}}</b>.
   a(ng-click="vm.buyLevel(vm.level)").button.button-narrow.flex-right Buy this level
 
 div(ng-if="vm.orgLevel.status == 'validated'").rounded.p2.mt3.bg-blue.shadow-bottom.white
-  | You already validated this level
+  | You already validated this level.
 
-div(ng-if="vm.orgLevel.status == 'pending validation'").rounded.p2.mt3.bg-yellow.shadow-bottom.white
-  | Your validation is pending validation
+div(ng-if="vm.orgLevel.status == 'pending validation'").rounded.p2.mt3.bg-yellow.shadow-bottom
+  i.fa.fa-clock-o
+  &nbsp;
+  | Your validation is pending validation.
   
 div.rounded.mt3.bg-white.shadow-bottom
   div.p3
     h3.mt0.regular.light-gray Level
     h1.m0.ucfirst {{vm.level.name}}
     div.h6
-      a(href="")
-        | {{vm.level.author.string}}
-        |&nbsp; (Author)
+      | Pathwar Team (Author)
     div
       i.fa.fa-star.yellow
       i.fa.fa-star.yellow
