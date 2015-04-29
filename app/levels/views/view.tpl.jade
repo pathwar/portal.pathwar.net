@@ -35,7 +35,7 @@ div.rounded.mt3.bg-white.shadow-bottom
       //a.button.button-outline.blue.ml2(ng-repeat="tag in ::vm.level.tags | orderBy:tag") {{::tag}}
     span.h5.inline-block.px2.py1.border.border-blue.blue.rounded.mr2(ng-repeat="tag in ::vm.level.tags | orderBy:tag") {{::tag}}
       
-  div.px3.py2.bg-lightest-gray.rounded-bottom.border-top.border-lighter-gray
+  div(ng-if="vm.orgLevel.has_access").px3.py2.bg-lightest-gray.rounded-bottom.border-top.border-lighter-gray
     //button(ng-click="buyLevel(level)", ng-disabled="level.bought").rounded.mr2 Buy now
     div(data-disclosure).relative.inline-block
       a.button.px3
