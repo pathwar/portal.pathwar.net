@@ -24,6 +24,7 @@ angular.module('portal.home', [
   var vm = this;
 
   vm.organization = CurrentUserService.getOrganization();
+  vm.activities = {};
 
   NewsService.getNews().then(function(news) {
     vm.news = NewsService.news;
@@ -36,15 +37,27 @@ angular.module('portal.home', [
     'organization-levels-create': 'An organization bought a level'
   };
 
-  Restangular.all('activities')
-    .getList()
-    .then(function(activities) {
-
-      angular.forEach(activities, function(activity) {
-        activity.message = activityMessages[activity.action] || activity.action;
-      });
-
-      vm.activities = activities;
+  Restangular.all('user-activities')
+    .getList({
+      sort: '-_created'
     })
+    .then(function(activities) {
+      vm.activities.private = translateActivities(activities);
+    });
+
+  Restangular.all('activities')
+    .getList({
+      sort: '-_created'
+    })
+    .then(function(activities) {
+      vm.activities.public = translateActivities(activities);
+    });
+
+  function translateActivities(activities) {
+    angular.forEach(activities, function(activity) {
+      activity.message = activityMessages[activity.action] || activity.action;
+    });
+    return activities;
+  }
 
 });
