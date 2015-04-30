@@ -37,16 +37,7 @@ function LevelService(Restangular) {
     opts.where = opts.where || {};
     opts.where.organization = orgId;
 
-    return Restangular.all('organization-levels').getList(opts || {})
-      .then(function(orgLevels) {
-        var levels = [];
-
-        _.forEach(orgLevels, function(orgLevel) {
-          levels.push(orgLevel.level);
-        });
-
-        return levels;
-      });
+    return Restangular.all('organization-levels').getList(opts || {});
   };
 
   // takes an object with a level attribute containing the level ID
