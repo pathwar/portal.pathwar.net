@@ -27,12 +27,12 @@ div.p3.bg-white.rounded.mt3.shadow-bottom
     tbody
       tr(ng-repeat="level in vm.levels | filter:search | orderBy:level.statistics.amount_finished")
         td
-          i(ng-if="::level.bought").fa.fa-dot-circle-o
-          | &nbsp;
-          a(ui-sref="levels.view({id: level._id})") {{::level.name}}
+          i(ng-if="::level.status == 'validated'").fa.fa-check-circle.green
+          i(ng-if="::level.status == 'refused'").fa.fa-times-circle.red
+          a(ui-sref="levels.view({id: level._id})").inline-block.ml1 {{::level.name}}
         td
           span(ng-repeat="tag in ::level.tags").h6.inline-block.px1.mr1.blue.border.border-blue.rounded {{::tag}}
         td {{::level.price}}
         td {{::level.reward}}
         td.right-align
-          button.button(ng-click="vm.buyLevel(level)", ng-disabled="level.bought") Buy
+          button.button(ng-click="vm.buyLevel(level)", ng-if="!level.bought") Buy

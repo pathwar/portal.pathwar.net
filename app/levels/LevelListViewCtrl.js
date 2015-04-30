@@ -26,14 +26,26 @@ function LevelListViewCtrl($q, LevelService, CurrentUserService, LoggerService) 
       var boughtLevels = results[1];
 
       _.each(vm.levels, function(level) {
-        var isAlreadyBought = _.find(boughtLevels, function(boughtLevel) {
-          return level._id == boughtLevel._id;
+        var boughtLevel = _.find(boughtLevels, function(boughtLevel) {
+          return level._id == boughtLevel.level._id;
         });
 
-        if (isAlreadyBought)
+        if (boughtLevel) {
           level.bought = true;
-        else
+          
+          // TODO: BEtter way of doing this
+          if (boughtLevel.status == 'pending validation'
+          ||  boughtLevel.status == 'validated') {
+            level.status = 'validated';
+          }
+          else {
+            level.status = boughtLevel.status;
+          }
+        }
+        else {
           level.bought = false;
+        }
+
       });
     });
   }
