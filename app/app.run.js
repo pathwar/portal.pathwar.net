@@ -60,7 +60,7 @@ angular
         if (window.ga) {
           window.ga('send', 'pageview', path);
         }
-        if (window.kmk) {
+        if (window._kmk) {
           window._kmq.push(['record', 'Pageview', { 'Page': path }]);
         }
       }
