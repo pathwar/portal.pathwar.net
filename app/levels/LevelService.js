@@ -2,10 +2,16 @@ function LevelService(Restangular) {
 
   var service = {};
 
-  service.getLevels = function(opts = {}) {
+  service.getLevelsBySessionId = function(sessionId, opts = {}) {
+
+    opts.where = angular.toJson({
+      'availability.sessions': sessionId
+    });
+
     opts.embedded = angular.toJson({
       statistics: 1
     });
+    
     return Restangular.all('levels').getList(opts || {});
   };
 
