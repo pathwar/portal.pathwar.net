@@ -1,5 +1,5 @@
 function OrganizationMembersCtrl(
-  $state, $stateParams, Restangular, CurrentUserService, User
+  $q, $state, $stateParams, Restangular, UserService, CurrentUserService, User
 ) {
   var vm = this;
 
@@ -11,21 +11,23 @@ function OrganizationMembersCtrl(
 
     var currentOrg = CurrentUserService.getOrganization();
 
+    //TODO: Put back embed when fixed on api side
     return Restangular.all('organization-users').getList({
       where: JSON.stringify({
         organization: currentOrg._id
-      }),
-      embedded: JSON.stringify({
-        user: 1
       })
     })
-    .then(function(users) {
+    .then(function(orgUsers) {
       var _users = [];
-      angular.forEach(users, function(user) {
-        _users.push(User.build(user.user));
+
+      angular.forEach(orgUsers, function(orgUser) {
+        _users.push(UserService.getUserById(orgUser.user));
       });
-      vm.users = _users;
-      return _users;
+
+      return $q.all(_users).then(function(results) {
+        vm.users = results;
+        return vm.users;
+      });
     });
   }
 
