@@ -1,5 +1,5 @@
 function OrganizationInvitesCtrl(
-  $q, $state, $stateParams, User, Restangular, CurrentUserService
+  $q, $state, $stateParams, User, Restangular, UserService, CurrentUserService
 ) {
   var vm = this;
   //vm.pending_invites = null;
@@ -14,6 +14,8 @@ function OrganizationInvitesCtrl(
   function fetchInvites() {
       var currentOrg = CurrentUserService.getOrganization();
 
+      //TODO: Temporary fix while API fixes user embed
+      // Now fetching users instead of embedding
       $q.all([
         getInvitesByOrganizationId(currentOrg._id, {status: 'pending'}),
         getInvitesByOrganizationId(currentOrg._id, {status: 'accepted'}),
@@ -24,12 +26,18 @@ function OrganizationInvitesCtrl(
         var accepted_invites = [];
 
         angular.forEach(results[0], function(invite) {
-          invite.user = User.build(invite.user);
+          UserService.getUserById(invite.user)
+            .then(function(user) {
+              invite.user = user;
+            });
           pending_invites.push(invite);
         });
 
         angular.forEach(results[1], function(invite) {
-          invite.user = User.build(invite.user);
+          UserService.getUserById(invite.user)
+            .then(function(user) {
+              invite.user = user;
+            });
           accepted_invites.push(invite);
         });
 
@@ -53,10 +61,7 @@ function OrganizationInvitesCtrl(
       }
 
       return Restangular.all('user-organization-invites').getList({
-        where: JSON.stringify(where),
-        embedded: JSON.stringify({
-          user: 1
-        })
+        where: JSON.stringify(where)
       });
     }
 
