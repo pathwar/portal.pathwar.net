@@ -1,5 +1,5 @@
 function StatisticsCtrl(
-  Restangular, Organization
+  Restangular, CurrentUserService, Organization
 ) {
   var vm = this;
 
@@ -16,10 +16,17 @@ function StatisticsCtrl(
   }
 
   function getOrganizationsSortedBy(sort) {
+
+    var currentOrg = CurrentUserService.getOrganization();
+    var currentSessionId = currentOrg.session;
+
     return Restangular.service('organization-statistics')
       .getList({
         sort: '-'+sort,
-        embedded: JSON.stringify({
+        where: angular.toJson({
+          session: currentSessionId
+        }),
+        embedded: angular.toJson({
           organization: 1
         })
       }).then(function(res) {
