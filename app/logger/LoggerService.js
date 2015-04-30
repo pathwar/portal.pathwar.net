@@ -27,6 +27,9 @@ function LoggerService($q, $timeout, $interval, Restangular, CurrentUserService)
     }
     else {
       message = response.data._error.message;
+      if (response.data._issues) {
+        console.log(response);
+      }
     }
     return _log('error', message, opts);
   }
