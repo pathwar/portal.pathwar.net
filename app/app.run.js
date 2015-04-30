@@ -58,7 +58,10 @@ angular
       if ($location.host() == 'portal.pathwar.net') {
         var path = $location.url();
         if (window.ga) {
-          ga('send', 'pageview', path);
+          window.ga('send', 'pageview', path);
+        }
+        if (window.kmk) {
+          window._kmq.push(['record', 'Pageview', { 'Page': path }]);
         }
       }
     });
