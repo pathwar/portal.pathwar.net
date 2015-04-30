@@ -4,7 +4,6 @@ function OrganizationMembersCtrl(
   var vm = this;
 
   vm.organization = {};
-  vm.save = save;
 
   init();
 
@@ -29,16 +28,6 @@ function OrganizationMembersCtrl(
       return _users;
     });
   }
-
-  function save(organization) {
-    var toSend = _.pick(organization, function(value, key) {
-      return key.charAt(0) != '_' || key == '_etag';
-    });
-
-    organization.patch(toSend).then(function(response) {
-      $state.transitionTo('organizations.list');
-    });
-  };
 
 }
 
