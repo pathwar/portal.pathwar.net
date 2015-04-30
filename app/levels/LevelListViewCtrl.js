@@ -11,8 +11,14 @@ function LevelListViewCtrl($q, LevelService, CurrentUserService, LoggerService) 
   /** Get levels and mark the ones already bought */
   // TODO: Should be in a service
   function init() {
+
+    var currentOrg = CurrentUserService.getOrganization();
+    console.log(currentOrg);
+    var sessionId = currentOrg.session;
+
+
     $q.all([
-      LevelService.getLevels(),
+      LevelService.getLevelsBySessionId(sessionId),
       LevelService.getLevelsByOrganizationId(currentOrg._id)
     ])
     .then(function (results) {
