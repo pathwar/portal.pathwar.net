@@ -34,7 +34,8 @@ angular.module('portal.home', [
     'user-tokens-create': 'A user logged in',
     'users-create': 'A user registered',
     'organizations-create': 'An organization has been created',
-    'organization-levels-create': 'An organization bought a level'
+    'organization-levels-create': 'An organization bought a level',
+    'organization-achievement-create': 'An organization earned an achievement'
   };
 
   Restangular.all('user-activities')
