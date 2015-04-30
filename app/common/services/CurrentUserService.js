@@ -70,7 +70,9 @@ function CurrentUserService(
 
   service.clear = function() {
     $window.localStorage.removeItem('currentUser');
-    user = {};
+    //TODO: Dirty Fix, find a better way to clear data on logout
+    user.organization = undefined;
+    user.authToken = null;
   };
 
   return service;
