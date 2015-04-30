@@ -10,8 +10,6 @@ function AchievementService(Restangular) {
       embedded: JSON.stringify({
         achievement: 1
       })
-    })
-    .then(function(res) {
     });
   }
 

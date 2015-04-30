@@ -11,7 +11,7 @@ function LevelService(Restangular) {
     opts.embedded = angular.toJson({
       statistics: 1
     });
-    
+
     return Restangular.all('levels').getList(opts || {});
   };
 
