@@ -10,6 +10,8 @@ function NotificationService($q, $interval, Restangular, CurrentUserService) {
   service.getUnreadNotificationsCount = getUnreadNotificationsCount;
   service.markAsAllRead = markAsAllRead;
 
+  service.resolveState = resolveState;
+
   var fetcher = $interval(function() {
     if (CurrentUserService.isAuthentificated()) {
       getUnreadNotifications();
@@ -72,6 +74,39 @@ function NotificationService($q, $interval, Restangular, CurrentUserService) {
           return service.items;
         }
       );
+  }
+
+  function resolveState(notification) {
+
+    var state = {
+      name: '',
+      params: {}
+    };
+
+    switch(notification.action) {
+      case 'organization-achievement-create':
+
+        var resource = _.findWhere(notification.linked_resources, {
+          kind: 'organizations'
+        });
+
+        state.name = 'organizations.view';
+        state.params.id = resource.id;
+
+        break;
+
+      case 'user-organization-invite-create':
+        var user = CurrentUserService.getUser();
+
+        state.name = 'users.invitations';
+        state.params.id = user._id;
+
+        break;
+      default:
+        return undefined;
+    }
+
+    return state;
   }
 }
 
