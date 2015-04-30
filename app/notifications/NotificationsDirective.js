@@ -16,10 +16,11 @@ function NotificationDirective() {
 }
 
 // @ngInject
-function NotificationDirectiveCtrl($scope, NotificationService) {
+function NotificationDirectiveCtrl($scope, $state, NotificationService) {
   var vm = this;
 
   vm.notifications = NotificationService.items;
+  vm.viewNotification = viewNotification;
 
   init();
 
@@ -29,6 +30,14 @@ function NotificationDirectiveCtrl($scope, NotificationService) {
     $scope.$on('$destroy', function() {
       NotificationService.markAsAllRead();
     });
+  }
+
+  function viewNotification(notification) {
+    var state = NotificationService.resolveState(notification);
+
+    if (state) {
+      $state.go(state.name, state.params);
+    }
   }
 }
 
