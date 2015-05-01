@@ -1,0 +1,40 @@
+div.container-small
+  h3.mt0.regular.gray Account
+  div.p2.bg-white.rounded
+    a.button.button-transparent.active Account
+  div.p2.bg-white.rounded.shadow-bottom.mt2
+    form(ng-submit="vm.save(vm.user)")
+      div.clearfix
+        div.sm-col.sm-col-6
+          h4.mt0 Core
+          label Login
+          input(type="text", ng-model="vm.user.login", placeholder="Login").block.field-light.mb2.sm-col-8
+          
+          label Email
+          input(type="email", ng-model="vm.user.email", placeholder="Email", disabled).block.field-light.mb2.sm-col-8
+          
+          div.flex.flex-center
+            img(src="{{vm.user.getAvatarUrl(32)}}").rounded.flex-right
+            p.mb0.flex-auto.px2 Change your avatar on <a href="http://gravatar.com" target="_blank">gravatar.com</a>
+
+        div.sm-col.sm-col-6
+          h4.mt0 Details
+          
+          label Name
+          input(type="text", ng-model="vm.user.name", placeholder="Login").block.field-light.mb2.sm-col-8
+          
+          label Location
+          input(type="email", ng-model="vm.user.company", placeholder="Location").block.field-light.mb2.sm-col-8
+          
+          label Company / School
+          input(type="email", ng-model="vm.user.company", placeholder="Company / School").block.field-light.mb2.sm-col-8
+          
+          label Website
+          input(type="email", ng-model="vm.user.website", placeholder="Website").block.field-light.mb2.sm-col-8
+          
+          label Social Links
+          input(type="email", ng-model="vm.user.social_links", placeholder="ex: github.com/substack").block.field-light.mb2.sm-col-8
+          button.button-small.regular.h5.rounded Add Another
+          
+      hr.mb2
+      input(type="submit", value="Save Changes").button
