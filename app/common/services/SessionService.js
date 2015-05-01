@@ -10,6 +10,14 @@ angular
       return Sessions.getList();
     };
 
+    service.getPublicSessions = function(opts) {
+      return Sessions.getList({
+        where: angular.toJson({
+          public: true
+        })
+      });
+    };
+
     return service;
 
   });

@@ -16,7 +16,7 @@ function OrganizationCreateCtrl(
     var user = CurrentUserService.getUser();
 
     $q.all([
-      SessionService.getSessions(),
+      SessionService.getPublicSessions(),
       OrganizationService.getOrganizationsByUserId(user._id)
     ]).then(function(results) {
 
