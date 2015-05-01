@@ -59,6 +59,7 @@ function LevelViewCtrl(
         function(data) {
           vm.orgLevel.has_access = false; //switch to orgLevel
           LoggerService.success('Congratulations, your validation is pending validation !');
+          CurrentUserService.loadOrganizationStatistics();
           $state.reload();
         },
         // ERROR
