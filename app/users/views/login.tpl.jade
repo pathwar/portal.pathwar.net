@@ -6,6 +6,8 @@ div.center
       form
         input(type="text", ng-model="vm.credentials.login", placeholder="Login").block.full-width.field-light
         input(type="password", ng-model="vm.credentials.password", placeholder="Password").block.full-width.field-light
+        div.mb2.center
+          a(ui-sref="reset").h5 Reset password
         button(ng-click="vm.login(vm.credentials)").button.mb1.block.full-width Login
         p.center.h5
           | Don't have an account? 

@@ -155,6 +155,9 @@ html(ng-app="portal", lang="en")
 
     //- inject:js
     //- endinject
+    
+    // RECAPTCHA  
+    script(src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit", async, defer)
 
     if env == "production"
 
