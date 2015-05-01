@@ -46,11 +46,13 @@ div.rounded.mt3.bg-white.shadow-bottom
         a(ng-repeat="instance in ::vm.level.instances", ng-click="vm.requestLevelInstance(instance)").button.button-nav-dark.block
           | {{ ::instance.urls[0].url ? "Instance #"+($index+1) : "Not available"}}
 
-div(ng-if="vm.selectedInstance").bg-white.p2.mt2.rounded-shadow-bottom
-  div.clearfix.mb2
-    span.h3.mt0.regular.gray Embedded View
-    a(ng-href="{{vm.selectedInstance.grantedUrl}}", target="_blank").button.right Open in new window
-  iframe(ng-src="{{vm.selectedInstance.grantedUrl}}", style="border: 0; height: 600px").full-width
+div(ng-if="vm.selectedInstance").bg-white.mt2.rounded.shadow-bottom
+  div.flex.flex-center.mb2.p2.border-bottom
+    span.flex-left.h3.mt0.regular.gray Embedded View
+    input(type="text", value="{{vm.selectedInstance.grantedUrl}}").flex-auto.ml2.mr2.field-light.mb0
+    a(ng-href="{{vm.selectedInstance.grantedUrl}}", target="_blank").button.flex-right Open in new window
+  div.p2
+    iframe(ng-src="{{vm.selectedInstance.grantedUrl}}", style="border: 0; height: 600px").full-width
 // TODO: Tab Directive
 // Navigation
 
