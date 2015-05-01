@@ -7,10 +7,10 @@ div.center
       input(type="email", ng-model="credentials.email", placeholder="Email", required).block.full-width.field-light
       input(type="password", ng-model="credentials.password", placeholder="New password", required).block.full-width.field-light
       p.h5 Your new password will be effective once you click the link in a confirmation email.
-      input(type="hidden", ng-model="credentials.response")
+      input(type="hidden", ng-model="credentials.captcha_response")
       div(vc-recaptcha,
           key="vm.reCaptchaPublicKey",
-          on-success="credentials.response = response").mb2
+          on-success="credentials.captcha_response = response").mb2
       button(type="submit").button.mb1.block.full-width Reset my password
       p.center.h5
         | Nevermind 

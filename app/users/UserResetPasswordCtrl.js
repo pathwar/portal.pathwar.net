@@ -7,8 +7,8 @@ function UserResetPasswordCtrl(
   vm.reCaptchaPublicKey = '6LfYMQYTAAAAABN2ZQm4nrLjrLqWsdglF-8NxoUq';
 
   function reset(credentials) {
-    
-    if (!credentials.reponse || credentials.response.length == 0) {
+
+    if (!credentials.captcha_response || credentials.captcha_response.length == 0) {
       LoggerService.error('Captcha is required');
       return 1
     }
