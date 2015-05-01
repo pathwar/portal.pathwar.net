@@ -38,7 +38,6 @@ angular
       var token = CurrentUserService.getAuthToken();
       var basic = 'Basic '+window.btoa(token+':');
 
-      console.log('set auth');
       Restangular.setDefaultHeaders({ Authorization: basic });
 
       CurrentUserService.loadUserInfo();
