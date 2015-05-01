@@ -1,13 +1,12 @@
-div.container-small
-  h1.mt0.regular.gray Login to Pathwar
-  div.bg-white.rounded.p2
-    div.sm-col.sm-col-8
-      div.sm-col-9
-        p Welcome to Pathwar Portal
-        p From here you will be able to access the levels we have crafted for you !
-        p Have Fun !
-    form.sm-col-4.inline-block
-      input(type="text", ng-model="vm.credentials.login", placeholder="Login").block.full-width.field-light
-      input(type="password", ng-model="vm.credentials.password", placeholder="Password").block.full-width.field-light
-      br
-      button(ng-click="vm.login(vm.credentials)").button.mb1.block.full-width Login
+div.center
+  div(style="max-width: 400px").inline-block.left-align.full-width
+    h2.regular.gray Login to Pathwar
+    div.bg-white.rounded.p2
+      p Welcome to Pathwar Portal
+      form
+        input(type="text", ng-model="vm.credentials.login", placeholder="Login").block.full-width.field-light
+        input(type="password", ng-model="vm.credentials.password", placeholder="Password").block.full-width.field-light
+        button(ng-click="vm.login(vm.credentials)").button.mb1.block.full-width Login
+        p.center.h5
+          | Don't have an account? 
+          a(ui-sref="register") Sign up for free

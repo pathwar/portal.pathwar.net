@@ -1,5 +1,7 @@
 div.container-small
   h1.mt0.gray.regular Register to Pathwar
+  p(ng-if="!vm.success").p2.bg-green.rounded.shadow-bottom.white
+    | Thank you for registering ! Check your email for confirmation link before you can login.
   div.bg-white.rounded.p2.clearfix
     div.sm-col.sm-col-8
       div.sm-col-9
@@ -8,10 +10,7 @@ div.container-small
           li.mt2 Be careful when choosing your login, part of Pathwar challenge is to stay as much anonymous as possible.
           li.mt1 Do not use an existing password, the probability that it will get hijacked is high here !
           li.mt1 Have fun !
-    div(ng-if="vm.success").sm-col.sm-col-4
-      b.block.mb2 Thank you for registering !
-      p Check your email for confirmation link before you can login. See you soon.
-    form(ng-submit="vm.register(vm.user)", ng-if="!vm.success").sm-col.sm-col-4
+    form(ng-submit="vm.register(vm.user)").sm-col.sm-col-4
       input(type="text", ng-model="vm.user.login", placeholder="Login").block.full-width.field-light
       input(type="email", ng-model="vm.user.email", placeholder="Email").block.full-width.field-light
       input(type="password", ng-model="vm.user.password", placeholder="Password").block.full-width.field-light
