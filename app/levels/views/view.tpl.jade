@@ -15,7 +15,7 @@ div(ng-if="vm.orgLevel.status == 'pending validation'").rounded.p2.mt3.bg-yellow
   &nbsp;
   | Your validation is pending validation.
   
-div.rounded.mt3.bg-white.shadow-bottom
+div.rounded.mt2.bg-white.shadow-bottom
   div.p3
     h3.mt0.regular.light-gray Level
     h1.m0.ucfirst {{vm.level.name}}
@@ -56,7 +56,7 @@ div(ng-if="vm.selectedInstance").bg-white.mt2.rounded.shadow-bottom
 // TODO: Tab Directive
 // Navigation
 
-div.bg-white.rounded.shadow-bottom.mt3.gray
+div.bg-white.rounded.shadow-bottom.mt2.gray
   nav(ng-init="tab.value = 'statistics'").p2
     a(ng-click="tab.value = 'statistics'").button.button-narrow.button-transparent.black Statistics
     a(ng-click="tab.value = 'validation'").button.button-narrow.button-transparent Validation
