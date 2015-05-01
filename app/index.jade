@@ -172,3 +172,16 @@ html(ng-app="portal", lang="en")
         }
         _kms('//i.kissmetrics.com/i.js');
         _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
+    
+    script.
+      Raven.config('http://3512fe4500134020b00d614a48dd6fa6@sentry.dev.pathwar.net//3', {
+        logger: 'javascript',
+        ignoreErrors: [
+         'livereload.js'
+        ],
+        ignoreUrls: [
+          // Chrome extensions
+          /extensions\//i,
+          /^chrome:\/\//i
+        ]
+      }).install();

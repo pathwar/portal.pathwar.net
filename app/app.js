@@ -6,6 +6,7 @@ angular
     'restangular',
     'cfp.hotkeys',
     'vcRecaptcha',
+    'ngRaven',
     'portal.config',
     'portal.services',
     'portal.directives',
