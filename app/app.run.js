@@ -54,16 +54,4 @@ angular
       }
     });
 
-    $rootScope.$on('$stateChangeSuccess', function(event, toState) {
-      if ($location.host() == 'portal.pathwar.net') {
-        var path = $location.url();
-        if (window.ga) {
-          window.ga('send', 'pageview', path);
-        }
-        //if (window._kmk) {
-        //  window._kmq.push(['record', 'Pageview', { 'Page': path }]);
-        //}
-      }
-    });
-
   });
