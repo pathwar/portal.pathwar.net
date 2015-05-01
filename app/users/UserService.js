@@ -14,6 +14,12 @@ function UserService(Restangular, User) {
     });
   };
 
+  service.resetPassword = function(credentials) {
+    return Restangular.all('password-recover-requests').post(credentials).then(function(response) {
+      return response.data;
+    });
+  };
+
   return service;
 }
 

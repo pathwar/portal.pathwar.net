@@ -5,6 +5,7 @@ angular
     'templates',
     'restangular',
     'cfp.hotkeys',
+    'vcRecaptcha',
     'portal.config',
     'portal.services',
     'portal.directives',

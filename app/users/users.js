@@ -44,6 +44,12 @@ angular.module('portal.users', [
     controllerAs: 'vm',
     templateUrl: 'users/views/login.tpl.html'
   })
+  .state('reset', {
+    url: '^/reset',
+    controller: 'UserResetPasswordCtrl',
+    controllerAs: 'vm',
+    templateUrl: 'users/views/reset.tpl.html'
+  })
   .state('register', {
     url: '^/register',
     controller: 'UserRegisterCtrl',
