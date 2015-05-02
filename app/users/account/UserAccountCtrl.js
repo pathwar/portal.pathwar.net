@@ -28,6 +28,7 @@ function UserAccountCtrl(
 
     resource.patch(toSend).then(function(response) {
       LoggerService.success('Changes saved');
+      $state.reload(); //TODO: This is done to get a new etag
     })
     .catch(function(response) {
       LoggerService.errorFromResponse(response);
