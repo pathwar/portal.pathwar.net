@@ -81,9 +81,11 @@ gulp.task("scripts", function() {
     .pipe(plugins.using({prefix: 'Compiling JS'}))
     .pipe(plugins['6to5']())
     .pipe(plugins.if(env == 'production', plugins.ngAnnotate()))
+    .pipe(plugins.if(env == 'production', plugins.sourcemaps.init()))
     .pipe(plugins.angularFilesort())
     .pipe(plugins.if(env == 'production', plugins.concat('app.js')))
     .pipe(plugins.if(env == 'production', plugins.uglify()))
+    .pipe(plugins.if(env == 'production', plugins.sourcemaps.write('.')))
     //.pipe(                                plugins.rev())
 
     .pipe(gulp.dest("./build/"))
