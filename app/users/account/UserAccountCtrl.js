@@ -29,7 +29,7 @@ function UserAccountCtrl(
     resource.patch(toSend).then(function(response) {
       LoggerService.success('Changes saved');
       user._etag = response.data._etag;
-      user.last_login = true; //TODO: Fix me, reload has too much cache
+      $state.reload();
     })
     .catch(function(response) {
       LoggerService.errorFromResponse(response);
