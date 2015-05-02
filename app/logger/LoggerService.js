@@ -22,7 +22,7 @@ function LoggerService($q, $timeout, $interval, Restangular, CurrentUserService)
     var message;
 
     if (response.data == null
-    || (response.data._error && response.data._error == undefined)) {
+    || response.data._error == undefined) {
       message = 'Oops, an error occured on our side.';
     }
     else {
