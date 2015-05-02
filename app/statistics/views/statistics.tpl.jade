@@ -16,8 +16,8 @@ div.mxn2
           div(ng-repeat="organization in ::vm.organizations_by_score | limitTo:10").flex.flex-center.border-lighter-gray.border-top.py1.px2
             div.px1.h5 {{$index + 1}}
             //div.px2.flex: img(ng-src="{{organization.getAvatarUrl(32)}}", width="32", height="32")
-            div.flex-auto
-              a(ui-sref="organizations.view({id: organization._id})").ucfirst {{organization.name}}
+            a(ui-sref="organizations.view({id: organization._id})").flex-auto.ucfirst {{organization.name}}
+            span.flex-right {{organization.statistics.score}}
 
 
   div.sm-col.sm-col-6.px2
@@ -37,5 +37,5 @@ div.mxn2
           div(ng-repeat="organization in ::vm.organizations_by_cash | limitTo:10").flex.flex-center.border-lighter-gray.border-top.py1.px2
             div.px1.h5 {{$index + 1}}
             //div.px2.flex: img(ng-src="{{organization.getAvatarUrl(32)}}", width="32", height="32")
-            div.flex-auto
-              a(ui-sref="organizations.view({id: organization._id})").ucfirst {{organization.name}}
+            a(ui-sref="organizations.view({id: organization._id})").flex-auto.ucfirst {{organization.name}}
+            span.flex-right {{organization.statistics.cash}}

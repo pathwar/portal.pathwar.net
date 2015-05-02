@@ -32,7 +32,10 @@ function StatisticsCtrl(
       }).then(function(res) {
         var _orgs = [];
         _.each(res, function(stats) {
-          _orgs.push(Organization.build(stats.organization));
+          var org = Organization.build(stats.organization);
+          delete stats.organization;
+          org.statistics = stats
+          _orgs.push(org);
         });
         vm['organizations_by_'+sort] = _orgs;
       });
