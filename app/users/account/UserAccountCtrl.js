@@ -28,7 +28,8 @@ function UserAccountCtrl(
 
     resource.patch(toSend).then(function(response) {
       LoggerService.success('Changes saved');
-      $state.reload(); //TODO: This is done to get a new etag
+      user._etag = response.data._etag;
+      user.last_login = true; //TODO: Fix me, reload has too much cache
     })
     .catch(function(response) {
       LoggerService.errorFromResponse(response);
