@@ -1,5 +1,5 @@
 function UserAccountCtrl(
-  $state, CurrentUserService, User, Restangular
+  $state, CurrentUserService, User, Restangular, LoggerService
 ) {
   var vm = this;
 
@@ -19,11 +19,14 @@ function UserAccountCtrl(
   }
 
   function save(user) {
+
+    var resource = Restangular.one('accounts', user._id);
+
     var toSend = _.pick(user, function(value, key) {
       return key.charAt(0) != '_' || key == '_etag';
     });
 
-    user.patch(toSend).then(function(response) {
+    resource.patch(toSend).then(function(response) {
       LoggerService.success('Changes saved');
     })
     .catch(function(response) {

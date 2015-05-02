@@ -8,7 +8,8 @@ div.container-small
         div.sm-col.sm-col-6
           h4.mt0 Core
           label Login
-          input(type="text", ng-model="vm.user.login", placeholder="Login").block.field-light.mb2.sm-col-8
+          input(type="text", ng-model="vm.user.login", placeholder="Login", ng-disabled="vm.user.last_login").block.field-light.mb2.sm-col-8
+          p.h5 You can only change your login once
           
           label Email
           input(type="email", ng-model="vm.user.email", placeholder="Email", disabled).block.field-light.mb2.sm-col-8
@@ -21,20 +22,25 @@ div.container-small
           h4.mt0 Details
           
           label Name
-          input(type="text", ng-model="vm.user.name", placeholder="Login").block.field-light.mb2.sm-col-8
+          input(type="text", ng-model="vm.user.name", placeholder="Full Name").block.field-light.mb2.sm-col-8
           
           label Location
-          input(type="email", ng-model="vm.user.company", placeholder="Location").block.field-light.mb2.sm-col-8
+          input(type="email", ng-model="vm.user.location", placeholder="Location").block.field-light.mb2.sm-col-8
           
           label Company / School
           input(type="email", ng-model="vm.user.company", placeholder="Company / School").block.field-light.mb2.sm-col-8
           
+          label School Specific Login
+          input(type="email", ng-model="vm.user.student_id", placeholder="ex: lecoq_v").block.field-light.mb2.sm-col-8
+          
+          p.h5 We need your school login to give you your marks.
+          
           label Website
           input(type="email", ng-model="vm.user.website", placeholder="Website").block.field-light.mb2.sm-col-8
           
-          label Social Links
-          input(type="email", ng-model="vm.user.social_links", placeholder="ex: github.com/substack").block.field-light.mb2.sm-col-8
-          button.button-small.regular.h5.rounded Add Another
+          label Public profiles
+          input(type="email", ng-model="vm.user.github_handle", placeholder="ex: github.com/substack").block.field-light.mb2.sm-col-8
+          input(type="email", ng-model="vm.user.twitter_handle", placeholder="ex: twitter.com/substack").block.field-light.mb2.sm-col-8
           
       hr.mb2
       input(type="submit", value="Save Changes").button
