@@ -1,0 +1,68 @@
+"use strict";
+
+function LevelListViewCtrl($q, LevelService, CurrentUserService, LoggerService) {
+  /** Get levels and mark the ones already bought */
+  // TODO: Should be in a service
+  var init = function () {
+    var currentOrg = CurrentUserService.getOrganization();
+    console.log(currentOrg);
+    var sessionId = currentOrg.session;
+
+
+    $q.all([LevelService.getLevelsBySessionId(sessionId), LevelService.getLevelsByOrganizationId(currentOrg._id)]).then(function (results) {
+      vm.levels = results[0];
+      var boughtLevels = results[1];
+
+      _.each(vm.levels, function (level) {
+        var boughtLevel = _.find(boughtLevels, function (boughtLevel) {
+          return level._id == boughtLevel.level._id;
+        });
+
+        if (boughtLevel) {
+          level.bought = true;
+
+          // TODO: BEtter way of doing this
+          if (boughtLevel.status == "pending validation" || boughtLevel.status == "validated") {
+            level.status = "validated";
+          } else {
+            level.status = boughtLevel.status;
+          }
+        } else {
+          level.bought = false;
+        }
+      });
+    });
+  };
+
+  /** Buys a level and reload organization info */
+  // TODO: Should be in a service
+  var buyLevel = function (level) {
+    var buyLevelSuccess = function () {
+      level.bought = true;
+
+      LoggerService.success("Level " + level.name + " succesfully bought !");
+      CurrentUserService.loadOrganizationStatistics();
+    };
+
+    var currentOrg = CurrentUserService.getOrganization();
+
+    if (currentOrg.statistics.cash - level.price < 0) {
+      LoggerService.error("You do not have enough cash to buy this level");
+      return false;
+    }
+
+    return LevelService.buyLevelbyOrganizationId(level._id, currentOrg._id).then(buyLevelSuccess)["catch"](function (response) {
+      LoggerService.errorFromResponse(response);
+    });
+  };
+
+  var vm = this;
+  var currentOrg = CurrentUserService.getOrganization();
+
+  vm.levels = [];
+  vm.buyLevel = buyLevel;
+
+  init();
+}
+
+angular.module("portal.levels").controller("LevelListViewCtrl", LevelListViewCtrl);

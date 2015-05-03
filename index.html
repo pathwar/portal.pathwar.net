@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html ng-app="portal" lang="en">
+  <head>
+    <title>Pathwar Portal</title>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="vendor/css/animate.css">
+    <link rel="stylesheet" href="vendor/css/basscss.css">
+    <link rel="stylesheet" href="vendor/css/font-awesome.css">
+    <link rel="stylesheet" href="vendor/css/hotkeys.min.css">
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="chat/chat.css">
+    <link rel="stylesheet" href="news/news.css">
+    <link rel="stylesheet" href="home/home.css">
+    <link rel="stylesheet" href="levels/levels.css">
+    <link rel="stylesheet" href="users/users.css">
+    <link rel="stylesheet" href="organizations/organizations.css">
+  </head>
+  <body ng-class="{frontpage: state == 'home'}" class="bg-lighter-gray">
+    <div ng-cloak class="splash center mt4"><img src="/assets/img/logo.png" width="180" class="rounded">
+      <h1 class="mt0">Loading</h1>
+    </div>
+    <div ng-cloak>
+      <div class="side-menu bg-black white md-show">
+        <div class="px2 mt2"><img src="/assets/img/logo.png" width="32" height="32" class="rounded"></div><a class="button button-transparent block"><span>PATHWAR</span></a>
+        <nav class="mt3"><a ui-sref="home.welcome" class="button button-transparent block"><i class="fa fa-tachometer inline-block mr1"></i><span class="darken-1">Home</span></a><a ui-sref="statistics.main" class="button button-transparent block"><i class="fa fa-bar-chart inline-block mr1"></i><span class="darken-1">Statistics</span></a><a ui-sref="levels.list" class="button button-transparent block"><i class="fa fa-list"></i>&nbsp; Levels</a><a href="https://github.com/pathwar/pathwar.net#faq" target="_blank" class="button button-transparent block"><i class="fa fa-question-circle"></i>&nbsp; FAQ</a></nav>
+      </div>
+      <nav ng-controller="NavCtrl as nav" class="bg-lighter-gray clearfix fixed top-0 right-0 left-0 has-side-menu z1 px2">
+        <!-- Anonymous-->
+        <div ng-if="!nav.isAuthentificated()" class="sm-col-right"><a ui-sref="login" class="button button-transparent py2">Login</a><a ui-sref="register" class="button button-transparent py2">Register</a></div>
+        <!-- Logged in-->
+        <div ng-if="nav.isAuthentificated()">
+          <!---->
+          <!-- Organization-->
+          <!---->
+          <div data-disclosure style="vertical-align: top" class="inline-block">
+            <div data-details class="fixed top-0 right-0 bottom-0 left-0"></div>
+            <div class="relative"><a class="button button-narrow button-transparent py2 ucfirst opener">
+                <!--img(ng-src="{{nav.currentUser.organization.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button-left.ml0-->{{nav.currentUser.organization.name}}<i class="fa fa-sort-down icon-button"></i>
+                <!-- FIXME: add the current session name {{currentUser.organization.session}}--></a>
+              <div data-details class="absolute left-0 mt1 nowrap bg-white shadow-bottom rounded z1 box-shadow gray"><a ui-sref="organizations.view({id: nav.currentUser.organization._id})" class="button block button-transparent px3 py2 regular">Organization Profile</a><a ui-sref="organizations.admin.members" class="button block button-transparent px3 py2 regular">Organization Admin</a>
+                <hr class="m0"><a ng-repeat="organization in nav.organizations" ng-click="nav.switchOrganization(organization)" class="button block button-transparent px3 regular">
+                  <!--img(ng-src="{{organization.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button-left.ml0--><i class="fa fa-random icon-button black"></i>&nbsp;
+                  Switch to <span class="black ucfirst">{{organization.name}}</span></a>
+                <hr class="m0"><a ui-sref="createOrganization" class="button block button-transparent px3 py2 rounded-bottom regular"><i class="fa fa-plus icon-button black"></i>&nbsp;
+                  Create new organization</a>
+              </div>
+            </div>
+          </div>
+          <!---->
+          <!-- User Menu-->
+          <!---->
+          <div data-disclosure style="vertical-align: top" class="inline-block right">
+            <div data-details class="fixed top-0 right-0 bottom-0 left-0"></div>
+            <div class="relative"><a class="button button-narrow py2 px1 button-transparent regular opener"><img ng-src="{{nav.currentUser.getAvatarUrl(32)}}" width="32" height="32" class="rounded avatar-button"></a>
+              <div data-details class="absolute right-0 mt1 nowrap bg-white shadow-bottom rounded z1 mr1 box-shadow"><a ui-sref="users.account" class="button block button-transparent px3 py2 regular">Account</a><a ui-sref="users.invitations({id: nav.currentUser._id})" class="button block button-transparent px3 py2 regular">View Invitations</a>
+                <hr class="m0"><a ng-click="nav.logout()" class="button block button-transparent px3 py2 regular"><i class="fa fa-sign-out icon-button black"></i>&nbsp;
+                  Log out</a>
+              </div>
+            </div>
+          </div>
+          <!---->
+          <!-- Score-->
+          <!----><a class="button button-transparent inline-block px1 py2 right"><i class="fa fa-star"></i>
+            <div class="rounded bg-yellow h6 px1 inline-block">{{nav.currentUser.organization.statistics.score}}</div></a>
+          <!---->
+          <!-- Money-->
+          <!---->
+          <div data-disclosure class="inline-block right">
+            <div data-details class="fixed top-0 right-0 bottom-0 left-0"></div>
+            <div class="relative"><a class="button button-transparent py2 px1 relative opener"><i class="fa fa-usd"></i>
+                <div class="rounded bg-yellow h6 px1 inline-block">{{nav.currentUser.organization.statistics.cash}}</div></a>
+              <div data-details class="absolute right-0 mt1 nowrap bg-white shadow-bottom rounded z1 box-shadow">
+                <div class="absolute top-0 right-0"><a class="inline-block right py1 px2 h2 ui-link">&times;</a></div>
+                <div pw-coupon-redeem></div>
+              </div>
+            </div>
+          </div>
+          <!---->
+          <!-- Notifications-->
+          <!---->
+          <div class="inline-block right">
+            <div ng-show="nav.notificationsOpened" class="fixed top-0 right-0 bottom-0 left-0"></div>
+            <div class="relative"><a ng-click="nav.toggleNotifications()" class="button button-transparent py2 px1 relative"> <i class="fa fa-bell-o"></i>
+                <div notifications-count class="rounded bg-red h6 px1 inline-block">{{vm.getUnreadNotificationsCount()}}</div></a>
+              <div ng-if="nav.notificationsOpened" style="min-width: 400px" class="absolute right-0 mt1 nowrap bg-white shadow-bottom rounded z1 box-shadow">
+                <div class="absolute top-0 right-0"><a ng-click="nav.toggleNotifications()" class="inline-block py1 px2 h2 ui-link">&times;</a></div>
+                <div notifications></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="p2 has-side-menu content">
+        <div ui-view></div>
+      </div>
+      <div logger class="fixed top-0 right-0 full-width sm-col sm-col-4 z2"></div>
+    </div>
+    <script src="vendor/js/angular.js"></script>
+    <script src="vendor/js/angular-animate.js"></script>
+    <script src="vendor/js/angular-raven.js"></script>
+    <script src="vendor/js/angular-recaptcha.js"></script>
+    <script src="vendor/js/angular-route.js"></script>
+    <script src="vendor/js/angular-ui-router.js"></script>
+    <script src="vendor/js/hotkeys.min.js"></script>
+    <script src="vendor/js/lodash.compat.js"></script>
+    <script src="vendor/js/moment.js"></script>
+    <script src="vendor/js/raven.js"></script>
+    <script src="vendor/js/restangular.js"></script>
+    <script src="organizations/organizations.js"></script>
+    <script src="organizations/scorings/ScoringService.js"></script>
+    <script src="users/users.js"></script>
+    <script src="users/account/account.js"></script>
+    <script src="users/account/UserAccountCtrl.js"></script>
+    <script src="shop/shop.js"></script>
+    <script src="shop/items/ItemService.js"></script>
+    <script src="levels/levels.js"></script>
+    <script src="levels/statistics/LevelStatsService.js"></script>
+    <script src="levels/statistics/LevelStatsDirective.js"></script>
+    <script src="levels/validations/LevelValidationService.js"></script>
+    <script src="levels/validations/LevelValidationDirective.js"></script>
+    <script src="common/services/app.services.js"></script>
+    <script src="common/services/SessionService.js"></script>
+    <script src="common/services/CurrentUserService.js"></script>
+    <script src="common/services/AuthService.js"></script>
+    <script src="common/services/AnalyticService.js"></script>
+    <script src="levels/hints/LevelHintsDirective.js"></script>
+    <script src="levels/hints/LevelHintService.js"></script>
+    <script src="common/directives/app.directives.js"></script>
+    <script src="common/directives/DisclosureDirective.js"></script>
+    <script src="common/controllers/app.controllers.js"></script>
+    <script src="common/controllers/NavCtrl.js"></script>
+    <script src="organizations/OrganizationViewCtrl.js"></script>
+    <script src="organizations/OrganizationSettingsCtrl.js"></script>
+    <script src="organizations/OrganizationService.js"></script>
+    <script src="organizations/OrganizationModel.js"></script>
+    <script src="organizations/OrganizationMembersCtrl.js"></script>
+    <script src="organizations/OrganizationListCtrl.js"></script>
+    <script src="organizations/OrganizationInvitesCtrl.js"></script>
+    <script src="organizations/OrganizationInviteCtrl.js"></script>
+    <script src="organizations/OrganizationCreateCtrl.js"></script>
+    <script src="users/UserViewCtrl.js"></script>
+    <script src="users/UserService.js"></script>
+    <script src="users/UserResetPasswordCtrl.js"></script>
+    <script src="users/UserRegisterCtrl.js"></script>
+    <script src="users/UserModel.js"></script>
+    <script src="users/UserLoginCtrl.js"></script>
+    <script src="users/UserListCtrl.js"></script>
+    <script src="users/UserInvitationsCtrl.js"></script>
+    <script src="users/UserEditCtrl.js"></script>
+    <script src="statistics/statistics.js"></script>
+    <script src="statistics/StatisticsCtrl.js"></script>
+    <script src="notifications/notifications.js"></script>
+    <script src="notifications/NotificationsDirective.js"></script>
+    <script src="notifications/NotificationService.js"></script>
+    <script src="shop/ShopCtrl.js"></script>
+    <script src="levels/LevelViewCtrl.js"></script>
+    <script src="levels/LevelService.js"></script>
+    <script src="levels/LevelListViewCtrl.js"></script>
+    <script src="logger/logger.js"></script>
+    <script src="logger/LoggerService.js"></script>
+    <script src="logger/LoggerDirective.js"></script>
+    <script src="home/home.js"></script>
+    <script src="coupons/coupons.js"></script>
+    <script src="coupons/CouponService.js"></script>
+    <script src="coupons/CouponRedeemDirective.js"></script>
+    <script src="coupons/CouponRedeemCtrl.js"></script>
+    <script src="news/news.js"></script>
+    <script src="news/NewsService.js"></script>
+    <script src="chat/chat.js"></script>
+    <script src="chat/ChatService.js"></script>
+    <script src="achievements/achievements.js"></script>
+    <script src="achievements/AchievementService.js"></script>
+    <script src="achievements/AchievementModel.js"></script>
+    <script src="templates.js"></script>
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+    <script src="app.run.js"></script>
+    <script src="app.config.js"></script>
+    <!-- RECAPTCHA  -->
+    <script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&amp;render=explicit" async defer></script>
+    <script>
+      Raven.config('http://3512fe4500134020b00d614a48dd6fa6@sentry.dev.pathwar.net//3', {
+        logger: 'javascript',
+        ignoreErrors: [
+         'livereload.js'
+        ],
+        ignoreUrls: [
+          // Chrome extensions
+          /extensions\//i,
+          /^chrome:\/\//i
+        ]
+      }).install();
+    </script>
+  </body>
+</html>

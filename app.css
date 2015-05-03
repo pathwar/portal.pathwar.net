@@ -1,0 +1,123 @@
+body {
+  font-family: 'Avenir Next', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Avenir Next', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 600;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  color: inherit;
+}
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover {
+  text-decoration: none;
+}
+button,
+.button {
+  font-weight: 600;
+}
+th {
+  font-weight: 600;
+}
+.bold {
+  font-weight: 600;
+}
+.button.regular {
+  font-weight: normal;
+}
+.button.bold {
+  font-weight: 600;
+}
+.button-transparent {
+  z-index: 0;
+}
+.ucfirst {
+  text-transform: capitalize;
+}
+.bg-lighter-gray {
+  background-color: #eee;
+}
+.bg-lightest-gray {
+  background-color: #fafafa;
+}
+.border-lighter-gray {
+  border-color: #eee;
+}
+.shadow-bottom {
+  box-shadow: 0 1px 0 0 rgba(0,0,0,0.1);
+}
+.no-border {
+  border: 0;
+}
+.side-menu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 200px;
+}
+.has-side-menu {
+  margin-left: 200px;
+}
+.content {
+  margin-top: 52px;
+}
+.avatar-button-left {
+  margin: -8px 0.5rem -12px 0;
+}
+.avatar-button-right {
+  margin: -8px 0 -12px 0.5rem;
+}
+.avatar-button {
+  margin: -8px 0 -12px;
+}
+.container-small {
+  max-width: 58rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.icon-button {
+  width: 1.375em;
+  height: 1em;
+  font-size: 0.825rem;
+  text-align: center;
+  vertical-align: middle;
+}
+.box-shadow {
+  box-shadow: 0 0 10px rgba(17,17,17,0.5);
+}
+.ui-link {
+  color: inherit;
+  opacity: 0.8;
+  cursor: pointer;
+}
+.ui-link:hover {
+  text-decoration: none;
+  opacity: 1;
+}
+[ng-click] {
+  cursor: pointer;
+}
+[ng-cloak] {
+  display: none;
+}
+.splash {
+  display: none;
+}
+[ng-cloak].splash {
+  display: block !important;
+}
