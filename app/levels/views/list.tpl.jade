@@ -13,24 +13,25 @@ div.p2.bg-white.rounded.mt2.clearfix.shadow-bottom
 div.p3.bg-white.rounded.mt2.shadow-bottom
 
   h2.mt0.mb2.regular.mid-gray Levels
-
-  table.table-light
-    thead
-      tr
-        th Name
-        th Tags
-        th Price
-        th Reward 
-        th
-    tbody
-      tr(ng-repeat="level in vm.levels | filter:search | orderBy:level.statistics.amount_finished")
-        td
-          i(ng-if="::level.status == 'validated'").fa.fa-check-circle.green
-          i(ng-if="::level.status == 'refused'").fa.fa-times-circle.red
-          a(ui-sref="levels.view({id: level._id})").inline-block.ml1 {{::level.name}}
-        td
-          span(ng-repeat="tag in ::level.tags").h6.inline-block.px1.mr1.blue.border.border-blue.rounded {{::tag}}
-        td {{::level.price}}
-        td {{::level.reward}}
-        td.right-align
-          button.button(ng-click="vm.buyLevel(level)", ng-if="!level.bought") Buy
+  
+  div.flex.flex-center.p1.bold.border-bottom
+    span.sm-col-6 Name
+    span.flex-auto Tags
+    span.sm-col-1.center.flex-right Price
+    span.sm-col-1.center.flex-right Reward
+    span.sm-col-1.flex-right &nbsp;
+     
+  div(ng-repeat="level in vm.levels | filter:search | orderBy:level.statistics.amount_finished",
+      ng-class-even="'bg-lightest-gray'").flex.flex-center.p1
+    div.sm-col-6
+      a(ui-sref="levels.view({id: level._id})").block
+        i(ng-if="::level.status == 'validated'").fa.fa-check-circle.inline-block.mr1.green
+        i(ng-if="::level.status == 'refused'").fa.fa-times-circle.inline-block.mr1.red
+        | {{::level.name}}
+    div.flex-auto
+      span(ng-repeat="tag in ::level.tags").h6.inline-block.px1.mr1.blue.border.border-blue.rounded {{::tag}}
+    span.sm-col-1.center.flex-right {{::level.price}}
+    span.sm-col-1.center.flex-right {{::level.reward}}
+    div.right-align.sm-col-1.flex-right
+      button.button(ng-click="vm.buyLevel(level)", ng-if="!level.bought") Buy
+      a.button.button-transparent(ng-show="level.bought", ui-sref="levels.view({id: level._id})") View
