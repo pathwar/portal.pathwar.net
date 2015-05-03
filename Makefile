@@ -14,7 +14,7 @@ dev:	vendor
 dist:	vendor
 	docker-compose build
 	NO_PUSHSTATE=1 API_ENDPOINT=$(PROD_API_ENDPOINT) BASE_PATH=/ docker-compose run --no-deps portal gulp build
-	echo portal.pathwar.net > CNAME
+	echo portal.github.pathwar.net > CNAME
 	touch .nojekyll
 
 
