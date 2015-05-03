@@ -12,6 +12,7 @@ div.bg-white.rounded-bottom
         br
         | {{invite.user.email}}
       div.flex
-        | Invited {{invite._created}}
+        | Invited&nbsp;
+        time(pw-time-ago="{{invite._created}}")
         
     
