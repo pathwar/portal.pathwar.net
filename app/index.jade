@@ -26,7 +26,7 @@ html(ng-app="portal", lang="en")
           img(src="#{BASE_PATH}assets/img/logo.png", width="32", height="32").rounded
         a.button.button-transparent.block
           span PATHWAR
-          
+
         nav.mt3
           a.button.button-transparent.block(ui-sref="home.welcome")
             i.fa.fa-tachometer.inline-block.mr1
@@ -41,7 +41,7 @@ html(ng-app="portal", lang="en")
             i.fa.fa-question-circle
             |&nbsp; FAQ
 
-      nav(ng-controller="NavCtrl as nav").bg-lighter-gray.clearfix.fixed.top-0.right-0.left-0.has-side-menu.z1.px2      
+      nav(ng-controller="NavCtrl as nav").bg-lighter-gray.clearfix.fixed.top-0.right-0.left-0.has-side-menu.z1.p2
 
         // Anonymous
         div.flex-right(ng-if="!nav.isAuthentificated()")
@@ -63,7 +63,7 @@ html(ng-app="portal", lang="en")
                 i.fa.fa-sort-down.icon-button
                 // FIXME: add the current session name {{currentUser.organization.session}}
               div(data-details).absolute.left-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.box-shadow.gray
-              
+
                 a(ui-sref="organizations.view({id: nav.currentUser.organization._id})").button.block.button-transparent.px3.py2.regular
                   | Organization Profile
                 a(ui-sref="organizations.admin.members").button.block.button-transparent.px3.py2.regular
@@ -80,7 +80,42 @@ html(ng-app="portal", lang="en")
                   &nbsp;
                   | Create new organization
 
-              
+          //
+          // Notifications
+          //
+          div.flex-right
+            div(ng-show="nav.notificationsOpened").fixed.top-0.right-0.bottom-0.left-0
+            div.relative
+              a(ng-click="nav.toggleNotifications()").button.button-transparent.p1.relative
+                i.fa.fa-bell-o
+                div(notifications-count).rounded.bg-red.h6.px1.inline-block {{vm.getUnreadNotificationsCount()}}
+              div(ng-if="nav.notificationsOpened", style="min-width: 400px").absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.box-shadow
+                div.absolute.top-0.right-0
+                  a(ng-click="nav.toggleNotifications()").inline-block.py1.px2.h2.ui-link &times;
+                div(notifications)
+
+          //
+          // Money
+          //
+          div(data-disclosure).flex-right
+            div(data-details).fixed.top-0.right-0.bottom-0.left-0
+            div.relative
+              a.button.button-transparent.p1.relative.opener
+                i.fa.fa-usd
+                div.rounded.bg-yellow.h6.px1.inline-block {{nav.currentUser.organization.statistics.cash}}
+              div(data-details).absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.box-shadow
+                div.absolute.top-0.right-0
+                  a.inline-block.right.py1.px2.h2.ui-link &times;
+                div(pw-coupon-redeem)
+
+          //
+          // Score
+          //
+          div.flex-right
+            a.button.button-transparent.p1
+              i.fa.fa-star
+              div.rounded.bg-yellow.h6.px1.inline-block {{nav.currentUser.organization.statistics.score}}
+
           //
           // User Menu
           //
@@ -99,44 +134,6 @@ html(ng-app="portal", lang="en")
                   i.fa.fa-sign-out.icon-button.black
                   &nbsp;
                   | Log out
-          
-          //
-          // Score
-          //
-          
-          div.flex-right
-            a.button.button-transparent.p1
-              i.fa.fa-star
-              div.rounded.bg-yellow.h6.px1.inline-block {{nav.currentUser.organization.statistics.score}}
-          
-          //
-          // Money
-          //
-          div(data-disclosure).flex-right
-            div(data-details).fixed.top-0.right-0.bottom-0.left-0
-            div.relative
-              a.button.button-transparent.p1.relative.opener
-                i.fa.fa-usd
-                div.rounded.bg-yellow.h6.px1.inline-block {{nav.currentUser.organization.statistics.cash}}
-              div(data-details).absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.box-shadow
-                div.absolute.top-0.right-0
-                  a.inline-block.right.py1.px2.h2.ui-link &times;
-                div(pw-coupon-redeem)
-
-          //
-          // Notifications
-          //
-          div.flex-right
-            div(ng-show="nav.notificationsOpened").fixed.top-0.right-0.bottom-0.left-0
-            div.relative
-              a(ng-click="nav.toggleNotifications()").button.button-transparent.p1.relative 
-                i.fa.fa-bell-o
-                div(notifications-count).rounded.bg-red.h6.px1.inline-block {{vm.getUnreadNotificationsCount()}}
-              div(ng-if="nav.notificationsOpened", style="min-width: 400px").absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.box-shadow
-                div.absolute.top-0.right-0
-                  a(ng-click="nav.toggleNotifications()").inline-block.py1.px2.h2.ui-link &times;
-                div(notifications)
-                
 
       div.p2.has-side-menu.content
         div(ui-view)
@@ -147,8 +144,8 @@ html(ng-app="portal", lang="en")
 
     //- inject:js
     //- endinject
-    
-    // RECAPTCHA  
+
+    // RECAPTCHA
     script(src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit", async, defer)
 
     if env == "production"
@@ -161,7 +158,7 @@ html(ng-app="portal", lang="en")
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
         ga('create', 'UA-47629346-3', 'auto');
-        
+
       //KISSMETRICS
       script.
         var _kmq = _kmq || [];
@@ -176,7 +173,7 @@ html(ng-app="portal", lang="en")
         }
         _kms('//i.kissmetrics.com/i.js');
         _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
-    
+
     script.
       Raven.config('http://3512fe4500134020b00d614a48dd6fa6@sentry.dev.pathwar.net//3', {
         logger: 'javascript',
