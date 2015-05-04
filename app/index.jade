@@ -41,23 +41,23 @@ html(ng-app="portal", lang="en")
             i.fa.fa-question-circle
             |&nbsp; FAQ
 
-      nav.bg-lighter-gray.clearfix.fixed.top-0.right-0.left-0.has-side-menu.z1.px2(ng-controller="NavCtrl as nav")
+      nav(ng-controller="NavCtrl as nav").bg-lighter-gray.clearfix.fixed.top-0.right-0.left-0.has-side-menu.z1.px2      
 
         // Anonymous
-        div.sm-col-right(ng-if="!nav.isAuthentificated()")
+        div.flex-right(ng-if="!nav.isAuthentificated()")
           a(ui-sref="login").button.button-transparent.py2 Login
           a(ui-sref="register").button.button-transparent.py2 Register
 
         // Logged in
-        div(ng-if="nav.isAuthentificated()")
+        div(ng-if="nav.isAuthentificated()").flex.flex-center.full-width
 
           //
           // Organization
           //
-          div(data-disclosure, style="vertical-align: top").inline-block
+          div(data-disclosure, style="vertical-align: top").flex-auto
             div(data-details).fixed.top-0.right-0.bottom-0.left-0
             div.relative
-              a.button.button-narrow.button-transparent.py2.ucfirst.opener
+              a.button.button-narrow.py1.ucfirst.opener
                 //img(ng-src="{{nav.currentUser.organization.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button-left.ml0
                 | {{nav.currentUser.organization.name}}
                 i.fa.fa-sort-down.icon-button
@@ -80,14 +80,15 @@ html(ng-app="portal", lang="en")
                   &nbsp;
                   | Create new organization
 
+              
           //
           // User Menu
           //
-          div(data-disclosure, style="vertical-align: top").inline-block.right
+          div(data-disclosure, style="vertical-align: top").flex-right
             div(data-details).fixed.top-0.right-0.bottom-0.left-0
             div.relative
-              a.button.button-narrow.py2.px1.button-transparent.regular.opener
-                img(ng-src="{{nav.currentUser.getAvatarUrl(32)}}", width="32", height="32").rounded.avatar-button
+              a.regular.opener.cursor.clearfix
+                img(ng-src="{{nav.currentUser.getAvatarUrl(32)}}", width="32", height="32").rounded.left
               div(data-details).absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.mr1.box-shadow
                 a(ui-sref="users.account").button.block.button-transparent.px3.py2.regular
                   | Account
@@ -103,17 +104,18 @@ html(ng-app="portal", lang="en")
           // Score
           //
           
-          a.button.button-transparent.inline-block.px1.py2.right
-            i.fa.fa-star
-            div.rounded.bg-yellow.h6.px1.inline-block {{nav.currentUser.organization.statistics.score}}
+          div.flex-right
+            a.button.button-transparent.p1
+              i.fa.fa-star
+              div.rounded.bg-yellow.h6.px1.inline-block {{nav.currentUser.organization.statistics.score}}
           
           //
           // Money
           //
-          div(data-disclosure).inline-block.right
+          div(data-disclosure).flex-right
             div(data-details).fixed.top-0.right-0.bottom-0.left-0
             div.relative
-              a.button.button-transparent.py2.px1.relative.opener
+              a.button.button-transparent.p1.relative.opener
                 i.fa.fa-usd
                 div.rounded.bg-yellow.h6.px1.inline-block {{nav.currentUser.organization.statistics.cash}}
               div(data-details).absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.box-shadow
@@ -124,10 +126,10 @@ html(ng-app="portal", lang="en")
           //
           // Notifications
           //
-          div.inline-block.right
+          div.flex-right
             div(ng-show="nav.notificationsOpened").fixed.top-0.right-0.bottom-0.left-0
             div.relative
-              a(ng-click="nav.toggleNotifications()").button.button-transparent.py2.px1.relative 
+              a(ng-click="nav.toggleNotifications()").button.button-transparent.p1.relative 
                 i.fa.fa-bell-o
                 div(notifications-count).rounded.bg-red.h6.px1.inline-block {{vm.getUnreadNotificationsCount()}}
               div(ng-if="nav.notificationsOpened", style="min-width: 400px").absolute.right-0.mt1.nowrap.bg-white.shadow-bottom.rounded.z1.box-shadow
