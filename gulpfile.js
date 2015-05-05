@@ -1,4 +1,5 @@
 var bowerFiles  = require('main-bower-files');
+var cachebust   = require('gulp-cache-bust');
 var es          = require('event-stream');
 var gulp        = require("gulp");
 var plugins     = require('gulp-load-plugins')();
@@ -182,6 +183,7 @@ gulp.task("index", function() {
       },
       pretty: env == 'production' ? false : true
     }))
+    .pipe(cachebust({type: 'timestamp'}))
     .pipe(gulp.dest('./build/'))
     .pipe(plugins.connect.reload());
 
