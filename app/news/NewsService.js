@@ -24,7 +24,7 @@ function NewsService($q, $http, $sce, Restangular) {
 
   function getNews() {
 
-    return $http.jsonp('http://ajax.googleapis.com/ajax/services/feed/load?callback=JSON_CALLBACK', {
+    return $http.jsonp('https://ajax.googleapis.com/ajax/services/feed/load?callback=JSON_CALLBACK', {
       params: {
         v: "1.0",
         q: "http://pathwar.tumblr.com/rss",
