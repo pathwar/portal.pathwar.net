@@ -1,4 +1,4 @@
-PROD_API_ENDPOINT ?=	http://api.pathwar.net/
+PROD_API_ENDPOINT ?=	https://api.pathwar.net/
 
 
 .PHONY:	dev clean dist release release_do release_teardown
