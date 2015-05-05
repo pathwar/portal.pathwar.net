@@ -13,7 +13,6 @@ function LevelListViewCtrl($q, LevelService, CurrentUserService, LoggerService) 
   function init() {
 
     var currentOrg = CurrentUserService.getOrganization();
-    console.log(currentOrg);
     var sessionId = currentOrg.session;
 
 
@@ -32,7 +31,7 @@ function LevelListViewCtrl($q, LevelService, CurrentUserService, LoggerService) 
 
         if (boughtLevel) {
           level.bought = true;
-          
+
           // TODO: BEtter way of doing this
           if (boughtLevel.status == 'pending validation'
           ||  boughtLevel.status == 'validated') {

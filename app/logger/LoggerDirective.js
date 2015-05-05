@@ -11,7 +11,7 @@ function LoggerDirective() {
   return directive;
 
   function link(scope, element, attrs) {
-    //console.log('linked');
+    // console.log('linked');
   }
 }
 

@@ -7,6 +7,4 @@ angular
       controllerAs: 'vm',
       templateUrl: 'users/account/views/account.tpl.html'
     });
-
-    console.info('Accounts');
   });

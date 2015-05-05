@@ -5,13 +5,13 @@ function NotificationDirective() {
     controller: NotificationDirectiveCtrl,
     controllerAs: 'vm',
     bindToController: true,
-    link: link,
+    link: link
   };
 
   return directive;
 
   function link(scope, element, attrs) {
-    //console.log('linked');
+    // console.log('linked');
   }
 }
 
@@ -47,13 +47,13 @@ function NotificationCountDirective() {
       controller: NotificationCountDirectiveCtrl,
       controllerAs: 'vm',
       bindToController: true,
-      link: link,
+      link: link
     };
 
     return directive;
 
     function link(scope, element, attrs) {
-      //console.log('linked');
+      // console.log('linked');
     }
 }
 

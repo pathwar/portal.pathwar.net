@@ -21,8 +21,8 @@ function ShopCtrl(ItemService, CurrentUserService) {
       .buyItemForOrganization(item, currentOrg)
       .then(function(result) {
         item.bought = true;
-        console.log(result);
-        //reload currentuser items
+        // console.log(result);
+        // FIXME: reload currentuser items
       });
   }
 
