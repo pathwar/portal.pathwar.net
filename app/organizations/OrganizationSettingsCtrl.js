@@ -1,5 +1,6 @@
 function OrganizationSettingsCtrl(
-  $state, $stateParams, Restangular
+  $state, $stateParams, CurrentUserService, Restangular, OrganizationService,
+  LoggerService
 ) {
   var vm = this;
 
@@ -9,11 +10,19 @@ function OrganizationSettingsCtrl(
   init();
 
   function init() {
-    var Orgs = Restangular.service('organizations');
-    var org = Orgs.one($stateParams.id);
+    var currentUser = CurrentUserService.getUser();
+    var currentOrg = CurrentUserService.getOrganization();
 
-    org.get().then(function(response) {
-      vm.organization = response.data;
+    OrganizationService.getMembership({
+      organization: currentOrg,
+      user: currentUser
+    })
+    .then(function(membership) {
+      vm.currentUserMembership = membership;
+    });
+
+    OrganizationService.getOrganizationById(currentOrg._id).then(function(org) {
+      vm.organization = org;
     });
   }
 
@@ -22,10 +31,16 @@ function OrganizationSettingsCtrl(
       return key.charAt(0) != '_' || key == '_etag';
     });
 
-    organization.patch(toSend).then(function(response) {
-      $state.transitionTo('organizations.list');
+    Restangular.one('organization', organization._id)
+    .patch(toSend).then(function(response) {
+      LoggerService.success('Changes saved');
+      CurrentUserService.loadUserInfo();
+      $state.reload();
+    })
+    .catch(function(response) {
+      LoggerService.errorFromResponse(response);
     });
-  };
+  }
 
 }
 

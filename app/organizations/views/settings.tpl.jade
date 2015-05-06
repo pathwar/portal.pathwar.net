@@ -1,3 +1,19 @@
-div.p2.bg-white.rounded.shadow-bottom
- p Change Organization Avatar
- button(disabled="disabled").bg-red.rounded.white Delete Team
+div.p2.bg-white.rounded.shadow-bottom.mt2
+  form(ng-submit="vm.save(vm.organization)")
+    div.clearfix
+      div.sm-col.sm-col-6
+        h4.mt0 Core
+        label Name
+        input(type="text", ng-model="vm.organization.name", placeholder="Login", ng-disabled="vm.currentUserMembership.role != 'owner' || vm.organization.last_name").block.field-light.mb2.sm-col-8
+        p.h5 You can only change the name of your organization once
+        
+        label Gravatar Email (Private)
+        input(type="email", placeholder="Gravatar Email",
+              ng-model="vm.organization.gravatar_email",
+              ng-disabled="vm.currentUserMembership.role != 'owner'").block.field-light.mb2.sm-col-8
+        
+        div.flex.flex-center
+          img(src="{{vm.organization.getAvatarUrl(32)}}").rounded.flex-right
+          p.mb0.flex-auto.px2 Change your avatar on <a href="http://gravatar.com" target="_blank">gravatar.com</a>
+        br.mt2
+        button(ng-disabled="vm.currentUserMembership.role != 'owner'").rounded.bg-blue.white Save Changes
