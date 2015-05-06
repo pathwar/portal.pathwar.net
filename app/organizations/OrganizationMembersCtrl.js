@@ -39,7 +39,7 @@ function OrganizationMembersCtrl(
 
   function makeAdmin(member) {
 
-    var toSend = _.pick(user, function(value, key) {
+    var toSend = _.pick(member, function(value, key) {
       return key.charAt(0) != '_' || key == '_etag';
     });
 
