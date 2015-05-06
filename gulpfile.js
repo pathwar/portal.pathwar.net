@@ -1,5 +1,6 @@
 var bowerFiles  = require('main-bower-files');
 var cachebust   = require('gulp-cache-bust');
+var favicons    = require('favicons');
 var es          = require('event-stream');
 var gulp        = require("gulp");
 var plugins     = require('gulp-load-plugins')();
@@ -10,11 +11,13 @@ var rev         = require('git-rev');
 
 var env = process.env.NODE_ENV;
 
+
 gulp.task('clean', function(cb) {
   del([
     './build/**'
   ], cb);
 });
+
 
 gulp.task("templates", function() {
 
@@ -28,6 +31,7 @@ gulp.task("templates", function() {
     .pipe(plugins.connect.reload());
 
 });
+
 
 gulp.task("config", function() {
 
@@ -76,6 +80,7 @@ gulp.task("config", function() {
 
 });
 
+
 gulp.task("scripts", function() {
 
   return gulp.src("app/**/*.js")
@@ -96,6 +101,7 @@ gulp.task("scripts", function() {
 
 });
 
+
 gulp.task("styles", function() {
 
   return gulp.src('app/**/*.styl')
@@ -109,12 +115,14 @@ gulp.task("styles", function() {
 
 });
 
+
 gulp.task("vendor-fonts", function() {
 
   return gulp.src('vendor/font-awesome/fonts/*')
     .pipe(gulp.dest('./build/vendor/fonts/'));
 
 });
+
 
 gulp.task("vendor-scripts", function() {
 
@@ -137,6 +145,7 @@ gulp.task("vendor-styles", function() {
 
 });
 
+
 gulp.task("icons", function() {
   return gulp.src(['assets/icons/*.svg'])
     .pipe(plugins.svgSprite({
@@ -147,10 +156,12 @@ gulp.task("icons", function() {
     .pipe(gulp.dest('assets/icons'));
 });
 
+
 gulp.task("assets", ['icons'], function() {
   return gulp.src(["assets/**/*"])
       .pipe(gulp.dest("./build/assets"));
 });
+
 
 gulp.task("index", function() {
 
@@ -188,15 +199,48 @@ gulp.task("index", function() {
     .pipe(cachebust({type: 'timestamp'}))
     .pipe(gulp.dest('./build/'))
     .pipe(plugins.connect.reload());
-
 });
+
+
+gulp.task('favicon', function(done) {
+  favicons({
+    files: {
+      src: './favicon-1000x1000.png',
+      dest: './build'
+      //html: './build/index.html'
+    },
+    icons: {
+      android: true,            // Create Android homescreen icon. `boolean`
+      appleIcon: true,          // Create Apple touch icons. `boolean`
+      appleStartup: true,       // Create Apple startup images. `boolean`
+      coast: true,              // Create Opera Coast icon. `boolean`
+      favicons: true,           // Create regular favicons. `boolean`
+      firefox: true,            // Create Firefox OS icons. `boolean`
+      opengraph: true,          // Create Facebook OpenGraph. `boolean`
+      windows: true,            // Create Windows 8 tiles. `boolean`
+      yandex: true              // Create Yandex browser icon. `boolean`
+    },
+    settings: {
+      appName: 'Pathwar',
+      appDescription: 'Pathwar portal',
+      developer: 'Pathwar team',
+      index: 'index.html',
+      url: 'https://portal.pathwar.net/',
+      background: 'transparent',
+      tileBlackWhite: false,
+      manifest: null,
+      trueColor: false,
+      logging: true
+    }
+  }, function() {done();});
+});
+
 
 gulp.task('connect', function() {
 
   plugins.connect.server({
     root: 'build',
     middleware: function(connect, opt) {
-
       return [
         historyApiFallback
       ];
@@ -210,9 +254,11 @@ gulp.task('connect', function() {
 
 });
 
-gulp.task('build', ['vendor-scripts', 'vendor-styles', 'vendor-fonts', 'assets', 'config', 'templates', 'scripts', 'styles'], function() {
+
+gulp.task('build', ['vendor-scripts', 'vendor-styles', 'vendor-fonts', 'assets', 'config', 'templates', 'scripts', 'styles', 'favicon'], function() {
   gulp.start('index');
 });
+
 
 gulp.task('default', ['build', 'connect'], function() {
 
