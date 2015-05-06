@@ -1,14 +1,15 @@
 function OrganizationMembersCtrl(
-  $q, $state, $stateParams, Restangular, UserService, CurrentUserService, User
+  $q, $state, Restangular, UserService, CurrentUserService, LoggerService
 ) {
   var vm = this;
 
-  vm.organization = {};
+  vm.makeAdmin = makeAdmin;
 
   init();
 
   function init() {
 
+    var currentUser = CurrentUserService.getUser();
     var currentOrg = CurrentUserService.getOrganization();
 
     //TODO: Put back embed when fixed on api side
@@ -17,17 +18,41 @@ function OrganizationMembersCtrl(
         organization: currentOrg._id
       })
     })
-    .then(function(orgUsers) {
+    .then(function(orgMembers) {
       var _users = [];
 
-      angular.forEach(orgUsers, function(orgUser) {
-        _users.push(UserService.getUserById(orgUser.user));
+      angular.forEach(orgMembers, function(orgMember) {
+        if (orgMember.user == currentUser._id) {
+          vm.currentUserMembership = orgMember;
+        }
+        _users.push(UserService.getUserById(orgMember.user).then(function(user) {
+          orgMember.user = user;
+        }));
       });
 
       return $q.all(_users).then(function(results) {
-        vm.users = results;
-        return vm.users;
+        vm.members = orgMembers;
+        return vm.members;
       });
+    });
+  }
+
+  function makeAdmin(member) {
+
+    var toSend = _.pick(user, function(value, key) {
+      return key.charAt(0) != '_' || key == '_etag';
+    });
+
+    toSend.role = 'owner';
+
+    member.patch(toSend).then(function() {
+      //TODO: Add Confirm
+      LoggerService.success('Ownership successfully transfered');
+      $state.reload();
+      console.log('ok');
+    })
+    .catch(function(response) {
+      LoggerService.errorFromResponse(response);
     });
   }
 

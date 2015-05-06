@@ -1,6 +1,9 @@
-div.p2.bg-white.rounded
-  a(ng-repeat="user in vm.users").block.clearfix.mb2
-    img(ng-src="{{user.getAvatarUrl(48)}}").rounded.left.mr2
-    span.ucfirst {{user.login}}
-    br
-    | {{user.email}}
+div.py1.bg-white.rounded
+  div(ng-repeat="member in vm.members").flex.flex-center.px2.py1.bg-lightest-gray-hover
+    img(ng-src="{{member.user.getAvatarUrl(48)}}").rounded.mr2.flex-left
+    div.flex-auto
+     span.ucfirst {{member.user.login}}
+     span(ng-if="member.role == 'owner'").inline-block.ml1.h6.rounded.px1.bg-red.white {{member.role}}
+    a(ng-if="vm.currentUserMembership.role == 'owner' && member.role != 'owner'",
+      ng-click="vm.makeAdmin(member)").button.button-small.h5.bg-gray.black.flex-right
+      | Make admin
