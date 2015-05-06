@@ -17,6 +17,12 @@ function OrganizationService(Restangular, Organization) {
     });
   };
 
+  service.getTeamById = function(orgId) {
+    return Restangular.one('teams', orgId).get().then(function(response) {
+      return Organization.build(response.data);
+    });
+  }
+
   service.getOrganizationsByUserId = function(userId) {
     return Restangular.all('organization-users').getList({
       where: JSON.stringify({

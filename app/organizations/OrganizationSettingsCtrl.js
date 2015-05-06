@@ -21,7 +21,7 @@ function OrganizationSettingsCtrl(
       vm.currentUserMembership = membership;
     });
 
-    OrganizationService.getOrganizationById(currentOrg._id).then(function(org) {
+    OrganizationService.getTeamById(currentOrg._id).then(function(org) {
       vm.organization = org;
     });
   }
@@ -31,7 +31,7 @@ function OrganizationSettingsCtrl(
       return key.charAt(0) != '_' || key == '_etag';
     });
 
-    Restangular.one('organization', organization._id)
+    Restangular.one('teams', organization._id)
     .patch(toSend).then(function(response) {
       LoggerService.success('Changes saved');
       CurrentUserService.loadUserInfo();
