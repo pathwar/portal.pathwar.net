@@ -42,7 +42,8 @@ function OrganizationMembersCtrl(
     var toSend = _.pick(member, function(value, key) {
       return key.charAt(0) != '_' || key == '_etag';
     });
-
+    delete toSend.user;
+    delete toSend.organization;
     toSend.role = 'owner';
 
     member.patch(toSend).then(function() {
