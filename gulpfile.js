@@ -39,11 +39,13 @@ gulp.task("config", function() {
       if (process.env.API_ENDPOINT) {
         config.ApiConfig.endpoint = process.env.API_ENDPOINT;
       }
-
       else if (process.env.API_PORT_5000_TCP_PORT) {
         config.ApiConfig.endpoint = null;
         config.ApiConfig.port = process.env.API_PORT_5000_TCP_PORT;
       }
+
+      config.ApiConfig.sentryUrl = process.env.SENTRY_URL;
+
       if (process.env.NO_PUSHSTATE) {
         config.ApiConfig.html5Mode = false;
       } else {

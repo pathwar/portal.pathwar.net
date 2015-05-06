@@ -7,8 +7,9 @@ angular
     $locationProvider.html5Mode(ApiConfig.html5Mode);
     $urlRouterProvider.otherwise('/');
 
-    if (ApiConfig.port)
+    if (ApiConfig.port) {
       ApiConfig.endpoint = '//'+document.domain+':'+ApiConfig.port;
+    }
 
     RestangularProvider.setBaseUrl(ApiConfig.endpoint);
 
