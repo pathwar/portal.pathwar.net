@@ -35,6 +35,17 @@ function OrganizationService(Restangular, Organization) {
     });
   };
 
+  service.getMembership = function(opts) {
+    return Restangular.all('organization-users').getList({
+      where: angular.toJson({
+        organization: opts.organization._id,
+        user: opts.user._id
+      })
+    }).then(function(memberships) {
+      return memberships[0];
+    });
+  };
+
   return service;
 }
 
