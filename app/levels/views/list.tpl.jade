@@ -23,7 +23,7 @@ div.p2.sm-p3.bg-white.rounded.mt2.shadow-bottom
      
   div(ng-repeat="level in vm.levels | filter:search | orderBy:level.statistics.amount_finished",
       ng-class-even="'bg-lightest-gray'").flex.flex-center.p1
-    div.flex-auto.sm-flex-none.sm-col-6
+    div.flex-auto.sm-flex-none.sm-col-6.ucfirst
       a(ui-sref="levels.view({id: level._id})").block
         i(ng-if="::level.status == 'validated'").fa.fa-check-circle.inline-block.mr1.green
         i(ng-if="::level.status == 'refused'").fa.fa-times-circle.inline-block.mr1.red
