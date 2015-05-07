@@ -10,6 +10,27 @@ angular
       callback: $state.reload
     });
     hotkeys.add({
+      combo: 'g h',
+      description: 'Go home',
+      callback: function() {
+        $state.go('home.welcome');
+      }
+    });
+    hotkeys.add({
+      combo: 'g s',
+      description: 'Go to statistics page',
+      callback: function() {
+        $state.go('statistics.main');
+      }
+    });
+    hotkeys.add({
+      combo: 'g a',
+      description: 'Go to account page',
+      callback: function() {
+        $state.go('users.account');
+      }
+    });
+    hotkeys.add({
       combo: 'g t',
       description: 'Go to team page',
       callback: function() {
