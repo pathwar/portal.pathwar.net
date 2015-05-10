@@ -112,7 +112,13 @@ function LevelViewCtrl(
           var parts = instance.urls[0].url
                       .replace('http://', '').replace('/', '').split(':');
 
-          var url = 'http://'+user.login+':'+hash+'@'+parts[0]+':'+parts[1]+'/';
+	  // Using temporary <a> element to get a clean url
+	  // Remove :80 if http etc
+	  var parser = document.createElement('a');
+	  parser.href = 'http://'+user.login+':'+hash+'@'+parts[0]+':'+parts[1]+'/';
+	  var url = parser.href;
+	  delete parser;
+
           instance.grantedUrl = $sce.trustAsResourceUrl(url);
 
           selectInstance(instance);
