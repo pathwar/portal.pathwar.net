@@ -49,7 +49,7 @@ div.rounded.mt2.bg-white.shadow-bottom
 div(ng-if="vm.selectedInstance").bg-white.mt2.rounded.shadow-bottom
   div.flex.flex-center.mb2.p2.border-bottom
     span.flex-left.h3.mt0.regular.gray Embedded View
-    input(type="text", value="{{vm.selectedInstance.grantedUrl}}").flex-auto.ml2.mr2.field-light.mb0
+    input(type="text", value="{{vm.selectedInstance.grantedUrl}}", onclick="this.select()").flex-auto.ml2.mr2.field-light.mb0
     a(ng-href="{{vm.selectedInstance.grantedUrl}}", target="_blank").button.flex-right Open in new window
   div.p2
     iframe(ng-src="{{vm.selectedInstance.grantedUrl}}", style="border: 0; height: 600px").full-width
