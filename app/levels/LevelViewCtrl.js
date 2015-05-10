@@ -117,7 +117,6 @@ function LevelViewCtrl(
 	  var parser = document.createElement('a');
 	  parser.href = 'http://'+user.login+':'+hash+'@'+parts[0]+':'+parts[1]+'/';
 	  var url = parser.href;
-	  delete parser;
 
           instance.grantedUrl = $sce.trustAsResourceUrl(url);
 
