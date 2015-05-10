@@ -7,6 +7,7 @@ angular
     'cfp.hotkeys',
     'vcRecaptcha',
     'ngRaven',
+    'angular-loading-bar',
     'portal.config',
     'portal.services',
     'portal.directives',
