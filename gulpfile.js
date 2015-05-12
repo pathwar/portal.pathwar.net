@@ -222,8 +222,8 @@ gulp.task('favicon', function(done) {
     },
     settings: {
       appName: 'Pathwar',
-      appDescription: 'Pathwar portal',
-      developer: 'Pathwar team',
+      appDescription: 'Pathwar',
+      developer: 'Pathwar Team',
       index: 'index.html',
       url: 'https://portal.pathwar.net/',
       background: 'transparent',
