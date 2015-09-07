@@ -115,7 +115,7 @@ function LevelViewCtrl(
 	  // Using temporary <a> element to get a clean url
 	  // Remove :80 if http etc
 	  var parser = document.createElement('a');
-	  parser.href = 'http://'+user.login+':'+hash+'@'+parts[0]+':'+parts[1]+'/';
+	  parser.href = 'https://'+user.login+':'+hash+'@'+parts[0]+':'+parts[1]+'/';
 	  var url = parser.href;
 
           instance.grantedUrl = $sce.trustAsResourceUrl(url);
