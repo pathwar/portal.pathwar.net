@@ -109,13 +109,22 @@ function LevelViewCtrl(
         .then(function(userLevelInstance) {
           var user = CurrentUserService.getUser();
           var hash = userLevelInstance.data.hash;
-          var url = instance.urls[0].url
-                .replace('http://', '').replace('/', '').replace(':80');
 
-	  // Using temporary <a> element to get a clean url
-	  var parser = document.createElement('a');
-	  parser.href = 'https://'+user.login+':'+hash+'@'+url+'/';
-	  var url = parser.href;
+          // Using temporary <a> element to get a clean url
+          var parser = document.createElement('a');
+          parser.href = 'https://'+user.login+':'+hash+'@'+url+'/';
+          parser.href = instance.urls[0].url;
+          parser.protocol = 'https:';
+
+          // handle safari/chrome etc
+          if (parser.username == "") {
+            parser.username = user.login;
+            parser.password = hash;
+          } else {
+            parser.hostname = user.login + ":" + hash + "@" + parser.hostname;
+          }
+
+          var url = parser.href;
 
           instance.grantedUrl = $sce.trustAsResourceUrl(url);
 
