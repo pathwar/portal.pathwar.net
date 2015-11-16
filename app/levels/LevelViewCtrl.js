@@ -24,7 +24,7 @@ function LevelViewCtrl(
   function init() {
     // Fetchs level info then decorates with all available level info
     LevelService.getLevel($stateParams.id).then(function(level) {
-      vm.level = level
+      vm.level = level;
       loadBoughtLevel();
     });
   }
@@ -110,23 +110,33 @@ function LevelViewCtrl(
           var user = CurrentUserService.getUser();
           var hash = userLevelInstance.data.hash;
 
-          // Using temporary <a> element to get a clean url
-          var parser = document.createElement('a');
-          parser.href = 'https://'+user.login+':'+hash+'@'+url+'/';
-          parser.href = instance.urls[0].url;
-          parser.protocol = 'https:';
+	  var url = '';
+	  switch (instance.urls[0].kind) {
+	    case "ssh2docker":
+	      url = instance.urls[0].url;
+	      break;
+	    default: // web
+              // Using temporary <a> element to get a clean
+              var parser = document.createElement('a');
+              parser.href = 'https://'+user.login+':'+hash+'@'+url+'/';
+              parser.href = instance.urls[0].url;
+              parser.protocol = 'https:';
 
-          // handle safari/chrome etc
-          if (parser.username == "") {
-            parser.username = user.login;
-            parser.password = hash;
-          } else {
-            parser.hostname = user.login + ":" + hash + "@" + parser.hostname;
-          }
+              // handle safari/chrome etc
+              if (parser.username == "") {
+		parser.username = user.login;
+		parser.password = hash;
+              } else {
+		parser.hostname = user.login + ":" + hash + "@" + parser.hostname;
+              }
 
-          var url = parser.href;
+              url = parser.href;
+	      break;
+	  }
 
+	  instance.levelType = instance.urls[0].kind;
           instance.grantedUrl = $sce.trustAsResourceUrl(url);
+	  instance.password = hash;
 
           selectInstance(instance);
         });

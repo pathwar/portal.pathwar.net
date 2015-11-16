@@ -47,12 +47,23 @@ div.rounded.mt2.bg-white.shadow-bottom
           | {{ ::instance.urls[0].url ? "Instance #"+($index+1) : "Not available"}}
 
 div(ng-if="vm.selectedInstance").bg-white.mt2.rounded.shadow-bottom
-  div.flex.flex-center.mb2.p2.border-bottom
-    span.flex-left.h3.mt0.regular.gray Embedded View
-    input(type="text", value="{{vm.selectedInstance.grantedUrl}}", onclick="this.select()", readonly).flex-auto.ml2.mr2.field-dark.bg-white.black.mb0
-    a(ng-href="{{vm.selectedInstance.grantedUrl}}", target="_blank").button.flex-right Open in new window
-  div.p2
-    iframe(ng-src="{{vm.selectedInstance.grantedUrl}}", style="border: 0; height: 600px").full-width
+  div(ng-if="vm.selectedInstance.levelType == 'ssh2docker'")
+    div.flex.flex-center.mb2.p2.border-bottom
+      span.flex-left.h3.mt0.regular.gray SSH
+      input(type="text", value="{{vm.selectedInstance.grantedUrl}}", onclick="this.select()", readonly).flex-auto.ml2.mr2.field-dark.bg-white.black.mb0
+      a(ng-href="{{vm.selectedInstance.grantedUrl}}", target="_blank").button.flex-right Open in terminal
+    div.p2
+      p Command: <code>ssh ssh.pathwar.net -l {{vm.selectedInstance._id}}</code>
+      p Password: <code>{{vm.selectedInstance.password}}</code>
+
+  div(ng-if="vm.selectedInstance.levelType != 'ssh2docker'")
+    div.flex.flex-center.mb2.p2.border-bottom
+      span.flex-left.h3.mt0.regular.gray Embedded View
+      input(type="text", value="{{vm.selectedInstance.grantedUrl}}", onclick="this.select()", readonly).flex-auto.ml2.mr2.field-dark.bg-white.black.mb0
+      a(ng-href="{{vm.selectedInstance.grantedUrl}}", target="_blank").button.flex-right Open in new window
+    div.p2
+      iframe(ng-src="{{vm.selectedInstance.grantedUrl}}", style="border: 0; height: 600px").full-width
+
 // TODO: Tab Directive
 // Navigation
 
