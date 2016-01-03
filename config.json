@@ -1,5 +1,5 @@
 {
   "ApiConfig": {
-    "endpoint": "http://api.pathwar.net"
+    "endpoint": "https://api.pathwar.net"
   }
 }
