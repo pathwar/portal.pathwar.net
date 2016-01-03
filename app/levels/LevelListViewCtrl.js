@@ -3,7 +3,9 @@ function LevelListViewCtrl($q, LevelService, CurrentUserService, LoggerService) 
   var vm = this;
   var currentOrg = CurrentUserService.getOrganization();
 
+  vm.page = 1;
   vm.levels = [];
+  vm.loadLevels = loadLevels;
   vm.buyLevel = buyLevel;
 
   init();
@@ -12,17 +14,30 @@ function LevelListViewCtrl($q, LevelService, CurrentUserService, LoggerService) 
   // TODO: Should be in a service
   function init() {
 
+    vm.loadLevels(vm.page)
+
+  }
+
+  function loadLevels(page) {
+    vm.page = page;
+
     var currentOrg = CurrentUserService.getOrganization();
     var sessionId = currentOrg.session;
 
+    var opts = { page: vm.page }
 
     $q.all([
-      LevelService.getLevelsBySessionId(sessionId),
+      LevelService.getLevelsBySessionId(sessionId, opts),
       LevelService.getLevelsByOrganizationId(currentOrg._id)
     ])
     .then(function (results) {
       vm.levels = results[0];
       var boughtLevels = results[1];
+
+      vm.pagination = {
+        current: page,
+        last: Math.ceil(vm.levels.meta.total / vm.levels.meta.max_results)
+      }
 
       _.each(vm.levels, function(level) {
         var boughtLevel = _.find(boughtLevels, function(boughtLevel) {

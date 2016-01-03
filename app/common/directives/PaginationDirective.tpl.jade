@@ -1,0 +1,6 @@
+div(ng-if="d.pagination.last > 1").clearfix
+    div.right.inline-block
+        span.inline-block {{d.pagination.current}} / {{d.pagination.last}}
+        button(ng-click="d.setCurrent(d.pagination.current - 1)", ng-disabled="d.pagination.current == 1").button.rounded-left.ml1 Prev
+        button(ng-click="d.setCurrent(d.pagination.current + 1)", ng-disabled="d.pagination.current == d.pagination.last").button.rounded-right Next
+

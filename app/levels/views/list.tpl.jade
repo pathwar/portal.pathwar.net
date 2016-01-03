@@ -35,3 +35,5 @@ div.p2.sm-p3.bg-white.rounded.mt2.shadow-bottom
     div.right-align.sm-col-1.flex-right
       button.button(ng-click="vm.buyLevel(level)", ng-if="!level.bought") Buy
       a.button.button-transparent(ng-show="level.bought", ui-sref="levels.view({id: level._id})") View
+
+  div.mt2(pagination details="vm.pagination", on-page-change="vm.loadLevels(page)", ng-if="vm.levels.length > 0")
