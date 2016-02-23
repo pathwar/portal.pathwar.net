@@ -1,6 +1,0 @@
-h4.m0.p2.regular.gray Notifications
-div.bg-lightest-gray
-  a(ng-repeat="notification in vm.notifications track by notification._id",
-    ng-class="{'bold': notification.read == false}"
-    ng-click="vm.viewNotification(notification)").button.block.button-transparent.py1.px2.regular
-    | {{::notification.title}}

@@ -21,11 +21,6 @@ dist:	vendor
 clean:
 	-rm -rf build
 
-
-vendor:	bower.json .bowerrc
-	echo n | docker-compose run --no-deps portal bower --allow-root --force install
-
-
 release:	clean
 	$(MAKE) release_do || $(MAKE) release_teardown
 
