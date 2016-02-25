@@ -11,7 +11,6 @@ function runDevServer() {
   const server = new WebpackDevServer(compiler, ClientDevConfig.devServer)
   server.listen(DEV_PORT, 'localhost', () => {
     console.log('Webpack dev server listening on port', DEV_PORT)
-    cb()
   })
 }
 
