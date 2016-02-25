@@ -6,8 +6,7 @@ import ClientDevConfig from './webpack.client.dev.config'
 const APP_PATH = process.cwd()
 const DEV_PORT = process.env.DEV_PORT || 8081
 
-function runDevServer(cb) {
-  console.log(ClientDevConfig)
+function runDevServer() {
   const compiler = webpack(ClientDevConfig)
   const server = new WebpackDevServer(compiler, ClientDevConfig.devServer)
   server.listen(DEV_PORT, 'localhost', () => {
@@ -16,6 +15,4 @@ function runDevServer(cb) {
   })
 }
 
-runDevServer(() => {
-    console.log('Start complete')
-})
+runDevServer()
