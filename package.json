@@ -4,7 +4,8 @@
   "description": "Pathwar web front end",
   "author": "Pathwar team <team@pathwar.net> (@pathwar_net)",
   "scripts": {
-    "start": "AUTO_RELOAD=hot babel-node start.js"
+    "start": "AUTO_RELOAD=hot babel-node start.js",
+    "lint": "eslint src"
   },
   "license": "MIT",
   "dependencies": {
