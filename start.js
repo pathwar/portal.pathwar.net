@@ -20,7 +20,7 @@ function runDevServer() {
   fs.writeFileSync('.build/index.html', `
   <html>
   <body>
-      <div id="app">Yo</div>
+      <div id="root">Loading...</div>
       <script src="/vendor.js"></script>
       <script src="/app.js"></script>
   </body>

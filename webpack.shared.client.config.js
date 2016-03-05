@@ -8,7 +8,9 @@ export const ENTRY = {
   _vendor: [
     'react',
     'react-dom',
-    'react-router'
+    'react-router',
+    'redux',
+    'react-redux',
   ]
 }
 
