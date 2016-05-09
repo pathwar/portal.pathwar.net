@@ -20,4 +20,4 @@ You can find a version on github-pages, this version has some limitations and is
 
 ---
 
-© 2014-2015 Pathwar Team - [MIT License](https://github.com/pathwar/portal.pathwar.net/blob/master/LICENSE.md).
+© 2014-2016 Pathwar Team - [MIT License](https://github.com/pathwar/portal.pathwar.net/blob/master/LICENSE.md).
