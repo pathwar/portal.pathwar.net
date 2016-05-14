@@ -1,9 +1,23 @@
 {
-  "extends": "rackt",
+  "extends": "airbnb",
   "globals": {
     "__DEV__": true
   },
-  "rules": {
+  "rules": {    
+    "array-bracket-spacing": [2, "always"],
+    "comma-dangle": 0,
+    "curly": 0,
+    "eqeqeq": [2, "smart"],
+    "no-confusing-arrow": 0,
+    "no-param-reassign": 0,
+    "no-return-assign": 0,
+    "no-use-before-define": 0,
+    "prefer-const": 1,
+    "prefer-template": 0,
+    "one-var": 0,
+    "one-var-declaration-per-line": 0,
+    "semi": [2, "never"],
+
     "react/jsx-uses-react": 1,
     "react/jsx-no-undef": 2,
     "react/wrap-multilines": 2

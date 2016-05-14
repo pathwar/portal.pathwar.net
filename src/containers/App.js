@@ -1,19 +1,24 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
+const propTypes = {
+  children: PropTypes.object
+}
+
 class App extends React.Component {
+
+  componentDidMount() {}
+
   render() {
     return (
-      <div>{ this.props.children }</div>
+      <div>{this.props.children}</div>
     )
   }
 }
 
-const mapStateToProps = (/*state, ownProps*/) => {
-  return {
-    greetings: 'Welcome to Pathwar.net'
-  }
-}
+App.propTypes = propTypes
+
+const mapStateToProps = () => ({})
 
 const ConnectedApp = connect(
   mapStateToProps
