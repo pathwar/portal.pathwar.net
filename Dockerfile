@@ -1,4 +1,4 @@
-FROM node:0.10
+FROM node:6.5
 
 # NPM
 COPY package.json /usr/src/
