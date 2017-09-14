@@ -1,25 +1,34 @@
-portal:
-  extends:
-    file: _common.yml
-    service: portal
-  links:
-  - "mock:api"
-  ports:
-  - 8090:8090
-  - 35729:35729
+version: '2'
 
+services:
+  portal:
+    extends:
+      file: _common.yml
+      service: portal
+    links:
+      - "mock:api"
+    ports:
+      - 8090:8090
+      - 35729:35729
+    environment:
+      - VIRTUAL_HOST=portal.pathwar.net,pathwar-portal.m.42.am
+      - VIRTUAL_PORT=8090
+    networks:
+      - default
+      - service-proxy
+  mock:
+    extends:
+      file: _common.yml
+      service: mock
+    links:
+      - "mongo:mongo"
+    ports:
+      - "5000:5000"
+  mongo:
+    extends:
+      file: _common.yml
+      service: mongo
 
-mock:
-  extends:
-    file: _common.yml
-    service: mock
-  links:
-  - "mongo:mongo"
-  ports:
-  - "5000:5000"
-
-
-mongo:
-  extends:
-    file: _common.yml
-    service: mongo
+networks:
+  service-proxy:
+    external: true

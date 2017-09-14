@@ -6,6 +6,11 @@ PROD_API_ENDPOINT ?=	https://api.pathwar.net/
 
 all:	dev
 
+run: up
+
+up:
+	docker-compose up -d --force-recreate --remove-orphans
+
 
 dev:	vendor
 	docker-compose up -d --no-deps mock; docker-compose logs
